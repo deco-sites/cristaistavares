@@ -33,6 +33,11 @@ function Cart() {
         updateItem({
           quantity,
           productVariantId: items[index]?.productVariantId,
+          customization: [],
+          subscription: {
+            recurringTypeId: 0,
+            subscriptionGroupId: 0,
+          },
         })}
       itemToAnalyticsItem={(index) => {
         const item = items[index];
