@@ -1,5 +1,4 @@
 import Image from "apps/website/components/Image.tsx";
-import { headerHeight } from "./constants.ts";
 
 export interface INavItem {
   label: string;
@@ -12,9 +11,9 @@ function NavItem({ item }: { item: INavItem }) {
   const { href, label, children, image } = item;
 
   return (
-    <li class="group flex items-center">
+    <li class="group flex items-center relative">
       <a href={href} class="px-4 py-3">
-        <span class="group-hover:underline">
+        <span class="group-hover:underline group-hover:text-dark-pink transition-colors duration-400">
           {label}
         </span>
       </a>
@@ -22,8 +21,8 @@ function NavItem({ item }: { item: INavItem }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen"
-            style={{ top: "0px", left: "0px", marginTop: headerHeight }}
+            class="flex-row-reverse absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[720px] h-[380px]"
+            style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
               <Image

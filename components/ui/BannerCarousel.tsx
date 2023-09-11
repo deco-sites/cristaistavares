@@ -1,4 +1,3 @@
-import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
@@ -136,24 +135,26 @@ function BannerCarousel({ images, preload, interval }: Props) {
   const id = useId();
 
   return (
-    <div
-      id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
-    >
-      <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
-        {images?.map((image, index) => (
-          <Slider.Item index={index} class="carousel-item w-full">
-            <BannerItem image={image} lcp={index === 0 && preload} />
-          </Slider.Item>
-        ))}
-      </Slider>
+    <section class="flex items-center justify-center w-full h-full pt-6 md:pt-2">
+      <div
+        id={id}
+        class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
+      >
+        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
+          {images?.map((image, index) => (
+            <Slider.Item index={index} class="carousel-item w-full">
+              <BannerItem image={image} lcp={index === 0 && preload} />
+            </Slider.Item>
+          ))}
+        </Slider>
 
-      <Buttons />
+        <Buttons />
 
-      <Dots images={images} interval={interval} />
+        <Dots images={images} interval={interval} />
 
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
-    </div>
+        <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+      </div>
+    </section>
   );
 }
 

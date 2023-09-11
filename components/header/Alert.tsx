@@ -19,7 +19,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
       <Slider class="carousel carousel-center w-screen bg-dark-pink gap-6 px-3">
         {alerts.map((alert, index) => (
           <Slider.Item index={index} class="carousel-item">
-            <span class="text-xs sm:text-sm text-secondary-content flex justify-center items-center text-center w-screen h-[56px]">
+            <span class="text-xs sm:text-sm text-secondary-content flex justify-center items-center text-center w-screen h-[56px] md:h-[40px]">
               {alert}
             </span>
           </Slider.Item>

@@ -1,6 +1,6 @@
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
-import { MenuButton, SearchButton } from "$store/islands/Header/Buttons.tsx";
+import Login from "$store/components/header/LoginHeader.tsx";
+import { MenuButton } from "$store/islands/Header/Buttons.tsx";
 import CartButtonVDNA from "$store/islands/Header/Cart/vnda.tsx";
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
@@ -22,73 +22,62 @@ function Navbar({ items, searchbar, logo }: {
   return (
     <>
       {/* Mobile Version */}
-      <div
-        style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
-      >
-        <MenuButton />
+      <div class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full px-2 py-2 gap-2">
+        <div class="grid grid-cols-3 items-center justify-center w-full h-full">
+          <div class="flex justify-start">
+            <MenuButton />
+          </div>
 
-        {logo && (
-          <a
-            href="/"
-            class="flex-grow inline-flex items-center"
-            style={{ minHeight: navbarHeight }}
-            aria-label="Store logo"
-          >
-            <Image src={logo.src} alt={logo.alt} width={126} height={16} />
-          </a>
-        )}
-
-        <div class="flex gap-1">
-          <SearchButton />
-          {platform === "vtex" && <CartButtonVTEX />}
-          {platform === "vnda" && <CartButtonVDNA />}
-        </div>
-      </div>
-
-      {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6">
-        <div class="flex-none w-44">
           {logo && (
             <a
               href="/"
+              class="flex justify-center max-h-fit h-fit"
+              style={{ minHeight: navbarHeight }}
               aria-label="Store logo"
-              class="block px-4 py-3 w-[160px]"
             >
               <Image src={logo.src} alt={logo.alt} width={126} height={16} />
             </a>
           )}
+          <div class="flex justify-end">
+            {platform === "vtex" && <CartButtonVTEX />}
+            {platform === "vnda" && <CartButtonVDNA />}
+          </div>
         </div>
-        <div class="flex-auto flex justify-center">
-          {items.map((item) => <NavItem item={item} />)}
-        </div>
-        <div class="flex-none w-44 flex items-center justify-end gap-2">
-          <SearchButton />
+        <div class="w-full px-2">
           <Searchbar searchbar={searchbar} />
-          <a
-            class="btn btn-circle btn-sm btn-ghost"
-            href="/login"
-            aria-label="Log in"
-          >
-            <Icon id="User" size={24} strokeWidth={0.4} />
-          </a>
-          <a
-            class="btn btn-circle btn-sm btn-ghost"
-            href="/wishlist"
-            aria-label="Wishlist"
-          >
-            <Icon
-              id="Heart"
-              size={24}
-              strokeWidth={2}
-              fill="none"
-            />
-          </a>
-          {platform === "vtex" && <CartButtonVTEX />}
-          {platform === "vnda" && <CartButtonVDNA />}
-          {platform === "wake" && <CartButtonWake />}
-          {platform === "shopify" && <CartButtonShopify />}
         </div>
+      </div>
+
+      {/* Desktop Version */}
+      <div class="hidden md:flex flex-col max-w-[1266px] mx-auto px-1 pt-3">
+        <div class="flex flex-row justify-between items-center">
+          <div class="flex-auto flex justify-start">
+            {logo && (
+              <a
+                href="/"
+                aria-label="Store logo"
+                class="block px-4 py-3 w-[160px]"
+              >
+                <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+              </a>
+            )}
+          </div>
+
+          <div class="md:w-72 lg:w-auto">
+            <Searchbar searchbar={searchbar} />
+          </div>
+          <div class="flex-none w-54 flex items-center justify-start gap-2">
+            <Login />
+            {platform === "vtex" && <CartButtonVTEX />}
+            {platform === "vnda" && <CartButtonVDNA />}
+            {platform === "wake" && <CartButtonWake />}
+            {platform === "shopify" && <CartButtonShopify />}
+          </div>
+        </div>
+
+        <ul class="flex-auto flex-wrap flex items-center justify-between w-full">
+          {items.map((item) => <NavItem item={item} />)}
+        </ul>
       </div>
     </>
   );
