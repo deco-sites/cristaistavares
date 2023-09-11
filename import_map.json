@@ -1,5 +1,7 @@
 {
   "imports": {
+    "deco-sites/cristaistavares/": "./",
+
     "$store/": "./",
     "apps/": "https://denopkg.com/deco-cx/apps@0.5.0/",
     "deco/": "https://denopkg.com/deco-cx/deco@1.35.10/",
