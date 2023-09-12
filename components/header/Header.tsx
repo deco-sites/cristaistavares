@@ -10,6 +10,7 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 export interface NavItem {
   label: string;
   href: string;
+  columns?: number;
   children?: Array<{
     label: string;
     href: string;
