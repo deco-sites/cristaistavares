@@ -22,6 +22,7 @@ cards?: Array<{
   }>;
 }
 
+
 export default function InfoSection({ title, cards}: Props){
     return(
         <section class="w-full h-full flex items-center justify-center my-8">
