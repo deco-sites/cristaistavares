@@ -49,21 +49,22 @@ function Navbar({ items, searchbar, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-col max-w-[1266px] mx-auto px-1 pt-3">
+      <div class="hidden md:flex flex-col max-w-[1266px] mx-auto pl-1 pr-3 pt-3">
         <div class="flex flex-row justify-between items-center">
-          <div class="flex-auto flex justify-start">
+          <div class="flex justify-start">
             {logo && (
               <a
                 href="/"
                 aria-label="Store logo"
                 class="block px-4 py-3 w-[160px]"
+                loading="eager"
               >
                 <Image src={logo.src} alt={logo.alt} width={126} height={16} />
               </a>
             )}
           </div>
 
-          <div class="md:w-72 lg:w-auto">
+          <div class="flex items-center justify-center w-full">
             <Searchbar searchbar={searchbar} />
           </div>
           <div class="flex-none w-54 flex items-center justify-start gap-2">

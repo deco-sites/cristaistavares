@@ -3,6 +3,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
+import { asset } from "$fresh/runtime.ts";
 
 interface Props {
   loading: boolean;
@@ -26,7 +27,7 @@ function CartButton({ loading, currency, total, items }: Props) {
   return (
     <div class="indicator">
       <span
-        class={`indicator-item badge badge-secondary badge-sm ${
+        class={`indicator-item badge badge-secondary badge-sm bg-dark-pink border-none p-1 ${
           totalItems === 0 ? "hidden" : ""
         }`}
       >
@@ -40,7 +41,12 @@ function CartButton({ loading, currency, total, items }: Props) {
         loading={loading}
         onClick={onClick}
       >
-        <Icon id="ShoppingCart" size={32} strokeWidth={2} />
+        <img
+          src={asset("/minicart-icon.png")}
+          alt="Cart Icon"
+          width={32}
+          height={32}
+        />
       </Button>
     </div>
   );

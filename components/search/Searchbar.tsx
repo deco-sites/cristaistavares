@@ -70,26 +70,17 @@ function Searchbar({
   }, []);
 
   return (
-    <div
-      class="w-screen grid gap-8 container px-4 py-6 overflow-y-hidden"
-      style={{ gridTemplateRows: "min-content auto" }}
-    >
-      <form id={id} action={action} class="join">
-        <Button
-          type="submit"
-          class="join-item btn-square"
-          aria-label="Search"
-          for={id}
-          tabIndex={-1}
-        >
-          {loading.value
-            ? <span class="loading loading-spinner loading-xs" />
-            : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
-        </Button>
+    <div class="w-full flex flex-col gap-8 overflow-y-hidden">
+      <form
+        id={id}
+        action={action}
+        class="flex w-full flex-grow relative h-[40px] px-0 border-b border-b-dark-pink"
+      >
         <input
           ref={searchInputRef}
           id="search-input"
-          class="input input-bordered join-item flex-grow"
+          class="flex-grow w-[80%] outline-none placeholder-shown:sibling:hidden md:placeholder:text-sm"
+          aria-label="Barra de pesquisa"
           name={name}
           defaultValue={query}
           onInput={(e) => {
@@ -109,16 +100,37 @@ function Searchbar({
           aria-controls="search-suggestion"
           autocomplete="off"
         />
-        <Button
+        <button
+          type="submit"
+          class="btn-ghost absolute right-0 bg-transparent hover:bg-transparent top-1/2 translate-y-[-50%]"
+          aria-label="Search"
+          for={id}
+          tabIndex={-1}
+        >
+          {loading.value
+            ? <span class="loading loading-spinner loading-xs" />
+            : (
+              <Icon
+                id="MagnifyingGlass"
+                size={24}
+                strokeWidth={0.01}
+                class="text-dark-pink"
+              />
+            )}
+        </button>
+        {
+          /* <Button
           type="button join-item"
           class="btn-ghost btn-square hidden sm:inline-flex"
           onClick={() => displaySearchPopup.value = false}
         >
           <Icon id="XMark" size={24} strokeWidth={2} />
-        </Button>
+        </Button> */
+        }
       </form>
 
-      {notFound
+      {
+        /* {notFound
         ? (
           <div class="flex flex-col gap-4 w-full">
             <span
@@ -191,7 +203,8 @@ function Searchbar({
               </div>
             </div>
           </div>
-        )}
+        )} */
+      }
     </div>
   );
 }
