@@ -107,7 +107,7 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
               ? isVariantOf?.name
-              : name}
+              : product?.isVariantOf?.name}
           </span>
         </h1>
       </div>

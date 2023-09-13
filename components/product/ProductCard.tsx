@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
+import QuantitySelector from "../ui/QuantitySelector.tsx";
 
 export interface Layout {
   basics?: {
@@ -54,8 +55,13 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 275;
+const HEIGHT = 275;
+
+const RATING = {
+  votes: 16,
+  rating: 3,
+};
 
 function ProductCard(
   { product, preload, itemListName, layout, platform }: Props,
@@ -94,7 +100,7 @@ function ProductCard(
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="btn btn-block"
+      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white w-full h-full py-2 duration-150 transition-colors"
     >
       {l?.basics?.ctaText || "Ver produto"}
     </a>
@@ -103,7 +109,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full ${
+      class={`bg-white card card-compact rounded-none group w-full hover:shadow-2xl ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -134,7 +140,8 @@ function ProductCard(
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
-        <div
+        {
+          /* <div
           class={`absolute top-2 z-10
           ${
             l?.elementsPositions?.favoriteIcon === "Top left"
@@ -154,22 +161,29 @@ function ProductCard(
               productID={productID}
             />
           )}
-        </div>
+        </div> */
+        }
         {/* Product Images */}
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full"
+          class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-1 z-30">
+            LANÇAMENTO
+          </span>
+
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-8 z-30">
+            {30}% OFF
+          </span>
+
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
             class={`bg-base-100 col-span-full row-span-full rounded w-full ${
-              l?.onMouseOver?.image == "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
+              l?.onMouseOver?.image == "Zoom image" ? "duration-100" : ""
             }`}
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
@@ -210,7 +224,8 @@ function ProductCard(
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
         {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
+        {
+          /* {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
           <>
             {l?.hide?.skuSelector ? "" : (
@@ -223,55 +238,99 @@ function ProductCard(
               </ul>
             )}
           </>
-        )}
+        )} */
+        }
+
+        <div class="flex flex-row gap-1 align-middle items-center justify-center">
+          <div class="rating align-middle">
+            <input
+              type="radio"
+              name="rating-1"
+              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+              checked={Math.floor(RATING.rating) == 1}
+            />
+            <input
+              type="radio"
+              name="rating-1"
+              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+              checked={Math.floor(RATING.rating) == 2}
+            />
+            <input
+              type="radio"
+              name="rating-1"
+              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+              checked={Math.floor(RATING.rating) == 3}
+            />
+            <input
+              type="radio"
+              name="rating-1"
+              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+              checked={Math.floor(RATING.rating) == 4}
+            />
+            <input
+              type="radio"
+              name="rating-1"
+              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+              checked={Math.floor(RATING.rating) === 5}
+            />
+          </div>
+        </div>
 
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
-            <div class="flex flex-col gap-0">
+            <div class="flex flex-col items-center justify-center text-center gap-0 w-full">
               {l?.hide?.productName
                 ? ""
                 : (
-                  <h2 class="truncate text-base lg:text-lg text-base-content">
-                    {name}
+                  <h2 class="text-sm text-center w-full">
+                    {product.isVariantOf?.name}
                   </h2>
                 )}
-              {l?.hide?.productDescription
-                ? ""
-                : (
-                  <p class="truncate text-sm lg:text-sm text-neutral">
-                    {product.description}
-                  </p>
-                )}
+              {l?.hide?.productDescription ? "" : (
+                <p
+                  class="truncate text-sm lg:text-sm text-neutral"
+                  dangerouslySetInnerHTML={{
+                    __html: product.description ?? "",
+                  }}
+                />
+              )}
             </div>
           )}
         {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col gap-1">
             <div
               class={`flex flex-col gap-0 ${
                 l?.basics?.oldPriceSize === "Normal"
                   ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
+                  : "lg:flex-row lg:gap-2"
+              } ${
+                align === "center"
+                  ? "justify-center items-center"
+                  : "justify-start items-start"
+              }`}
             >
               <div
-                class={`line-through text-base-300 text-xs ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                class={`line-through text-black text-xs ${
+                  l?.basics?.oldPriceSize === "Normal"
+                    ? "lg:text-xl"
+                    : "lg:text-sm"
                 }`}
               >
                 {formatPrice(listPrice, offers!.priceCurrency!)}
               </div>
-              <div class="text-accent text-base lg:text-xl">
+              <div class="text-black text-sm">
                 {formatPrice(price, offers!.priceCurrency!)}
               </div>
             </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <div class="text-base-300 text-sm lg:text-base">
-                  ou {installments}
-                </div>
-              )}
+            <div class="text-black text-sm">
+              {formatPrice(price, offers!.priceCurrency!)} no <b>PIX</b>
+            </div>
+            {l?.hide?.installments ? "" : (
+              <div class="text-black text-sm">
+                {installments}
+              </div>
+            )}
           </div>
         )}
 
@@ -293,10 +352,11 @@ function ProductCard(
         {!l?.hide?.cta
           ? (
             <div
-              class={`flex-auto flex items-end ${
+              class={`flex-auto flex items-center w-full ${
                 l?.onMouseOver?.showCta ? "lg:hidden" : ""
               }`}
             >
+              <QuantitySelector quantity={1} />
               {cta}
             </div>
           )

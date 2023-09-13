@@ -37,6 +37,8 @@ function ProductShelf({
     return null;
   }
 
+  console.log(products);
+
   return (
     <div class="w-full container  py-8 flex flex-col gap-12 lg:gap-16 lg:py-10">
       <Header
