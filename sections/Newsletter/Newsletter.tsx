@@ -1,127 +1,153 @@
-import Header from "$store/components/ui/SectionHeader.tsx";
+import { Runtime } from "$store/runtime.ts";
+import { useSignal } from "@preact/signals";
+import type { JSX } from "preact";
 
-export interface Form {
+export interface INewsletterInputProps {
+  /**
+   * @title Hide input?
+   */
+  show?: boolean;
+  /**
+   * @title placeholder
+   */
   placeholder?: string;
-  buttonText?: string;
-  /** @format html */
-  helpText?: string;
 }
 
-export interface Props {
-  title?: string;
-  /** @format textarea */
-  description?: string;
-  form?: Form;
-  layout?: {
-    headerFontSize?: "Large" | "Normal";
-    content?: {
-      border?: boolean;
-      alignment?: "Center" | "Left" | "Side to side";
-      bgColor?: "Normal" | "Reverse";
-    };
+export interface INewsletterFormProps {
+  email: INewsletterInputProps;
+  name: INewsletterInputProps;
+  button: {
+    /**
+     * @title button label?
+     * @default cadastrar
+     */
+    label?: string;
   };
 }
 
-const DEFAULT_PROPS: Props = {
-  title: "",
-  description: "",
-  form: {
-    placeholder: "Digite seu email",
-    buttonText: "Inscrever",
-    helpText:
-      'Ao se inscrever, você concorda com nossa <a class="link" href="/politica-de-privacidade">Política de privacidade</a>.',
-  },
-  layout: {
-    headerFontSize: "Large",
-    content: {
-      border: false,
-      alignment: "Center",
-    },
-  },
-};
+export interface Props {
+  /**
+   * @title Newsletter Form
+   */
+  form: INewsletterFormProps;
+  /**
+   * @title newsletter message text?
+   * @format html
+   */
+  text: string;
+}
 
-export default function Newsletter(props: Props) {
-  const { title, description, form, layout } = { ...DEFAULT_PROPS, ...props };
-  const isReverse = layout?.content?.bgColor === "Reverse";
-  const bordered = Boolean(layout?.content?.border);
+interface InputNewletterProps {
+  name: string;
+  placeholder: string;
+  type: string;
+  required: boolean;
+}
 
-  const headerLayout = (
-    <Header
-      title={title}
-      description={description}
-      alignment={layout?.content?.alignment === "Left" ? "left" : "center"}
-      colorReverse={isReverse}
-      fontSize={layout?.headerFontSize}
+function InputNewsletter(
+  { name, placeholder, required, type }: InputNewletterProps,
+) {
+  return (
+    <input
+      name={name}
+      type={type}
+      class="flex-shrink lg:h-10 h-9 join-item w-full placeholder:text-placeholder outline-none lg:text-base text-xs bg-transparent text-black border-b border-b-gray-400 lg:max-w-[250px]"
+      placeholder={placeholder}
+      required={required}
     />
   );
+}
 
-  const formLayout = form && (
-    <form action="/" class="flex flex-col gap-4">
-      <div class="flex flex-col lg:flex-row gap-3">
-        <input
-          class="input input-bordered lg:w-80"
-          type="text"
-          placeholder={form.placeholder}
-        />
-        <button
-          class={`btn ${isReverse ? "btn-accent" : ""}`}
-          type="submit"
-        >
-          {form.buttonText}
-        </button>
-      </div>
-      {form.helpText && (
-        <div
-          class="text-sm"
-          dangerouslySetInnerHTML={{ __html: form.helpText }}
-        />
-      )}
-    </form>
-  );
+function Form(props: Props) {
+  const { text, form } = props;
+  const loading = useSignal(false);
+  const success = useSignal(false);
 
-  const bgLayout = isReverse
-    ? "bg-secondary text-secondary-content"
-    : "bg-transparent";
+  const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    try {
+      loading.value = true;
+
+      const email =
+        (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
+
+      let name = "";
+
+      if (form?.name?.show) {
+        name = (e.currentTarget.elements.namedItem("name") as RadioNodeList)
+          ?.value;
+      }
+
+      await Runtime.vtex.actions.newsletter.subscribe({ name, email });
+    } finally {
+      loading.value = false;
+      success.value = true;
+
+      setTimeout(() => {
+        success.value = false;
+      }, 5000);
+    }
+  };
+
+  const emailInput = !form?.email?.show
+    ? (
+      <InputNewsletter
+        name="email"
+        required
+        type="email"
+        placeholder={form?.email?.placeholder || "E-mail"}
+      />
+    )
+    : null;
+
+  const nameInput = !form?.name?.show
+    ? (
+      <InputNewsletter
+        name="name"
+        type="text"
+        placeholder={form?.name?.placeholder || "Nome"}
+        required
+      />
+    )
+    : null;
 
   return (
-    <div
-      class={`${
-        bordered
-          ? isReverse ? "bg-secondary-content" : "bg-secondary"
-          : bgLayout
-      } ${bordered ? "p-4 lg:p-16" : "p-0"}`}
-    >
-      {(!layout?.content?.alignment ||
-        layout?.content?.alignment === "Center") && (
+    <section class="flex py-8 px-5 xl:px-0 w-full bg-whitesmoke">
+      <div class="flex flex-col lg:flex-row container max-w-[1280px] w-full items-baseline lg:items-center gap-5 lg:gap-16 justify-between">
         <div
-          class={`container flex flex-col rounded p-4 gap-6 lg:p-16 lg:gap-12 ${bgLayout}`}
-        >
-          {headerLayout}
-          <div class="flex justify-center">
-            {formLayout}
-          </div>
-        </div>
-      )}
-      {layout?.content?.alignment === "Left" && (
-        <div
-          class={`container flex flex-col rounded p-4 gap-6 lg:p-16 lg:gap-12 ${bgLayout}`}
-        >
-          {headerLayout}
-          <div class="flex justify-start">
-            {formLayout}
-          </div>
-        </div>
-      )}
-      {layout?.content?.alignment === "Side to side" && (
-        <div
-          class={`container flex flex-col rounded justify-between lg:flex-row p-4 gap-6 lg:p-16 lg:gap-12 ${bgLayout}`}
-        >
-          {headerLayout}
-          <div class="flex justify-center">
-            {formLayout}
-          </div>
-        </div>
-      )}
-    </div>
+          dangerouslySetInnerHTML={{ __html: text }}
+          class="text-left text-black lg:max-w-sm max-w-xs lg:pr-0 pr-14"
+        />
+        {success.value
+          ? (
+            <div class="text-base lg:text-xl text-left text-base-100">
+              E-mail cadastrado com sucesso!
+            </div>
+          )
+          : (
+            <form
+              class="w-full form-control"
+              onSubmit={handleSubmit}
+            >
+              <div class="flex gap-4 w-full lg:flex-row flex-col items-center lg:justify-between justify-center">
+                <div class="flex flex-col gap-4 lg:flex-row items-center justify-end w-full">
+                  {nameInput}
+                  {emailInput}
+                </div>
+                <button
+                  type="submit"
+                  class="capitalize font-medium btn disabled:loading rounded-md text-white bg-emerald-500 hover:bg-emerald-600 join-item lg:max-w-[150px] w-full duration-200 transition-opacity"
+                  disabled={loading}
+                >
+                  {form?.button?.label || "Cadastrar"}
+                </button>
+              </div>
+            </form>
+          )}
+      </div>
+    </section>
   );
 }
+
+export default Form;

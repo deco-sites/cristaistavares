@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         "dark-pink": "#a81650",
+        "whitesmoke": "#f4f4f4",
       },
     },
   },

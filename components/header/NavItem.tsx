@@ -22,7 +22,7 @@ function NavItem({ item }: { item: INavItem }) {
       {children && children.length > 0 &&
         (
           <div
-            class="flex-row-reverse absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[980px] h-[380px]"
+            class="flex-row-reverse absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[920px] h-[380px]"
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
