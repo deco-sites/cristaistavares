@@ -1,5 +1,5 @@
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
+import Avatar from "$store/islands/Avatar.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -86,21 +86,22 @@ function ProductCard(
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-  const skuSelector = variants.map(([value, [link]]) => (
+  const skuSelector = variants.map(([value, [link]], index) => (
     <li>
-      <a href={link}>
+      <div>
         <Avatar
           variant={link === url ? "active" : "default"}
           content={value}
+          index={index}
         />
-      </a>
+      </div>
     </li>
   ));
   const cta = (
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white w-full h-full py-2 duration-150 transition-colors"
+      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white w-full h-full py-2 duration-150 transition-colors max-h-[50px]"
     >
       {l?.basics?.ctaText || "Ver produto"}
     </a>
@@ -224,8 +225,7 @@ function ProductCard(
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
         {/* SKU Selector */}
-        {
-          /* {(!l?.elementsPositions?.skuSelector ||
+        {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
           <>
             {l?.hide?.skuSelector ? "" : (
@@ -238,8 +238,7 @@ function ProductCard(
               </ul>
             )}
           </>
-        )} */
-        }
+        )}
 
         <div class="flex flex-row gap-1 align-middle items-center justify-center">
           <div class="rating align-middle">

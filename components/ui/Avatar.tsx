@@ -3,6 +3,8 @@
  * TODO: Figure out a better name for this component.
  */
 
+import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
+
 const colors: Record<string, string> = {
   "azul-clara": "bg-[#87CEFA] ring-[#87CEFA]",
   "azul-marinho": "bg-[#000080] ring-[#000080]",
@@ -24,6 +26,7 @@ const colors: Record<string, string> = {
 interface Props {
   variant?: "active" | "disabled" | "default";
   content: string;
+  index?: number;
 }
 
 const variants = {
@@ -33,9 +36,14 @@ const variants = {
   default: "border border-base-200 hover:border-primary",
 };
 
-function Avatar({ content, variant = "default" }: Props) {
+function Avatar({ content, variant = "default", index }: Props) {
+  const { selectedSku, setSku } = useSkuSelector();
+
   return (
-    <div class="avatar placeholder text-xs">
+    <div
+      class="avatar placeholder text-xs"
+      onClick={() => setSku(content)}
+    >
       <div
         class={`rounded-full w-8 h-8 ${colors[content] ?? colors[variant]} ${
           variants[variant]
