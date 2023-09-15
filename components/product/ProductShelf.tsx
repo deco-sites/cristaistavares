@@ -1,5 +1,6 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import ProductCard, {
+import ProductCard from "$store/islands/ProductCard.tsx";
+import type {
   Layout as cardLayout,
 } from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
@@ -36,8 +37,6 @@ function ProductShelf({
   if (!products || products.length === 0) {
     return null;
   }
-
-  console.log(products);
 
   return (
     <div class="w-full container py-8 flex flex-col gap-12 lg:gap-16 lg:py-10">

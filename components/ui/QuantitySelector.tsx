@@ -10,7 +10,7 @@ interface Props {
 const QUANTITY_MAX_VALUE = 100;
 
 function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
-  const decrement = () => onChange?.(Math.max(0, quantity - 1));
+  const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>
     onChange?.(Math.min(quantity + 1, QUANTITY_MAX_VALUE));
@@ -26,7 +26,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         -
       </Button>
       <input
-        class="input text-center join-item [appearance:textfield] w-[40px]"
+        class="text-center w-[45px]"
         type="number"
         inputMode="numeric"
         pattern="[0-9]*"

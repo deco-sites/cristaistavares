@@ -1,14 +1,14 @@
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
-import Avatar from "$store/islands/Avatar.tsx";
-import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossibilities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
-import QuantitySelector from "../ui/QuantitySelector.tsx";
+import ProductCta from "$store/components/product/ProductCta.tsx";
+import SkuSelector from "$store/components/product/SkuSelector.tsx";
+import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
 export interface Layout {
   basics?: {
@@ -55,6 +55,15 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
+const newSkuId = (url: string | null) => {
+  if (!url) return;
+
+  const link = new URL(url);
+  const skuId = link.searchParams.get("skuId");
+
+  return skuId;
+};
+
 const WIDTH = 275;
 const HEIGHT = 275;
 
@@ -77,35 +86,21 @@ function ProductCard(
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, price, installments, seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+  const { selectedSku } = useSkuSelector();
+
+  const skuId = newSkuId(selectedSku.value);
 
   const l = layout;
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-  const skuSelector = variants.map(([value, [link]], index) => (
-    <li>
-      <div>
-        <Avatar
-          variant={link === url ? "active" : "default"}
-          content={value}
-          index={index}
-        />
-      </div>
-    </li>
+  const skuSelector = variants.map(([value, [link]]) => (
+    <SkuSelector value={value} link={link} />
   ));
-  const cta = (
-    <a
-      href={url && relative(url)}
-      aria-label="view product"
-      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white w-full h-full py-2 duration-150 transition-colors max-h-[50px]"
-    >
-      {l?.basics?.ctaText || "Ver produto"}
-    </a>
-  );
 
   return (
     <div
@@ -166,7 +161,7 @@ function ProductCard(
         }
         {/* Product Images */}
         <a
-          href={url && relative(url)}
+          href={url && relative(selectedSku.value ?? url)}
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
@@ -219,7 +214,17 @@ function ProductCard(
               {skuSelector}
             </ul>
           )}
-          {l?.onMouseOver?.showCta && cta}
+          {l?.onMouseOver?.showCta &&
+            (
+              <ProductCta
+                name={name ?? ""}
+                productID={productID}
+                productGroupID={productGroupID ?? ""}
+                price={price ?? 0}
+                discount={price && listPrice ? listPrice - price : 0}
+                seller={seller!}
+              />
+            )}
         </figcaption>
       </figure>
       {/* Prices & Name */}
@@ -351,12 +356,18 @@ function ProductCard(
         {!l?.hide?.cta
           ? (
             <div
-              class={`flex-auto flex items-center w-full ${
+              class={`flex-auto flex items-center justify-center w-full ${
                 l?.onMouseOver?.showCta ? "lg:hidden" : ""
               }`}
             >
-              <QuantitySelector quantity={1} />
-              {cta}
+              <ProductCta
+                name={name ?? ""}
+                productID={skuId ?? productID}
+                productGroupID={productGroupID ?? ""}
+                price={price ?? 0}
+                discount={price && listPrice ? listPrice - price : 0}
+                seller={seller!}
+              />
             </div>
           )
           : ""}

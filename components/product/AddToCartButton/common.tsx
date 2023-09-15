@@ -60,8 +60,12 @@ export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button {...btnProps} data-deco="add-to-cart" class="btn-primary">
-      Adicionar à Sacola
+    <Button
+      {...btnProps}
+      data-deco="add-to-cart"
+      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white min-w-max h-full py-2 duration-150 transition-colors max-h-[50px]"
+    >
+      Comprar
     </Button>
   );
 }
