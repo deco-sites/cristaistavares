@@ -93,6 +93,16 @@ function ProductCard(
 
   const skuId = newSkuId(selectedSku.value);
 
+  const filteredProduct =
+    product.isVariantOf?.hasVariant.filter((item) => item.sku === skuId)[0];
+
+  const {
+    listPrice: filteredProductListPrice,
+    price: filteredProductPrice,
+    installments: filteredProductInstallments,
+    seller: filteredProductSeller,
+  } = useOffer(filteredProduct?.offers);
+
   const l = layout;
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
@@ -321,18 +331,27 @@ function ProductCard(
                     : "lg:text-sm"
                 }`}
               >
-                {formatPrice(listPrice, offers!.priceCurrency!)}
+                {formatPrice(
+                  filteredProductListPrice ?? listPrice,
+                  offers!.priceCurrency!,
+                )}
               </div>
               <div class="text-black text-sm">
-                {formatPrice(price, offers!.priceCurrency!)}
+                {formatPrice(
+                  filteredProductPrice ?? price,
+                  offers!.priceCurrency!,
+                )}
               </div>
             </div>
             <div class="text-black text-sm">
-              {formatPrice(price, offers!.priceCurrency!)} no <b>PIX</b>
+              {formatPrice(
+                filteredProductPrice ?? price,
+                offers!.priceCurrency!,
+              )} no <b>PIX</b>
             </div>
             {l?.hide?.installments ? "" : (
               <div class="text-black text-sm">
-                {installments}
+                {filteredProductInstallments ?? installments}
               </div>
             )}
           </div>
