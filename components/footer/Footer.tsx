@@ -5,6 +5,7 @@ import ExtraLinks from "$store/components/footer/ExtraLinks.tsx";
 import FooterItems from "$store/components/footer/FooterItems.tsx";
 import Logo from "$store/components/footer/Logo.tsx";
 import MobileApps from "$store/components/footer/MobileApps.tsx";
+import SecurityItems from "$store/components/footer/SecurityItems.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
@@ -35,6 +36,12 @@ export interface SocialItem {
 
 export interface PaymentItem {
   label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+}
+
+export interface SecurityItem {
+  image: ImageWidget;
+  href?: string;
+  description: string;
 }
 
 export interface MobileApps {
@@ -74,6 +81,7 @@ export interface Layout {
     newsletter?: boolean;
     sectionLinks?: boolean;
     socialLinks?: boolean;
+    security?: boolean;
     paymentMethods?: boolean;
     mobileApps?: boolean;
     regionOptions?: boolean;
@@ -97,6 +105,10 @@ export interface Props {
   social?: {
     title?: string;
     items: SocialItem[];
+  };
+  security?: {
+    title?: string;
+    items: SecurityItem[];
   };
   payments?: {
     title?: string;
@@ -155,6 +167,10 @@ function Footer({
     title: "Redes sociais",
     items: [{ label: "Instagram", link: "/" }, { label: "Tiktok", link: "/" }],
   },
+  security = {
+    title: "Segurança",
+    items: [],
+  },
   payments = {
     title: "Formas de pagamento",
     items: [{ label: "Mastercard" }, { label: "Visa" }, { label: "Pix" }],
@@ -171,6 +187,7 @@ function Footer({
       newsletter: false,
       sectionLinks: false,
       socialLinks: false,
+      security: false,
       paymentMethods: false,
       mobileApps: false,
       regionOptions: false,
@@ -199,6 +216,9 @@ function Footer({
   const _social = layout?.hide?.socialLinks
     ? <></>
     : <Social content={social} vertical={layout?.variation == "Variation 3"} />;
+  const _security = layout?.hide?.security
+    ? <></>
+    : <SecurityItems content={security} />;
   const _payments = layout?.hide?.paymentMethods
     ? <></>
     : <PaymentMethods content={payments} />;
@@ -218,7 +238,7 @@ function Footer({
         ColorClasses(layout)
       }`}
     >
-      <div class="lg:container mx-6 lg:mx-auto">
+      <div class="mx-6 lg:mx-auto max-w-[1280px]">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-10">
             <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
@@ -291,15 +311,27 @@ function Footer({
           </div>
         )}
         {layout?.variation == "Variation 4" && (
-          <div class="flex flex-col gap-10">
+          <div class="flex flex-col gap-6">
             {_newsletter}
             {layout?.hide?.newsletter ? <></> : <Divider />}
-            <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 lg:justify-between">
+            <div class="flex flex-col lg:flex-row gap-10 lg:justify-center">
               {_sectionLinks}
-              <div class="flex flex-col md:flex-row lg:flex-col gap-10 lg:gap-10 lg:w-2/5 lg:pl-10">
+              <div class="flex flex-col md:flex-row lg:flex-col gap-10 lg:gap-10 lg:pl-10">
                 <div class="flex flex-col md:flex-row gap-10 lg:gap-20">
+                  <div class="block md:hidden">
+                    <Divider />
+                  </div>
                   <div class="lg:flex-auto">
                     {_payments}
+                  </div>
+                  <div class="block md:hidden">
+                    <Divider />
+                  </div>
+                  <div class="lg:flex-auto">
+                    {_security}
+                  </div>
+                  <div class="block md:hidden">
+                    <Divider />
                   </div>
                   <div class="lg:flex-auto">
                     {_social}

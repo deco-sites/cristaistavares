@@ -114,7 +114,7 @@ function Form(props: Props) {
 
   return (
     <section class="flex py-8 px-5 xl:px-0 w-full bg-whitesmoke">
-      <div class="flex flex-col lg:flex-row container max-w-[1280px] w-full items-baseline lg:items-center gap-5 lg:gap-16 justify-between">
+      <div class="flex flex-col lg:flex-row container max-w-[1240px] w-full items-baseline lg:items-center gap-5 lg:gap-16 justify-between">
         <div
           dangerouslySetInnerHTML={{ __html: text }}
           class="text-left text-black lg:max-w-sm max-w-xs lg:pr-0 pr-14"
