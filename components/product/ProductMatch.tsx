@@ -15,7 +15,11 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface Props {
-  banner: ImageWidget;
+  banner: {
+    image: ImageWidget;
+    href: string;
+    description: string;
+  };
   products: Product[] | null;
   title?: string;
   cardLayout?: cardLayout;
@@ -32,15 +36,18 @@ export default function ProductMatch(
   }
 
   return (
-    <section class="flex items-center justify-center w-full h-full px-6 lg:px-0">
-      <div class="flex flex-col lg:flex-row container max-w-[1280px] items-center lg:items-start justify-between gap-6 lg:gap-0">
+    <section class="flex items-center justify-center w-full h-full px-6 lg:px-3">
+      <div class="flex flex-col lg:flex-row max-w-[1280px] items-center lg:items-start justify-between gap-6 lg:gap-3">
         {banner && (
-          <Image
-            src={banner}
-            width={620}
-            height={517}
-            loading="lazy"
-          />
+          <a href={banner.href} class="w-full h-full">
+            <Image
+              src={banner.image}
+              alt={banner.description}
+              width={620}
+              height={517}
+              loading="lazy"
+            />
+          </a>
         )}
 
         <div class="flex flex-col items-center justify-center w-full h-full">
