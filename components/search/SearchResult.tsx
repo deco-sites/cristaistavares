@@ -73,7 +73,7 @@ function Result({
               <Icon id="ChevronLeft" size={24} strokeWidth={2} />
             </a>
             <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
+              Página {pageInfo.currentPage}
             </span>
             <a
               aria-label="next page link"

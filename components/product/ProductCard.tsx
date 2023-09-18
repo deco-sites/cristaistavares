@@ -7,6 +7,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductCta from "$store/components/product/ProductCta.tsx";
+import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
 import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
@@ -115,7 +116,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`bg-white card card-compact rounded-none group w-full hover:shadow-2xl ${
+      class={`bg-white card card-compact rounded-none group w-full h-[600px] hover:shadow-2xl p-3 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -179,16 +180,14 @@ function ProductCard(
             LANÇAMENTO
           </span>
 
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-8 z-30">
-            {30}% OFF
-          </span>
+          <DiscountPercentage price={price!} listPrice={listPrice!} />
 
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
+            class={`bg-base-100 col-span-full row-span-full w-full rounded-lg ${
               l?.onMouseOver?.image == "Zoom image" ? "duration-100" : ""
             }`}
             sizes="(max-width: 640px) 50vw, 20vw"
@@ -331,9 +330,8 @@ function ProductCard(
                     : "lg:text-sm"
                 }`}
               >
-                {formatPrice(
-                  filteredProductListPrice ?? listPrice,
-                  offers!.priceCurrency!,
+                {(listPrice ?? 0) > price! && (
+                  <span>{formatPrice(listPrice, offers!.priceCurrency!)}</span>
                 )}
               </div>
               <div class="text-black text-sm">

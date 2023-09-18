@@ -15,32 +15,31 @@ export interface Props {
 }
 
 export default function CategoryList({ title, description, cards }: Props) {
-
   return (
     <section class="w-full h-full flex flex-col items-center justify-center py-[50] px-5">
-        <div class="flex flex-col text-center pb-5 ">
-            <div class="">
-                <h1 class="text-xl font-medium">{title}</h1>
-            </div>
-            <div>
-                <p class="text-sm font-bold">{description}</p>
-            </div>
+      <div class="flex flex-col text-center pb-5 ">
+        <div class="">
+          <h1 class="text-xl font-medium">{title}</h1>
         </div>
-        <div class="w-full h-full flex flex-wrap items-center justify-center gap-5">
+        <div>
+          <p class="text-sm font-bold">{description}</p>
+        </div>
+      </div>
+      <div class="w-full h-full flex flex-wrap items-center justify-center gap-5">
         {cards?.map((card) => (
-                <div class="flex items-center justify-center w-[295px] h-[368px]">
-                    <a href={card.link}>
-                        <Image
-                        src={card.image.icon}
-                        alt={card.image.alt}
-                        width={296}
-                        height={368}
-                        loading="lazy"
-                        />
-                    </a>
-                </div>
-            ))}
-        </div>
+          <div class="flex items-center justify-center w-[295px] h-[368px]">
+            <a href={card.link}>
+              <Image
+                src={card.image.icon}
+                alt={card.image.alt}
+                width={296}
+                height={368}
+                loading="lazy"
+              />
+            </a>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
