@@ -7,6 +7,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductCta from "$store/components/product/ProductCta.tsx";
+import Installments from "./Installments.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
 import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
@@ -92,6 +93,17 @@ function ProductCard(
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const { selectedSku } = useSkuSelector();
 
+  const {
+    billingDuration: installmentsBillingDuration,
+    billingIncrement: installmentsBillingIncrement,
+  } = (product.offers?.offers[0].priceSpecification || [])
+    .filter((item) => item.billingDuration !== undefined)
+    .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
+    .map(({ billingDuration, billingIncrement }) => ({
+      billingDuration,
+      billingIncrement,
+    }))[0] || {};
+
   const skuId = newSkuId(selectedSku.value);
 
   const filteredProduct =
@@ -176,7 +188,7 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-1 z-30">
             LANÇAMENTO
           </span>
 
@@ -333,7 +345,8 @@ function ProductCard(
                     : "lg:text-sm"
                 }`}
               >
-                {(filteredProductListPrice ?? listPrice ?? 0) > price! && (
+                {(filteredProductListPrice ?? listPrice ?? 0) >
+                    (filteredProductPrice ?? price!) && (
                   <span>
                     {formatPrice(
                       filteredProductListPrice ?? listPrice,
@@ -355,11 +368,18 @@ function ProductCard(
                 offers!.priceCurrency!,
               )} no <b>PIX</b>
             </div>
-            {l?.hide?.installments ? "" : (
-              <div class="text-black text-sm">
-                {filteredProductInstallments ?? installments}
-              </div>
-            )}
+            {l?.hide?.installments
+              ? ""
+              : (
+                <div class="flex items-center justify-center">
+                  <Installments
+                    installmentsBillingDuration={installmentsBillingDuration ??
+                      0}
+                    installmentsBillingIncrement={installmentsBillingIncrement ??
+                      0}
+                  />
+                </div>
+              )}
           </div>
         )}
 
@@ -391,7 +411,7 @@ function ProductCard(
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
-                seller={seller!}
+                seller={filteredProductSeller ?? seller!}
               />
             </div>
           )

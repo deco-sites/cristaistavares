@@ -7,6 +7,7 @@ import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
 import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
+import Installments from "./Installments.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
@@ -86,6 +87,17 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
 
+  const {
+    billingDuration: installmentsBillingDuration,
+    billingIncrement: installmentsBillingIncrement,
+  } = (offers?.offers[0].priceSpecification || [])
+    .filter((item) => item.billingDuration !== undefined)
+    .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
+    .map(({ billingDuration, billingIncrement }) => ({
+      billingDuration,
+      billingIncrement,
+    }))[0] || {};
+
   return (
     <>
       {/* Breadcrumb */}
@@ -123,8 +135,12 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
+        <span class="flex">
+          <Installments
+            installmentsBillingDuration={installmentsBillingDuration ?? 0}
+            installmentsBillingIncrement={installmentsBillingIncrement ?? 0}
+            isPDP={true}
+          />
         </span>
       </div>
       {/* Sku Selector */}
@@ -359,7 +375,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout }: Props) {
   return (
-    <div class="container py-0 sm:py-10">
+    <div class="container pt-20 md:pt-28 pb-10">
       {page ? <Details page={page} layout={layout} /> : <NotFound />}
     </div>
   );
