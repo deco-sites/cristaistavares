@@ -86,6 +86,7 @@ export interface Layout {
     mobileApps?: boolean;
     regionOptions?: boolean;
     extraLinks?: boolean;
+    description?: boolean;
     backToTheTop?: boolean;
   };
 }
@@ -117,6 +118,7 @@ export interface Props {
   mobileApps?: MobileApps;
   regionOptions?: RegionOptions;
   extraLinks?: Item[];
+  description?: string;
   backToTheTop?: {
     text?: string;
   };
@@ -178,6 +180,8 @@ function Footer({
   mobileApps = { apple: "/", android: "/" },
   regionOptions = { currency: [], language: [] },
   extraLinks = [],
+  description =
+    "CRISTAIS TAVARES DECORAÇÃO EM MURANO EIRELI CNPJ: 48.996.931/0001-18 © Todos os direitos reservados. 2022",
   backToTheTop,
   layout = {
     backgroundColor: "Primary",
@@ -225,6 +229,10 @@ function Footer({
   const _apps = layout?.hide?.mobileApps
     ? <></>
     : <MobileApps content={mobileApps} />;
+  const _description = layout?.hide?.description
+    ? <></>
+    : <span class="text-center max-w-[360px] lg:max-w-full">{description}
+    </span>;
   const _region = layout?.hide?.regionOptions
     ? <></>
     : <RegionSelector content={regionOptions} />;
@@ -234,9 +242,7 @@ function Footer({
 
   return (
     <footer
-      class={`w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10 ${
-        ColorClasses(layout)
-      }`}
+      class={`w-full flex flex-col py-10 gap-10 ${ColorClasses(layout)}`}
     >
       <div class="mx-6 lg:mx-auto max-w-[1280px]">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
@@ -317,7 +323,7 @@ function Footer({
             <div class="flex flex-col lg:flex-row gap-10 lg:justify-center">
               {_sectionLinks}
               <div class="flex flex-col md:flex-row lg:flex-col gap-10 lg:gap-10 lg:pl-10">
-                <div class="flex flex-col md:flex-row gap-10 lg:gap-20">
+                <div class="flex flex-col md:flex-row gap-6 lg:gap-20">
                   <div class="block md:hidden">
                     <Divider />
                   </div>
@@ -337,14 +343,15 @@ function Footer({
                     {_social}
                   </div>
                 </div>
-                <div class="flex flex-col gap-10 lg:gap-10">
+                <div class="flex flex-col gap-10">
                   {_region}
                   {_apps}
                 </div>
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col md:flex-row md:justify-between gap-10 md:items-center">
+            <div class="flex flex-col justify-center gap-10 items-center">
+              {_description}
               {_logo}
               <PoweredByDeco />
             </div>

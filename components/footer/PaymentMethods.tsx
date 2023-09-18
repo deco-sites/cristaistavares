@@ -24,6 +24,7 @@ export default function PaymentMethods(
                     height={32}
                     strokeWidth={1}
                     id={item.label}
+                    loading="lazy"
                   />
                 </li>
               );
