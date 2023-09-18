@@ -35,7 +35,7 @@ export default function InfoSection({ title, cards }: Props) {
           {cards?.map((card) => (
             <>
               <li class="group relative flex gap-1">
-                <div class="absolute hidden group-hover:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
+                <div class="absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
                   {card.descHover}
                 </div>
                 <Image

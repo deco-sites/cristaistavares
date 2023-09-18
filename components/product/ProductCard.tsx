@@ -176,11 +176,14 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-1 z-30">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
             LANÇAMENTO
           </span>
 
-          <DiscountPercentage price={price!} listPrice={listPrice!} />
+          <DiscountPercentage
+            price={filteredProductPrice ?? price!}
+            listPrice={filteredProductListPrice ?? listPrice!}
+          />
 
           <Image
             src={front.url!}
@@ -202,7 +205,7 @@ function ProductCard(
               alt={back?.alternateName ?? front.alternateName}
               width={WIDTH}
               height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
+              class="bg-base-100 col-span-full row-span-full transition-opacity rounded-lg w-full opacity-0 lg:group-hover:opacity-100"
               sizes="(max-width: 640px) 50vw, 20vw"
               loading="lazy"
               decoding="async"
@@ -330,8 +333,13 @@ function ProductCard(
                     : "lg:text-sm"
                 }`}
               >
-                {(listPrice ?? 0) > price! && (
-                  <span>{formatPrice(listPrice, offers!.priceCurrency!)}</span>
+                {(filteredProductListPrice ?? listPrice ?? 0) > price! && (
+                  <span>
+                    {formatPrice(
+                      filteredProductListPrice ?? listPrice,
+                      offers!.priceCurrency!,
+                    )}
+                  </span>
                 )}
               </div>
               <div class="text-black text-sm">
