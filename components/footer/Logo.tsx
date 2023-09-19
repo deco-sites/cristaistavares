@@ -3,6 +3,9 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 export interface Props {
   logo?: {
     image: ImageWidget;
+    href?: string;
+    width?: number;
+    height?: number;
     description?: string;
   };
 }
@@ -11,19 +14,26 @@ export default function Logo({ logo }: Props) {
   return (
     <>
       {logo?.image && (
-        <div class="flex flex-col gap-3">
-          <div class="w-28 max-h-16">
+        <div
+          style={{
+            width: (logo.width ?? 90) + "px",
+            height: (logo.height ?? 90) / 4.5 + "px",
+          }}
+        >
+          <a
+            href={logo.href || "https://deco.cx/"}
+            target="_blank"
+            aria-label={logo.description || "Powered by deco.cx"}
+            style={{ display: "flex" }}
+          >
             <img
               loading="lazy"
               src={logo?.image}
               alt={logo?.description}
-              width={200}
-              height={200}
+              width={logo.width ?? 90}
+              height={logo.height ?? 90}
             />
-          </div>
-          <div class="">
-            {logo?.description}
-          </div>
+          </a>
         </div>
       )}
     </>

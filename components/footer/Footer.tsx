@@ -3,7 +3,7 @@ import ColorClasses from "$store/components/footer/ColorClasses.tsx";
 import Divider from "$store/components/footer/Divider.tsx";
 import ExtraLinks from "$store/components/footer/ExtraLinks.tsx";
 import FooterItems from "$store/components/footer/FooterItems.tsx";
-import Logo from "$store/components/footer/Logo.tsx";
+import Logo, { Props as LogoProps } from "$store/components/footer/Logo.tsx";
 import MobileApps from "$store/components/footer/MobileApps.tsx";
 import SecurityItems from "$store/components/footer/SecurityItems.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
@@ -36,6 +36,12 @@ export interface SocialItem {
 
 export interface PaymentItem {
   label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+}
+
+export interface PaymentItemBottom {
+  image: ImageWidget;
+  href?: string;
+  description: string;
 }
 
 export interface SecurityItem {
@@ -78,6 +84,7 @@ export interface Layout {
     | "Variation 5";
   hide?: {
     logo?: boolean;
+    footerLogos?: boolean;
     newsletter?: boolean;
     sectionLinks?: boolean;
     socialLinks?: boolean;
@@ -114,11 +121,13 @@ export interface Props {
   payments?: {
     title?: string;
     items: PaymentItem[];
+    bottomItems?: PaymentItemBottom[];
   };
   mobileApps?: MobileApps;
   regionOptions?: RegionOptions;
   extraLinks?: Item[];
   description?: string;
+  footerLogos?: LogoProps[];
   backToTheTop?: {
     text?: string;
   };
@@ -183,11 +192,13 @@ function Footer({
   description =
     "CRISTAIS TAVARES DECORAÇÃO EM MURANO EIRELI CNPJ: 48.996.931/0001-18 © Todos os direitos reservados. 2022",
   backToTheTop,
+  footerLogos,
   layout = {
     backgroundColor: "Primary",
     variation: "Variation 1",
     hide: {
       logo: false,
+      footerLogos: false,
       newsletter: false,
       sectionLinks: false,
       socialLinks: false,
@@ -201,6 +212,16 @@ function Footer({
   },
 }: Props) {
   const _logo = layout?.hide?.logo ? <></> : <Logo logo={logo} />;
+  const _logos = layout?.hide?.footerLogos
+    ? <></>
+    : (
+      <div class="flex flex-row flex-wrap items-center justify-center gap-3">
+        <>
+          <PoweredByDeco color="Green" />
+          {footerLogos?.map((item) => <Logo {...item} />)}
+        </>
+      </div>
+    );
   const _newsletter = layout?.hide?.newsletter ? <></> : (
     <Newsletter
       content={newsletter}
@@ -353,7 +374,7 @@ function Footer({
             <div class="flex flex-col justify-center gap-10 items-center">
               {_description}
               {_logo}
-              <PoweredByDeco />
+              {_logos}
             </div>
           </div>
         )}
