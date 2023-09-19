@@ -19,7 +19,7 @@ function ProductGallery({ products, layout }: Props) {
   const platform = usePlatform();
 
   return (
-    <div class="grid grid-cols-2 gap-2 items-center sm:grid-cols-4 sm:gap-10">
+    <div class="grid grid-cols-2 gap-2 items-center lg:grid-cols-3 xl:grid-cols-4 sm:gap-10">
       {products?.map((product, index) => (
         <ProductCard
           product={product}

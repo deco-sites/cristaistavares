@@ -93,17 +93,6 @@ function ProductCard(
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const { selectedSku } = useSkuSelector();
 
-  const {
-    billingDuration: installmentsBillingDuration,
-    billingIncrement: installmentsBillingIncrement,
-  } = (product.offers?.offers[0].priceSpecification || [])
-    .filter((item) => item.billingDuration !== undefined)
-    .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
-    .map(({ billingDuration, billingIncrement }) => ({
-      billingDuration,
-      billingIncrement,
-    }))[0] || {};
-
   const skuId = newSkuId(selectedSku.value);
 
   const filteredProduct =
@@ -115,6 +104,17 @@ function ProductCard(
     installments: filteredProductInstallments,
     seller: filteredProductSeller,
   } = useOffer(filteredProduct?.offers);
+
+  const {
+    billingDuration: installmentsBillingDuration,
+    billingIncrement: installmentsBillingIncrement,
+  } = ((filteredProduct ?? product).offers?.offers[0].priceSpecification || [])
+    .filter((item) => item.billingDuration !== undefined)
+    .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
+    .map(({ billingDuration, billingIncrement }) => ({
+      billingDuration,
+      billingIncrement,
+    }))[0] || {};
 
   const l = layout;
   const align =
