@@ -188,7 +188,7 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-1 z-30">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
             LANÇAMENTO
           </span>
 

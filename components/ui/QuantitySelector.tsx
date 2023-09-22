@@ -16,7 +16,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
     onChange?.(Math.min(quantity + 1, QUANTITY_MAX_VALUE));
 
   return (
-    <div class="join border rounded-none max-w-min">
+    <div class="join border rounded-none max-w-min h-[50px]">
       <Button
         class="btn-square btn-ghost join-item"
         onClick={decrement}

@@ -21,9 +21,9 @@ export default function ProductCta(
   );
 
   return (
-    <>
+    <div class="flex h-full w-full">
       <QuantitySelector quantity={quantity} onChange={setQuantity} />
       {cta}
-    </>
+    </div>
   );
 }

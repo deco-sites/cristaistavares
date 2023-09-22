@@ -21,6 +21,7 @@ import type { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
+import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -124,17 +125,20 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
         </h1>
       </div>
       {/* Prices */}
-      <div class="mt-4">
+      <div class="flex flex-col mt-4 gap-2">
         <div class="flex flex-row gap-2 items-center">
           {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
+            <span class="line-through text-sm">
               {formatPrice(listPrice, offers!.priceCurrency!)}
             </span>
           )}
-          <span class="font-medium text-xl text-secondary">
+          <span class="font-medium text-sm">
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
+        <span class="font-medium text-sm">
+          {formatPrice(price, offers!.priceCurrency!)} no <b>PIX</b>
+        </span>
         <span class="flex">
           <Installments
             installmentsBillingDuration={installmentsBillingDuration ?? 0}
@@ -154,7 +158,7 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
             <>
               {platform === "vtex" && (
                 <>
-                  <AddToCartButtonVTEX
+                  <ProductCta
                     name={name}
                     productID={productID}
                     productGroupID={productGroupID}
@@ -162,11 +166,13 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
                     discount={discount}
                     seller={seller}
                   />
-                  <WishlistButton
+                  {
+                    /* <WishlistButton
                     variant="full"
                     productID={productID}
                     productGroupID={productGroupID}
-                  />
+                  /> */
+                  }
                 </>
               )}
               {platform === "wake" && (
@@ -212,17 +218,6 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
             }]}
           />
         )}
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div class="ml-2 mt-2">{description}</div>
-            </details>
-          )}
-        </span>
       </div>
       {/* Analytics Event */}
       <SendEventOnLoad
@@ -334,6 +329,54 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
+        <div class="flex flex-col sm:flex-row w-full h-full justify-between items-start my-3 gap-3">
+          <div class="flex flex-col gap-2 w-full">
+            <h1 class="font-bold">Descrição</h1>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: props.page.product.description ?? "",
+              }}
+            />
+          </div>
+
+          <div class="flex flex-col gap-6 w-full">
+            {props.page.product.isVariantOf!.additionalProperty?.filter(
+                  (filteredItem) => filteredItem.name === "Cuidados",
+                ).length > 0 && (
+              <div class="flex flex-col gap-3 w-full">
+                <h1 class="font-bold text-sm">Especificações</h1>
+
+                <div class="flex flex-col w-full gap-1 text-black">
+                  {props.page.product.isVariantOf?.additionalProperty.filter(
+                    (filteredItem) => filteredItem.name === "Cuidados",
+                  ).map((item) => (
+                    <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
+                      <span class="font-semibold text-sm">{item.name}</span>
+
+                      {item.value && <span class="text-sm">{item.value}</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div class="flex flex-col gap-3 w-full">
+              <h1 class="font-bold text-sm">Detalhes do Produto</h1>
+
+              <div class="flex flex-col w-full gap-1 text-black">
+                {props.page.product.isVariantOf?.additionalProperty.filter(
+                  (filteredItem) => filteredItem.value?.includes("cm"),
+                ).map((item) => (
+                  <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
+                    <span class="font-semibold text-sm">{item.name}</span>
+
+                    {item.value && <span class="text-sm">{item.value}</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     );
   }
