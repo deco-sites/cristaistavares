@@ -28,6 +28,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
       <input
         class="text-center w-[45px] [appearance:textfield] join-item"
         type="number"
+        aria-label="current selected number"
         inputMode="numeric"
         pattern="[0-9]*"
         max={QUANTITY_MAX_VALUE}

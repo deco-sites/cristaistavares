@@ -185,7 +185,7 @@ function ProductCard(
         {/* Product Images */}
         <a
           href={url && relative(selectedSku.value ?? url)}
-          aria-label="view product"
+          aria-label={`view product ${name}`}
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
           <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
@@ -274,30 +274,35 @@ function ProductCard(
             <input
               type="radio"
               name="rating-1"
+              aria-label="first star"
               className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
               checked={Math.floor(RATING.rating) == 1}
             />
             <input
               type="radio"
               name="rating-1"
+              aria-label="second star"
               className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
               checked={Math.floor(RATING.rating) == 2}
             />
             <input
               type="radio"
               name="rating-1"
+              aria-label="third star"
               className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
               checked={Math.floor(RATING.rating) == 3}
             />
             <input
               type="radio"
               name="rating-1"
+              aria-label="fourth star"
               className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
               checked={Math.floor(RATING.rating) == 4}
             />
             <input
               type="radio"
               name="rating-1"
+              aria-label="fifth star"
               className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
               checked={Math.floor(RATING.rating) === 5}
             />
