@@ -185,7 +185,7 @@ function ProductCard(
         {/* Product Images */}
         <a
           href={url && relative(selectedSku.value ?? url)}
-          aria-label={`view product ${name}`}
+          aria-label={`view product ${product.isVariantOf?.name}`}
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
           <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
