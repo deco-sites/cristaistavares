@@ -18,7 +18,7 @@ import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { useAutocomplete } from "apps/vtex/hooks/useAutocomplete.ts";
-import { useEffect, useRef } from "preact/compat";
+import { useEffect, useRef, useState } from "preact/compat";
 
 // Editable props
 export interface Props {
@@ -46,6 +46,19 @@ export interface Props {
   query?: string;
 }
 
+const terms = [
+  { term: "esmeralda" },
+  { term: "vaso" },
+  { term: "trouxinhas" },
+  { term: "cachepots" },
+  { term: "abajur" },
+  { term: "verde esmeralda" },
+  { term: "vasos grandes" },
+  { term: "love" },
+  { term: "daisy grafite" },
+  { term: "trouxinhas" },
+];
+
 function Searchbar({
   placeholder = "What are you looking for?",
   action = "/s",
@@ -54,12 +67,16 @@ function Searchbar({
 }: Props) {
   const id = useId();
   const { displaySearchPopup } = useUI();
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { setSearch, suggestions, loading } = useAutocomplete();
   const { products = [], searches = [] } = suggestions.value ?? {};
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
-  const notFound = !hasProducts && !hasTerms;
+  const notFound = !hasProducts && !hasTerms &&
+    (searchInputRef.current && searchInputRef.current.value.length > 0);
+
+  const searchTerm = searchInputRef.current ? searchInputRef.current.value : "";
 
   useEffect(() => {
     if (!searchInputRef.current) {
@@ -67,10 +84,25 @@ function Searchbar({
     }
 
     searchInputRef.current.focus();
-  }, []);
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchInputRef.current &&
+        event.target instanceof Node &&
+        !searchInputRef.current.contains(event.target)
+      ) {
+        setShowSuggestions(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchInputRef, searchTerm]);
 
   return (
-    <div class="w-full flex flex-col gap-8 overflow-y-hidden">
+    <div class="w-full flex flex-col relative z-40">
       <form
         id={id}
         action={action}
@@ -83,7 +115,9 @@ function Searchbar({
           aria-label="Barra de pesquisa"
           name={name}
           defaultValue={query}
+          onFocus={() => setShowSuggestions(true)}
           onInput={(e) => {
+            setShowSuggestions(true);
             const value = e.currentTarget.value;
 
             if (value) {
@@ -100,6 +134,15 @@ function Searchbar({
           aria-controls="search-suggestion"
           autocomplete="off"
         />
+        {
+          /* <button
+          onClick={() => {
+            setShowSuggestions(false);
+          }}
+        >
+          <Icon id="XMark" size={16} strokeWidth={2} class="text-dark-pink" />
+        </button> */
+        }
         <button
           type="submit"
           class="btn-ghost absolute right-0 bg-transparent hover:bg-transparent top-1/2 translate-y-[-50%]"
@@ -118,93 +161,95 @@ function Searchbar({
               />
             )}
         </button>
-        {
-          /* <Button
-          type="button join-item"
-          class="btn-ghost btn-square hidden sm:inline-flex"
-          onClick={() => displaySearchPopup.value = false}
-        >
-          <Icon id="XMark" size={24} strokeWidth={2} />
-        </Button> */
-        }
       </form>
 
-      {
-        /* {notFound
-        ? (
-          <div class="flex flex-col gap-4 w-full">
-            <span
-              class="font-medium text-xl text-center"
-              role="heading"
-              aria-level={3}
-            >
-              Nenhum resultado encontrado
-            </span>
-            <span class="text-center text-base-300">
-              Vamos tentar de outro jeito? Verifique a ortografia ou use um
-              termo diferente
-            </span>
-          </div>
-        )
-        : (
-          <div class="overflow-y-scroll">
-            <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[150px_1fr]">
-              <div
-                class={hasTerms ? "flex flex-col gap-6" : "hidden"}
+      {showSuggestions && (
+        <div class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[725px] lg:max-h-[525px] bg-white shadow-lg overflow-y-auto lg:overflow-y-hidden">
+          {notFound
+            ? (
+              <span
+                class="font-bold uppercase py-2"
+                role="heading"
+                aria-level={3}
               >
-                <span
-                  class="font-medium text-xl"
-                  role="heading"
-                  aria-level={3}
+                Sem sugestões
+              </span>
+            )
+            : (
+              <>
+                <div class="flex flex-col gap-6 pb-2">
+                  <span
+                    class="font-bold uppercase"
+                    role="heading"
+                    aria-level={3}
+                  >
+                    {!hasTerms ? "Termos mais buscados" : "Sugestões"}
+                  </span>
+                  <ul id="search-suggestion" class="flex flex-col gap-5">
+                    {(!hasTerms ? terms : searches).map(({ term }) => (
+                      <li class="hover:scale-105 duration-100 transition">
+                        <a
+                          href={`/s?q=${term}`}
+                          class="flex gap-4 items-center"
+                        >
+                          {
+                            /* <span>
+                        <Icon
+                          id="MagnifyingGlass"
+                          size={24}
+                          strokeWidth={0.01}
+                        />
+                      </span> */
+                          }
+                          <span class="text-sm">
+                            {term}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div
+                  class={hasProducts
+                    ? "flex flex-col pt-6 pb-2 md:pt-0 gap-6 overflow-x-hidden lg:pl-3"
+                    : "hidden"}
                 >
-                  Sugestões
-                </span>
-                <ul id="search-suggestion" class="flex flex-col gap-6">
-                  {searches.map(({ term }) => (
-                    <li>
-                      <a href={`/s?q=${term}`} class="flex gap-4 items-center">
-                        <span>
-                          <Icon
-                            id="MagnifyingGlass"
-                            size={24}
-                            strokeWidth={0.01}
-                          />
-                        </span>
-                        <span>
-                          {term}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div
-                class={hasProducts
-                  ? "flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden"
-                  : "hidden"}
-              >
-                <span
-                  class="font-medium text-xl"
-                  role="heading"
-                  aria-level={3}
-                >
-                  Produtos sugeridos
-                </span>
-                <Slider class="carousel">
-                  {products.map((product, index) => (
-                    <Slider.Item
-                      index={index}
-                      class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
-                    >
-                      <ProductCard product={product} platform={"vtex"} />
-                    </Slider.Item>
-                  ))}
-                </Slider>
-              </div>
-            </div>
-          </div>
-        )} */
-      }
+                  <span
+                    class="font-bold uppercase"
+                    role="heading"
+                    aria-level={3}
+                  >
+                    Produtos para {searchInputRef.current?.value}
+                  </span>
+                  <Slider class="carousel">
+                    {products?.slice(0, 3)?.map((product, index) => (
+                      <Slider.Item
+                        index={index}
+                        class="carousel-item first:ml-4 last:mr-4 min-w-[160px] max-w-[160px]"
+                      >
+                        <ProductCard
+                          product={product}
+                          platform={"vtex"}
+                          layout={{
+                            hide: {
+                              productDescription: true,
+                              cta: true,
+                              skuSelector: true,
+                            },
+                            basics: {
+                              contentAlignment: "Center",
+                              oldPriceSize: "Small",
+                            },
+                          }}
+                        />
+                      </Slider.Item>
+                    ))}
+                  </Slider>
+                </div>
+              </>
+            )}
+        </div>
+      )}
     </div>
   );
 }

@@ -10,9 +10,6 @@ export interface Props {
 }
 
 function Searchbar({ searchbar }: Props) {
-  const { displaySearchPopup } = useUI();
-  const open = true;
-
   return (
     <div class="w-full md:max-w-[80%]">
       <LazySearchbar {...searchbar} />
