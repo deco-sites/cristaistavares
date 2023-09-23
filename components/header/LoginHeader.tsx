@@ -10,7 +10,7 @@ const LoginElement = () => {
       <a
         class="btn btn-square btn-ghost bg-transparent hover:bg-transparent w-full"
         href="/login"
-        aria-label="login on website"
+        aria-label="faça seu login"
       >
         <img
           class="object-cover mr-2"

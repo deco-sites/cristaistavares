@@ -106,9 +106,7 @@ function Searchbar({
       >
         <input
           ref={searchInputRef}
-          id={self.innerWidth < 768
-            ? "search-input-mobile"
-            : "search-input-desktop"}
+          id={useId()}
           class="flex-grow w-[80%] outline-none placeholder-shown:sibling:hidden md:placeholder:text-sm"
           aria-label="Barra de pesquisa"
           aria-expanded={showSuggestions ? "true" : "false"}
