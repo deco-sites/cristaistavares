@@ -328,8 +328,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             <ProductInfo {...props} />
           </div>
         </div>
-        <SliderJS rootId={id}></SliderJS>
-        <div class="flex flex-col sm:flex-row w-full h-full justify-between items-start my-3 gap-3">
+        <SliderJS rootId={id} />
+        <div class="flex flex-col sm:flex-row w-full h-full justify-between items-start my-3 gap-3 px-2 lg:px-0">
           <div class="flex flex-col gap-2 w-full">
             <h1 class="font-bold">Descrição</h1>
             <div

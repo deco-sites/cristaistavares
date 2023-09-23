@@ -1,4 +1,4 @@
-import Icon from "$store/components/ui/Icon.tsx";
+import { useUser } from "apps/vtex/hooks/useUser.ts";
 import type { INavItem } from "./NavItem.tsx";
 
 export interface Props {
@@ -6,30 +6,62 @@ export interface Props {
 }
 
 function MenuItem({ item }: { item: INavItem }) {
-  return (
-    <div class="collapse collapse-plus">
-      <input type="checkbox" />
-      <div class="collapse-title">{item.label}</div>
-      <div class="collapse-content">
-        <ul>
-          <li>
-            <a class="underline text-sm" href={item.href}>Ver todos</a>
-          </li>
-          {item.children?.map((node) => (
-            <li>
-              <MenuItem item={node} />
-            </li>
-          ))}
-        </ul>
+  const component = item?.children?.length
+    ? (
+      <div class="collapse collapse-plus relative items-start">
+        <input
+          type="checkbox"
+          class="absolute left-0 w-full top-0"
+        />
+        <div class="collapse-title min-h-0 p-0 py-2.5 font-dm-sans font-normal text-sm px-0 flex items-center justify-between">
+          {item.label}
+        </div>
+        <div class="collapse-content px-0">
+          <div class="border-t border-base-content border-solid pt-0 px-0 pl-5">
+            {item.children?.map(({ children }) => (
+              <ul>
+                {children?.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="w-full block pt-5 font-dm-sans font-normal text-base-300 text-sm"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    )
+    : (
+      <a
+        href={item.href}
+        title={item.label}
+        class="w-full block py-2.5 font-dm-sans font-normal text-sm"
+      >
+        {item.label}
+      </a>
+    );
+
+  return component;
 }
 
 function Menu({ items }: Props) {
+  const { user } = useUser();
+
   return (
-    <div class="flex flex-col h-full">
-      <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200">
+    <div class="flex flex-col max-h-[95%] overflow-y-scroll">
+      <a
+        href="/account"
+        class="flex items-center justify-start min-h-8 px-4 text-sm bg-gray-300"
+      >
+        Bem vindo(a), {!user.value ? "faça seu login" : `${user.value.email}`}
+      </a>
+
+      <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200 mt-1">
         {items.map((item) => (
           <li>
             <MenuItem item={item} />
@@ -37,7 +69,8 @@ function Menu({ items }: Props) {
         ))}
       </ul>
 
-      <ul class="flex flex-col py-2 bg-base-200">
+      {
+        /* <ul class="flex flex-col py-2 bg-base-200">
         <li>
           <a
             class="flex items-center gap-4 px-4 py-2"
@@ -74,7 +107,8 @@ function Menu({ items }: Props) {
             <span class="text-sm">Minha conta</span>
           </a>
         </li>
-      </ul>
+      </ul> */
+      }
     </div>
   );
 }

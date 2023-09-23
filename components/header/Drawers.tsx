@@ -23,13 +23,18 @@ export interface Props {
 }
 
 const Aside = (
-  { title, onClose, children }: {
+  { title, onClose, children, isFullWidth }: {
     title: string;
     onClose?: () => void;
     children: ComponentChildren;
+    isFullWidth?: boolean;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
+  <div
+    class={`bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw] ${
+      isFullWidth && "w-screen sm:w-[65vw]"
+    }`}
+  >
     <div class="flex justify-between items-center">
       <h1 class="px-4 py-3">
         <span class="font-medium text-2xl">{title}</span>
@@ -69,6 +74,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
             displaySearchDrawer.value = false;
           }}
           title={displayMenu.value ? "Menu" : "Buscar"}
+          isFullWidth={true}
         >
           {displayMenu.value && <Menu {...menu} />}
           {displaySearchDrawer.value && <Searchbar {...searchbar} />}

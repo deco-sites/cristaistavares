@@ -66,12 +66,14 @@ function Searchbar({
   query,
 }: Props) {
   const id = useId();
-  const { displaySearchPopup } = useUI();
   const [showSuggestions, setShowSuggestions] = useState(false);
+
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modal = useRef<HTMLDivElement>(null);
+
   const { setSearch, suggestions, loading } = useAutocomplete();
   const { products = [], searches = [] } = suggestions.value ?? {};
+
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
   const notFound = !hasProducts && !hasTerms &&
@@ -160,7 +162,7 @@ function Searchbar({
       {showSuggestions && (
         <div
           ref={modal}
-          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[725px] lg:max-h-[525px] bg-white shadow-lg overflow-y-auto lg:overflow-y-hidden"
+          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[725px] lg:max-h-[525px] bg-white shadow-lg overflow-y-scroll lg:overflow-y-hidden"
         >
           {notFound
             ? (
@@ -222,7 +224,7 @@ function Searchbar({
                     {products?.slice(0, 3)?.map((product, index) => (
                       <Slider.Item
                         index={index}
-                        class="carousel-item first:ml-4 last:mr-4 min-w-[160px] max-w-[160px]"
+                        class="carousel-item first:ml-4 last:mr-4 min-w-[160px] max-w-[160px] h-full"
                       >
                         <ProductCard
                           product={product}

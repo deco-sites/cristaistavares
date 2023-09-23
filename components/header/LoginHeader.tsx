@@ -1,6 +1,10 @@
 import { asset } from "$fresh/runtime.ts";
 
+import { useUser } from "apps/vtex/hooks/useUser.ts";
+
 const LoginElement = () => {
+  const { user } = useUser();
+
   return (
     <div class="group relative mr-8 group-hover:opacity-100 group-hover:visible">
       <a
@@ -18,7 +22,8 @@ const LoginElement = () => {
         />
         <div class="flex justify-center items-center">
           <strong class="font-normal leading-5 truncate overflow-hidden text-sm text-gray-base normal-case arrow-down">
-            Bem vindo (a), <br /> Faça seu login
+            Bem vindo (a), <br />{" "}
+            {!user.value ? "Faça seu login" : `${user.value.email}`}
           </strong>
         </div>
       </a>
@@ -28,10 +33,10 @@ const LoginElement = () => {
         <ul>
           <li class="block w-full py-0 px-5 transition-all duration-200 ease-linear hover:bg-gray-lighter">
             <a
-              class="h-9 bg-dark-pink flex justify-center items-center text-base text-white font-bold text-center mb-2"
+              class="h-9 bg-dark-pink flex justify-center items-center text-base text-white font-bold text-center mb-2 uppercase"
               href="/account"
             >
-              ENTRAR
+              {!user.value ? "Entrar" : "Minha Conta"}
             </a>
           </li>
           <li class="block w-full py-0 px-5 transition-all duration-200 ease-linear hover:bg-gray-lighter">
