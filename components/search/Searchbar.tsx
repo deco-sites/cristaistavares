@@ -69,6 +69,7 @@ function Searchbar({
   const { displaySearchPopup } = useUI();
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
   const { setSearch, suggestions, loading } = useAutocomplete();
   const { products = [], searches = [] } = suggestions.value ?? {};
   const hasProducts = Boolean(products.length);
@@ -79,17 +80,10 @@ function Searchbar({
   const searchTerm = searchInputRef.current ? searchInputRef.current.value : "";
 
   useEffect(() => {
-    if (!searchInputRef.current) {
-      return;
-    }
-
-    searchInputRef.current.focus();
-
     function handleClickOutside(event: MouseEvent) {
       if (
-        searchInputRef.current &&
-        event.target instanceof Node &&
-        !searchInputRef.current.contains(event.target)
+        modal.current && !modal.current.contains(event.target as HTMLElement) &&
+        (searchInputRef.current !== event.target as HTMLInputElement)
       ) {
         setShowSuggestions(false);
       }
@@ -99,7 +93,7 @@ function Searchbar({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [searchInputRef, searchTerm]);
+  }, [modal, searchTerm]);
 
   return (
     <div class="w-full flex flex-col relative z-40">
@@ -164,7 +158,10 @@ function Searchbar({
       </form>
 
       {showSuggestions && (
-        <div class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[725px] lg:max-h-[525px] bg-white shadow-lg overflow-y-auto lg:overflow-y-hidden">
+        <div
+          ref={modal}
+          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[725px] lg:max-h-[525px] bg-white shadow-lg overflow-y-auto lg:overflow-y-hidden"
+        >
           {notFound
             ? (
               <span
