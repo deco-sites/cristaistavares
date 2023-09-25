@@ -1,4 +1,5 @@
 import Avatar from "$store/components/ui/Avatar.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import type {
   Filter,
@@ -67,16 +68,39 @@ function FilterValues({ key, values }: FilterToggle) {
 
 function Filters({ filters }: Props) {
   return (
-    <ul class="flex flex-col gap-6 p-4">
+    <div class="flex flex-col gap-2">
       {filters
         .filter(isToggle)
         .map((filter) => (
-          <li class="flex flex-col gap-4">
-            <span>{filter.label}</span>
-            <FilterValues {...filter} />
-          </li>
+          <div class="flex flex-col gap-4">
+            <div class="collapse">
+              <input
+                type="checkbox"
+                name="pdc-filters"
+                class="min-h-[0px]"
+                aria-label="Filtros"
+                checked={true}
+              />
+              <div class="collapse-title flex justify-between cursor-pointer min-h-[0px]">
+                <span class="flex content-center flex-wrap h-9">
+                  {filter.label}
+                </span>
+                <div class="flex content-center flex-wrap">
+                  <Icon
+                    class="h-[19px] w-[19px] transition-all duration-500"
+                    width={19}
+                    height={19}
+                    id="ChevronDown"
+                  />
+                </div>
+              </div>
+              <div class="collapse-content transition-all duration-700 pt-1">
+                <FilterValues {...filter} />
+              </div>
+            </div>
+          </div>
         ))}
-    </ul>
+    </div>
   );
 }
 
