@@ -2,6 +2,7 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import ProductCard from "$store/islands/ProductCard.tsx";
+import ProductCardMobile from "$store/components/product/ProductCard.tsx";
 import type {
   Layout as cardLayout,
 } from "$store/components/product/ProductCard.tsx";
@@ -23,10 +24,11 @@ export interface Props {
   products: Product[] | null;
   title?: string;
   cardLayout?: cardLayout;
+  isMobile?: boolean;
 }
 
 export default function ProductMatch(
-  { banner, products, title, cardLayout }: Props,
+  { banner, products, title, cardLayout, isMobile }: Props,
 ) {
   const id = useId();
   const platform = usePlatform();
@@ -63,12 +65,23 @@ export default function ProductMatch(
                   index={index}
                   class="carousel-item w-[230px] sm:w-[258px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
                 >
-                  <ProductCard
-                    product={product}
-                    itemListName={title}
-                    layout={cardLayout}
-                    platform={platform}
-                  />
+                  {!isMobile
+                    ? (
+                      <ProductCard
+                        product={product}
+                        itemListName={title}
+                        layout={cardLayout}
+                        platform={platform}
+                      />
+                    )
+                    : (
+                      <ProductCardMobile
+                        product={product}
+                        itemListName={title}
+                        layout={cardLayout}
+                        platform={platform}
+                      />
+                    )}
                 </Slider.Item>
               ))}
             </Slider>

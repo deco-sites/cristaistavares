@@ -1,4 +1,5 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
+import ProductCardMobile from "$store/components/product/ProductCard.tsx";
 import ProductCard from "$store/islands/ProductCard.tsx";
 import type {
   Layout as cardLayout,
@@ -23,6 +24,7 @@ export interface Props {
   };
   cardLayout?: cardLayout;
   preload?: boolean;
+  isMobile?: boolean;
 }
 
 function ProductShelf({
@@ -32,6 +34,7 @@ function ProductShelf({
   layout,
   cardLayout,
   preload = false,
+  isMobile = false,
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -59,13 +62,25 @@ function ProductShelf({
               index={index}
               class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
-              <ProductCard
-                product={product}
-                itemListName={title}
-                layout={cardLayout}
-                platform={platform}
-                preload={preload}
-              />
+              {!isMobile
+                ? (
+                  <ProductCard
+                    product={product}
+                    itemListName={title}
+                    layout={cardLayout}
+                    platform={platform}
+                    preload={preload}
+                  />
+                )
+                : (
+                  <ProductCardMobile
+                    product={product}
+                    itemListName={title}
+                    layout={cardLayout}
+                    platform={platform}
+                    preload={preload}
+                  />
+                )}
             </Slider.Item>
           ))}
         </Slider>
