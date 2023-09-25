@@ -34,6 +34,7 @@ function Navbar({ items, searchbar, logo }: {
               class="flex justify-center max-h-fit h-fit"
               style={{ minHeight: navbarHeight }}
               aria-label="Store logo"
+              loading="eager"
             >
               <Image src={logo.src} alt={logo.alt} width={126} height={16} />
             </a>

@@ -35,7 +35,7 @@ function CartButton({ loading, currency, total, items }: Props) {
       </span>
 
       <Button
-        class="w-8 h-8 btn-circle btn-sm btn-ghost"
+        class="w-9 h-9 btn-circle btn-sm btn-ghost"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading}
@@ -44,8 +44,8 @@ function CartButton({ loading, currency, total, items }: Props) {
         <img
           src={asset("/minicart-icon.png")}
           alt="Cart Icon"
-          width={32}
-          height={32}
+          width={36}
+          height={36}
         />
       </Button>
     </div>
