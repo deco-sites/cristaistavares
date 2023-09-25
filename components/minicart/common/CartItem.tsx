@@ -13,6 +13,7 @@ export interface Item {
     alt: string;
   };
   name: string;
+  detailUrl?: string;
   quantity: number;
   price: {
     sale: number;
@@ -41,7 +42,7 @@ function CartItem(
     itemToAnalyticsItem,
   }: Props,
 ) {
-  const { image, name, price: { sale, list }, quantity } = item;
+  const { image, name, price: { sale, list }, quantity, detailUrl } = item;
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
@@ -64,17 +65,20 @@ function CartItem(
         gridTemplateColumns: "auto 1fr",
       }}
     >
-      <Image
-        {...image}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
-        height={150}
-        class="h-full object-contain"
-      />
+      <a href={detailUrl} class="contents shadow-sm rounded-lg">
+        <Image
+          {...image}
+          style={{ aspectRatio: "1" }}
+          width={96}
+          height={96}
+          loading="lazy"
+          class="object-cover object-center rounded-lg"
+        />
+      </a>
 
       <div class="flex flex-col gap-2">
         <div class="flex justify-between items-center">
-          <span>{name}</span>
+          <a href={detailUrl}>{name}</a>
           <Button
             disabled={loading || isGift}
             loading={loading}
@@ -97,7 +101,7 @@ function CartItem(
           <span class="line-through text-base-300 text-sm">
             {formatPrice(list, currency, locale)}
           </span>
-          <span class="text-sm text-secondary">
+          <span class="text-sm text-base-300">
             {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
           </span>
         </div>

@@ -75,7 +75,7 @@ const RATING = {
 };
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform }: Props,
+  { product, preload = false, itemListName, layout, platform }: Props,
 ) {
   const {
     url,

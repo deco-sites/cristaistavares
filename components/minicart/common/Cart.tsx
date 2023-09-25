@@ -63,14 +63,16 @@ function Cart({
         : (
           <>
             {/* Free Shipping Bar */}
-            <div class="px-2 py-4 w-full">
+            {
+              /* <div class="px-2 py-4 w-full">
               <FreeShippingProgressBar
                 total={total}
                 locale={locale}
                 currency={currency}
                 target={freeShippingTarget}
               />
-            </div>
+            </div> */
+            }
 
             {/* Cart Items */}
             <ul
@@ -92,9 +94,9 @@ function Cart({
             </ul>
 
             {/* Cart Footer */}
-            <footer class="w-full">
+            <footer class="w-full bg-whitesmoke">
               {/* Subtotal */}
-              <div class="border-t border-base-200 py-2 flex flex-col">
+              <div class="py-2 flex flex-col">
                 {discounts > 0 && (
                   <div class="flex justify-between items-center px-4">
                     <span class="text-sm">Descontos</span>
@@ -129,7 +131,7 @@ function Cart({
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
+                    class="btn-primary btn-block bg-emerald-500 hover:bg-emerald-600 border-none"
                     disabled={loading || isEmtpy}
                     onClick={() => {
                       sendEvent({

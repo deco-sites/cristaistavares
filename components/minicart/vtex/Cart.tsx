@@ -17,6 +17,7 @@ function Cart() {
         image: { src: item.imageUrl, alt: item.skuName },
         quantity: item.quantity,
         name: item.name,
+        detailUrl: item.detailUrl,
         price: {
           sale: item.sellingPrice / 100,
           list: item.listPrice / 100,

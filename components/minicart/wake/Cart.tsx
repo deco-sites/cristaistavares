@@ -18,6 +18,7 @@ function Cart() {
         quantity: item!.quantity!,
         name: item!.name!,
         price: { sale: item!.price!, list: item!.listPrice! },
+        detailUrl: item?.url ?? "",
       }))}
       total={total}
       subtotal={subtotal}

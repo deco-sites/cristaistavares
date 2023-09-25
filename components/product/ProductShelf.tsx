@@ -22,6 +22,7 @@ export interface Props {
     headerfontSize?: "Normal" | "Large";
   };
   cardLayout?: cardLayout;
+  preload?: boolean;
 }
 
 function ProductShelf({
@@ -30,6 +31,7 @@ function ProductShelf({
   description,
   layout,
   cardLayout,
+  preload = false,
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -62,6 +64,7 @@ function ProductShelf({
                 itemListName={title}
                 layout={cardLayout}
                 platform={platform}
+                preload={preload}
               />
             </Slider.Item>
           ))}
