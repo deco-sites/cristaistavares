@@ -41,8 +41,8 @@ export default function InfoSection({ title, cards }: Props) {
                 <Image
                   src={card.image.icon}
                   alt={card.image.alt}
-                  width={25}
-                  height={25}
+                  width={26}
+                  height={26}
                   loading="lazy"
                 />
                 <p dangerouslySetInnerHTML={{ __html: card.description }}></p>
