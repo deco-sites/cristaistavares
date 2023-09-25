@@ -329,26 +329,46 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
         <SliderJS rootId={id} />
-        <div class="flex flex-col sm:flex-row w-full h-full justify-between items-start my-3 gap-3 px-2 lg:px-0">
-          <div class="flex flex-col gap-2 w-full">
-            <h1 class="font-bold">Descrição</h1>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: props.page.product.description ?? "",
-              }}
-            />
-          </div>
+        <div class="flex w-full h-full items-center justify-center my-3 gap-3 px-2">
+          <div class="flex flex-col sm:flex-row justify-between items-start max-w-[1024px]">
+            <div class="flex flex-col gap-2 w-full">
+              <h1 class="font-bold">Descrição</h1>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: props.page.product.description ?? "",
+                }}
+              />
+            </div>
 
-          <div class="flex flex-col gap-6 w-full">
-            {props.page.product.isVariantOf!.additionalProperty?.filter(
-                  (filteredItem) => filteredItem.name === "Cuidados",
-                ).length > 0 && (
+            <div class="flex flex-col gap-6 w-full">
+              {props.page.product.isVariantOf!.additionalProperty?.filter(
+                    (filteredItem) => filteredItem.name === "Cuidados",
+                  ).length > 0 && (
+                <div class="flex flex-col gap-3 w-full">
+                  <h1 class="font-bold text-sm">Especificações</h1>
+
+                  <div class="flex flex-col w-full gap-1 text-black">
+                    {props.page.product.isVariantOf?.additionalProperty.filter(
+                      (filteredItem) => filteredItem.name === "Cuidados",
+                    ).map((item) => (
+                      <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
+                        <span class="font-semibold text-sm">{item.name}</span>
+
+                        {item.value && (
+                          <span class="text-sm">{item.value}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div class="flex flex-col gap-3 w-full">
-                <h1 class="font-bold text-sm">Especificações</h1>
+                <h1 class="font-bold text-sm">Detalhes do Produto</h1>
 
                 <div class="flex flex-col w-full gap-1 text-black">
                   {props.page.product.isVariantOf?.additionalProperty.filter(
-                    (filteredItem) => filteredItem.name === "Cuidados",
+                    (filteredItem) => filteredItem.value?.includes("cm"),
                   ).map((item) => (
                     <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
                       <span class="font-semibold text-sm">{item.name}</span>
@@ -357,22 +377,6 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-
-            <div class="flex flex-col gap-3 w-full">
-              <h1 class="font-bold text-sm">Detalhes do Produto</h1>
-
-              <div class="flex flex-col w-full gap-1 text-black">
-                {props.page.product.isVariantOf?.additionalProperty.filter(
-                  (filteredItem) => filteredItem.value?.includes("cm"),
-                ).map((item) => (
-                  <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
-                    <span class="font-semibold text-sm">{item.name}</span>
-
-                    {item.value && <span class="text-sm">{item.value}</span>}
-                  </div>
-                ))}
               </div>
             </div>
           </div>
