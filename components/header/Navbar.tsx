@@ -78,7 +78,7 @@ function Navbar({ items, searchbar, logo }: {
         </div>
 
         <ul class="flex-auto flex-wrap flex items-center justify-between w-full">
-          {items.map((item) => <NavItem item={item} />)}
+          {items.map((item, index) => <NavItem item={item} index={index} />)}
         </ul>
       </div>
     </>

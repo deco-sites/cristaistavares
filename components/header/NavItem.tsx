@@ -8,13 +8,18 @@ export interface INavItem {
   columns?: number;
 }
 
-function NavItem({ item }: { item: INavItem }) {
+function NavItem({ item, index }: { item: INavItem; index?: number }) {
   const { href, label, children, image, columns = 3 } = item;
 
   return (
     <li class="group flex items-center relative">
       <a href={href} class="px-4 py-3">
-        <span class="group-hover:underline group-hover:text-dark-pink transition-colors duration-400">
+        <span
+          class={`group-hover:border-b group-hover:border-dark-pink group-hover:text-dark-pink transition duration-300 ease-in ${
+            ["muranos", "outlet"].includes(label.toLowerCase()) &&
+            "text-dark-pink group-hover:font-bold"
+          }`}
+        >
           {label}
         </span>
       </a>
@@ -22,7 +27,9 @@ function NavItem({ item }: { item: INavItem }) {
       {children && children.length > 0 &&
         (
           <div
-            class="flex-row-reverse absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[920px] h-[380px]"
+            class={`${
+              index! < 5 ? "flex-row-reverse" : "-translate-x-[85%]"
+            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[920px] h-[380px]`}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
