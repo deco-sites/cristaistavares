@@ -22,6 +22,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
+import CTA from "$store/components/ui/CTA.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -105,6 +106,19 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
       <Breadcrumb
         itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
       />
+
+        <CTA
+          listPrice={listPrice}
+          price={price}
+          offers={product.offers}
+          installmentsBillingDuration={installmentsBillingDuration ?? 0}
+          installmentsBillingIncrement={installmentsBillingIncrement ?? 0}
+          name={product.name}
+          productGroupId={product.isVariantOf?.productGroupID ?? ""}
+          skuId={product.sku}
+          sellerId={seller!}
+        />
+
       {/* Code and name */}
       <div class="mt-4 sm:mt-8">
         <div>
