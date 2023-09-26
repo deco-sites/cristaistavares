@@ -65,16 +65,18 @@ export default function CTA(
               </span>
             </div>
           </div>
-          {/* <span class="flex text-xs">
+          {
+            /* <span class="flex text-xs">
             <Installments
               installmentsBillingDuration={installmentsBillingDuration}
               installmentsBillingIncrement={installmentsBillingIncrement}
               isCTA
             />
-          </span> */}
+          </span> */
+          }
         </div>
 
-        <div class="w-[180px]">
+        <div>
           <AddToCartButtonVTEX
             productID={skuId}
             seller={sellerId}

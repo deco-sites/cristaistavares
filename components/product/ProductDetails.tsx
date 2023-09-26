@@ -103,24 +103,26 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
   return (
     <>
       {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+      <div class="px-4">
+        <Breadcrumb
+          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+        />
+      </div>
+
+      <CTA
+        listPrice={listPrice}
+        price={price}
+        offers={product.offers}
+        installmentsBillingDuration={installmentsBillingDuration ?? 0}
+        installmentsBillingIncrement={installmentsBillingIncrement ?? 0}
+        name={product.name}
+        productGroupId={product.isVariantOf?.productGroupID ?? ""}
+        skuId={product.sku}
+        sellerId={seller!}
       />
 
-        <CTA
-          listPrice={listPrice}
-          price={price}
-          offers={product.offers}
-          installmentsBillingDuration={installmentsBillingDuration ?? 0}
-          installmentsBillingIncrement={installmentsBillingIncrement ?? 0}
-          name={product.name}
-          productGroupId={product.isVariantOf?.productGroupID ?? ""}
-          skuId={product.sku}
-          sellerId={seller!}
-        />
-
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
+      <div class="mt-4 sm:mt-8 px-4">
         <div>
           {gtin && (
             <span class="text-sm text-base-300">
@@ -139,7 +141,7 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
         </h1>
       </div>
       {/* Prices */}
-      <div class="flex flex-col mt-4 gap-2">
+      <div class="flex flex-col mt-4 gap-2 px-4">
         <div class="flex flex-row gap-2 items-center">
           {(listPrice ?? 0) > price && (
             <span class="line-through text-sm">
@@ -162,11 +164,11 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
         </span>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
+      <div class="mt-4 sm:mt-6 px-4">
         <ProductSelector product={product} />
       </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-4 sm:mt-10 flex flex-col gap-2 px-4">
         {availability === "https://schema.org/InStock"
           ? (
             <>
@@ -222,7 +224,7 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
           : <OutOfStock productID={productID} />}
       </div>
       {/* Shipping Simulation */}
-      <div class="mt-8">
+      <div class="mt-8 px-4">
         {platform === "vtex" && (
           <ShippingSimulation
             items={[{
@@ -338,13 +340,13 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </ul>
 
           {/* Product Info */}
-          <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
+          <div class="sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
             <ProductInfo {...props} />
           </div>
         </div>
         <SliderJS rootId={id} />
         <div class="flex w-full h-full items-center justify-center my-3 gap-3 px-2">
-          <div class="flex flex-col sm:flex-row justify-between items-start max-w-[1024px]">
+          <div class="flex flex-col sm:flex-row justify-between items-start container">
             <div class="flex flex-col gap-2 w-full">
               <h1 class="font-bold">Descrição</h1>
               <div
@@ -436,7 +438,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout }: Props) {
   return (
-    <div class="container pt-20 md:pt-28 pb-10">
+    <div class="container pt-20 sm:pt-40 lg:pt-28 pb-10">
       {page ? <Details page={page} layout={layout} /> : <NotFound />}
     </div>
   );
