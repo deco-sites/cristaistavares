@@ -23,6 +23,7 @@ import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 import CTA from "$store/components/ui/CTA.tsx";
+import ProductDescription from "$store/islands/ProductDescription.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -347,15 +348,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         <SliderJS rootId={id} />
         <div class="flex w-full h-full items-center justify-center my-3 gap-3 px-2">
           <div class="flex flex-col sm:flex-row justify-between items-start container">
-            <div class="flex flex-col gap-2 w-full">
-              <h1 class="font-bold">Descrição</h1>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: props.page.product.description ?? "",
-                }}
-              />
-            </div>
-
+            <ProductDescription
+              description={props.page.product.description}
+            />
             <div class="flex flex-col gap-6 w-full">
               {props.page.product.isVariantOf!.additionalProperty?.filter(
                     (filteredItem) => filteredItem.name === "Cuidados",

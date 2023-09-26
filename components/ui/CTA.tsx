@@ -33,7 +33,7 @@ export default function CTA(
       const scrollY = self.scrollY;
       const ctaContent = document.getElementById("cta-content")!;
 
-      if (self.innerWidth < 1080 && scrollY > 1120) {
+      if (self.innerWidth < 640 && scrollY > 1120) {
         ctaContent.classList.remove("hidden");
         ctaContent.classList.add("flex");
       } else {
