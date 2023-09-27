@@ -110,6 +110,7 @@ function Searchbar({
           aria-expanded={showSuggestions ? "true" : "false"}
           name={name}
           defaultValue={query}
+          onClick={() => setShowSuggestions(true)}
           onFocus={() => setShowSuggestions(true)}
           onInput={(e) => {
             setShowSuggestions(true);
@@ -184,8 +185,13 @@ function Searchbar({
                     {!hasTerms ? "Termos mais buscados" : "Sugestões"}
                   </span>
                   <ul id="search-suggestion" class="flex flex-col gap-5">
-                    {(!hasTerms ? terms : searches).map(({ term }) => (
-                      <li class="hover:lg:scale-105 duration-100 transition">
+                    {(!hasTerms ? terms : searches).map(({ term }, index) => (
+                      <li class="flex items-center gap-2 hover:lg:scale-105 duration-100 transition">
+                        {!hasTerms && terms && (
+                          <span class="text-gray-500 text-sm">
+                            {index + 1}º
+                          </span>
+                        )}
                         <a
                           href={`/s?q=${term}`}
                           class="flex gap-4 items-center"
@@ -243,6 +249,12 @@ function Searchbar({
                       </Slider.Item>
                     ))}
                   </Slider>
+                  <a
+                    href={`/s?q=${searchInputRef.current?.value}`}
+                    class="text-black text-center underline py-3"
+                  >
+                    Veja mais produtos
+                  </a>
                 </div>
               </>
             )}
