@@ -10,10 +10,8 @@
  */
 
 import ProductCard from "$store/components/product/ProductCard.tsx";
-import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
-import Spinner from "$store/components/ui/Spinner.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -163,7 +161,7 @@ function Searchbar({
       {showSuggestions && (
         <div
           ref={modal}
-          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[725px] lg:max-h-[525px] bg-white shadow-lg overflow-y-scroll lg:overflow-y-hidden"
+          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute w-full top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[375px] lg:max-h-[525px] bg-white shadow-lg overflow-y-auto lg:overflow-y-hidden z-[9999999]"
         >
           {notFound
             ? (
@@ -187,7 +185,7 @@ function Searchbar({
                   </span>
                   <ul id="search-suggestion" class="flex flex-col gap-5">
                     {(!hasTerms ? terms : searches).map(({ term }) => (
-                      <li class="hover:scale-105 duration-100 transition">
+                      <li class="hover:lg:scale-105 duration-100 transition">
                         <a
                           href={`/s?q=${term}`}
                           class="flex gap-4 items-center"
@@ -211,7 +209,7 @@ function Searchbar({
                 </div>
                 <div
                   class={hasProducts
-                    ? "flex flex-col pt-6 pb-2 md:pt-0 gap-6 overflow-x-hidden lg:pl-3"
+                    ? "flex flex-col pt-6 pb-1 md:pt-0 gap-6 lg:pl-3"
                     : "hidden"}
                 >
                   <span
