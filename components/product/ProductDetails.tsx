@@ -3,6 +3,7 @@ import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
+import Similars from "$store/components/product/Similars.tsx";
 import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
 import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
@@ -42,6 +43,11 @@ export interface Props {
      * @default product
      */
     name?: "concat" | "productGroup" | "product";
+    /**
+     * @title Similars Product Layout
+     * @description the most performant way to use it is the Slider type, but we have the common variation, present on the website in production.
+     */
+    similarsType?: "slider" | "normal";
   };
 }
 
@@ -141,6 +147,21 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
           </span>
         </h1>
       </div>
+      {/* Sku Selector */}
+      <div class="mt-4 sm:mt-6 px-4">
+        <ProductSelector product={product} />
+      </div>
+      {/* Similars */}
+      <div class="flex flex-col gap-2 mt-4 px-4 md:max-w-[85%]">
+        <span class="text-sm">
+          Cores
+        </span>
+
+        <Similars
+          products={product.isSimilarTo}
+          type={layout?.similarsType ?? "slider"}
+        />
+      </div>
       {/* Prices */}
       <div class="flex flex-col mt-4 gap-2 px-4">
         <div class="flex flex-row gap-2 items-center">
@@ -164,12 +185,8 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
           />
         </span>
       </div>
-      {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6 px-4">
-        <ProductSelector product={product} />
-      </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2 px-4">
+      <div class="mt-4 sm:mt-6 flex flex-col gap-2 px-4">
         {availability === "https://schema.org/InStock"
           ? (
             <>
@@ -346,7 +363,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
         <SliderJS rootId={id} />
-        <div class="flex w-full h-full items-center justify-center my-3 gap-3 px-2">
+        <div class="flex w-full h-full items-center justify-center mt-5 mb-3 gap-3 px-2">
           <div class="flex flex-col sm:flex-row justify-between items-start container">
             <ProductDescription
               description={props.page.product.description}
