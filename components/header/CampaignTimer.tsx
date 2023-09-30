@@ -1,5 +1,4 @@
 import { useId } from "preact/hooks";
-import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
@@ -120,10 +119,11 @@ function CampaignTimer({
       {!hiddenCampaignTimer && (
         <>
           <div
+            id="campaign-timer"
             style={{ background: `${backgroundHex}` }}
             class="text-black w-full min-h-[90px] justify-center items-center text-center flex md:py-3 px-4 xl:px-0"
           >
-            <div class="flex items-center justify-between gap-4 md:gap-0 w-auto xl:min-w-[1120px]">
+            <div class="flex items-center justify-between gap-4 md:gap-0 w-full max-w-[1266px]">
               <div class="flex">
                 <Picture preload={image.lcp}>
                   <Source
