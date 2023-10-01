@@ -22,19 +22,20 @@ import * as $$$$$$15 from "./sections/Images/BannerGrid.tsx";
 import * as $$$$$$16 from "./sections/Images/Carousel.tsx";
 import * as $$$$$$17 from "./sections/Images/ImageGallery.tsx";
 import * as $$$$$$18 from "./sections/Images/ShoppableBanner.tsx";
-import * as $$$$$$19 from "./sections/Links/LinkTree.tsx";
-import * as $$$$$$20 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$21 from "./sections/Miscellaneous/CampaignTimer.tsx";
-import * as $$$$$$22 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$23 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$24 from "./sections/Product/ProductDetails.tsx";
-import * as $$$$$$25 from "./sections/Product/ProductMatch.tsx";
-import * as $$$$$$26 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$27 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$28 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$29 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$30 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$31 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$19 from "./sections/Institutional/InstitutionalSection.tsx";
+import * as $$$$$$20 from "./sections/Links/LinkTree.tsx";
+import * as $$$$$$21 from "./sections/Links/Shortcuts.tsx";
+import * as $$$$$$22 from "./sections/Miscellaneous/CampaignTimer.tsx";
+import * as $$$$$$23 from "./sections/Miscellaneous/CookieConsent.tsx";
+import * as $$$$$$24 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$25 from "./sections/Product/ProductDetails.tsx";
+import * as $$$$$$26 from "./sections/Product/ProductMatch.tsx";
+import * as $$$$$$27 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$28 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$29 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$30 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$31 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$32 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -66,21 +67,23 @@ const manifest = {
     "deco-sites/cristaistavares/sections/Images/Carousel.tsx": $$$$$$16,
     "deco-sites/cristaistavares/sections/Images/ImageGallery.tsx": $$$$$$17,
     "deco-sites/cristaistavares/sections/Images/ShoppableBanner.tsx": $$$$$$18,
-    "deco-sites/cristaistavares/sections/Links/LinkTree.tsx": $$$$$$19,
-    "deco-sites/cristaistavares/sections/Links/Shortcuts.tsx": $$$$$$20,
+    "deco-sites/cristaistavares/sections/Institutional/InstitutionalSection.tsx":
+      $$$$$$19,
+    "deco-sites/cristaistavares/sections/Links/LinkTree.tsx": $$$$$$20,
+    "deco-sites/cristaistavares/sections/Links/Shortcuts.tsx": $$$$$$21,
     "deco-sites/cristaistavares/sections/Miscellaneous/CampaignTimer.tsx":
-      $$$$$$21,
-    "deco-sites/cristaistavares/sections/Miscellaneous/CookieConsent.tsx":
       $$$$$$22,
-    "deco-sites/cristaistavares/sections/Newsletter/Newsletter.tsx": $$$$$$23,
-    "deco-sites/cristaistavares/sections/Product/ProductDetails.tsx": $$$$$$24,
-    "deco-sites/cristaistavares/sections/Product/ProductMatch.tsx": $$$$$$25,
-    "deco-sites/cristaistavares/sections/Product/ProductShelf.tsx": $$$$$$26,
-    "deco-sites/cristaistavares/sections/Product/SearchResult.tsx": $$$$$$27,
-    "deco-sites/cristaistavares/sections/Product/Wishlist.tsx": $$$$$$28,
-    "deco-sites/cristaistavares/sections/Social/InstagramPosts.tsx": $$$$$$29,
-    "deco-sites/cristaistavares/sections/Social/WhatsApp.tsx": $$$$$$30,
-    "deco-sites/cristaistavares/sections/Theme/Theme.tsx": $$$$$$31,
+    "deco-sites/cristaistavares/sections/Miscellaneous/CookieConsent.tsx":
+      $$$$$$23,
+    "deco-sites/cristaistavares/sections/Newsletter/Newsletter.tsx": $$$$$$24,
+    "deco-sites/cristaistavares/sections/Product/ProductDetails.tsx": $$$$$$25,
+    "deco-sites/cristaistavares/sections/Product/ProductMatch.tsx": $$$$$$26,
+    "deco-sites/cristaistavares/sections/Product/ProductShelf.tsx": $$$$$$27,
+    "deco-sites/cristaistavares/sections/Product/SearchResult.tsx": $$$$$$28,
+    "deco-sites/cristaistavares/sections/Product/Wishlist.tsx": $$$$$$29,
+    "deco-sites/cristaistavares/sections/Social/InstagramPosts.tsx": $$$$$$30,
+    "deco-sites/cristaistavares/sections/Social/WhatsApp.tsx": $$$$$$31,
+    "deco-sites/cristaistavares/sections/Theme/Theme.tsx": $$$$$$32,
   },
   "apps": {
     "deco-sites/cristaistavares/apps/decohub.ts": $$$$$$$$$$$0,

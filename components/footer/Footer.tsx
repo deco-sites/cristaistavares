@@ -263,7 +263,9 @@ function Footer({
 
   return (
     <footer
-      class={`w-full flex flex-col py-10 gap-10 ${ColorClasses(layout)}`}
+      class={`w-full flex flex-col py-10 px-3 lg:px-0 gap-10 ${
+        ColorClasses(layout)
+      }`}
     >
       <div class="mx-6 lg:mx-auto max-w-[1280px]">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
