@@ -63,8 +63,6 @@ function CampaignTimer({
   textHex,
   backgroundHex,
 }: Props) {
-  const id = useId();
-
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
     hours: 0,
@@ -114,6 +112,7 @@ function CampaignTimer({
       {!hiddenCampaignTimer && (
         <>
           <div
+            id="campaign-timer"
             style={{ background: backgroundHex }}
             class="text-black w-full min-h-[90px] justify-center items-center text-center flex md:py-3 px-4 xl:px-0"
           >

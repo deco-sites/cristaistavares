@@ -63,7 +63,7 @@ export default function AddToCartButton(props: Props) {
     <Button
       {...btnProps}
       data-deco="add-to-cart"
-      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white min-w-max py-2 duration-150 transition-colors h-[50px]"
+      class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white min-w-[120px] py-2 duration-150 transition-colors h-[50px]"
     >
       Comprar
     </Button>

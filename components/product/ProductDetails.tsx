@@ -120,8 +120,6 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
         listPrice={listPrice}
         price={price}
         offers={product.offers}
-        installmentsBillingDuration={installmentsBillingDuration ?? 0}
-        installmentsBillingIncrement={installmentsBillingIncrement ?? 0}
         name={product.name}
         productGroupId={product.isVariantOf?.productGroupID ?? ""}
         skuId={product.sku}
@@ -364,12 +362,13 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         </div>
         <SliderJS rootId={id} />
         <div class="flex w-full h-full items-center justify-center mt-5 mb-3 gap-3 px-2">
-          <div class="flex flex-col sm:flex-row justify-between items-start container max-w-[95%]">
+          <div class="flex flex-col-reverse sm:flex-row justify-between items-start gap-2 sm:gap-20 lg:gap-[200px]">
             <ProductDescription
               description={props.page.product.description}
             />
             <div class="flex flex-col gap-6 w-full">
-              {props.page.product.isVariantOf!.additionalProperty?.filter(
+              {
+                /* {props.page.product.isVariantOf!.additionalProperty?.filter(
                     (filteredItem) => filteredItem.name === "Cuidados",
                   ).length > 0 && (
                 <div class="flex flex-col gap-3 w-full">
@@ -389,10 +388,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                     ))}
                   </div>
                 </div>
-              )}
+              )} */
+              }
 
               <div class="flex flex-col gap-3 w-full">
-                <h1 class="font-bold text-sm">Detalhes do Produto</h1>
+                <h1 class="font-bold text-sm">Medidas</h1>
 
                 <div class="flex flex-col w-full gap-1 text-black">
                   {props.page.product.isVariantOf?.additionalProperty.filter(
@@ -450,7 +450,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout }: Props) {
   return (
-    <div class="container pt-20 sm:pt-40 lg:pt-28 pb-10">
+    <div class="container pt-20 sm:pt-40 lg:pt-28 lg:pb-10">
       {page ? <Details page={page} layout={layout} /> : <NotFound />}
     </div>
   );

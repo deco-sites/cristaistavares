@@ -52,14 +52,14 @@ export default function AvaliationSection() {
                   </p>
                 </a>
               </div>
-              <div class="flex items-start justify-start gap-1 mt-7">
-                <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem]">
+              <div class="flex flex-col sm:flex-row items-start justify-start gap-1 mt-7">
+                <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full">
                   <option value="recentes">Mais Recentes</option>
                   <option value="antigas">Mais Antigas</option>
                   <option value="classAlta">Classificação Mais Alta</option>
                   <option value="classBaixa">Classificação Mais baixa</option>
                 </select>
-                <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem]">
+                <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full">
                   <option value="todos">Todos</option>
                   <option value="1star">1 Estrela</option>
                   <option value="2star">2 Estrelas</option>

@@ -79,12 +79,12 @@ function SimilarsSlider({ products }: { products?: Product[] }) {
       </Slider>
 
       <>
-        <div class="hidden relative sm:block z-10 col-start-1 row-start-3 -translate-y-5">
+        <div class="relative block z-10 col-start-1 row-start-3 -translate-y-5">
           <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-base-100">
             <Icon size={24} id="ChevronLeft" strokeWidth={3} />
           </Slider.PrevButton>
         </div>
-        <div class="hidden relative sm:block z-10 col-start-3 row-start-3 -translate-y-5">
+        <div class="relative block z-10 col-start-3 row-start-3 -translate-y-5">
           <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-base-100">
             <Icon size={24} id="ChevronRight" strokeWidth={3} />
           </Slider.NextButton>

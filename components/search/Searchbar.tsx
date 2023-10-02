@@ -105,7 +105,7 @@ function Searchbar({
         <input
           ref={searchInputRef}
           id={useId()}
-          class="flex-grow w-[80%] outline-none placeholder-shown:sibling:hidden md:placeholder:text-sm"
+          class="flex-grow w-[80%] outline-none placeholder-shown:sibling:hidden placeholder:text-xs md:placeholder:text-sm"
           aria-label="Barra de pesquisa"
           aria-expanded={showSuggestions ? "true" : "false"}
           name={name}

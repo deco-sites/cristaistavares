@@ -7,8 +7,6 @@ interface Props {
   listPrice?: number;
   price?: number;
   offers?: AggregateOffer;
-  installmentsBillingDuration: number | null;
-  installmentsBillingIncrement: number | null;
   skuId: string;
   sellerId: string;
   productGroupId: string;
@@ -20,8 +18,6 @@ export default function CTA(
     listPrice,
     price,
     offers,
-    installmentsBillingDuration,
-    installmentsBillingIncrement,
     skuId,
     sellerId,
     productGroupId,
@@ -33,7 +29,7 @@ export default function CTA(
       const scrollY = self.scrollY;
       const ctaContent = document.getElementById("cta-content")!;
 
-      if (self.innerWidth < 640 && scrollY > 1120) {
+      if (self.innerWidth < 640 && scrollY > 1100) {
         ctaContent.classList.remove("hidden");
         ctaContent.classList.add("flex");
       } else {
@@ -47,7 +43,7 @@ export default function CTA(
     <>
       <div
         id="cta-content"
-        class="hidden justify-between w-full h-[85px] z-40 py-2 px-3 fixed bottom-0 bg-base-100 shadow-2xl"
+        class="hidden justify-between w-full h-[75px] z-40 py-2 px-3 fixed bottom-0 bg-base-100 shadow-2xl"
       >
         {/* Prices */}
         <div class="flex flex-col items-start justify-start">
@@ -65,28 +61,17 @@ export default function CTA(
               </span>
             </div>
           </div>
-          {
-            /* <span class="flex text-xs">
-            <Installments
-              installmentsBillingDuration={installmentsBillingDuration}
-              installmentsBillingIncrement={installmentsBillingIncrement}
-              isCTA
-            />
-          </span> */
-          }
         </div>
 
-        <div>
-          <AddToCartButtonVTEX
-            productID={skuId}
-            seller={sellerId}
-            price={price ?? 0}
-            discount={price && listPrice ? listPrice - price : 0}
-            name={name ?? ""}
-            quantity={1}
-            productGroupID={productGroupId ?? ""}
-          />
-        </div>
+        <AddToCartButtonVTEX
+          productID={skuId}
+          seller={sellerId}
+          price={price ?? 0}
+          discount={price && listPrice ? listPrice - price : 0}
+          name={name ?? ""}
+          quantity={1}
+          productGroupID={productGroupId ?? ""}
+        />
       </div>
 
       <script

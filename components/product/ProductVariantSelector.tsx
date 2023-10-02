@@ -8,19 +8,32 @@ interface Props {
 
 function VariantSelector({ product, product: { url } }: Props) {
   const possibilities = useVariantPossibilities(product);
+  const order: string[] = ["PP", "P", "M", "G", "GG"];
+
+  const sortedPossibilities: Record<string, Record<string, string[]>> = Object
+    .keys(
+      possibilities,
+    ).reduce((acc, key) => {
+      const sortedValues: Record<string, string[]> = Object.fromEntries(
+        Object.entries(possibilities[key]).sort(
+          ([a], [b]) => order.indexOf(a) - order.indexOf(b),
+        ),
+      );
+      return { ...acc, [key]: sortedValues };
+    }, {});
 
   return (
-    <ul class="flex flex-col gap-4">
-      {Object.keys(possibilities).map((name) => (
-        <li class="flex flex-col gap-2">
-          <span class="text-sm">{name}</span>
-          <ul class="flex flex-row gap-3">
-            {Object.entries(possibilities[name]).map(([value, [link]]) => (
-              <li>
-                <a href={link}>
+    <ul className="flex flex-col gap-4">
+      {Object.entries(sortedPossibilities).map(([name, values]) => (
+        <li className="flex flex-col gap-2" key={name}>
+          <span className="text-sm">{name}</span>
+          <ul className="flex flex-row gap-3">
+            {Object.entries(values).map(([value, links]) => (
+              <li key={value}>
+                <a href={links[0]}>
                   <Avatar
                     content={value}
-                    variant={link === url ? "active" : "default"}
+                    variant={links[0] === url ? "active" : "default"}
                   />
                 </a>
               </li>
