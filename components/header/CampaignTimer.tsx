@@ -5,15 +5,24 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface Props {
   image: {
+    /** @description desktop otimized image */
     desktop: ImageWidget;
+    /** @description mobile otimized image */
     mobile: ImageWidget;
     alt?: string;
     lcp?: boolean;
   };
 
+  /**
+   * @title Expires at date
+   * @format datetime
+   */
   expiresAt?: string;
 
   labels?: {
+    /**
+     * @title Text to show when expired
+     */
     expired?: string;
     days?: string;
     hours?: string;
@@ -22,11 +31,25 @@ export interface Props {
   };
 
   text?: {
+    /**
+     * @title Text
+     * @default Time left for a campaign to end wth a link
+     */
     mobile?: HTMLWidget;
+    /**
+     * @title Text
+     * @default Time left for a campaign to end wth a link
+     */
     desktop?: HTMLWidget;
   };
 
+  /**
+   * @format color
+   */
   backgroundHex?: string;
+  /**
+   * @format color
+   */
   textHex?: string;
   hiddenCampaignTimer?: boolean;
 }
