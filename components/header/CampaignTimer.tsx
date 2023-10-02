@@ -130,8 +130,8 @@ function CampaignTimer({
                     media="(max-width: 476px)"
                     fetchPriority={image.lcp ? "high" : "auto"}
                     src={image.mobile}
-                    width={168}
-                    height={142}
+                    width={220}
+                    height={70}
                   />
                   <Source
                     media="(min-width: 768px)"
@@ -232,6 +232,7 @@ function CampaignTimer({
             dangerouslySetInnerHTML={{
               __html: `(${snippet})("${expiresAt}", "${id}");`,
             }}
+            defer
           />
         </>
       )}
