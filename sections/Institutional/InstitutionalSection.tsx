@@ -1,5 +1,6 @@
 import Icon from "$store/components/ui/Icon.tsx";
-
+import InstitutionalCard from "$store/components/ui/InstitutionalCard.tsx";
+import type { Props as CardProps } from "$store/components/ui/InstitutionalCard.tsx";
 import type { BreadcrumbList } from "apps/commerce/types.ts";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 
@@ -18,6 +19,7 @@ export interface QuestionProps {
 }
 
 export interface Props {
+  cards: CardProps[];
   filters: FilterProps[];
   title: string;
   questions?: QuestionProps[];
@@ -155,6 +157,7 @@ export default function Faq(props: Props) {
     filters,
     title,
     questions = [],
+    cards,
     info,
   } = { ...DEFAULT_PROPS, ...props };
 
@@ -184,6 +187,12 @@ export default function Faq(props: Props) {
               )}
 
               {info && <div dangerouslySetInnerHTML={{ __html: info }} />}
+              
+              <div class="grid grid-cols-3 my-10 gap-10 w-full place-items-center">
+              {cards.map((card) => (
+                  <InstitutionalCard {...card}/>
+                ))}
+              </div>
             </div>
           </div>
         </div>
