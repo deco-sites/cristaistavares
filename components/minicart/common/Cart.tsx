@@ -6,6 +6,9 @@ import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
+import { Signal, useSignal } from "@preact/signals";
+import { useCallback } from "preact/hooks";
+import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
 
 interface Props {
   items: Item[];
@@ -16,6 +19,7 @@ interface Props {
   locale: string;
   currency: string;
   coupon?: string;
+  simulate?: unknown;
   freeShippingTarget: number;
   checkoutHref: string;
   onAddCoupon: CouponProps["onAddCoupon"];
@@ -33,20 +37,39 @@ function Cart({
   currency,
   discounts,
   freeShippingTarget,
+  simulate,
   checkoutHref,
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
 }: Props) {
   const { displayCart } = useUI();
-  const isEmtpy = items.length === 0;
+  const isEmpty = items.length === 0;
+  const postalCode = useSignal("");
+  const simulateResult = useSignal<SimulationOrderForm | null>(null);
+
+  // const handleSimulation = useCallback(async () => {
+  //   if (postalCode.value.length !== 8) {
+  //     return;
+  //   }
+
+  //   try {
+  //     simulateResult.value = await simulate({
+  //       items: items,
+  //       postalCode: "58326-000",
+  //       country: "BRA",
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
       style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
     >
-      {isEmtpy
+      {isEmpty
         ? (
           <div class="flex flex-col gap-6">
             <span class="font-medium text-2xl">Sua sacola está vazia</span>
@@ -132,7 +155,7 @@ function Cart({
                   <Button
                     data-deco="buy-button"
                     class="btn-primary btn-block bg-emerald-500 hover:bg-emerald-600 border-none"
-                    disabled={loading || isEmtpy}
+                    disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
                         name: "begin_checkout",
