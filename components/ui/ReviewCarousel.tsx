@@ -14,6 +14,10 @@ export interface Review {
 export interface Props {
   reviews: Review[];
   interval: number;
+  /**
+   * @default true
+   */
+  hasMarginLeft?: boolean;
 }
 
 function ReviewCard({ image, description }: Review) {
@@ -28,12 +32,18 @@ function ReviewCard({ image, description }: Review) {
   );
 }
 
-export default function ReviewCarousel({ reviews, interval = 0 }: Props) {
+export default function ReviewCarousel(
+  { reviews, interval = 0, hasMarginLeft = true }: Props,
+) {
   const id = useId();
 
   return (
     <section class="flex items-center justify-center bg-whitesmoke w-full h-full min-h-[204px] mb-12 py-3">
-      <div class="flex flex-col items-center justify-center w-full h-full">
+      <div
+        class={`flex flex-col items-center justify-center w-full h-full ${
+          hasMarginLeft && "ml-[270px]"
+        }`}
+      >
         <div class="flex items-center justify-center px-3 py-2 w-full max-w-[400px] text-center mb-4 text-lg bg-dark-pink text-white -translate-y-8">
           Depoimento dos clientes
         </div>
