@@ -11,7 +11,7 @@ function Coupon({ coupon, onAddCoupon }: Props) {
   const [display, setDisplay] = useState(false);
 
   return (
-    <div class="flex justify-between items-center px-4">
+    <div class="flex justify-between items-center px-4 mt-1">
       <span class="text-sm">Cupom de desconto</span>
       {display
         ? (

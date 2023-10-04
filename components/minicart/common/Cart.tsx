@@ -2,13 +2,11 @@ import Button from "$store/components/ui/Button.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useUI } from "$store/sdk/useUI.ts";
+import { useState } from "preact/hooks";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
-import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
-import { Signal, useSignal } from "@preact/signals";
-import { useCallback } from "preact/hooks";
-import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
+import Shipping from "./Shipping.tsx";
 
 interface Props {
   items: Item[];
@@ -37,7 +35,6 @@ function Cart({
   currency,
   discounts,
   freeShippingTarget,
-  simulate,
   checkoutHref,
   itemToAnalyticsItem,
   onUpdateQuantity,
@@ -45,24 +42,9 @@ function Cart({
 }: Props) {
   const { displayCart } = useUI();
   const isEmpty = items.length === 0;
-  const postalCode = useSignal("");
-  const simulateResult = useSignal<SimulationOrderForm | null>(null);
+  const [shippingValue, setShippingValue] = useState<number | null>(null);
 
-  // const handleSimulation = useCallback(async () => {
-  //   if (postalCode.value.length !== 8) {
-  //     return;
-  //   }
-
-  //   try {
-  //     simulateResult.value = await simulate({
-  //       items: items,
-  //       postalCode: "58326-000",
-  //       country: "BRA",
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
+  console.log(shippingValue);
 
   return (
     <div
@@ -135,6 +117,10 @@ function Cart({
                   </span>
                 </div>
                 <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
+                <Shipping
+                  shippingValue={shippingValue}
+                  setShippingValue={setShippingValue}
+                />
               </div>
 
               {/* Total */}
@@ -142,7 +128,11 @@ function Cart({
                 <div class="flex justify-between items-center w-full">
                   <span>Total</span>
                   <span class="font-medium text-xl">
-                    {formatPrice(total - discounts, currency, locale)}
+                    {formatPrice(
+                      total + ((shippingValue ?? 0) / 100) - discounts,
+                      currency,
+                      locale,
+                    )}
                   </span>
                 </div>
                 <span class="text-sm text-base-300">
