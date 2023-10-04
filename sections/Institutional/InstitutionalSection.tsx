@@ -164,6 +164,7 @@ export default function Faq(props: Props) {
     title,
     questions = [],
     cards,
+    banners,
     gridImage,
     info,
   } = { ...DEFAULT_PROPS, ...props };
@@ -195,9 +196,13 @@ export default function Faq(props: Props) {
 
               {info && <div dangerouslySetInnerHTML={{ __html: info }} />}
 
-              <div class="grid grid-cols-3 my-10 gap-10 w-full place-items-center">
-                {cards?.map((card) => <InstitutionalCard {...card} />)}
-              </div>
+              {cards && (
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 my-10 gap-10 w-full place-items-center">
+                  {cards.map((card) => <InstitutionalCard {...card} />)}
+                </div>
+              )}
+
+              {banners && <SelectableBanners banners={banners} />}
 
               <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full place-items-center">
                 {gridImage?.map((grid) => <GridImage {...grid} />)}
