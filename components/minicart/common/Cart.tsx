@@ -44,8 +44,6 @@ function Cart({
   const isEmpty = items.length === 0;
   const [shippingValue, setShippingValue] = useState<number | null>(null);
 
-  console.log(shippingValue);
-
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
@@ -129,7 +127,7 @@ function Cart({
                   <span>Total</span>
                   <span class="font-medium text-xl">
                     {formatPrice(
-                      total + ((shippingValue ?? 0) / 100) - discounts,
+                      total + ((shippingValue ?? 0) / 100),
                       currency,
                       locale,
                     )}

@@ -38,7 +38,7 @@ function Avatar({ content, variant = "default", isSelected }: Props) {
   return (
     <div class="avatar placeholder text-xs cursor-pointer">
       <div
-        class={`rounded-full w-8 ${isSelected && "border-primary"} ${
+        class={`rounded-md w-8 ${isSelected && "border-primary"} ${
           variants[variant]
         }`}
       >
