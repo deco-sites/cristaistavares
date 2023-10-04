@@ -78,6 +78,8 @@ const DEFAULT_PROPS = {
     },
   ],
   questions: [],
+  gridImages: [],
+  banners: [],
 };
 
 function Filters({ filters }: { filters: FilterProps[] }) {
@@ -165,7 +167,7 @@ export default function Faq(props: Props) {
     questions = [],
     cards,
     banners,
-    gridImage = [],
+    gridImages = [],
     info,
   } = { ...DEFAULT_PROPS, ...props };
 
@@ -204,9 +206,9 @@ export default function Faq(props: Props) {
 
               {banners && <SelectableBanners banners={banners} />}
 
-              {gridImage && (
+              {gridImages && (
                 <div class="grid sm:grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4 w-full items-center justify-center text-center">
-                  {gridImage.map((grid: GridProps) => <GridImage {...grid} />)}
+                  {gridImages.map((grid) => <GridImage {...grid} />)}
                 </div>
               )}
             </div>
