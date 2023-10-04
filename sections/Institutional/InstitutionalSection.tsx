@@ -80,6 +80,7 @@ const DEFAULT_PROPS = {
   questions: [],
   gridImages: [],
   banners: [],
+  cards: [],
 };
 
 function Filters({ filters }: { filters: FilterProps[] }) {
