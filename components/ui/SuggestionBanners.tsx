@@ -23,7 +23,7 @@ export default function CategoryList({ title, description, cards }: Props) {
         <div class="">
           <h1 class="text-xl font-medium">{title}</h1>
         </div>
-        <a href={description.link}>
+        <a href={description.link ?? "#"}>
           <p class="text-sm font-bold hover:underline cursor-pointer">
             {description.label}
           </p>
