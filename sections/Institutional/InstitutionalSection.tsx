@@ -23,14 +23,14 @@ export interface QuestionProps {
 }
 
 export interface Props {
-  cards: CardProps[];
-  gridImage: GridProps[];
   filters: FilterProps[];
   title: string;
   questions?: QuestionProps[];
   /** @format html */
   info?: string;
   banners?: BannerProps[];
+  cards?: CardProps[];
+  gridImages?: GridProps[];
 }
 
 const DEFAULT_PROPS = {
@@ -165,7 +165,7 @@ export default function Faq(props: Props) {
     questions = [],
     cards,
     banners,
-    gridImage,
+    gridImage = [],
     info,
   } = { ...DEFAULT_PROPS, ...props };
 
@@ -197,16 +197,18 @@ export default function Faq(props: Props) {
               {info && <div dangerouslySetInnerHTML={{ __html: info }} />}
 
               {cards && (
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 my-10 gap-10 w-full place-items-center">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 my-10 gap-10 w-full place-items-center">
                   {cards.map((card) => <InstitutionalCard {...card} />)}
                 </div>
               )}
 
               {banners && <SelectableBanners banners={banners} />}
 
-              <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full text-center place-items-center">
-                {gridImage?.map((grid) => <GridImage {...grid} />)}
-              </div>
+              {gridImage && (
+                <div class="grid sm:grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4 w-full items-center justify-center text-center">
+                  {gridImage.map((grid) => <GridImage {...grid} />)}
+                </div>
+              )}
             </div>
           </div>
         </div>

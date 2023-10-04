@@ -28,13 +28,13 @@ export default function GridImage({ image, title, subtitle }: Props) {
           <div class="flex items-center justify-center">
             <h2
               class="text-center"
-              dangerouslySetInnerHTML={{ __html: title ?? ""}}
+              dangerouslySetInnerHTML={{ __html: title ?? "" }}
             />
           </div>
           <div class="flex items-center justify-center">
             <p
               class="font-normal"
-              dangerouslySetInnerHTML={{ __html: subtitle ?? ""}}
+              dangerouslySetInnerHTML={{ __html: subtitle ?? "" }}
             />
           </div>
         </div>
