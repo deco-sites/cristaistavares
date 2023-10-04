@@ -5,6 +5,8 @@ import type { Props as CardProps } from "$store/components/ui/InstitutionalCard.
 import type { Props as GridProps } from "$store/components/ui/GridImage.tsx";
 import type { BreadcrumbList } from "apps/commerce/types.ts";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
+import SelectableBanners from "$store/islands/SelectableBanners.tsx";
+import type { BannerProps } from "$store/islands/SelectableBanners.tsx";
 
 export interface FilterProps {
   label: string;
@@ -28,6 +30,7 @@ export interface Props {
   questions?: QuestionProps[];
   /** @format html */
   info?: string;
+  banners?: BannerProps[];
 }
 
 const DEFAULT_PROPS = {
