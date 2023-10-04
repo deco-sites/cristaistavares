@@ -23,7 +23,7 @@ export default function GridImage({ image, title, subtitle }: Props) {
           loading="lazy"
         />
       </figure>
-      <div class="absolute flex flex-col mt-[90px] px-8">
+      <div class="absolute flex flex-col items-center justify-center mt-[90px] px-8">
         <div class="w-full h-full flex flex-col text-center items-center justify-center gap-4">
           <div class="flex items-center justify-center">
             <h2

@@ -204,7 +204,7 @@ export default function Faq(props: Props) {
 
               {banners && <SelectableBanners banners={banners} />}
 
-              <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full place-items-center">
+              <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full text-center place-items-center">
                 {gridImage?.map((grid) => <GridImage {...grid} />)}
               </div>
             </div>
