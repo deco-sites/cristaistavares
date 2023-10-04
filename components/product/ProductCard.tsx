@@ -121,9 +121,13 @@ function ProductCard(
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-  const skuSelector = variants.map(([value, [link]]) => (
-    <SkuSelector value={value} link={link} />
-  ));
+  const skuOrder = ["PP", "P", "M", "G", "GG"];
+
+  const skuSelector = variants
+    .sort(([a], [b]) => skuOrder.indexOf(a) - skuOrder.indexOf(b))
+    .map(([value, [link]]) => (
+      <SkuSelector key={value} value={value} link={link} url={url} />
+    ));
 
   return (
     <div
@@ -196,6 +200,12 @@ function ProductCard(
             price={filteredProductPrice ?? price!}
             listPrice={filteredProductListPrice ?? listPrice!}
           />
+
+          {product.isSimilarTo && product.isSimilarTo.length !== 0 && (
+            <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 top-4 z-30">
+              +{product.isSimilarTo.length} cores
+            </span>
+          )}
 
           <Image
             src={front.url!}

@@ -206,7 +206,7 @@ export default function Faq(props: Props) {
 
               {gridImage && (
                 <div class="grid sm:grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4 w-full items-center justify-center text-center">
-                  {gridImage.map((grid) => <GridImage {...grid} />)}
+                  {gridImage.map((grid: GridProps) => <GridImage {...grid} />)}
                 </div>
               )}
             </div>
