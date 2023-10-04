@@ -33,56 +33,6 @@ export interface Props {
   gridImages?: GridProps[];
 }
 
-const DEFAULT_PROPS = {
-  title: "",
-  info: "",
-  filters: [
-    {
-      label: "Institucional",
-      values: [
-        { label: "Quem somos", href: "/quem-somos" },
-        { label: "Fale Conosco", href: "/fale-conosco" },
-        { label: "Atacado", href: "/atacado" },
-        { label: "Atendimento", href: "/atendimento" },
-        { label: "Trabalhe conosco", href: "/trabalhe-conosco" },
-      ],
-    },
-    {
-      label: "Ajuda e suporte",
-      values: [
-        {
-          label: "Perguntas Frequentes",
-          href: "/faq",
-        },
-        {
-          label: "Trocas e Devoluções",
-          href: "/trocas-devolucoes",
-        },
-        {
-          label: "Prazo de Entrega",
-          href: "/prazos-entregas",
-        },
-        {
-          label: "Formas de Pagamento",
-          href: "/formas-pagamento",
-        },
-        {
-          label: "Política de Privacidade",
-          href: "/politica-privacidade",
-        },
-        {
-          label: "Termos de Uso",
-          href: "/temos-uso",
-        },
-      ],
-    },
-  ],
-  questions: [],
-  gridImages: [],
-  banners: [],
-  cards: [],
-};
-
 function Filters({ filters }: { filters: FilterProps[] }) {
   return (
     <ul class="flex flex-col p-3 md:p-8 gap-4">
@@ -161,17 +111,9 @@ function Question({ questions }: { questions: QuestionProps[] }) {
   );
 }
 
-export default function Faq(props: Props) {
-  const {
-    filters,
-    title,
-    questions = [],
-    cards,
-    banners,
-    gridImages = [],
-    info,
-  } = { ...DEFAULT_PROPS, ...props };
-
+export default function Faq(
+  { filters, title, banners, cards, gridImages, info, questions }: Props,
+) {
   const itemListElement: BreadcrumbList["itemListElement"] = [];
 
   return (
