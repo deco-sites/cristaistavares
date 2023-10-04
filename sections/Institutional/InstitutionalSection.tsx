@@ -1,6 +1,8 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import InstitutionalCard from "$store/components/ui/InstitutionalCard.tsx";
+import GridImage from "$store/components/ui/GridImage.tsx";
 import type { Props as CardProps } from "$store/components/ui/InstitutionalCard.tsx";
+import type { Props as GridProps } from "$store/components/ui/GridImage.tsx";
 import type { BreadcrumbList } from "apps/commerce/types.ts";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import SelectableBanners from "$store/islands/SelectableBanners.tsx";
@@ -21,12 +23,13 @@ export interface QuestionProps {
 }
 
 export interface Props {
+  cards: CardProps[];
+  gridImage: GridProps[];
   filters: FilterProps[];
   title: string;
   questions?: QuestionProps[];
   /** @format html */
   info?: string;
-  cards?: CardProps[];
   banners?: BannerProps[];
 }
 
@@ -160,8 +163,8 @@ export default function Faq(props: Props) {
     filters,
     title,
     questions = [],
-    cards = [],
-    banners = [],
+    cards,
+    gridImage,
     info,
   } = { ...DEFAULT_PROPS, ...props };
 
@@ -192,13 +195,13 @@ export default function Faq(props: Props) {
 
               {info && <div dangerouslySetInnerHTML={{ __html: info }} />}
 
-              {cards && (
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 my-10 gap-10 w-full place-items-center">
-                  {cards.map((card) => <InstitutionalCard {...card} />)}
-                </div>
-              )}
+              <div class="grid grid-cols-3 my-10 gap-10 w-full place-items-center">
+                {cards?.map((card) => <InstitutionalCard {...card} />)}
+              </div>
 
-              {banners && <SelectableBanners banners={banners} />}
+              <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full place-items-center">
+                {gridImage?.map((grid) => <GridImage {...grid} />)}
+              </div>
             </div>
           </div>
         </div>
