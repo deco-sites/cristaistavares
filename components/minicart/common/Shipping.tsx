@@ -84,12 +84,18 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
         )
         : (
           <Button
-            class="btn-ghost underline font-normal"
+            class="btn-ghost underline font-normal relative"
             onClick={() => {
               setShippingValue(null);
               setDisplay(true);
             }}
           >
+            {shippingValue && (
+              <div class="flex items-center justify-center absolute cursor-pointer top-0 right-0 text-white p-2 w-0.5 h-0.5 text-xs rounded-full bg-red-500">
+                X
+              </div>
+            )}
+
             {shippingValue &&
                 (shippingValue / 100).toLocaleString("pt-BR", {
                   style: "currency",

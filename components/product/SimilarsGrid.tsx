@@ -11,11 +11,13 @@ const relative = (url: string) => {
 };
 
 export default function SimilarsGrid({ products }: Props) {
+  if (!products) return null;
+
   const [isViewMoreItemsActive, setIsViewMoreItemsActive] = useState(false);
 
-  const displayAllProducts = isViewMoreItemsActive
+  const displayAllProducts = products.length > 28 && isViewMoreItemsActive
     ? products
-    : products?.slice(0, 27);
+    : products.slice(0, 27);
 
   return (
     <>
@@ -39,7 +41,7 @@ export default function SimilarsGrid({ products }: Props) {
         })}
       </div>
 
-      {!isViewMoreItemsActive && (
+      {products.length > 28 && !isViewMoreItemsActive && (
         <button
           title="view more products"
           onClick={() => setIsViewMoreItemsActive(true)}

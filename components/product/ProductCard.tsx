@@ -140,7 +140,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`bg-white card card-compact rounded-none group w-full h-full hover:shadow-2xl p-3 ${
+      class={`bg-white card card-compact rounded-none group w-full h-full lg:min-h-[600px] lg:max-h-[600px] hover:shadow-2xl p-3 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${

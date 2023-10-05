@@ -133,9 +133,11 @@ function Cart({
                     )}
                   </span>
                 </div>
-                <span class="text-sm text-base-300">
+                {
+                  /* <span class="text-sm text-base-300">
                   Taxas e fretes serão calculados no checkout
-                </span>
+                </span> */
+                }
               </div>
 
               <div class="p-4">
