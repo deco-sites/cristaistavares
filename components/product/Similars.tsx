@@ -1,6 +1,8 @@
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import SimilarsGrid from "$store/islands/SimilarsGrid.tsx";
+
 import { useId } from "$store/sdk/useId.ts";
 import type { Product } from "apps/commerce/types.ts";
 
@@ -21,27 +23,7 @@ export default function Similars({ products, type = "slider" }: Props) {
     return <SimilarsSlider products={products} />;
   }
 
-  return (
-    <div class="flex flex-wrap gap-x-2 gap-y-1.5 items-center">
-      {products?.map(({ image: images, url }) => {
-        const [front, back] = images ?? [];
-
-        return (
-          <a
-            href={url && relative(url)}
-            class="flex items-center justify-center border border-gray-300 rounded-xl w-14 h-14 p-1"
-          >
-            <img
-              src={front.url}
-              alt={front.description}
-              width={52}
-              height={52}
-            />
-          </a>
-        );
-      })}
-    </div>
-  );
+  return <SimilarsGrid products={products} />;
 }
 
 function SimilarsSlider({ products }: { products?: Product[] }) {
