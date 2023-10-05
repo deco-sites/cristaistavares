@@ -234,6 +234,7 @@ function Searchbar({
                         <ProductCard
                           product={product}
                           platform={"vtex"}
+                          isSearchbar={true}
                           layout={{
                             hide: {
                               productDescription: true,

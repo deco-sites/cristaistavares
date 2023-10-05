@@ -50,6 +50,7 @@ interface Props {
   layout?: Layout;
 
   platform: ReturnType<typeof usePlatform>;
+  isSearchbar?: boolean;
 }
 
 const relative = (url: string) => {
@@ -75,7 +76,14 @@ const RATING = {
 };
 
 function ProductCard(
-  { product, preload = false, itemListName, layout, platform }: Props,
+  {
+    product,
+    preload = false,
+    itemListName,
+    layout,
+    platform,
+    isSearchbar = false,
+  }: Props,
 ) {
   const {
     url,
@@ -201,7 +209,8 @@ function ProductCard(
             listPrice={filteredProductListPrice ?? listPrice!}
           />
 
-          {product.isSimilarTo && product.isSimilarTo.length !== 0 && (
+          {!isSearchbar && product.isSimilarTo &&
+            product.isSimilarTo.length !== 0 && (
             <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 top-4 z-30">
               +{product.isSimilarTo.length} cores
             </span>
