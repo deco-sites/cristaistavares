@@ -1,5 +1,7 @@
-import Button from "$store/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
+
+import Button from "$store/components/ui/Button.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props {
   coupon?: string;
@@ -8,66 +10,69 @@ export interface Props {
 
 function Coupon({ coupon, onAddCoupon }: Props) {
   const [loading, setLoading] = useState(false);
-  const [display, setDisplay] = useState(false);
 
   return (
-    <div class="flex justify-between items-center px-4 mt-1">
-      <span class="text-sm">Cupom de desconto</span>
-      {display
-        ? (
-          <form
-            class="join"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const { currentTarget: { elements } } = e;
+    <div class="flex justify-between items-center px-4 mt-1 w-full">
+      <form
+        class="flex items-center justify-center gap-2 w-full h-full"
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const { currentTarget: { elements } } = e;
 
-              const input = elements.namedItem("coupon") as HTMLInputElement;
-              const text = input.value;
+          const input = elements.namedItem("coupon") as HTMLInputElement;
+          const text = input.value;
 
-              if (!text) return;
+          if (!text) return;
 
-              try {
-                setLoading(true);
-                await onAddCoupon(text);
-                setDisplay(false);
-              } finally {
-                setLoading(false);
-              }
-            }}
-          >
-            <input
-              name="coupon"
-              class="input join-item"
-              type="text"
-              value={coupon ?? ""}
-              placeholder={"Cupom"}
-            />
+          try {
+            setLoading(true);
+            await onAddCoupon(text);
+          } finally {
+            setLoading(false);
+          }
+        }}
+      >
+        <div class="flex items-center justify-center gap-3 w-full h-full border border-gray-200 bg-white rounded p-2 min-h-[48px]">
+          <Icon
+            id="Discount"
+            width={20}
+            height={20}
+            class={coupon ? "text-dark-pink" : "text-[#ccc]"}
+            strokeWidth={2}
+          />
+          <input
+            name="coupon"
+            class={`${
+              coupon && "text-dark-pink font-bold"
+            } w-full focus:outline-none`}
+            type="text"
+            value={coupon ?? ""}
+            placeholder={"Adicionar cupom"}
+          />
+        </div>
+        {!coupon
+          ? (
             <Button
-              class="join-item"
               type="submit"
               htmlFor="coupon"
               loading={loading}
+              class="w-[88px] text-sm bg-dark-pink hover:bg-dark-pink/90 border-none text-white normal-case font-medium"
             >
-              Ok
+              Adicionar
             </Button>
-          </form>
-        )
-        : (
-          <Button
-            class="btn-ghost underline font-normal relative"
-            onClick={async () => {
-              setDisplay(true);
-              await onAddCoupon("");
-            }}
-          >
-            {coupon && (
-              <div class="flex items-center justify-center absolute cursor-pointer top-0 right-0 text-white p-2 w-0.5 h-0.5 text-xs rounded-full bg-red-500">
-                X
-              </div>
-            )}
-            {coupon || "Adicionar"}
-          </Button>
-        )}
+          )
+          : (
+            <Button
+              class="text-lg border-transparent hover:border-transparent w-[88px]"
+              loading={loading}
+              onClick={async () => {
+                await onAddCoupon("");
+              }}
+            >
+              X
+            </Button>
+          )}
+      </form>
     </div>
   );
 }
