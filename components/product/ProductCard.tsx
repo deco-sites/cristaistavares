@@ -211,9 +211,12 @@ function ProductCard(
 
           {!isSearchbar && product.isSimilarTo &&
             product.isSimilarTo.length !== 0 && (
-            <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 top-4 z-30">
-              +{product.isSimilarTo.length} cores
-            </span>
+            <div class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 gap-1 top-4 z-30">
+              <span>
+                +{product.isSimilarTo.length}
+              </span>
+              <span class="hidden md:block">cores</span>
+            </div>
           )}
 
           <Image

@@ -41,13 +41,13 @@ export default function SimilarsGrid({ products }: Props) {
         })}
       </div>
 
-      {products.length > 28 && !isViewMoreItemsActive && (
+      {products.length > 28 && (
         <button
           title="view more products"
-          onClick={() => setIsViewMoreItemsActive(true)}
+          onClick={() => setIsViewMoreItemsActive((prev) => !prev)}
           class="flex items-center justify-center p-2 bg-dark-pink text-white w-[140px] rounded-[3.5px]"
         >
-          Ver mais cores
+          {!isViewMoreItemsActive ? "Ver mais cores" : "Ver menos"}
         </button>
       )}
     </>
