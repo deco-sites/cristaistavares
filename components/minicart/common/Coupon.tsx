@@ -26,7 +26,8 @@ function Coupon({ coupon, onAddCoupon }: Props) {
 
           try {
             setLoading(true);
-            await onAddCoupon(text);
+            const coupon = await onAddCoupon(text);
+            console.log(coupon);
           } finally {
             setLoading(false);
           }
