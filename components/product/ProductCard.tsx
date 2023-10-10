@@ -200,7 +200,7 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30 rounded-md">
             LANÇAMENTO
           </span>
 
@@ -211,11 +211,8 @@ function ProductCard(
 
           {!isSearchbar && product.isSimilarTo &&
             product.isSimilarTo.length !== 0 && (
-            <div class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 gap-1 top-4 z-30">
-              <span>
-                +{product.isSimilarTo.length}
-              </span>
-              <span class="hidden md:block">cores</span>
+            <div class="hidden md:block indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 gap-1 top-4 z-30 rounded-md">
+              +{product.isSimilarTo.length} cores
             </div>
           )}
 

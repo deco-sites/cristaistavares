@@ -11,7 +11,7 @@ const Discount = ({ price, listPrice }: Props) => {
   const discountPercentage = Math.floor(discountValue * 100 / listPrice);
 
   return (
-    <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-10 z-30">
+    <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-10 z-30 rounded-md">
       {discountPercentage}% OFF
     </span>
   );

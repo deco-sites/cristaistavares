@@ -52,7 +52,7 @@ export default function AvaliationSection() {
                   </p>
                 </a>
               </div>
-              <div class="flex flex-col sm:flex-row items-start justify-start gap-1 mt-7">
+              <div class="flex flex-col sm:flex-row items-start justify-start gap-1.5 mt-7">
                 <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full">
                   <option value="recentes">Mais Recentes</option>
                   <option value="antigas">Mais Antigas</option>
@@ -69,7 +69,7 @@ export default function AvaliationSection() {
                 </select>
               </div>
               <div class="flex items-start justify-start border-b-4 border-solid border-[#f2f4f5] min-w-full mb-5 py-3">
-                <h1 class="text-start text-xl text-dark-pink font-semibold">
+                <h1 class="text-start text-lg">
                   Nenhuma avaliação
                 </h1>
               </div>

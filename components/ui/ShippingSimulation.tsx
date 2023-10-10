@@ -110,7 +110,7 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered join-item"
+          class="input input-bordered join-item min-w-[62%] sm:min-w-[58%]"
           placeholder="Seu cep aqui"
           value={postalCode.value}
           maxLength={8}
