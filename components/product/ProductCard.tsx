@@ -281,8 +281,10 @@ function ProductCard(
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 min-h-[56px] ${
-                  align === "center" ? "justify-center" : "justify-start"
+                class={`flex items-center gap-2 w-full overflow-auto min-h-[56px] ${
+                  align === "center"
+                    ? "justify-center p-3"
+                    : "justify-start py-3"
                 } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
                 {skuSelector}
@@ -291,7 +293,11 @@ function ProductCard(
           </>
         )}
 
-        <div class="flex flex-row gap-1 align-middle items-center justify-center">
+        <div
+          class={`${
+            align === "center" && "align-middle justify-center"
+          } flex flex-row gap-1 items-center`}
+        >
           <div class="rating align-middle">
             <input
               type="radio"
@@ -331,34 +337,34 @@ function ProductCard(
           </div>
         </div>
 
-        {l?.hide?.productName && l?.hide?.productDescription
-          ? ""
-          : (
-            <div class="flex flex-col items-center justify-center text-center gap-0 w-full">
-              {l?.hide?.productName
-                ? ""
-                : (
-                  <h2 class="text-sm text-center w-full">
-                    {product.isVariantOf?.name}
-                  </h2>
-                )}
-              {l?.hide?.productDescription ? "" : (
-                <p
-                  class="truncate text-sm lg:text-sm text-neutral"
-                  dangerouslySetInnerHTML={{
-                    __html: product.description ?? "",
-                  }}
-                />
-              )}
-            </div>
-          )}
+        {l?.hide?.productName && l?.hide?.productDescription ? "" : (
+          <div
+            class={`${
+              align === "center" && "items-center justify-center text-center"
+            } flex flex-col gap-0 w-full`}
+          >
+            {l?.hide?.productName ? "" : (
+              <h2 class="text-sm w-full">
+                {product.isVariantOf?.name}
+              </h2>
+            )}
+            {l?.hide?.productDescription ? "" : (
+              <p
+                class="truncate text-sm lg:text-sm text-neutral"
+                dangerouslySetInnerHTML={{
+                  __html: product.description ?? "",
+                }}
+              />
+            )}
+          </div>
+        )}
         {l?.hide?.allPrices ? "" : (
           <div class="flex flex-col gap-1">
             <div
               class={`flex flex-col gap-0 ${
                 l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : "lg:flex-row lg:gap-2"
+                  ? "lg:flex-row"
+                  : "lg:flex-row"
               } ${
                 align === "center"
                   ? "justify-center items-center"
@@ -395,18 +401,20 @@ function ProductCard(
                 offers!.priceCurrency!,
               )} no <b>PIX</b>
             </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <div class="flex items-center justify-center">
-                  <Installments
-                    installmentsBillingDuration={installmentsBillingDuration ??
-                      0}
-                    installmentsBillingIncrement={installmentsBillingIncrement ??
-                      0}
-                  />
-                </div>
-              )}
+            {l?.hide?.installments ? "" : (
+              <div
+                class={`flex ${
+                  align === "center" && "items-center justify-center"
+                }`}
+              >
+                <Installments
+                  installmentsBillingDuration={installmentsBillingDuration ??
+                    0}
+                  installmentsBillingIncrement={installmentsBillingIncrement ??
+                    0}
+                />
+              </div>
+            )}
           </div>
         )}
 
