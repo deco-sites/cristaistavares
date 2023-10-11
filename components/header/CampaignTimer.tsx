@@ -1,17 +1,12 @@
-import { useEffect, useId, useRef, useState } from "preact/hooks";
-import type { ImageWidget } from "apps/admin/widgets.ts";
+import { useId } from "$store/sdk/useId.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface Props {
-  image: {
-    /** @description desktop otimized image */
-    desktop: ImageWidget;
-    /** @description mobile otimized image */
-    mobile: ImageWidget;
-    alt?: string;
-    lcp?: boolean;
-  };
+  /**
+   * @title Text
+   * @default Time left for a campaign to end wth a link
+   */
+  text?: HTMLWidget;
 
   /**
    * @title Expires at date
@@ -30,17 +25,21 @@ export interface Props {
     seconds?: string;
   };
 
-  text?: {
+  link?: {
     /**
-     * @title Text
-     * @default Time left for a campaign to end wth a link
+     * @title Link Text
+     * @default button
      */
-    mobile?: HTMLWidget;
+    text: string;
     /**
-     * @title Text
-     * @default Time left for a campaign to end wth a link
+     * @title Link href
+     * @default #
      */
-    desktop?: HTMLWidget;
+    href: string;
+  };
+
+  layout?: {
+    textPosition?: "Before counter" | "After counter";
   };
 
   /**
@@ -51,28 +50,12 @@ export interface Props {
    * @format color
    */
   textHex?: string;
-  hiddenCampaignTimer?: boolean;
 }
 
-function CampaignTimer({
-  image,
-  expiresAt = `${new Date()}`,
-  labels,
-  text,
-  hiddenCampaignTimer,
-  textHex,
-  backgroundHex,
-}: Props) {
-  const [timeRemaining, setTimeRemaining] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
+const snippet = (expiresAt: string, rootId: string) => {
   const expirationDate = new Date(expiresAt).getTime();
 
-  const calculateTimeRemaining = () => {
+  const getDelta = () => {
     const delta = expirationDate - new Date().getTime();
 
     const days = Math.floor(delta / (1000 * 60 * 60 * 24));
@@ -81,133 +64,150 @@ function CampaignTimer({
     );
     const minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((delta % (1000 * 60)) / 1000);
+    const totalHours = (days * 24) + hours;
 
-    setTimeRemaining({
+    return {
       days,
-      hours,
+      hours: Math.min(totalHours, 99),
       minutes,
       seconds,
-    });
+    };
   };
 
-  useEffect(() => {
-    const timer = setInterval(calculateTimeRemaining, 1000);
+  const setValue = (id: string, value: number) => {
+    const elem = document.getElementById(id);
 
-    return () => clearInterval(timer);
-  }, []);
+    if (!elem) return;
 
-  const renderCountdownElement = (value: number, label: string) => {
-    return (
-      <div class="flex flex-col items-center justify-center text-center">
-        <span class="countdown text-sm sm:text-xl md:text-3xl">
-          {value < 10 ? `0${value}` : value}
-        </span>
-        <span class="text-sm">{label}</span>
-      </div>
-    );
+    elem.style.setProperty("--value", value.toString());
   };
+
+  const start = () =>
+    setInterval(() => {
+      const { days, hours, minutes, seconds } = getDelta();
+      const isExpired = hours + minutes + seconds < 0;
+
+      if (isExpired) {
+        const expired = document.getElementById(`${rootId}::expired`);
+        const counter = document.getElementById(`${rootId}::counter`);
+
+        expired && expired.classList.remove("hidden");
+        counter && counter.classList.add("hidden");
+      } else {
+        setValue(`${rootId}::days`, days);
+        setValue(`${rootId}::hours`, hours);
+        setValue(`${rootId}::minutes`, minutes);
+        setValue(`${rootId}::seconds`, seconds);
+      }
+    }, 1_000);
+
+  document.readyState === "complete"
+    ? start()
+    : addEventListener("load", start);
+};
+
+function CampaignTimer({
+  expiresAt = `${new Date()}`,
+  labels,
+  text = "Time left for a campaign to end wth a link",
+  link = { text: "Click me", href: "/hello" },
+  layout = { textPosition: "Before counter" },
+  backgroundHex = "#000",
+  textHex = "#fff",
+}: Props) {
+  const id = useId();
 
   return (
     <>
-      {!hiddenCampaignTimer && (
-        <>
-          <div
-            id="campaign-timer"
-            style={{ background: backgroundHex }}
-            class="text-black w-full min-h-[90px] justify-center items-center text-center flex md:py-3 px-4 xl:px-0"
-          >
-            <div class="flex items-center justify-between gap-4 md:gap-0 w-full max-w-[1266px]">
-              <div class="flex">
-                <Picture preload={image.lcp}>
-                  <Source
-                    media="(max-width: 476px)"
-                    fetchPriority={image.lcp ? "high" : "auto"}
-                    src={image.mobile}
-                    width={220}
-                    height={70}
-                  />
-                  <Source
-                    media="(min-width: 768px)"
-                    fetchPriority={image.lcp ? "high" : "auto"}
-                    src={image.desktop}
-                    width={220}
-                    height={70}
-                  />
-                  <img
-                    class="object-cover max-w-full"
-                    loading={image.lcp ? "eager" : "lazy"}
-                    src={image.desktop}
-                    alt={image.alt}
-                  />
-                </Picture>
+      <div
+        id="campaign-timer"
+        style={{ background: backgroundHex, color: textHex }}
+      >
+        <div class="container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16 py-4 px-6 gap-4">
+          {layout?.textPosition !== "After counter" &&
+            (
+              <div
+                class="text-sm text-center lg:text-xl lg:text-left lg:max-w-lg"
+                dangerouslySetInnerHTML={{ __html: text }}
+              >
               </div>
-              {text && (
-                <div class="flex max-w-full lg:max-w-[420px] xl:max-w-[580px] text-center px-1 sm:px-6 md:px-8">
-                  <div class="text-sm xl:text-xl leading-tight tracking-tighter block lg:hidden">
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: text?.mobile ??
-                          "Time left for a campaign to end with a link",
-                      }}
-                    />
-                  </div>
-                  <div class="text-sm xl:text-xl leading-tight tracking-tighter hidden lg:block">
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: text?.desktop ??
-                          "Time left for a campaign to end with a link",
-                      }}
-                    />
-                  </div>
+            )}
+          <div
+            id={`${id}::expired`}
+            class="hidden text-sm text-center lg:text-xl lg:text-left lg:max-w-lg"
+          >
+            {labels?.expired || "Expired!"}
+          </div>
+          <div class="flex gap-8 lg:gap-16 items-center justify-center lg:justify-normal">
+            <div id={`${id}::counter`}>
+              <div class="grid grid-flow-col gap-3 text-center auto-cols-max items-center">
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
+                    <span id={`${id}::days`} />
+                  </span>
+                  {labels?.days || ""}
                 </div>
-              )}
-              <div style={{ color: textHex }} class="flex items-center h-20">
-                <div class="flex flex-col items-center justify-center text-center sm:gap-1 min-w-full">
-                  <div
-                    class={timeRemaining.hours + timeRemaining.minutes +
-                          timeRemaining.seconds < 0
-                      ? "hidden h-full text-center"
-                      : "hidden"}
-                  >
-                    <span class="flex items-center text-sm sm:text-2xl h-full">
-                      {labels?.expired || "Expired!"}
-                    </span>
-                  </div>
-
-                  <div
-                    class={timeRemaining.hours + timeRemaining.minutes +
-                          timeRemaining.seconds >= 0
-                      ? ""
-                      : "hidden"}
-                  >
-                    <div class="flex sm:grid sm:grid-flow-col gap-2 text-center sm:auto-cols-max items-center font-bold uppercase px-2 sm:px-0">
-                      {renderCountdownElement(
-                        timeRemaining.days,
-                        labels?.days || "Dias",
-                      )}
-                      <div>:</div>
-                      {renderCountdownElement(
-                        timeRemaining.hours,
-                        labels?.hours || "Horas",
-                      )}
-                      <div>:</div>
-                      {renderCountdownElement(
-                        timeRemaining.minutes,
-                        labels?.minutes || "Min",
-                      )}
-                      <div>:</div>
-                      {renderCountdownElement(
-                        timeRemaining.seconds,
-                        labels?.seconds || "Seg",
-                      )}
-                    </div>
-                  </div>
+                <div>
+                  :
+                </div>
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
+                    <span id={`${id}::hours`} />
+                  </span>
+                  {labels?.hours || ""}
+                </div>
+                <div>
+                  :
+                </div>
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
+                    <span id={`${id}::minutes`} />
+                  </span>
+                  {labels?.minutes || ""}
+                </div>
+                <div>
+                  :
+                </div>
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
+                    <span id={`${id}::seconds`} />
+                  </span>
+                  {labels?.seconds || ""}
                 </div>
               </div>
             </div>
+            <div
+              class={`hidden text-sm text-center lg:text-xl lg:text-left lg:max-w-lg ${
+                layout?.textPosition === "After counter"
+                  ? "lg:block"
+                  : "lg:hidden"
+              }`}
+              dangerouslySetInnerHTML={{ __html: text }}
+            >
+            </div>
+            <a
+              class="btn"
+              aria-label={link.text}
+              href={link.href}
+            >
+              {link.text}
+            </a>
           </div>
-        </>
-      )}
+          <div
+            class={`lg:hidden text-sm text-center lg:text-xl lg:text-left lg:max-w-lg ${
+              layout?.textPosition === "After counter" ? "block" : "hidden"
+            }`}
+            dangerouslySetInnerHTML={{ __html: text }}
+          >
+          </div>
+        </div>
+      </div>
+      <script
+        type="module"
+        dangerouslySetInnerHTML={{
+          __html: `(${snippet})("${expiresAt}", "${id}");`,
+        }}
+      />
     </>
   );
 }
