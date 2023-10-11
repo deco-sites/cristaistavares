@@ -27,6 +27,7 @@ export interface Props {
   preload?: boolean;
   isMobile?: boolean;
   interval?: number;
+  hasPaddingOnTheRight?: boolean;
 }
 
 function ProductShelf({
@@ -38,7 +39,7 @@ function ProductShelf({
   preload = false,
   isMobile = false,
   isPDP = false,
-  interval,
+  hasPaddingOnTheRight = false,
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -64,9 +65,10 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class={`carousel-item sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 ${
-                isPDP ? "w-full" : "w-[175px]"
-              }`}
+              class={`carousel-item sm:w-[292px] ${
+                hasPaddingOnTheRight &&
+                "first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              } ${isPDP ? "w-full" : "w-[175px]"}`}
             >
               {!isMobile
                 ? (
