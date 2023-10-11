@@ -28,6 +28,7 @@ export interface Layout {
     allPrices?: boolean;
     installments?: boolean;
     skuSelector?: boolean;
+    stars?: boolean;
     cta?: boolean;
   };
   onMouseOver?: {
@@ -81,7 +82,6 @@ function ProductCard(
     preload = false,
     itemListName,
     layout,
-    platform,
     isSearchbar = false,
   }: Props,
 ) {
@@ -290,49 +290,51 @@ function ProductCard(
           </>
         )}
 
-        <div
-          class={`${
-            align === "center" && "align-middle justify-center"
-          } flex flex-row gap-1 items-center`}
-        >
-          <div class="rating align-middle">
-            <input
-              type="radio"
-              name="rating-1"
-              aria-label="first star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 1}
-            />
-            <input
-              type="radio"
-              name="rating-2"
-              aria-label="second star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 2}
-            />
-            <input
-              type="radio"
-              name="rating-3"
-              aria-label="third star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 3}
-            />
-            <input
-              type="radio"
-              name="rating-4"
-              aria-label="fourth star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 4}
-            />
-            <input
-              type="radio"
-              name="rating-5"
-              aria-label="fifth star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) === 5}
-            />
+        {!l?.hide?.stars && (
+          <div
+            class={`${
+              align === "center" && "align-middle justify-center"
+            } flex flex-row gap-1 items-center`}
+          >
+            <div class="rating align-middle">
+              <input
+                type="radio"
+                name="rating-1"
+                aria-label="first star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 1}
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                aria-label="second star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 2}
+              />
+              <input
+                type="radio"
+                name="rating-3"
+                aria-label="third star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 3}
+              />
+              <input
+                type="radio"
+                name="rating-4"
+                aria-label="fourth star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 4}
+              />
+              <input
+                type="radio"
+                name="rating-5"
+                aria-label="fifth star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) === 5}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {l?.hide?.productName && l?.hide?.productDescription ? "" : (
           <div

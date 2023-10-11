@@ -29,6 +29,7 @@ export default function ProductDescription({ description }: Props) {
     <div class="flex flex-col gap-2 w-full">
       <h1 class="text-sm font-bold">Descrição</h1>
       <div
+        class="text-justify"
         dangerouslySetInnerHTML={{
           __html: descriptionValue ?? "",
         }}
