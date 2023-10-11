@@ -288,11 +288,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_35vw_28vw] sm:grid-rows-1 sm:justify-center mx-auto max-w-[1210px]"
+          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center mx-auto max-w-[1210px]"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel carousel-center gap-6 w-full sm:w-[35vw]">
+            <Slider class="carousel carousel-center gap-6 w-full sm:w-[40vw]">
               {images.map((img, index) => (
                 <Slider.Item
                   index={index}
