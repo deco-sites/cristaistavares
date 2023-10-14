@@ -186,7 +186,7 @@ function CampaignTimer({
             >
             </div>
             <a
-              class="btn"
+              class="hidden md:block btn"
               aria-label={link.text}
               href={link.href}
             >
