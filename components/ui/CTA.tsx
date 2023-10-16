@@ -43,7 +43,7 @@ export default function CTA(
     <>
       <div
         id="cta-content"
-        class="hidden justify-between w-full h-[75px] z-40 py-2 px-3 fixed bottom-0 bg-base-100 shadow-2xl"
+        class="hidden justify-between w-full h-[68px] z-40 py-2 px-3 fixed bottom-0 bg-base-100 shadow-2xl drop-shadow-md"
       >
         {/* Prices */}
         <div class="flex flex-col items-start justify-start">

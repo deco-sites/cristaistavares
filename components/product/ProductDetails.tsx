@@ -292,7 +292,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
+            <Slider class="carousel carousel-center gap-6 w-full sm:w-[40vw]">
               {images.map((img, index) => (
                 <Slider.Item
                   index={index}
@@ -361,12 +361,14 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
         <SliderJS rootId={id} />
-        <div class="flex w-full h-full items-center justify-center mt-5 mb-3 gap-3 px-2">
-          <div class="flex flex-col-reverse sm:flex-row justify-between items-start gap-2 sm:gap-20 lg:gap-[200px]">
-            <ProductDescription
-              description={props.page.product.description}
-            />
-            <div class="flex flex-col gap-6 w-full">
+        <div class="flex w-full h-full items-center justify-center mt-5 mb-3 gap-3 px-4">
+          <div class="flex flex-col-reverse sm:flex-row-reverse justify-between items-start gap-2 sm:gap-20 max-w-[1280px] w-full">
+            {props?.page?.product?.description && (
+              <ProductDescription
+                description={props.page.product.description}
+              />
+            )}
+            <div class="flex flex-col gap-6 w-full lg:flex-1 lg:min-w-[30%]">
               {
                 /* {props.page.product.isVariantOf!.additionalProperty?.filter(
                     (filteredItem) => filteredItem.name === "Cuidados",
@@ -395,15 +397,22 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                 <h1 class="font-bold text-sm">Medidas</h1>
 
                 <div class="flex flex-col w-full gap-1 text-black">
-                  {props.page.product.isVariantOf?.additionalProperty.filter(
-                    (filteredItem) => filteredItem.value?.includes("cm"),
-                  ).map((item) => (
-                    <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
-                      <span class="font-semibold text-sm">{item.name}</span>
+                  {props?.page?.product?.isVariantOf?.additionalProperty
+                    ?.filter(
+                      (filteredItem) => filteredItem?.value?.includes("cm"),
+                    ).map((item) => {
+                      return (
+                        <div class="even:bg-white odd:bg-gray-100 flex gap-2 w-full xl:w-[90%] px-6 py-1">
+                          <span class="font-semibold text-sm min-w-[30%]">
+                            {item?.name ?? ""}
+                          </span>
 
-                      {item.value && <span class="text-sm">{item.value}</span>}
-                    </div>
-                  ))}
+                          <span class="text-sm w-full">
+                            {item?.value ?? ""}
+                          </span>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>
@@ -450,7 +459,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout }: Props) {
   return (
-    <div class="container pt-20 sm:pt-40 lg:pt-28 lg:pb-10">
+    <div class="container pt-20 sm:pt-36 lg:pt-28 lg:pb-10">
       {page ? <Details page={page} layout={layout} /> : <NotFound />}
     </div>
   );

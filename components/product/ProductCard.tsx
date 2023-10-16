@@ -28,6 +28,7 @@ export interface Layout {
     allPrices?: boolean;
     installments?: boolean;
     skuSelector?: boolean;
+    stars?: boolean;
     cta?: boolean;
   };
   onMouseOver?: {
@@ -50,6 +51,7 @@ interface Props {
   layout?: Layout;
 
   platform: ReturnType<typeof usePlatform>;
+  isSearchbar?: boolean;
 }
 
 const relative = (url: string) => {
@@ -75,7 +77,13 @@ const RATING = {
 };
 
 function ProductCard(
-  { product, preload = false, itemListName, layout, platform }: Props,
+  {
+    product,
+    preload = false,
+    itemListName,
+    layout,
+    isSearchbar = false,
+  }: Props,
 ) {
   const {
     url,
@@ -121,14 +129,18 @@ function ProductCard(
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-  const skuSelector = variants.map(([value, [link]]) => (
-    <SkuSelector value={value} link={link} />
-  ));
+  const skuOrder = ["PP", "P", "M", "G", "GG"];
+
+  const skuSelector = variants
+    .sort(([a], [b]) => skuOrder.indexOf(a) - skuOrder.indexOf(b))
+    .map(([value, [link]]) => (
+      <SkuSelector key={value} value={value} link={link} url={url} />
+    ));
 
   return (
     <div
       id={id}
-      class={`bg-white card card-compact rounded-none group w-full h-full hover:shadow-2xl p-3 ${
+      class={`bg-white card card-compact rounded-none group w-full h-full lg:min-h-[600px] lg:max-h-[600px] hover:shadow-2xl p-3 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -188,7 +200,7 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30 rounded-md">
             LANÇAMENTO
           </span>
 
@@ -196,6 +208,13 @@ function ProductCard(
             price={filteredProductPrice ?? price!}
             listPrice={filteredProductListPrice ?? listPrice!}
           />
+
+          {!isSearchbar && product.isSimilarTo &&
+            product.isSimilarTo.length !== 0 && (
+            <div class="hidden md:block indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 gap-1 top-4 z-30 rounded-md">
+              +{product.isSimilarTo.length} cores
+            </div>
+          )}
 
           <Image
             src={front.url!}
@@ -259,8 +278,10 @@ function ProductCard(
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
-                  align === "center" ? "justify-center" : "justify-start"
+                class={`flex items-center gap-2 w-full overflow-auto min-h-[56px] ${
+                  align === "center"
+                    ? "justify-center p-3"
+                    : "justify-start py-3"
                 } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
                 {skuSelector}
@@ -269,74 +290,80 @@ function ProductCard(
           </>
         )}
 
-        <div class="flex flex-row gap-1 align-middle items-center justify-center">
-          <div class="rating align-middle">
-            <input
-              type="radio"
-              name="rating-1"
-              aria-label="first star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 1}
-            />
-            <input
-              type="radio"
-              name="rating-2"
-              aria-label="second star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 2}
-            />
-            <input
-              type="radio"
-              name="rating-3"
-              aria-label="third star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 3}
-            />
-            <input
-              type="radio"
-              name="rating-4"
-              aria-label="fourth star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) == 4}
-            />
-            <input
-              type="radio"
-              name="rating-5"
-              aria-label="fifth star"
-              className="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
-              checked={Math.floor(RATING.rating) === 5}
-            />
-          </div>
-        </div>
-
-        {l?.hide?.productName && l?.hide?.productDescription
-          ? ""
-          : (
-            <div class="flex flex-col items-center justify-center text-center gap-0 w-full">
-              {l?.hide?.productName
-                ? ""
-                : (
-                  <h2 class="text-sm text-center w-full">
-                    {product.isVariantOf?.name}
-                  </h2>
-                )}
-              {l?.hide?.productDescription ? "" : (
-                <p
-                  class="truncate text-sm lg:text-sm text-neutral"
-                  dangerouslySetInnerHTML={{
-                    __html: product.description ?? "",
-                  }}
-                />
-              )}
+        {!l?.hide?.stars && (
+          <div
+            class={`${
+              align === "center" && "align-middle justify-center"
+            } flex flex-row gap-1 items-center`}
+          >
+            <div class="rating align-middle">
+              <input
+                type="radio"
+                name="rating-1"
+                aria-label="first star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 1}
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                aria-label="second star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 2}
+              />
+              <input
+                type="radio"
+                name="rating-3"
+                aria-label="third star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 3}
+              />
+              <input
+                type="radio"
+                name="rating-4"
+                aria-label="fourth star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) == 4}
+              />
+              <input
+                type="radio"
+                name="rating-5"
+                aria-label="fifth star"
+                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                checked={Math.floor(RATING.rating) === 5}
+              />
             </div>
-          )}
+          </div>
+        )}
+
+        {l?.hide?.productName && l?.hide?.productDescription ? "" : (
+          <div
+            class={`${
+              align === "center" && "items-center justify-center text-center"
+            } flex flex-col gap-0 w-full`}
+          >
+            {l?.hide?.productName ? "" : (
+              <h2 class="text-sm w-full">
+                {product.isVariantOf?.name}
+              </h2>
+            )}
+            {l?.hide?.productDescription ? "" : (
+              <p
+                class="truncate text-sm lg:text-sm text-neutral"
+                dangerouslySetInnerHTML={{
+                  __html: product.description ?? "",
+                }}
+              />
+            )}
+          </div>
+        )}
         {l?.hide?.allPrices ? "" : (
           <div class="flex flex-col gap-1">
             <div
               class={`flex flex-col gap-0 ${
                 l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : "lg:flex-row lg:gap-2"
+                  ? "lg:flex-row"
+                  : "lg:flex-row"
               } ${
                 align === "center"
                   ? "justify-center items-center"
@@ -373,18 +400,20 @@ function ProductCard(
                 offers!.priceCurrency!,
               )} no <b>PIX</b>
             </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <div class="flex items-center justify-center">
-                  <Installments
-                    installmentsBillingDuration={installmentsBillingDuration ??
-                      0}
-                    installmentsBillingIncrement={installmentsBillingIncrement ??
-                      0}
-                  />
-                </div>
-              )}
+            {l?.hide?.installments ? "" : (
+              <div
+                class={`flex ${
+                  align === "center" && "items-center justify-center"
+                }`}
+              >
+                <Installments
+                  installmentsBillingDuration={installmentsBillingDuration ??
+                    0}
+                  installmentsBillingIncrement={installmentsBillingIncrement ??
+                    0}
+                />
+              </div>
+            )}
           </div>
         )}
 
@@ -406,13 +435,15 @@ function ProductCard(
         {!l?.hide?.cta
           ? (
             <div
-              class={`flex-auto flex items-center justify-center w-full ${
+              class={`flex-auto flex items-center justify-center w-full pr-2.5 ${
                 l?.onMouseOver?.showCta ? "lg:hidden" : ""
               }`}
             >
               <ProductCta
                 name={name ?? ""}
-                productID={skuId ?? productID}
+                productID={(filteredProduct?.sku === skuId
+                  ? skuId
+                  : productID) ?? productID}
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}

@@ -16,6 +16,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 
 export interface Props {
   products: Product[] | null;
+  isPDP?: boolean;
   title?: string;
   description?: string;
   layout?: {
@@ -25,6 +26,8 @@ export interface Props {
   cardLayout?: cardLayout;
   preload?: boolean;
   isMobile?: boolean;
+  interval?: number;
+  hasPaddingOnTheRight?: boolean;
 }
 
 function ProductShelf({
@@ -35,6 +38,8 @@ function ProductShelf({
   cardLayout,
   preload = false,
   isMobile = false,
+  isPDP = false,
+  hasPaddingOnTheRight = false,
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -56,11 +61,14 @@ function ProductShelf({
         id={id}
         class="container max-w-[1280px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-1 md:gap-6 col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class={`carousel-item sm:w-[292px] ${
+                hasPaddingOnTheRight &&
+                "first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              } ${isPDP ? "w-full" : "w-[175px]"}`}
             >
               {!isMobile
                 ? (
@@ -86,17 +94,28 @@ function ProductShelf({
         </Slider>
 
         <>
-          <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-base-100">
+          <div
+            class={`${
+              !isPDP && "hidden sm:block"
+            } relative z-10 col-start-1 row-start-3`}
+          >
+            <Slider.PrevButton class={`absolute ${!isPDP && "btn right-1/2"}`}>
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
           </div>
-          <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-base-100">
+          <div
+            class={`${
+              !isPDP && "hidden sm:block"
+            } relative z-10 col-start-3 row-start-3`}
+          >
+            <Slider.NextButton
+              class={`absolute ${!isPDP ? "btn left-1/2" : "left-[60%]"}`}
+            >
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
           </div>
         </>
+
         <SliderJS rootId={id} />
         <SendEventOnLoad
           event={{

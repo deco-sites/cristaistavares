@@ -23,7 +23,7 @@ function Cart() {
           list: item.listPrice / 100,
         },
       }))}
-      total={(total - discounts) / 100}
+      total={(total + discounts) / 100}
       subtotal={total / 100}
       discounts={discounts / 100}
       locale={locale}

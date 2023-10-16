@@ -28,7 +28,7 @@ interface Props {
 }
 
 const variants = {
-  active: "ring ring-1 ring-offset-base-100 ring-offset-2",
+  active: "border border-base-200 hover:border-primary",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
   default: "border border-base-200 hover:border-primary",
@@ -36,9 +36,9 @@ const variants = {
 
 function Avatar({ content, variant = "default", isSelected }: Props) {
   return (
-    <div class="avatar placeholder text-xs">
+    <div class="avatar placeholder text-xs cursor-pointer">
       <div
-        class={`rounded-full w-8 ${isSelected && "border-primary"} ${
+        class={`rounded-md w-8 ${isSelected && "border-primary"} ${
           variants[variant]
         }`}
       >

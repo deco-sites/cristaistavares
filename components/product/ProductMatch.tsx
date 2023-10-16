@@ -59,11 +59,11 @@ export default function ProductMatch(
             id={id}
             class="container max-w-[605px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
           >
-            <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+            <Slider class="carousel carousel-center sm:carousel-end gap-1 sm:gap-6 col-span-full row-start-2 row-end-5">
               {products?.map((product, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item w-[230px] sm:w-[258px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+                  class="carousel-item w-[175px] sm:w-[258px] first:pl-2 sm:first:pl-0 last:pr-2 sm:last:pr-0"
                 >
                   {!isMobile
                     ? (

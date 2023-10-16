@@ -24,64 +24,15 @@ export interface QuestionProps {
 }
 
 export interface Props {
-  cards: CardProps[];
-  gridImage: GridProps[];
   filters: FilterProps[];
   title: string;
   questions?: QuestionProps[];
   /** @format html */
   info?: string;
   banners?: BannerProps[];
-  form?: boolean;
+  cards?: CardProps[];
+  gridImages?: GridProps[];
 }
-
-const DEFAULT_PROPS = {
-  title: "",
-  info: "",
-  form: false,
-  filters: [
-    {
-      label: "Institucional",
-      values: [
-        { label: "Quem somos", href: "/quem-somos" },
-        { label: "Fale Conosco", href: "/fale-conosco" },
-        { label: "Atacado", href: "/atacado" },
-        { label: "Atendimento", href: "/atendimento" },
-        { label: "Trabalhe conosco", href: "/trabalhe-conosco" },
-      ],
-    },
-    {
-      label: "Ajuda e suporte",
-      values: [
-        {
-          label: "Perguntas Frequentes",
-          href: "/faq",
-        },
-        {
-          label: "Trocas e Devoluções",
-          href: "/trocas-devolucoes",
-        },
-        {
-          label: "Prazo de Entrega",
-          href: "/prazos-entregas",
-        },
-        {
-          label: "Formas de Pagamento",
-          href: "/formas-pagamento",
-        },
-        {
-          label: "Política de Privacidade",
-          href: "/politica-privacidade",
-        },
-        {
-          label: "Termos de Uso",
-          href: "/temos-uso",
-        },
-      ],
-    },
-  ],
-  questions: [],
-};
 
 function Filters({ filters }: { filters: FilterProps[] }) {
   return (
@@ -161,18 +112,9 @@ function Question({ questions }: { questions: QuestionProps[] }) {
   );
 }
 
-export default function Faq(props: Props) {
-  const {
-    filters,
-    title,
-    questions = [],
-    cards,
-    banners,
-    gridImage,
-    form,
-    info,
-  } = { ...DEFAULT_PROPS, ...props };
-
+export default function Faq(
+  { filters, title, banners, cards, gridImages, info, questions }: Props,
+) {
   const itemListElement: BreadcrumbList["itemListElement"] = [];
 
   return (
@@ -201,18 +143,18 @@ export default function Faq(props: Props) {
               {info && <div dangerouslySetInnerHTML={{ __html: info }} />}
 
               {cards && (
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 my-10 gap-10 w-full place-items-center">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 my-10 gap-10 w-full place-items-center">
                   {cards.map((card) => <InstitutionalCard {...card} />)}
                 </div>
               )}
 
               {banners && <SelectableBanners banners={banners} />}
 
-              <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full text-center place-items-center">
-                {gridImage?.map((grid) => <GridImage {...grid} />)}
-              </div>
-
-              {form && <Form/>}
+              {gridImages && (
+                <div class="grid sm:grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4 w-full items-center justify-center text-center">
+                  {gridImages.map((grid) => <GridImage {...grid} />)}
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -43,17 +43,18 @@ function Result({
 
   return (
     <>
-      <div class="container px-4 pt-24 pb-16">
+      <div class="container px-4 py-12">
         <SearchControls
           sortOptions={sortOptions}
           filters={filters}
           breadcrumb={breadcrumb}
           displayFilter={layout?.variant === "drawer"}
+          productsQuantity={pageInfo.records}
         />
 
         <div class="flex flex-row">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
+            <aside class="hidden lg:block w-min min-w-[250px]">
               <Filters filters={filters} />
             </aside>
           )}

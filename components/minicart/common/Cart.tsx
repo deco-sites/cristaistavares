@@ -44,8 +44,6 @@ function Cart({
   const isEmpty = items.length === 0;
   const [shippingValue, setShippingValue] = useState<number | null>(null);
 
-  console.log(shippingValue);
-
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
@@ -82,10 +80,13 @@ function Cart({
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              class="mt-6 px-2 pb-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
             >
               {items.map((item, index) => (
-                <li key={index}>
+                <li
+                  key={index}
+                  class="pb-4 border-b border-b-gray-100 last:border-none"
+                >
                   <CartItem
                     item={item}
                     index={index}
@@ -102,17 +103,9 @@ function Cart({
             <footer class="w-full bg-whitesmoke">
               {/* Subtotal */}
               <div class="py-2 flex flex-col">
-                {discounts > 0 && (
-                  <div class="flex justify-between items-center px-4">
-                    <span class="text-sm">Descontos</span>
-                    <span class="text-sm">
-                      {formatPrice(discounts, currency, locale)}
-                    </span>
-                  </div>
-                )}
-                <div class="w-full flex justify-between px-4 text-sm">
+                <div class="w-full flex justify-between px-4 pb-2">
                   <span>Subtotal</span>
-                  <span class="px-4">
+                  <span>
                     {formatPrice(subtotal, currency, locale)}
                   </span>
                 </div>
@@ -125,19 +118,43 @@ function Cart({
 
               {/* Total */}
               <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
+                {shippingValue && (
+                  <div class="flex items-center justify-between w-full">
+                    <span>Frete calculado:</span>
+
+                    <span>
+                      {(shippingValue / 100).toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </span>
+                  </div>
+                )}
+
+                {discounts < 0 && (
+                  <div class="flex justify-between items-center w-full text-red-500">
+                    <span class="text-sm">Descontos</span>
+                    <span class="text-sm">
+                      {formatPrice(discounts, currency, locale)}
+                    </span>
+                  </div>
+                )}
+
                 <div class="flex justify-between items-center w-full">
                   <span>Total</span>
                   <span class="font-medium text-xl">
                     {formatPrice(
-                      total + ((shippingValue ?? 0) / 100) - discounts,
+                      total + ((shippingValue ?? 0) / 100),
                       currency,
                       locale,
                     )}
                   </span>
                 </div>
-                <span class="text-sm text-base-300">
+                {
+                  /* <span class="text-sm text-base-300">
                   Taxas e fretes serão calculados no checkout
-                </span>
+                </span> */
+                }
               </div>
 
               <div class="p-4">
