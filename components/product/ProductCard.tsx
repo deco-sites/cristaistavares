@@ -435,7 +435,7 @@ function ProductCard(
         {!l?.hide?.cta
           ? (
             <div
-              class={`flex-auto flex items-center justify-center w-full ${
+              class={`flex-auto flex items-center justify-center w-full pr-2.5 ${
                 l?.onMouseOver?.showCta ? "lg:hidden" : ""
               }`}
             >

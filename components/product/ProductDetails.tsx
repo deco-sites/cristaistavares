@@ -362,7 +362,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         </div>
         <SliderJS rootId={id} />
         <div class="flex w-full h-full items-center justify-center mt-5 mb-3 gap-3 px-4">
-          <div class="flex flex-col-reverse sm:flex-row-reverse justify-between items-start gap-2 sm:gap-20 max-w-[1280px]">
+          <div class="flex flex-col-reverse sm:flex-row-reverse justify-between items-start gap-2 sm:gap-20 max-w-[1280px] w-full">
             {props?.page?.product?.description && (
               <ProductDescription
                 description={props.page.product.description}
