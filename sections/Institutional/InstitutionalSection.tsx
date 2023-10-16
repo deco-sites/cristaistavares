@@ -1,4 +1,5 @@
 import Icon from "$store/components/ui/Icon.tsx";
+import Form from "$store/components/ui/Form.tsx";
 import InstitutionalCard from "$store/components/ui/InstitutionalCard.tsx";
 import GridImage from "$store/components/ui/GridImage.tsx";
 import type { Props as CardProps } from "$store/components/ui/InstitutionalCard.tsx";
@@ -31,6 +32,7 @@ export interface Props {
   banners?: BannerProps[];
   cards?: CardProps[];
   gridImages?: GridProps[];
+  form?: boolean;
 }
 
 function Filters({ filters }: { filters: FilterProps[] }) {
@@ -112,7 +114,7 @@ function Question({ questions }: { questions: QuestionProps[] }) {
 }
 
 export default function Faq(
-  { filters, title, banners, cards, gridImages, info, questions }: Props,
+  { filters, title, banners, cards, gridImages, form, info, questions }: Props,
 ) {
   const itemListElement: BreadcrumbList["itemListElement"] = [];
 
@@ -154,6 +156,7 @@ export default function Faq(
                   {gridImages.map((grid) => <GridImage {...grid} />)}
                 </div>
               )}
+              {form && <Form/>}
             </div>
           </div>
         </div>
