@@ -156,7 +156,7 @@ export default function Faq(
                   {gridImages.map((grid) => <GridImage {...grid} />)}
                 </div>
               )}
-              {form && <Form/>}
+              {form && <Form />}
             </div>
           </div>
         </div>
