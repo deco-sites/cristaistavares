@@ -1,4 +1,5 @@
 import Icon from "$store/components/ui/Icon.tsx";
+import Form from "$store/components/ui/Form.tsx";
 import InstitutionalCard from "$store/components/ui/InstitutionalCard.tsx";
 import GridImage from "$store/components/ui/GridImage.tsx";
 import type { Props as CardProps } from "$store/components/ui/InstitutionalCard.tsx";
@@ -31,11 +32,13 @@ export interface Props {
   /** @format html */
   info?: string;
   banners?: BannerProps[];
+  form?: boolean;
 }
 
 const DEFAULT_PROPS = {
   title: "",
   info: "",
+  form: false,
   filters: [
     {
       label: "Institucional",
@@ -166,6 +169,7 @@ export default function Faq(props: Props) {
     cards,
     banners,
     gridImage,
+    form,
     info,
   } = { ...DEFAULT_PROPS, ...props };
 
@@ -207,6 +211,8 @@ export default function Faq(props: Props) {
               <div class="grid sm:grid-cols-2 sm:gap-2 md:grid-cols-4 md:gap-20 w-full text-center place-items-center">
                 {gridImage?.map((grid) => <GridImage {...grid} />)}
               </div>
+
+              {form && <Form/>}
             </div>
           </div>
         </div>
