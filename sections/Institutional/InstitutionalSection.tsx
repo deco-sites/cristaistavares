@@ -32,6 +32,7 @@ export interface Props {
   banners?: BannerProps[];
   cards?: CardProps[];
   gridImages?: GridProps[];
+  form?: boolean;
 }
 
 function Filters({ filters }: { filters: FilterProps[] }) {
@@ -113,7 +114,7 @@ function Question({ questions }: { questions: QuestionProps[] }) {
 }
 
 export default function Faq(
-  { filters, title, banners, cards, gridImages, info, questions }: Props,
+  { filters, title, banners, cards, gridImages, form, info, questions }: Props,
 ) {
   const itemListElement: BreadcrumbList["itemListElement"] = [];
 
@@ -155,6 +156,7 @@ export default function Faq(
                   {gridImages.map((grid) => <GridImage {...grid} />)}
                 </div>
               )}
+              {form && <Form/>}
             </div>
           </div>
         </div>
