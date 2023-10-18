@@ -34,9 +34,14 @@ function Navbar({ items, searchbar, logo }: {
               class="flex justify-center max-h-fit h-fit"
               style={{ minHeight: navbarHeight }}
               aria-label="Store logo"
-              loading="eager"
             >
-              <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={126}
+                height={16}
+                loading="eager"
+              />
             </a>
           )}
           <div class="flex justify-end">
@@ -58,9 +63,14 @@ function Navbar({ items, searchbar, logo }: {
                 href="/"
                 aria-label="Store logo"
                 class="block px-4 py-3 w-[160px]"
-                loading="eager"
               >
-                <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={126}
+                  height={16}
+                  loading="eager"
+                />
               </a>
             )}
           </div>
