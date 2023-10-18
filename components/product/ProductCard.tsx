@@ -10,7 +10,6 @@ import ProductCta from "$store/components/product/ProductCta.tsx";
 import Installments from "./Installments.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
-import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
 export interface Layout {
   basics?: {
@@ -59,15 +58,6 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const newSkuId = (url: string | null) => {
-  if (!url) return;
-
-  const link = new URL(url);
-  const skuId = link.searchParams.get("skuId");
-
-  return skuId;
-};
-
 const WIDTH = 275;
 const HEIGHT = 275;
 
@@ -96,27 +86,14 @@ function ProductCard(
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments, seller } = useOffer(offers);
+  const { listPrice, price, seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-  const { selectedSku } = useSkuSelector();
-
-  const skuId = newSkuId(selectedSku.value);
-
-  const filteredProduct =
-    product.isVariantOf?.hasVariant.filter((item) => item.sku === skuId)[0];
-
-  const {
-    listPrice: filteredProductListPrice,
-    price: filteredProductPrice,
-    installments: filteredProductInstallments,
-    seller: filteredProductSeller,
-  } = useOffer(filteredProduct?.offers);
 
   const {
     billingDuration: installmentsBillingDuration,
     billingIncrement: installmentsBillingIncrement,
-  } = ((filteredProduct ?? product).offers?.offers[0].priceSpecification || [])
+  } = ((product).offers?.offers[0].priceSpecification || [])
     .filter((item) => item.billingDuration !== undefined)
     .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
     .map(({ billingDuration, billingIncrement }) => ({
@@ -196,7 +173,7 @@ function ProductCard(
         }
         {/* Product Images */}
         <a
-          href={url && relative(selectedSku.value ?? url)}
+          href={url && relative(url)}
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
@@ -205,8 +182,8 @@ function ProductCard(
           </span>
 
           <DiscountPercentage
-            price={filteredProductPrice ?? price!}
-            listPrice={filteredProductListPrice ?? listPrice!}
+            price={price!}
+            listPrice={listPrice!}
           />
 
           {!isSearchbar && product.isSimilarTo &&
@@ -377,11 +354,11 @@ function ProductCard(
                     : "lg:text-sm"
                 }`}
               >
-                {(filteredProductListPrice ?? listPrice ?? 0) >
-                    (filteredProductPrice ?? price!) && (
+                {(listPrice ?? 0) >
+                    (price!) && (
                   <span>
                     {formatPrice(
-                      filteredProductListPrice ?? listPrice,
+                      listPrice,
                       offers!.priceCurrency!,
                     )}
                   </span>
@@ -389,14 +366,14 @@ function ProductCard(
               </div>
               <div class="text-black text-sm">
                 {formatPrice(
-                  filteredProductPrice ?? price,
+                  price,
                   offers!.priceCurrency!,
                 )}
               </div>
             </div>
             <div class="text-black text-sm">
               {formatPrice(
-                filteredProductPrice ?? price,
+                price,
                 offers!.priceCurrency!,
               )} no <b>PIX</b>
             </div>
@@ -441,13 +418,11 @@ function ProductCard(
             >
               <ProductCta
                 name={name ?? ""}
-                productID={(filteredProduct?.sku === skuId
-                  ? skuId
-                  : productID) ?? productID}
+                productID={productID}
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
-                seller={filteredProductSeller ?? seller!}
+                seller={seller!}
               />
             </div>
           )
