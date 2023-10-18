@@ -50,7 +50,7 @@ export interface Props {
 
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
-  campaignTimer?: CampaignTimerProps;
+  campaignTimer?: CampaignTimerProps | null;
 }
 
 function Header({
