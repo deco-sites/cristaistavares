@@ -64,11 +64,10 @@ const snippet = (expiresAt: string, rootId: string) => {
     );
     const minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((delta % (1000 * 60)) / 1000);
-    const totalHours = (days * 24) + hours;
 
     return {
       days,
-      hours: Math.min(totalHours, 99),
+      hours,
       minutes,
       seconds,
     };
@@ -203,7 +202,6 @@ function CampaignTimer({
         </div>
       </div>
       <script
-        type="module"
         defer
         dangerouslySetInnerHTML={{
           __html: `(${snippet})("${expiresAt}", "${id}");`,

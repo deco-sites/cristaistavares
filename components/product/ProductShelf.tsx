@@ -1,6 +1,5 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import ProductCardMobile from "$store/components/product/ProductCard.tsx";
-import ProductCard from "$store/islands/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductCard.tsx";
 import type {
   Layout as cardLayout,
 } from "$store/components/product/ProductCard.tsx";
@@ -25,7 +24,6 @@ export interface Props {
   };
   cardLayout?: cardLayout;
   preload?: boolean;
-  isMobile?: boolean;
   interval?: number;
   hasPaddingOnTheRight?: boolean;
 }
@@ -37,7 +35,6 @@ function ProductShelf({
   layout,
   cardLayout,
   preload = false,
-  isMobile = false,
   isPDP = false,
   hasPaddingOnTheRight = false,
 }: Props) {
@@ -70,25 +67,13 @@ function ProductShelf({
                 "first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
               } ${isPDP ? "w-full" : "w-[175px]"}`}
             >
-              {!isMobile
-                ? (
-                  <ProductCard
-                    product={product}
-                    itemListName={title}
-                    layout={cardLayout}
-                    platform={platform}
-                    preload={preload}
-                  />
-                )
-                : (
-                  <ProductCardMobile
-                    product={product}
-                    itemListName={title}
-                    layout={cardLayout}
-                    platform={platform}
-                    preload={preload}
-                  />
-                )}
+              <ProductCard
+                product={product}
+                itemListName={title}
+                layout={cardLayout}
+                platform={platform}
+                preload={preload}
+              />
             </Slider.Item>
           ))}
         </Slider>
