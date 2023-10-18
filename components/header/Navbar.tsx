@@ -40,7 +40,7 @@ function Navbar({ items, searchbar, logo }: {
                 alt={logo.alt}
                 width={126}
                 height={16}
-                loading="lazy"
+                loading="eager"
               />
             </a>
           )}
@@ -69,7 +69,7 @@ function Navbar({ items, searchbar, logo }: {
                   alt={logo.alt}
                   width={126}
                   height={16}
-                  loading="lazy"
+                  loading="eager"
                 />
               </a>
             )}
