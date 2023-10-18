@@ -13,7 +13,7 @@ export default function MenuButton() {
         displayMenu.value = true;
       }}
     >
-      <Icon id="Bars3" size={24} strokeWidth={0.01} loading="eager" />
+      <Icon id="Bars3" size={24} strokeWidth={0.01} loading="lazy" />
     </Button>
   );
 }
