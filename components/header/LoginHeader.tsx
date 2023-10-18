@@ -9,7 +9,7 @@ const LoginElement = () => {
     <div class="group relative mr-8 group-hover:opacity-100 group-hover:visible">
       <a
         class="btn btn-square btn-ghost bg-transparent hover:bg-transparent w-full"
-        href="/login"
+        href="/account"
         aria-label="faça seu login"
       >
         <img
@@ -29,7 +29,7 @@ const LoginElement = () => {
       </a>
 
       <div class="absolute top-45 left-0 w-48 py-5 bg-white w z-10 border-t-2 border-gray-400 opacity-0 invisible -translate-y-30 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:animate-dropdown animate-dropdown-reverse">
-        <div class="before-absolute"></div>
+        <div class="before-absolute" />
         <ul>
           <li class="block w-full py-0 px-5 transition-all duration-200 ease-linear hover:bg-gray-lighter">
             <a
