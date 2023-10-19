@@ -30,8 +30,10 @@ export interface SocialItem {
     | "Instagram"
     | "Linkedin"
     | "Tiktok"
+    | "Pinterest"
     | "Twitter";
   link: string;
+  image: ImageWidget;
 }
 
 export interface PaymentItem {
@@ -176,7 +178,11 @@ function Footer({
   }],
   social = {
     title: "Redes sociais",
-    items: [{ label: "Instagram", link: "/" }, { label: "Tiktok", link: "/" }],
+    items: [{ label: "Instagram", link: "/", image: "" }, {
+      label: "Tiktok",
+      link: "/",
+      image: "",
+    }],
   },
   security = {
     title: "Segurança",

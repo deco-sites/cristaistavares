@@ -4,7 +4,7 @@ import type { Product, Suggestion } from "apps/commerce/types.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
-import { headerHeight, headerHeightWithCampaignTimer } from "./constants.ts";
+import { headerHeight } from "./constants.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import CampaignTimer from "$store/sections/Header/CampaignTimer.tsx";
 import type { Props as CampaignTimerProps } from "./CampaignTimer.tsx";
@@ -50,7 +50,6 @@ export interface Props {
 
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
-  campaignTimer?: CampaignTimerProps | null;
 }
 
 function Header({
@@ -60,7 +59,6 @@ function Header({
   navItems = [],
   suggestions,
   logo,
-  campaignTimer,
 }: Props) {
   const platform = usePlatform();
   const searchbar = { ..._searchbar, products, suggestions };
@@ -87,7 +85,7 @@ function Header({
     <>
       <header
         style={{
-          height: !campaignTimer ? headerHeight : headerHeightWithCampaignTimer,
+          height: headerHeight,
         }}
         class="z-50 w-full h-full relative"
       >
@@ -100,7 +98,6 @@ function Header({
             id="navbar"
             class="w-full bg-base-100 static z-50 drop-shadow-lg"
           >
-            {campaignTimer && <CampaignTimer {...campaignTimer} />}
             <Alert alerts={alerts} />
             <Navbar items={navItems} searchbar={searchbar} logo={logo} />
           </div>
