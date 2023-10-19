@@ -278,35 +278,35 @@ function ProductCard(
                 type="radio"
                 name="rating-1"
                 aria-label="first star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-[#D3D3D3] w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 1}
               />
               <input
                 type="radio"
                 name="rating-2"
                 aria-label="second star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-[#D3D3D3] w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 2}
               />
               <input
                 type="radio"
                 name="rating-3"
                 aria-label="third star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-[#D3D3D3] w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 3}
               />
               <input
                 type="radio"
                 name="rating-4"
                 aria-label="fourth star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-[#D3D3D3] w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 4}
               />
               <input
                 type="radio"
                 name="rating-5"
                 aria-label="fifth star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-[#D3D3D3] w-4 cursor-default"
                 checked={Math.floor(RATING.rating) === 5}
               />
             </div>
