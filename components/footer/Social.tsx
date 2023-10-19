@@ -1,4 +1,4 @@
-import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
+import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface SocialItem {
   label:
@@ -7,8 +7,10 @@ export interface SocialItem {
     | "Instagram"
     | "Linkedin"
     | "Tiktok"
+    | "Pinterest"
     | "Twitter";
   link: string;
+  image: ImageWidget;
 }
 
 export default function Social(
@@ -35,11 +37,15 @@ export default function Social(
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${item.label} Logo`}
-                    class="flex gap-2 items-center"
+                    class="flex gap-6 items-center w-[47px] h-[47px]"
                   >
-                    <span class="block p-1 border rounded-full">
-                      <Icon size={24} id={item.label} loading="lazy" />
-                    </span>
+                    <img
+                      alt={item.label}
+                      src={item.image}
+                      width={47}
+                      height={47}
+                      loading="lazy"
+                    />
                     {vertical && (
                       <div class="text-sm hidden lg:block">{item.label}</div>
                     )}
