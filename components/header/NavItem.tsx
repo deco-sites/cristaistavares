@@ -6,10 +6,11 @@ export interface INavItem {
   children?: INavItem[];
   image?: { src?: string; alt?: string };
   columns?: number;
+  isMinimumSize?: boolean;
 }
 
 function NavItem({ item, index }: { item: INavItem; index?: number }) {
-  const { href, label, children, image, columns = 3 } = item;
+  const { href, label, children, image, columns = 3, isMinimumSize } = item;
 
   return (
     <li class="group flex items-center relative">
@@ -27,9 +28,9 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
       {children && children.length > 0 &&
         (
           <div
-            class={`${
-              index! < 5 ? "flex-row-reverse" : "-translate-x-[85%]"
-            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[920px] h-[380px]`}
+            class={`${index! < 5 ? "flex-row-reverse" : "-translate-x-[85%]"} ${
+              isMinimumSize ? "w-[300px]" : "w-[920px]"
+            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 h-[380px]`}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
@@ -42,7 +43,11 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                 loading="lazy"
               />
             )}
-            <ul class="flex items-start justify-center gap-6 h-[95%]">
+            <ul
+              class={`${
+                isMinimumSize && "flex-col"
+              } flex items-start justify-center gap-6 h-[95%]`}
+            >
               {children.map((node) => (
                 <li class="p-6">
                   <a class="hover:underline font-bold" href={node.href}>
@@ -50,11 +55,11 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                   </a>
 
                   <ul
-                    class="h-full gap-y-3 mt-3"
+                    class="h-full gap-y-3 mt-2.5"
                     style={{ columnCount: columns }}
                   >
                     {node.children?.map((leaf) => (
-                      <li>
+                      <li class="pt-2">
                         <a
                           class="hover:text-dark-pink duration-200 transition-colors"
                           href={leaf.href}
