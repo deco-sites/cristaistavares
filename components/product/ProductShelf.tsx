@@ -34,6 +34,7 @@ function ProductShelf({
   description,
   layout,
   cardLayout,
+  interval,
   preload = false,
   isPDP = false,
   hasPaddingOnTheRight = false,
@@ -46,7 +47,7 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container py-8 flex flex-col gap-12 lg:gap-16 lg:py-10">
+    <div class="w-full container py-8 flex flex-col gap-8 lg:gap-10 lg:py-10">
       <Header
         title={title || ""}
         description={description || ""}
@@ -101,6 +102,8 @@ function ProductShelf({
           </div>
         </>
 
+        {/* <Dots products={products} interval={(interval && interval * 1e3) ?? 0} /> */}
+
         <SliderJS rootId={id} />
         <SendEventOnLoad
           event={{
@@ -118,6 +121,38 @@ function ProductShelf({
         />
       </div>
     </div>
+  );
+}
+
+function Dots({ products, interval = 0 }: Props) {
+  return (
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @property --dot-progress {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 0%;
+          }
+          `,
+        }}
+      />
+      <ul class="carousel gap-4 translate-y-8">
+        {products?.map((_, index) => (
+          <li class="carousel-item">
+            <Slider.Dot index={index}>
+              <div class="py-5">
+                <div
+                  class="w-3 h-3 rounded-full border border-gray-400 group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
+                  style={{ animationDuration: `${interval}s` }}
+                />
+              </div>
+            </Slider.Dot>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

@@ -62,8 +62,8 @@ const WIDTH = 275;
 const HEIGHT = 275;
 
 const RATING = {
-  votes: 16,
-  rating: 3,
+  votes: 0,
+  rating: 0,
 };
 
 function ProductCard(
@@ -177,7 +177,7 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30 rounded-md">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30 rounded-md text-xs lg:text-normal">
             LANÇAMENTO
           </span>
 
@@ -278,35 +278,35 @@ function ProductCard(
                 type="radio"
                 name="rating-1"
                 aria-label="first star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-gray-300 checked:bg-yellow-300 w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 1}
               />
               <input
                 type="radio"
                 name="rating-2"
                 aria-label="second star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-gray-300 checked:bg-yellow-300 w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 2}
               />
               <input
                 type="radio"
                 name="rating-3"
                 aria-label="third star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-gray-300 checked:bg-yellow-300 w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 3}
               />
               <input
                 type="radio"
                 name="rating-4"
                 aria-label="fourth star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-gray-300 checked:bg-yellow-300 w-4 cursor-default"
                 checked={Math.floor(RATING.rating) == 4}
               />
               <input
                 type="radio"
                 name="rating-5"
                 aria-label="fifth star"
-                class="mask mask-star-2 bg-yellow-300 w-4 cursor-default"
+                class="mask mask-star-2 bg-gray-300 checked:bg-yellow-300 w-4 cursor-default"
                 checked={Math.floor(RATING.rating) === 5}
               />
             </div>

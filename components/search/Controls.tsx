@@ -12,10 +12,30 @@ export type Props =
   & {
     displayFilter?: boolean;
     productsQuantity?: number;
+    isListModeActive?: boolean;
   };
 
+function applySort() {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+
+  if (!window.location.href.includes("grid")) {
+    urlSearchParams.set("layout", "grid");
+  } else {
+    urlSearchParams.delete("layout");
+  }
+
+  window.location.search = urlSearchParams.toString();
+}
+
 function SearchControls(
-  { filters, breadcrumb, displayFilter, sortOptions, productsQuantity }: Props,
+  {
+    filters,
+    breadcrumb,
+    displayFilter,
+    sortOptions,
+    productsQuantity,
+    isListModeActive,
+  }: Props,
 ) {
   const open = useSignal(false);
 
@@ -53,6 +73,33 @@ function SearchControls(
         </div>
 
         <div class="flex flex-row items-center justify-between border-b border-base-200 lg:gap-4 lg:border-none">
+          <div class="hidden lg:flex items-center gap-4">
+            <button
+              onClick={applySort}
+              class="flex items-center gap-1.5 hover:cursor-pointer"
+            >
+              {Array(3).fill("").map((_) => (
+                <div
+                  class={`${
+                    !isListModeActive && "bg-black"
+                  } border border-black w-4 h-4`}
+                />
+              ))}
+            </button>
+
+            <button
+              onClick={applySort}
+              class="flex items-center gap-1.5 hover:cursor-pointer"
+            >
+              {Array(4).fill("").map((_) => (
+                <div
+                  class={`${
+                    isListModeActive && "bg-black"
+                  } border border-black w-4 h-4`}
+                />
+              ))}
+            </button>
+          </div>
           <Button
             class={displayFilter ? "btn-ghost" : "btn-ghost lg:hidden"}
             onClick={() => {

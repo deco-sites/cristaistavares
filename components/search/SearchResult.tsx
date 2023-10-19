@@ -2,6 +2,7 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as cardLayout } from "$store/components/product/ProductCard.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import CustomPagination from "./CustomPagination.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
@@ -41,6 +42,8 @@ function Result({
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
+  const isListModeActive = layout?.columns?.desktop === 4;
+
   return (
     <>
       <div class="container px-4 py-12">
@@ -50,6 +53,7 @@ function Result({
           breadcrumb={breadcrumb}
           displayFilter={layout?.variant === "drawer"}
           productsQuantity={pageInfo.records}
+          isListModeActive={isListModeActive}
         />
 
         <div class="flex flex-row">
@@ -59,31 +63,16 @@ function Result({
             </aside>
           )}
           <div class="flex-grow">
-            <ProductGallery products={products} layout={cardLayout} />
+            <ProductGallery
+              products={products}
+              layout={{ card: cardLayout, columns: layout?.columns }}
+            />
           </div>
         </div>
 
         <div class="flex justify-center my-4">
           <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Página {pageInfo.currentPage}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
+            <CustomPagination pageInfo={page?.pageInfo} />
           </div>
         </div>
       </div>
@@ -107,6 +96,20 @@ function Result({
     </>
   );
 }
+
+export const loader = (props: Props, req: Request) => {
+  const url = new URL(req.url);
+
+  if (url.searchParams.has("layout")) {
+    return {
+      ...props,
+      page: { ...props.page },
+      layout: { columns: { desktop: 3 } },
+    };
+  }
+
+  return props;
+};
 
 function SearchResult({ page, ...props }: Props) {
   if (!page) {

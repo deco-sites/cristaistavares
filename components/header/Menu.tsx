@@ -13,18 +13,26 @@ function MenuItem({ item }: { item: INavItem }) {
           type="checkbox"
           class="absolute left-0 w-full top-0"
         />
-        <div class="collapse-title min-h-0 p-0 py-2.5 font-dm-sans font-normal text-sm px-0 flex items-center justify-between">
+        <div class="collapse-title min-h-0 p-0 py-2.5 font-normal text-sm px-0 flex items-center justify-between">
           {item.label}
         </div>
         <div class="collapse-content px-0">
           <div class="border-t border-base-content border-solid pt-0 px-0 pl-5">
             {item.children?.map(({ children }) => (
               <ul>
+                <li>
+                  <a
+                    href={item.href}
+                    class="w-full block pt-5 font-normal text-base-300 text-sm"
+                  >
+                    {item.label}
+                  </a>
+                </li>
                 {children?.map((item) => (
                   <li>
                     <a
                       href={item.href}
-                      class="w-full block pt-5 font-dm-sans font-normal text-base-300 text-sm"
+                      class="w-full block pt-5 font-normal text-base-300 text-sm"
                     >
                       {item.label}
                     </a>
@@ -40,7 +48,7 @@ function MenuItem({ item }: { item: INavItem }) {
       <a
         href={item.href}
         title={item.label}
-        class="w-full block py-2.5 font-dm-sans font-normal text-sm"
+        class="w-full block py-2.5 font-normal text-sm"
       >
         {item.label}
       </a>

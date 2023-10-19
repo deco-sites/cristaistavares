@@ -6,8 +6,6 @@ import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import CampaignTimer from "$store/sections/Header/CampaignTimer.tsx";
-import type { Props as CampaignTimerProps } from "./CampaignTimer.tsx";
 
 export interface NavItem {
   label: string;
