@@ -361,14 +361,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
         <SliderJS rootId={id} />
-        <div class="flex w-full h-full items-center justify-center mt-5 mb-3 gap-3 px-4">
-          <div class="flex flex-col-reverse sm:flex-row-reverse justify-between items-start gap-2 sm:gap-20 max-w-[1280px] w-full">
-            {props?.page?.product?.description && (
-              <ProductDescription
-                description={props.page.product.description}
-              />
-            )}
-            <div class="flex flex-col gap-6 w-full lg:flex-1 lg:min-w-[30%]">
+        <div class="flex w-full h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
+          <div class="flex flex-col justify-between items-start gap-2 sm:gap-20 max-w-[1280px] w-full">
+            <div class="flex flex-col gap-6 w-full lg:flex-1 lg:max-w-[30%]">
               {
                 /* {props.page.product.isVariantOf!.additionalProperty?.filter(
                     (filteredItem) => filteredItem.name === "Cuidados",
@@ -416,6 +411,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                 </div>
               </div>
             </div>
+
+            {props?.page?.product?.description && (
+              <ProductDescription
+                description={props.page.product.description}
+              />
+            )}
           </div>
         </div>
       </>
