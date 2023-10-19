@@ -89,7 +89,7 @@ function Header({
         style={{
           height: !campaignTimer ? headerHeight : headerHeightWithCampaignTimer,
         }}
-        class="z-[80] w-full h-full relative"
+        class="z-50 w-full h-full relative"
       >
         <Drawers
           menu={{ items: navItems }}
