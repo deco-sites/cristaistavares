@@ -175,9 +175,9 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full relative"
+          class="grid grid-cols-1 grid-rows-1 w-full h-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-4 z-30 rounded-md text-xs lg:text-normal">
+          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
             LANÇAMENTO
           </span>
 
@@ -186,19 +186,21 @@ function ProductCard(
             listPrice={listPrice!}
           />
 
-          {!isSearchbar && product.isSimilarTo &&
+          {
+            /* {!isSearchbar && product.isSimilarTo &&
             product.isSimilarTo.length !== 0 && (
-            <div class="hidden md:block indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 gap-1 top-4 z-30 rounded-md">
+            <div class="hidden md:block indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute right-1 gap-1 lg:top-4 z-30 rounded-md">
               +{product.isSimilarTo.length} cores
             </div>
-          )}
+          )} */
+          }
 
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full w-full rounded-lg ${
+            class={`bg-base-100 col-span-full row-span-full w-full h-full object-cover rounded-lg ${
               l?.onMouseOver?.image == "Zoom image" ? "duration-100" : ""
             }`}
             sizes="(max-width: 640px) 50vw, 20vw"
@@ -252,10 +254,10 @@ function ProductCard(
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
-          <>
+          <div class="flex justify-between w-full items-center">
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex items-center gap-2 w-full overflow-auto min-h-[56px] ${
+                class={`flex flex-wrap items-center gap-2 overflow-auto min-h-[56px] ${
                   align === "center"
                     ? "justify-center p-3"
                     : "justify-start py-3"
@@ -264,7 +266,14 @@ function ProductCard(
                 {skuSelector}
               </ul>
             )}
-          </>
+
+            {!isSearchbar && product.isSimilarTo &&
+              product.isSimilarTo.length !== 0 && (
+              <div class="flex text-xs text-black">
+                +{product.isSimilarTo.length} cores
+              </div>
+            )}
+          </div>
         )}
 
         {!l?.hide?.stars && (

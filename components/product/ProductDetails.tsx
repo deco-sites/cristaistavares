@@ -10,10 +10,10 @@ import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import Installments from "./Installments.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
-import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
+import PrincipalImages from "$store/islands/PrincipalImages.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -292,27 +292,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel carousel-center gap-6 w-full sm:w-[40vw]">
-              {images.map((img, index) => (
-                <Slider.Item
-                  index={index}
-                  class="carousel-item w-full"
-                >
-                  <Image
-                    class="w-full"
-                    sizes="(max-width: 640px) 100vw, 40vw"
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    src={img.url!}
-                    alt={img.alternateName}
-                    width={WIDTH}
-                    height={HEIGHT}
-                    // Preload LCP image for better web vitals
-                    preload={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
+            <PrincipalImages images={images} />
 
             <Slider.PrevButton
               class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
@@ -327,14 +307,6 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             >
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
-
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <ProductImageZoom
-                images={images}
-                width={700}
-                height={Math.trunc(700 * HEIGHT / WIDTH)}
-              />
-            </div>
           </div>
 
           {/* Dots */}

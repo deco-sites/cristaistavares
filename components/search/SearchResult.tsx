@@ -103,8 +103,7 @@ export const loader = (props: Props, req: Request) => {
   if (url.searchParams.has("layout")) {
     return {
       ...props,
-      page: { ...props.page },
-      layout: { columns: { desktop: 3 } },
+      layout: { variant: "aside", columns: { desktop: 3 } },
     };
   }
 
