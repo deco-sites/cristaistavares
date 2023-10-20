@@ -73,7 +73,6 @@ function ProductShelf({
                 itemListName={title}
                 layout={cardLayout}
                 platform={platform}
-                preload={preload}
               />
             </Slider.Item>
           ))}
