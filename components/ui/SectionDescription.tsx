@@ -1,4 +1,5 @@
 import type { HTMLWidget } from "apps/admin/widgets.ts";
+import Description from "$store/islands/SectionDescription.tsx"
 
 export interface Props {
   title: HTMLWidget;
@@ -14,12 +15,7 @@ export default function SectionDescription({ title, description }: Props) {
           class="text-base font-medium"
         />
       </div>
-      <div class="max-w-[1240px]">
-        <p
-          dangerouslySetInnerHTML={{ __html: description }}
-          class="text-[15px] leading-5 font-normal"
-        />
-      </div>
+      <Description description={description}/>
     </section>
   );
 }
