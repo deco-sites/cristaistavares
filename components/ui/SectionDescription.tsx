@@ -1,5 +1,5 @@
 import type { HTMLWidget } from "apps/admin/widgets.ts";
-import Description from "$store/islands/SectionDescription.tsx"
+import Description from "$store/islands/SectionDescription.tsx";
 
 export interface Props {
   title: HTMLWidget;
@@ -15,7 +15,7 @@ export default function SectionDescription({ title, description }: Props) {
           class="text-base font-medium"
         />
       </div>
-      <Description description={description}/>
+      <Description description={description} />
     </section>
   );
 }
