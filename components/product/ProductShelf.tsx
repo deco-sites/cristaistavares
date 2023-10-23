@@ -59,7 +59,7 @@ function ProductShelf({
         id={id}
         class="container max-w-[1280px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-1 md:gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel sm:carousel-end gap-1 md:gap-6 col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
@@ -84,8 +84,18 @@ function ProductShelf({
               !isPDP && "hidden sm:block"
             } relative z-10 col-start-1 row-start-3`}
           >
-            <Slider.PrevButton class={`absolute ${!isPDP && "btn right-1/2"}`}>
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+            <Slider.PrevButton
+              class={`absolute ${
+                !isPDP &&
+                "flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[70%]"
+              }`}
+            >
+              <Icon
+                size={24}
+                id="ChevronRight"
+                strokeWidth={3}
+                class="rotate-180"
+              />
             </Slider.PrevButton>
           </div>
           <div
@@ -94,7 +104,11 @@ function ProductShelf({
             } relative z-10 col-start-3 row-start-3`}
           >
             <Slider.NextButton
-              class={`absolute ${!isPDP ? "btn left-1/2" : "left-[60%]"}`}
+              class={`absolute ${
+                !isPDP
+                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[70%]"
+                  : "left-[60%]"
+              }`}
             >
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>

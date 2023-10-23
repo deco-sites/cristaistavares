@@ -57,11 +57,11 @@ export default function ProductMatch(
             id={id}
             class="container max-w-[605px] grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
           >
-            <Slider class="carousel carousel-center sm:carousel-end gap-1 sm:gap-6 col-span-full row-start-2 row-end-5">
+            <Slider class="carousel sm:carousel-end gap-1 sm:gap-6 col-span-full row-start-2 row-end-5">
               {products?.map((product, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item w-[175px] sm:w-[258px] first:pl-2 sm:first:pl-0 last:pr-2 sm:last:pr-0"
+                  class="carousel-item w-[175px] sm:w-[265px] first:pl-2 sm:first:pl-0 last:pr-2 sm:last:pr-0"
                 >
                   <ProductCard
                     product={product}
@@ -75,12 +75,17 @@ export default function ProductMatch(
 
             <>
               <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-                <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-base-100">
-                  <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+                <Slider.PrevButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[70%]">
+                  <Icon
+                    size={24}
+                    id="ChevronRight"
+                    strokeWidth={3}
+                    class="rotate-180"
+                  />
                 </Slider.PrevButton>
               </div>
               <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-                <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-base-100">
+                <Slider.NextButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[70%]">
                   <Icon size={24} id="ChevronRight" strokeWidth={3} />
                 </Slider.NextButton>
               </div>
