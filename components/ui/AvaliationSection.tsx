@@ -1,7 +1,7 @@
 export default function AvaliationSection() {
   return (
     <div class="flex w-full h-full items-center justify-center px-6 lg:px-0">
-      <div class="flex items-center justify-center max-w-[1272px] w-full">
+      <div class="flex items-center justify-center max-w-[1272px] w-full px-4">
         <section class="flex flex-col items-center justify-center w-full">
           <div class="flex items-center justify-center">
             <h1 class="text-center text-[32px] leading-10 font-semibold">

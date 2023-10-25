@@ -4,8 +4,8 @@ import { useSignal } from "@preact/signals";
 import Slider from "$store/components/ui/Slider.tsx";
 import Image from "apps/website/components/Image.tsx";
 
-const WIDTH = 620;
-const HEIGHT = 620;
+const WIDTH = 480;
+const HEIGHT = 480;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 export interface ProductCarouselProps {
