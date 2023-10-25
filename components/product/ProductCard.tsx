@@ -358,7 +358,7 @@ function ProductCard(
               class={`flex flex-row gap-1 ${
                 align === "center"
                   ? "justify-center items-center"
-                  : "justify-start items-start"
+                  : "justify-start items-center"
               }`}
             >
               {(listPrice ?? 0) > (price!) && (

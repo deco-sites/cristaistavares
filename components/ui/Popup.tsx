@@ -187,7 +187,7 @@ export default function Popup({
               class="w-full h-full object-cover"
               src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676641172/$1gdbs1un41e"
             />
-            <div class="absolute w-[211px] h-[85px] top-6 left-[78px] flex items-center justify-center">
+            <div class="absolute w-[160px] md:w-[211px] h-[85px] top-6 left-2 md:left-[78px] flex items-center justify-center">
               <img
                 src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676639745/$ng21i0kukbr"
                 alt="Logo Cristais Tavares"
@@ -196,7 +196,7 @@ export default function Popup({
           </div>
           {success.value
             ? (
-              <div class="text-base-content lg:text-xl text-left text-base-100">
+              <div class="lg:text-xl text-left text-[#EE3F65]">
                 E-mail cadastrado com sucesso!
               </div>
             )
@@ -216,17 +216,17 @@ export default function Popup({
                     </p>
                     {nameInput}
                     {emailInput}
-                    <div class="w-full flex py-2">
+                    <div class="w-full flex items-center gap-0.5 py-2">
                       <input
                         type="checkbox"
                         class="checkbox border-black w-[13px] h-[13px] bg-white ml-1"
                       />
-                      <span class="text-[14px] text-[#4A4A4A]">
+                      <span class="text-xs sm:text-sm text-[#4A4A4A]">
                         Eu concordo em receber comunicações.
                       </span>
                     </div>
 
-                    <p class="text-[14px] text-start text-[#4A4A4A] ">
+                    <p class="text-sm text-start text-[#4A4A4A]">
                       A nossa empresa está comprometida a proteger e respeitar
                       sua privacidade, utilizaremos seus dados apenas para fins
                       de marketing. Você pode alterar suas preferências a
@@ -235,7 +235,7 @@ export default function Popup({
 
                     <button
                       type="submit"
-                      class="mt-2.5 pl-2.5 pr-2.5 h-[50px] font-semibold rounded w-full flex items-center justify-center text-[23px] text-white font-bold bg-red-500 hover:bg-red-600 border border-solid border-white"
+                      class="mt-2.5 pl-2.5 pr-2.5 h-[50px] font-semibold rounded w-full flex items-center justify-center text-[23px] text-white bg-red-500 hover:bg-red-600 border border-solid border-white"
                       disabled={loading}
                     >
                       {form?.button?.label || "Cadastrar"}
