@@ -63,7 +63,7 @@ function InputNewsletter(
     <input
       name={name}
       type={type}
-      class="input lg:h-12 h-9 px-5 join-item w-full mb-2.5 first:mt-5 border-2 border-neutral rounded-full placeholder:text-placeholder !outline-none lg:text-base text-xs"
+      class="input lg:h-10 h-7 px-5 join-item w-full mb-2.5 first:mt-5 border border-[#cacaca] placeholder:text-placeholder !outline-none lg:text-base text-xs"
       placeholder={placeholder}
       required={required}
     />
@@ -164,7 +164,7 @@ export default function Popup({
       >
         <form
           method="dialog"
-          class="flex md:flex-row modal-box items-center overflow-visible p-3 max-w-3xl w-full md:h-[65%]"
+          class="flex md:flex-row modal-box rounded-none items-center overflow-visible p-3 max-w-3xl w-full md:h-[85%]"
         >
           <div class="flex justify-center items-center absolute top-0 right-2">
             <button
@@ -181,11 +181,17 @@ export default function Popup({
               />
             </button>
           </div>
-          <img
-            alt="Banner Image"
-            class="w-1/2 h-full object-cover"
-            src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676641172/$1gdbs1un41e"
-          />
+          <div class="w-full h-full relative">
+            <img
+              alt="Banner Image"
+              class="w-full h-full object-cover"
+              src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676641172/$1gdbs1un41e"
+            />
+            <div class="absolute w-[211px] h-[85px] top-6 left-[78px] flex items-center justify-center">
+
+              <img src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676639745/$ng21i0kukbr" alt="Logo Cristais Tavares" />
+            </div>
+          </div>
           {success.value
             ? (
               <div class="text-base-content lg:text-xl text-left text-base-100">
@@ -198,19 +204,29 @@ export default function Popup({
                   class="flex items-center justify-center w-full h-full form-control bg-[#f5d5d5] p-2"
                   onSubmit={handleSubmit}
                 >
-                  <div class="text-center">
+                  <div class="max-w-[280px] text-center flex flex-col">
+                    <h1 class="text-[34px] text-[#EE3F65] text-start font-bold">Fique por dentro das nossas Novidades!</h1>
+                    <p class="text-[18px] text-[#9B9B9B] text-start pb-5">Deixe o seu e-mail abaixo para se inscrever em nossa Newsletter</p>
                     {nameInput}
                     {emailInput}
+                    <div class="w-full flex py-2">
+                      <input type="checkbox" class="checkbox border-black w-[13px] h-[13px] bg-white ml-1"/>
+                      <span class="text-[14px] text-[#4A4A4A]">Eu concordo em receber comunicações.</span>
+                    </div>
+
+                    <p class="text-[14px] text-start text-[#4A4A4A] ">
+                    A nossa empresa está comprometida a proteger e respeitar sua privacidade, utilizaremos seus dados apenas para fins de marketing. Você pode alterar suas preferências a qualquer momento.
+                    </p>
+
                     <button
-                      style={{
-                        minWidth: "150px",
-                      }}
                       type="submit"
-                      class="capitalize md:ml-5 mt-2.5 font-semibold btn rounded-full join-item btn-primary bg-red-500 hover:bg-red-600 border-white"
+                      class="mt-2.5 pl-2.5 pr-2.5 h-[50px] font-semibold rounded w-full flex items-center justify-center text-[23px] text-white font-bold bg-red-500 hover:bg-red-600 border border-solid border-white"
                       disabled={loading}
                     >
                       {form?.button?.label || "Cadastrar"}
                     </button>
+
+                    
                   </div>
                 </form>
               </>
