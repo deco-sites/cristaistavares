@@ -188,8 +188,10 @@ export default function Popup({
               src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676641172/$1gdbs1un41e"
             />
             <div class="absolute w-[211px] h-[85px] top-6 left-[78px] flex items-center justify-center">
-
-              <img src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676639745/$ng21i0kukbr" alt="Logo Cristais Tavares" />
+              <img
+                src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676639745/$ng21i0kukbr"
+                alt="Logo Cristais Tavares"
+              />
             </div>
           </div>
           {success.value
@@ -205,17 +207,30 @@ export default function Popup({
                   onSubmit={handleSubmit}
                 >
                   <div class="max-w-[280px] text-center flex flex-col">
-                    <h1 class="text-[34px] text-[#EE3F65] text-start font-bold">Fique por dentro das nossas Novidades!</h1>
-                    <p class="text-[18px] text-[#9B9B9B] text-start pb-5">Deixe o seu e-mail abaixo para se inscrever em nossa Newsletter</p>
+                    <h1 class="text-[34px] text-[#EE3F65] text-start font-bold">
+                      Fique por dentro das nossas Novidades!
+                    </h1>
+                    <p class="text-[18px] text-[#9B9B9B] text-start pb-5">
+                      Deixe o seu e-mail abaixo para se inscrever em nossa
+                      Newsletter
+                    </p>
                     {nameInput}
                     {emailInput}
                     <div class="w-full flex py-2">
-                      <input type="checkbox" class="checkbox border-black w-[13px] h-[13px] bg-white ml-1"/>
-                      <span class="text-[14px] text-[#4A4A4A]">Eu concordo em receber comunicações.</span>
+                      <input
+                        type="checkbox"
+                        class="checkbox border-black w-[13px] h-[13px] bg-white ml-1"
+                      />
+                      <span class="text-[14px] text-[#4A4A4A]">
+                        Eu concordo em receber comunicações.
+                      </span>
                     </div>
 
                     <p class="text-[14px] text-start text-[#4A4A4A] ">
-                    A nossa empresa está comprometida a proteger e respeitar sua privacidade, utilizaremos seus dados apenas para fins de marketing. Você pode alterar suas preferências a qualquer momento.
+                      A nossa empresa está comprometida a proteger e respeitar
+                      sua privacidade, utilizaremos seus dados apenas para fins
+                      de marketing. Você pode alterar suas preferências a
+                      qualquer momento.
                     </p>
 
                     <button
@@ -225,8 +240,6 @@ export default function Popup({
                     >
                       {form?.button?.label || "Cadastrar"}
                     </button>
-
-                    
                   </div>
                 </form>
               </>
