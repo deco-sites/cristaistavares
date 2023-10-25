@@ -336,7 +336,7 @@ function ProductCard(
             {l?.hide?.productName ? "" : (
               <h3 class="text-sm w-full">
                 {product.isVariantOf?.name}
-              </h3> 
+              </h3>
             )}
             {l?.hide?.productDescription ? "" : (
               <p
