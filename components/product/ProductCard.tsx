@@ -86,7 +86,7 @@ function ProductCard(
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, seller } = useOffer(offers);
+  const { listPrice, price: offerPrice, seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
@@ -100,6 +100,15 @@ function ProductCard(
       billingDuration,
       billingIncrement,
     }))[0] || {};
+
+  const price =
+    product?.offers?.offers[0]?.priceSpecification?.find((item) =>
+      item.priceType == "https://schema.org/SalePrice"
+    )?.price ?? offerPrice;
+  const pixPrice =
+    product?.offers?.offers[0]?.priceSpecification?.find((item) =>
+      item.name === "Pix"
+    )?.price ?? 0;
 
   const l = layout;
   const align =
@@ -346,33 +355,28 @@ function ProductCard(
         {l?.hide?.allPrices ? "" : (
           <div class="flex flex-col gap-1">
             <div
-              class={`flex flex-col gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row"
-                  : "lg:flex-row"
-              } ${
+              class={`flex flex-row gap-1 ${
                 align === "center"
                   ? "justify-center items-center"
                   : "justify-start items-start"
               }`}
             >
-              <div
-                class={`line-through text-black text-xs ${
-                  l?.basics?.oldPriceSize === "Normal"
-                    ? "lg:text-xl"
-                    : "lg:text-sm"
-                }`}
-              >
-                {(listPrice ?? 0) >
-                    (price!) && (
+              {(listPrice ?? 0) > (price!) && (
+                <div
+                  class={`line-through text-black text-xs ${
+                    l?.basics?.oldPriceSize === "Normal"
+                      ? "lg:text-xl"
+                      : "lg:text-sm"
+                  }`}
+                >
                   <span>
                     {formatPrice(
                       listPrice,
                       offers!.priceCurrency!,
                     )}
                   </span>
-                )}
-              </div>
+                </div>
+              )}
               <div class="text-black text-sm">
                 {formatPrice(
                   price,
@@ -382,7 +386,7 @@ function ProductCard(
             </div>
             <div class="text-black text-sm">
               {formatPrice(
-                price,
+                pixPrice,
                 offers!.priceCurrency!,
               )} no <b>PIX</b>
             </div>

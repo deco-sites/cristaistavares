@@ -16,6 +16,25 @@ const formatter = (currency: string, locale: string) => {
   return formatters.get(key)!;
 };
 
+export const formatPriceWithoutCents = (
+  price: number | undefined,
+  currency = "BRL",
+  locale = "pt-BR",
+) => {
+  const formatter = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  if (!price) {
+    return null;
+  }
+
+  return formatter.format(price);
+};
+
 export const formatPrice = (
   price: number | undefined,
   currency = "BRL",

@@ -18,17 +18,19 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { ProductDetailsPage } from "apps/commerce/types.ts";
+import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 import CTA from "$store/components/ui/CTA.tsx";
+import Matcher from "$store/components/product/Matcher.tsx";
 import ProductDescription from "$store/islands/ProductDescription.tsx";
 
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
+  suggestions: Product[] | null;
 
   layout?: {
     /**
@@ -71,7 +73,9 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
+function ProductInfo(
+  { page, suggestions, layout }: { page: ProductDetailsPage } & Props,
+) {
   const platform = usePlatform();
   const {
     breadcrumbList,
@@ -87,12 +91,20 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
     additionalProperty = [],
   } = product;
   const {
-    price = 0,
+    price: offerPrice = 0,
     listPrice,
     seller = "1",
     installments,
     availability,
   } = useOffer(offers);
+  const price =
+    product?.offers?.offers[0]?.priceSpecification?.find((item) =>
+      item.priceType == "https://schema.org/SalePrice"
+    )?.price ?? offerPrice;
+  const pixPrice =
+    product?.offers?.offers[0]?.priceSpecification?.find((item) =>
+      item.name === "Pix"
+    )?.price ?? 0;
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
 
@@ -173,7 +185,7 @@ function ProductInfo({ page, layout }: { page: ProductDetailsPage } & Props) {
           </span>
         </div>
         <span class="font-medium text-sm">
-          {formatPrice(price, offers!.priceCurrency!)} no <b>PIX</b>
+          {formatPrice(pixPrice, offers!.priceCurrency!)} no <b>PIX</b>
         </span>
         <span class="flex">
           <Installments
@@ -391,6 +403,21 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             )}
           </div>
         </div>
+        <div class="w-full flex flex-col my-6 max-w-[1280px] mx-auto">
+          {props.suggestions && props?.suggestions[0]?.name && (
+            <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
+              <h2
+                class={"text-center md:text-start border-b border-lavender mb-8 py-3 text-2xl"}
+              >
+                Combinação perfeita
+              </h2>
+              <Matcher
+                product={props.page.product}
+                suggestions={props.suggestions}
+              />
+            </div>
+          )}
+        </div>
       </>
     );
   }
@@ -430,10 +457,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   );
 }
 
-function ProductDetails({ page, layout }: Props) {
+function ProductDetails({ page, layout, suggestions }: Props) {
   return (
     <div class="container pt-20 sm:pt-36 lg:pt-28 lg:pb-10">
-      {page ? <Details page={page} layout={layout} /> : <NotFound />}
+      {page
+        ? <Details suggestions={suggestions} page={page} layout={layout} />
+        : <NotFound />}
     </div>
   );
 }

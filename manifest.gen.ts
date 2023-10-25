@@ -37,6 +37,7 @@ import * as $$$$$$30 from "./sections/Product/Wishlist.tsx";
 import * as $$$$$$31 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$32 from "./sections/Social/WhatsApp.tsx";
 import * as $$$$$$33 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$$$$0 from "./actions/addToCart.ts";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -86,6 +87,9 @@ const manifest = {
     "deco-sites/cristaistavares/sections/Social/InstagramPosts.tsx": $$$$$$31,
     "deco-sites/cristaistavares/sections/Social/WhatsApp.tsx": $$$$$$32,
     "deco-sites/cristaistavares/sections/Theme/Theme.tsx": $$$$$$33,
+  },
+  "actions": {
+    "deco-sites/cristaistavares/actions/addToCart.ts": $$$$$$$$$0,
   },
   "apps": {
     "deco-sites/cristaistavares/apps/decohub.ts": $$$$$$$$$$$0,
