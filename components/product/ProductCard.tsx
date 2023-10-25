@@ -334,9 +334,9 @@ function ProductCard(
             } flex flex-col gap-0 w-full`}
           >
             {l?.hide?.productName ? "" : (
-              <h2 class="text-sm w-full">
+              <h3 class="text-sm w-full">
                 {product.isVariantOf?.name}
-              </h2>
+              </h3> 
             )}
             {l?.hide?.productDescription ? "" : (
               <p
