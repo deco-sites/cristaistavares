@@ -403,7 +403,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             )}
           </div>
         </div>
-        <div class="w-full flex flex-col my-6 max-w-[1280px] mx-auto">
+        <div class="w-full flex flex-col my-6 max-w-[1280px] mx-auto p-4">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
               <h2
