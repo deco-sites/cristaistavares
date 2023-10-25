@@ -58,7 +58,7 @@ export default function CategoryList({ title, cards, interval }: Props) {
     <section class="w-full h-full flex items-center justify-center bg-[#f4f4f4]">
       <div>
         <div class="flex items-center justify-center h-[68px] text-center m-2">
-          <p class="text-lg lg:text-xl font-bold">{title}</p>
+          <h2 class="text-lg lg:text-xl font-bold">{title}</h2>
         </div>
         <div
           id={id}
@@ -85,9 +85,9 @@ export default function CategoryList({ title, cards, interval }: Props) {
                   </a>
                 </div>
                 <div class="w-[296px] h-[58px] mb-2">
-                  <p class="text-lg font-medium text-center m-5">
+                  <h3 class="text-lg font-medium text-center m-5">
                     {card.description}
-                  </p>
+                  </h3>
                 </div>
               </Slider.Item>
             ))}

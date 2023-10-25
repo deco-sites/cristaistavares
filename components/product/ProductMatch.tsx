@@ -51,7 +51,7 @@ export default function ProductMatch(
         )}
 
         <div class="flex flex-col items-center justify-center w-full h-full">
-          <h1 class="text-center mb-4 text-lg lg:text-xl font-bold">{title}</h1>
+          <h2 class="text-center mb-4 text-lg lg:text-xl font-bold">{title}</h2> 
 
           <div
             id={id}
