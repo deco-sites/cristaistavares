@@ -10,7 +10,7 @@ import ProductCta from "$store/components/product/ProductCta.tsx";
 import Installments from "./Installments.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
-import Rating from "$store/components/ui/Rating.tsx";
+import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
 export interface Layout {
   basics?: {
@@ -59,13 +59,17 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
+const newSkuId = (url: string | null) => {
+  if (!url) return;
+
+  const link = new URL(url);
+  const skuId = link.searchParams.get("skuId");
+
+  return skuId;
+};
+
 const WIDTH = 275;
 const HEIGHT = 275;
-
-const RATING = {
-  votes: 0,
-  rating: 0,
-};
 
 function ProductCard(
   {
@@ -90,11 +94,23 @@ function ProductCard(
   const { listPrice, price: offerPrice, seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+  const { selectedSku } = useSkuSelector();
+
+  const skuId = newSkuId(selectedSku.value);
+
+  const filteredProduct =
+    product.isVariantOf?.hasVariant.filter((item) => item.sku === skuId)[0];
+
+  const {
+    listPrice: filteredProductListPrice,
+    price: filteredProductPrice,
+    seller: filteredProductSeller,
+  } = useOffer(filteredProduct?.offers);
 
   const {
     billingDuration: installmentsBillingDuration,
     billingIncrement: installmentsBillingIncrement,
-  } = ((product).offers?.offers[0].priceSpecification || [])
+  } = ((filteredProduct ?? product).offers?.offers[0].priceSpecification || [])
     .filter((item) => item.billingDuration !== undefined)
     .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
     .map(({ billingDuration, billingIncrement }) => ({
@@ -103,13 +119,13 @@ function ProductCard(
     }))[0] || {};
 
   const price =
-    product?.offers?.offers[0]?.priceSpecification?.find((item) =>
-      item.priceType == "https://schema.org/SalePrice"
-    )?.price ?? offerPrice;
+    (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
+      item,
+    ) => item.priceType == "https://schema.org/SalePrice")?.price ?? offerPrice;
   const pixPrice =
-    product?.offers?.offers[0]?.priceSpecification?.find((item) =>
-      item.name === "Pix"
-    )?.price ?? 0;
+    (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
+      item,
+    ) => item.name === "Pix")?.price ?? 0;
 
   const l = layout;
   const align =
@@ -145,9 +161,9 @@ function ProductCard(
             item_list_name: itemListName,
             items: [
               mapProductToAnalyticsItem({
-                product,
-                price,
-                listPrice,
+                product: filteredProduct ?? product,
+                price: filteredProductPrice ?? price,
+                listPrice: filteredProductListPrice ?? listPrice,
               }),
             ],
           },
@@ -192,8 +208,8 @@ function ProductCard(
           </span>
 
           <DiscountPercentage
-            price={price!}
-            listPrice={listPrice!}
+            price={filteredProductPrice! ?? price!}
+            listPrice={filteredProductListPrice! ?? listPrice!}
           />
 
           {
@@ -250,11 +266,11 @@ function ProductCard(
             (
               <ProductCta
                 name={name ?? ""}
-                productID={productID}
+                productID={skuId ?? productID}
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
-                seller={seller!}
+                seller={filteredProductSeller ?? seller!}
               />
             )}
         </figcaption>
@@ -357,7 +373,8 @@ function ProductCard(
                   : "justify-start items-center"
               }`}
             >
-              {(listPrice ?? 0) > (price!) && (
+              {(filteredProductListPrice ?? listPrice ?? 0) >
+                  (filteredProductPrice ?? price!) && (
                 <div
                   class={`line-through text-black text-xs ${
                     l?.basics?.oldPriceSize === "Normal"
@@ -367,7 +384,7 @@ function ProductCard(
                 >
                   <span>
                     {formatPrice(
-                      listPrice,
+                      filteredProductListPrice ?? listPrice,
                       offers!.priceCurrency!,
                     )}
                   </span>
@@ -375,7 +392,7 @@ function ProductCard(
               )}
               <div class="text-black text-sm">
                 {formatPrice(
-                  price,
+                  filteredProductPrice ?? price,
                   offers!.priceCurrency!,
                 )}
               </div>
@@ -427,11 +444,11 @@ function ProductCard(
             >
               <ProductCta
                 name={name ?? ""}
-                productID={productID}
+                productID={skuId ?? productID}
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
-                seller={seller!}
+                seller={filteredProductSeller ?? seller!}
               />
             </div>
           )

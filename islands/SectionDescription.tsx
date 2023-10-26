@@ -8,7 +8,7 @@ export default function SectionDescription({ description }: Props) {
 
   const descriptionValue = isToggle
     ? description
-    : description.substring(0, 50).concat("...");
+    : description.substring(0, 200).concat("...");
 
   return (
     <div class="max-w-[1240px] flex flex-col gap-4">

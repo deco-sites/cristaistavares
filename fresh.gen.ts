@@ -20,8 +20,8 @@ import * as $$13 from "./islands/Newsletter.tsx";
 import * as $$14 from "./islands/OutOfStock.tsx";
 import * as $$15 from "./islands/Popup.tsx";
 import * as $$16 from "./islands/PrincipalImages.tsx";
-import * as $$17 from "./islands/ProductDescription.tsx";
-import * as $$18 from "./islands/Rating.tsx";
+import * as $$17 from "./islands/ProductCard.tsx";
+import * as $$18 from "./islands/ProductDescription.tsx";
 import * as $$19 from "./islands/SearchControls.tsx";
 import * as $$20 from "./islands/SectionDescription.tsx";
 import * as $$21 from "./islands/SelectableBanners.tsx";
@@ -52,8 +52,8 @@ const manifest = {
     "./islands/OutOfStock.tsx": $$14,
     "./islands/Popup.tsx": $$15,
     "./islands/PrincipalImages.tsx": $$16,
-    "./islands/ProductDescription.tsx": $$17,
-    "./islands/Rating.tsx": $$18,
+    "./islands/ProductCard.tsx": $$17,
+    "./islands/ProductDescription.tsx": $$18,
     "./islands/SearchControls.tsx": $$19,
     "./islands/SectionDescription.tsx": $$20,
     "./islands/SelectableBanners.tsx": $$21,

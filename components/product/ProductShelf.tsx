@@ -1,5 +1,5 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import ProductCard from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 import type {
   Layout as cardLayout,
 } from "$store/components/product/ProductCard.tsx";
