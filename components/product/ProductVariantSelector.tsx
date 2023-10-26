@@ -34,6 +34,7 @@ function VariantSelector({ product, product: { url } }: Props) {
                   <Avatar
                     content={value}
                     variant={links[0] === url ? "active" : "default"}
+                    isSelected={value == product.name}
                   />
                 </a>
               </li>

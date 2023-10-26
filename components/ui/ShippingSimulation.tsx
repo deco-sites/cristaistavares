@@ -43,8 +43,8 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px]">
-      {methods.map((method) => (
+    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px] xl:max-w-[75%]">
+      {methods.slice(0, -1).map((method) => (
         <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
           <span class="text-button text-center">
             Entrega {method.name}
@@ -59,11 +59,6 @@ function ShippingContent({ simulation }: {
           </span>
         </li>
       ))}
-      <span class="text-base-300">
-        Os prazos de entrega começam a contar a partir da confirmação do
-        pagamento e podem variar de acordo com a quantidade de produtos na
-        sacola.
-      </span>
     </ul>
   );
 }

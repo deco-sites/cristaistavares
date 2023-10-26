@@ -4,8 +4,8 @@ import { useSignal } from "@preact/signals";
 import Slider from "$store/components/ui/Slider.tsx";
 import Image from "apps/website/components/Image.tsx";
 
-const WIDTH = 480;
-const HEIGHT = 480;
+const WIDTH = 360;
+const HEIGHT = 360;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 export interface ProductCarouselProps {
@@ -59,7 +59,7 @@ export default function PrincipalImages({ images }: ProductCarouselProps) {
             <Image
               id={`image-${index}`}
               class="w-full duration-100 cursor-pointer"
-              sizes="(max-width: 640px) 100vw, 40vw"
+              sizes="(max-width: 640px) 100vw, 30vw"
               style={{
                 aspectRatio: ASPECT_RATIO,
                 transition: "transform 0.3s ease",

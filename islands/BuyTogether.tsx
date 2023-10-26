@@ -133,7 +133,7 @@ export default function Matcher({ product, suggestions }: Props) {
             <Button
               data-deco="add-to-cart"
               {...items}
-              class="w-full h-[41px] min-h-min bg-dark-pink hover:bg-dark-pink/80 text-white text-sm border-transparent hover:border-transparent rounded-md mt-2"
+              class="w-full h-[41px] min-h-min bg-emerald-500 hover:bg-emerald-400 text-white text-sm border-transparent hover:border-transparent rounded-md mt-2"
             >
               COMPRAR JUNTO
             </Button>
@@ -142,7 +142,7 @@ export default function Matcher({ product, suggestions }: Props) {
             <Button
               data-deco="add-to-cart"
               {...items}
-              class="w-full h-[41px] min-h-min bg-dark-pink hover:bg-dark-pink/80 text-white text-sm border-transparent hover:border-transparent rounded-md mt-2"
+              class="w-full h-[41px] min-h-min bg-emerald-500 hover:bg-emerald-400 text-white text-sm border-transparent hover:border-transparent rounded-md mt-2"
             >
               COMPRAR ÚNICO
             </Button>

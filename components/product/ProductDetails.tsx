@@ -116,6 +116,8 @@ function ProductInfo(
     )?.price ?? 0;
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
+  const refId =
+    additionalProperty?.find((item) => item.name == "RefId")?.value ?? "";
 
   const {
     billingDuration: installmentsBillingDuration,
@@ -149,13 +151,6 @@ function ProductInfo(
 
       {/* Code and name */}
       <div class="mt-4 sm:mt-8 px-4">
-        <div>
-          {gtin && (
-            <span class="text-sm text-base-300">
-              Cod. {gtin}
-            </span>
-          )}
-        </div>
         <h1>
           <span class="font-medium text-xl capitalize">
             {layout?.name === "concat"
@@ -165,9 +160,17 @@ function ProductInfo(
               : product?.isVariantOf?.name}
           </span>
         </h1>
+
+        <div class="mt-2">
+          {refId && (
+            <span class="text-sm">
+              Cod. {refId}
+            </span>
+          )}
+        </div>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6 px-4">
+      <div class="mt-4 px-4">
         <ProductSelector product={product} />
       </div>
       {/* Similars */}
@@ -206,67 +209,81 @@ function ProductInfo(
           />
         </span>
       </div>
-      {giftSkuIds && (
-        <div class="mt-4 sm:mt-6 px-4">
-          <ProductGift productGift={productGift} />
-        </div>
-      )}
-      {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-6 flex flex-col gap-2 px-4">
-        {availability === "https://schema.org/InStock"
-          ? (
-            <>
-              {platform === "vtex" && (
+      <div class="flex flex-col-reverse lg:flex-col">
+        {giftSkuIds && (
+          <div class="mt-4 sm:mt-6 px-4">
+            <ProductGift productGift={productGift} />
+          </div>
+        )}
+        <>
+          {/* Add to Cart and Favorites button */}
+          <div class="mt-4 sm:mt-6 flex flex-col gap-2 px-4">
+            {availability === "https://schema.org/InStock"
+              ? (
                 <>
-                  <ProductCta
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                    seller={seller}
-                  />
-                  {
-                    /* <WishlistButton
-                    variant="full"
-                    productID={productID}
-                    productGroupID={productGroupID}
-                  /> */
-                  }
+                  {platform === "vtex" && (
+                    <>
+                      <ProductCta
+                        name={name}
+                        productID={productID}
+                        productGroupID={productGroupID}
+                        price={price}
+                        discount={discount}
+                        seller={seller}
+                      />
+                      {
+                        /* <WishlistButton
+                        variant="full"
+                        productID={productID}
+                        productGroupID={productGroupID}
+                      /> */
+                      }
+                    </>
+                  )}
+                  {platform === "wake" && (
+                    <AddToCartButtonWake
+                      name={name}
+                      productID={productID}
+                      productGroupID={productGroupID}
+                      price={price}
+                      discount={discount}
+                    />
+                  )}
+                  {platform === "vnda" && (
+                    <AddToCartButtonVNDA
+                      name={name}
+                      productID={productID}
+                      productGroupID={productGroupID}
+                      price={price}
+                      discount={discount}
+                      additionalProperty={additionalProperty}
+                    />
+                  )}
+                  {platform === "shopify" && (
+                    <AddToCartButtonShopify
+                      name={name}
+                      productID={productID}
+                      productGroupID={productGroupID}
+                      price={price}
+                      discount={discount}
+                    />
+                  )}
                 </>
-              )}
-              {platform === "wake" && (
-                <AddToCartButtonWake
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-              {platform === "vnda" && (
-                <AddToCartButtonVNDA
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                  additionalProperty={additionalProperty}
-                />
-              )}
-              {platform === "shopify" && (
-                <AddToCartButtonShopify
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-            </>
-          )
-          : <OutOfStock productID={productID} />}
+              )
+              : <OutOfStock productID={productID} />}
+          </div>
+
+          <div class="mt-4 sm:mt-6 flex px-4 w-full">
+            <a
+              href="#combinacao"
+              class="flex items-center justify-center w-full xl:w-1/2 border border-emerald-500 rounded hover:bg-emerald-500 hover:text-white font-bold h-[50px] transition-colors duration-200"
+            >
+              Sugestão de Composição
+            </a>
+          </div>
+        </>
       </div>
+
       {/* Shipping Simulation */}
       <div class="mt-8 px-4">
         {platform === "vtex" && (
@@ -316,21 +333,21 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] 2xl:grid-cols-[max-content_30vw_37vw] sm:grid-rows-1 sm:justify-center 2xl:justify-end lg:px-4 2xl:px-0"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
             <PrincipalImages images={images} />
 
             <Slider.PrevButton
-              class="no-animation absolute left-0.5 top-1/2 btn btn-circle btn-outline z-30"
+              class="no-animation absolute left-0.5 top-[30%] btn btn-circle btn-outline z-30"
               disabled
             >
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
 
             <Slider.NextButton
-              class="no-animation absolute right-0.5 top-1/2 btn btn-circle btn-outline z-30"
+              class="no-animation absolute right-0.5 top-[30%] btn btn-circle btn-outline z-30"
               disabled={images.length < 2}
             >
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
@@ -362,7 +379,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         </div>
         <SliderJS rootId={id} />
         <div class="flex w-full h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
-          <div class="flex flex-col justify-between items-start gap-2 sm:gap-20 max-w-[1280px] w-full">
+          <div class="flex flex-col justify-between items-start gap-2 sm:gap-20 max-w-[1240px] w-full">
             <div class="flex flex-col gap-6 w-full lg:flex-1 lg:max-w-[30%]">
               {
                 /* {props.page.product.isVariantOf!.additionalProperty?.filter(
@@ -419,7 +436,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             )}
           </div>
         </div>
-        <div class="w-full flex flex-col my-6 max-w-[1280px] mx-auto p-4">
+        <div class="w-full flex flex-col my-6 max-w-[1240px] mx-auto p-4 xl:p-0">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
               <h2
@@ -475,7 +492,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout, suggestions, productGift }: Props) {
   return (
-    <div class="container pt-20 sm:pt-36 lg:pt-28 lg:pb-10">
+    <div class="container pt-20 sm:pt-36 lg:pt-20 lg:pb-10">
       {page
         ? (
           <Details
