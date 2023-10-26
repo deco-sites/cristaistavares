@@ -171,16 +171,18 @@ function ProductInfo(
         <ProductSelector product={product} />
       </div>
       {/* Similars */}
-      <div class="flex flex-col gap-2 mt-4 px-4 md:max-w-[85%]">
-        <span class="text-sm">
-          Cores
-        </span>
+      {product.isSimilarTo && (
+        <div class="flex flex-col gap-2 mt-4 px-4 md:max-w-[85%]">
+          <span class="text-sm">
+            Cores
+          </span>
 
-        <Similars
-          products={product.isSimilarTo}
-          type={layout?.similarsType ?? "slider"}
-        />
-      </div>
+          <Similars
+            products={product.isSimilarTo}
+            type={layout?.similarsType ?? "slider"}
+          />
+        </div>
+      )}
       {/* Prices */}
       <div class="flex flex-col mt-4 gap-2 px-4">
         <div class="flex flex-row gap-2 items-center">
