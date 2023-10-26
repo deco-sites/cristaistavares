@@ -1,5 +1,3 @@
-import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
-
 export type Item = {
   label: string;
   href: string;
@@ -26,7 +24,7 @@ export default function FooterItems(
             {sections.map((section) => (
               <li>
                 <div class="flex flex-col gap-2">
-                  <span class="font-medium text-lg">
+                  <span class="font-bold">
                     {section.label}
                   </span>
                   <ul class={`flex flex-col gap-2 flex-wrap text-sm`}>

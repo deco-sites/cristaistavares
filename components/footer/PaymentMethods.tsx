@@ -24,7 +24,7 @@ export default function PaymentMethods(
     <>
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <span class="text-lg">{content.title}</span>}
+          {content.title && <span class="font-bold">{content.title}</span>}
           <div class="flex flex-col gap-3 lg:gap-8 items-center lg:items-start">
             <ul class="flex items-center gap-4 flex-wrap">
               {content.items.map((item) => {
@@ -52,7 +52,7 @@ export default function PaymentMethods(
                     class=""
                     title={item.description}
                   >
-                    <a href={item.href} class="w-full h-full">
+                    <div class="w-full h-full">
                       <img
                         src={item.image}
                         width={100}
@@ -60,7 +60,7 @@ export default function PaymentMethods(
                         alt={item.description}
                         loading="lazy"
                       />
-                    </a>
+                    </div>
                   </li>
                 );
               })}

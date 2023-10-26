@@ -258,8 +258,11 @@ function Footer({
     : <MobileApps content={mobileApps} />;
   const _description = layout?.hide?.description
     ? <></>
-    : <span class="text-center max-w-[360px] lg:max-w-full">{description}
-    </span>;
+    : (
+      <p class="text-center max-w-[360px] lg:max-w-full text-xs text-black">
+        {description}
+      </p>
+    );
   const _region = layout?.hide?.regionOptions
     ? <></>
     : <RegionSelector content={regionOptions} />;
@@ -273,7 +276,7 @@ function Footer({
         ColorClasses(layout)
       }`}
     >
-      <div class="mx-6 lg:mx-auto max-w-[1280px]">
+      <div class="mx-6 lg:mx-auto flex w-full max-w-[1240px]">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-10">
             <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
@@ -379,7 +382,7 @@ function Footer({
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col justify-center gap-10 items-center">
+            <div class="flex flex-col justify-center gap-6 items-center">
               {_description}
               {_logo}
               {_logos}

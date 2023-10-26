@@ -7,7 +7,7 @@ export default function SecurityItems(
     <>
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <span class="text-lg">{content.title}</span>}
+          {content.title && <span class="font-bold">{content.title}</span>}
           <ul class="flex flex-wrap items-center justify-center gap-4 w-full">
             {content.items.map((item) => {
               return (

@@ -1,4 +1,3 @@
-import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
@@ -33,7 +32,7 @@ export default function CategoryList({ title, description, cards }: Props) {
         {cards?.map((card) => (
           <div class="flex items-center justify-center w-[295px] h-[368px]">
             <a href={card.link}>
-              <Image
+              <img
                 src={card.image.icon}
                 alt={card.image.alt}
                 width={296}
