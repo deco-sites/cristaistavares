@@ -26,11 +26,19 @@ import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 import CTA from "$store/components/ui/CTA.tsx";
 import Matcher from "$store/components/product/Matcher.tsx";
 import ProductDescription from "$store/islands/ProductDescription.tsx";
+import ProductGift from "./ProductGift.tsx";
 
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
   suggestions: Product[] | null;
+  /**
+   * @ignore
+   */
+  productGift?: {
+    name: string;
+    imageUrl: string;
+  };
 
   layout?: {
     /**
@@ -74,7 +82,7 @@ function NotFound() {
 }
 
 function ProductInfo(
-  { page, suggestions, layout }: { page: ProductDetailsPage } & Props,
+  { page, layout, productGift }: { page: ProductDetailsPage } & Props,
 ) {
   const platform = usePlatform();
   const {
@@ -96,6 +104,7 @@ function ProductInfo(
     seller = "1",
     installments,
     availability,
+    giftSkuIds,
   } = useOffer(offers);
   const price =
     product?.offers?.offers[0]?.priceSpecification?.find((item) =>
@@ -195,6 +204,11 @@ function ProductInfo(
           />
         </span>
       </div>
+      {giftSkuIds && (
+        <div class="mt-4 sm:mt-6 px-4">
+          <ProductGift productGift={productGift} />
+        </div>
+      )}
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-6 flex flex-col gap-2 px-4">
         {availability === "https://schema.org/InStock"
@@ -457,14 +471,45 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   );
 }
 
-function ProductDetails({ page, layout, suggestions }: Props) {
+function ProductDetails({ page, layout, suggestions, productGift }: Props) {
   return (
     <div class="container pt-20 sm:pt-36 lg:pt-28 lg:pb-10">
       {page
-        ? <Details suggestions={suggestions} page={page} layout={layout} />
+        ? (
+          <Details
+            suggestions={suggestions}
+            page={page}
+            layout={layout}
+            productGift={productGift}
+          />
+        )
         : <NotFound />}
     </div>
   );
 }
+
+export const loader = async (props: Props) => {
+  const giftSkuIds = props.page?.product?.offers?.offers[0].giftSkuIds;
+
+  if (!giftSkuIds || giftSkuIds.length === 0) return props;
+
+  const data = await fetch(
+    `https://cristaistavares.myvtex.com/api/catalog_system/pub/products/search/?skuid=${
+      giftSkuIds[0]
+    }`,
+  ).then((response) => response.json());
+
+  if (data && data[0] && data[0].items) {
+    return {
+      ...props,
+      productGift: {
+        name: data[0].productName || "",
+        imageUrl: data[0].items[0].images[0]?.imageUrl || "",
+      },
+    };
+  }
+
+  return props;
+};
 
 export default ProductDetails;

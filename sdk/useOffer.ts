@@ -59,12 +59,14 @@ export const useOffer = (aggregateOffer?: AggregateOffer) => {
   const seller = offer?.seller;
   const price = offer?.price;
   const availability = offer?.availability;
+  const giftSkuIds = offer?.giftSkuIds;
 
   return {
     price,
     listPrice: listPrice?.price,
     availability,
     seller,
+    giftSkuIds,
     installments: installment && price
       ? installmentToString(installment, price)
       : null,
