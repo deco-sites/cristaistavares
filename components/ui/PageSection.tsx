@@ -14,7 +14,7 @@ export interface Props {
 
 export default function PagesSection({ cards }: Props) {
   return (
-    <section class="w-full h-full flex flex-row flex-wrap items-center justify-center gap-4 my-[15px]">
+    <section class="w-full h-full flex flex-row flex-wrap items-center justify-center gap-4 my-[30px]">
       {cards?.map((card) => (
         <div class="">
           <a href={card.link}>
