@@ -25,7 +25,7 @@ export interface Props {
 
 export default function InfoSection({ title, cards }: Props) {
   return (
-    <section class="w-full h-full flex items-center justify-center mt-14 mb-8">
+    <section class="w-full h-full flex items-center justify-center mt-[30px] mb-[15px]">
       <div class="flex flex-col max-w-[1500px] items-center justify-center">
         <h1
           dangerouslySetInnerHTML={{ __html: title }}
