@@ -8,7 +8,7 @@ export interface Props {
 
 export default function SectionDescription({ title, description }: Props) {
   return (
-    <section class="h-full flex flex-col items-center justify-center text-center gap-2 m-12">
+    <section class="h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px]">
       <div>
         <h2
           dangerouslySetInnerHTML={{ __html: title }}
