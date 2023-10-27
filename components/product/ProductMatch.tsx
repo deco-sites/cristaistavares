@@ -43,8 +43,8 @@ export default function ProductMatch(
             <Image
               src={banner.image}
               alt={banner.description}
-              width={620}
-              height={517}
+              width={594}
+              height={496}
               loading="lazy"
             />
           </a>
