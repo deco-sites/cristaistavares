@@ -270,7 +270,9 @@ function ProductCard(
             (
               <ProductCta
                 name={name ?? ""}
-                productID={skuId ?? productID}
+                productID={(filteredProduct?.sku === skuId
+                  ? skuId
+                  : productID) ?? productID}
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
@@ -453,7 +455,9 @@ function ProductCard(
             >
               <ProductCta
                 name={name ?? ""}
-                productID={skuId ?? productID}
+                productID={(filteredProduct?.sku === skuId
+                  ? skuId
+                  : productID) ?? productID}
                 productGroupID={productGroupID ?? ""}
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}

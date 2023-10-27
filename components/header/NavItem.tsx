@@ -55,11 +55,13 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                   >
                     {node.children?.map((leaf) => (
                       <li class="pt-2">
-                        {leaf.href === "#" ? (
-                          <div class="hover:text-dark-pink duration-200 transition-colors">
+                        {leaf.href === "#"
+                          ? (
+                            <div class="hover:text-dark-pink duration-200 transition-colors">
                               <span class="text-sm">{leaf.label}</span>
-                          </div>
-                        ) : (
+                            </div>
+                          )
+                          : (
                             <a
                               class="hover:text-dark-pink duration-200 transition-colors"
                               href={leaf.href}
