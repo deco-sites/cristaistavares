@@ -4,9 +4,12 @@ import Description from "$store/islands/SectionDescription.tsx";
 export interface Props {
   title: HTMLWidget;
   description: HTMLWidget;
+  textEndAt?: number;
 }
 
-export default function SectionDescription({ title, description }: Props) {
+export default function SectionDescription(
+  { title, description, textEndAt = 450 }: Props,
+) {
   return (
     <section class="h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px]">
       <div>
@@ -15,7 +18,7 @@ export default function SectionDescription({ title, description }: Props) {
           class="text-base font-medium"
         />
       </div>
-      <Description description={description} />
+      <Description description={description} textEndAt={textEndAt} />
     </section>
   );
 }

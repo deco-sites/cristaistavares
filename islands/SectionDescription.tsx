@@ -2,13 +2,16 @@ import { useState } from "preact/hooks";
 
 export interface Props {
   description: string;
+  textEndAt?: number;
 }
-export default function SectionDescription({ description }: Props) {
+export default function SectionDescription(
+  { description, textEndAt = 450 }: Props,
+) {
   const [isToggle, setIsToggle] = useState(false);
 
   const descriptionValue = isToggle
     ? description
-    : description.substring(0, 200).concat("...");
+    : description.substring(0, textEndAt).concat("...");
 
   return (
     <div class="max-w-[1240px] flex flex-col gap-4">
