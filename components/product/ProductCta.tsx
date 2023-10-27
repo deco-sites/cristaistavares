@@ -4,7 +4,9 @@ import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 import type { Props } from "$store/components/product/AddToCartButton/vtex.tsx";
 
 export default function ProductCta(
-  { seller, discount, name, price, productGroupID, productID }: Props,
+  { seller, discount, name, price, productGroupID, productID, resizeQuantity }:
+    & Props
+    & { resizeQuantity?: boolean },
 ) {
   const [quantity, setQuantity] = useState(1);
 
@@ -23,7 +25,11 @@ export default function ProductCta(
   return (
     <div class="flex h-full w-full">
       <div class="hidden md:block">
-        <QuantitySelector quantity={quantity} onChange={setQuantity} />
+        <QuantitySelector
+          quantity={quantity}
+          onChange={setQuantity}
+          resizeQuantity={resizeQuantity}
+        />
       </div>
       {cta}
     </div>

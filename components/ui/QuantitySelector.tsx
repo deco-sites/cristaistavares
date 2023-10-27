@@ -5,11 +5,14 @@ interface Props {
   disabled?: boolean;
   loading?: boolean;
   onChange?: (quantity: number) => void;
+  resizeQuantity?: boolean;
 }
 
 const QUANTITY_MAX_VALUE = 100;
 
-function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
+function QuantitySelector(
+  { onChange, quantity, disabled, loading, resizeQuantity = false }: Props,
+) {
   const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>
@@ -26,7 +29,9 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         -
       </Button>
       <input
-        class="text-center w-[45px] [appearance:textfield] join-item"
+        class={`text-center ${
+          resizeQuantity ? "w-[10px]" : "w-[45px]"
+        } [appearance:textfield] join-item`}
         type="number"
         aria-label="current selected number"
         inputMode="numeric"

@@ -43,6 +43,7 @@ function ProductGallery({ products, layout }: Props) {
           layout={layout?.card}
           platform={platform}
           isPLP
+          resizeQuantity={layout?.columns?.desktop == 3 ? false : true}
         />
       ))}
     </div>

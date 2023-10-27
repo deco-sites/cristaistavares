@@ -53,6 +53,7 @@ interface Props {
   platform: ReturnType<typeof usePlatform>;
   isSearchbar?: boolean;
   isPLP?: boolean;
+  resizeQuantity?: boolean;
 }
 
 const relative = (url: string) => {
@@ -80,6 +81,7 @@ function ProductCard(
     layout,
     isSearchbar = false,
     isPLP = false,
+    resizeQuantity,
   }: Props,
 ) {
   const {
@@ -273,6 +275,7 @@ function ProductCard(
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
                 seller={filteredProductSeller ?? seller!}
+                resizeQuantity={resizeQuantity}
               />
             )}
         </figcaption>
@@ -451,6 +454,7 @@ function ProductCard(
                 price={price ?? 0}
                 discount={price && listPrice ? listPrice - price : 0}
                 seller={filteredProductSeller ?? seller!}
+                resizeQuantity={resizeQuantity}
               />
             </div>
           )
