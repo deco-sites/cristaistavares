@@ -29,7 +29,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
           <div
             class={`${
               index! < 5 ? "flex-row-reverse" : "-translate-x-[85%]"
-            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 w-[920px] h-[380px]`}
+            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 lg:w-[920px] xl:w-[1260px] h-[425px]`}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
@@ -37,8 +37,8 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                 class="p-6"
                 src={image.src}
                 alt={image.alt}
-                width={400}
-                height={300}
+                width={412}
+                height={335}
                 loading="lazy"
               />
             )}
@@ -55,12 +55,18 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                   >
                     {node.children?.map((leaf) => (
                       <li class="pt-2">
-                        <a
-                          class="hover:text-dark-pink duration-200 transition-colors"
-                          href={leaf.href}
-                        >
-                          <span class="text-sm">{leaf.label}</span>
-                        </a>
+                        {leaf.href === "#" ? (
+                          <div class="hover:text-dark-pink duration-200 transition-colors">
+                              <span class="text-sm">{leaf.label}</span>
+                          </div>
+                        ) : (
+                            <a
+                              class="hover:text-dark-pink duration-200 transition-colors"
+                              href={leaf.href}
+                            >
+                              <span class="text-sm">{leaf.label}</span>
+                            </a>
+                          )}
                       </li>
                     ))}
                   </ul>
