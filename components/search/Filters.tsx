@@ -13,6 +13,10 @@ interface Props {
   filters: ProductListingPage["filters"];
 }
 
+const translate: Record<string, string> = {
+  "unico": "único",
+};
+
 const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] === "FilterToggle";
 
@@ -22,7 +26,7 @@ function ValueItem(
   return (
     <a href={url} class="flex items-center gap-2">
       <div aria-checked={selected} class="checkbox" />
-      <span class="text-sm">{label}</span>
+      <span class="text-sm capitalize">{label}</span>
       {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
     </a>
   );
@@ -42,7 +46,7 @@ function FilterValues({ key, values }: FilterToggle) {
           return (
             <a href={url}>
               <Avatar
-                content={value}
+                content={translate[value] || value}
                 variant={selected ? "active" : "default"}
               />
             </a>
@@ -81,7 +85,7 @@ function Filters({ filters }: Props) {
                 aria-label="Filtros"
                 checked={true}
               />
-              <div class="collapse-title flex justify-between cursor-pointer min-h-[0px]">
+              <div class="collapse-title flex justify-between cursor-pointer min-h-[0px] pl-0">
                 <span class="flex content-center flex-wrap h-9">
                   {filter.label}
                 </span>
@@ -94,7 +98,7 @@ function Filters({ filters }: Props) {
                   />
                 </div>
               </div>
-              <div class="collapse-content transition-all duration-700 pt-1">
+              <div class="collapse-content transition-all duration-700 pt-1 pl-0">
                 <FilterValues {...filter} />
               </div>
             </div>
