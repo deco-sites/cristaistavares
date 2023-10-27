@@ -36,9 +36,9 @@ const Aside = (
     }`}
   >
     <div class="flex justify-between items-center">
-      <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl">{title}</span>
-      </h1>
+      <div class="px-4 py-3">
+        <p class="font-medium text-2xl">{title}</p>
+      </div>
       {onClose && (
         <Button title="Close Drawer" class="btn btn-ghost" onClick={onClose}>
           <Icon id="XMark" size={24} strokeWidth={2} />
