@@ -181,7 +181,7 @@ export default function Popup({
               />
             </button>
           </div>
-          <div class="w-full h-full relative">
+          <div class="hidden md:block w-full h-full relative">
             <img
               alt="Banner Image"
               class="w-full h-full object-cover"
