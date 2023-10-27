@@ -1,4 +1,81 @@
-export default function AvaliationSection() {
+export interface Review {
+  productId: string;
+  rating: number;
+  title: string;
+  text: string;
+  reviewerName: string;
+  shopperId: string;
+}
+
+interface ReviewDataResponse {
+  data: Review[];
+}
+
+export interface Rating {
+  average: number;
+  totalCount: number;
+}
+
+export interface Props {
+  rating: Rating | null;
+  reviews: Review[] | null;
+}
+
+function ReviewComment({ rating, reviewerName, text, title }: Review) {
+  return (
+    <div class="flex flex-col gap-1">
+      <div class="rating align-middle gap-1">
+        <input
+          type="radio"
+          name="rating-1"
+          className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
+          checked={Math.floor(rating) == 1}
+        />
+        <input
+          type="radio"
+          name="rating-1"
+          className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
+          checked={Math.floor(rating) == 2}
+        />
+        <input
+          type="radio"
+          name="rating-1"
+          className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
+          checked={Math.floor(rating) == 3}
+        />
+        <input
+          type="radio"
+          name="rating-1"
+          className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
+          checked={Math.floor(rating) == 4}
+        />
+        <input
+          type="radio"
+          name="rating-1"
+          className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
+          checked={Math.floor(rating) == 5}
+        />
+      </div>
+      <span class="text-dark-pink font-semibold">{title}</span>
+      <div class="flex items-center gap-2">
+        <span>Comprador verificado</span>
+        <span>
+          Enviado por <b>{reviewerName}</b>
+        </span>
+      </div>
+      <span>{text}</span>
+    </div>
+  );
+}
+
+export default function AvaliationSection({ rating, reviews }: Props) {
+  if (!rating || !reviews || rating.totalCount == 0) return null;
+
+  const RATING: Rating = {
+    average: rating.average ?? 0,
+    totalCount: rating.totalCount ?? 0,
+  };
+
   return (
     <div class="flex w-full h-full items-center justify-center px-6 lg:px-0">
       <div class="flex items-center justify-center max-w-[1272px] w-full px-4">
@@ -14,36 +91,40 @@ export default function AvaliationSection() {
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
-                checked={false}
+                checked={Math.floor(RATING.average) == 1}
               />
               <input
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
-                checked={false}
+                checked={Math.floor(RATING.average) == 2}
               />
               <input
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
-                checked={false}
+                checked={Math.floor(RATING.average) == 3}
               />
               <input
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
-                checked={false}
+                checked={Math.floor(RATING.average) == 4}
               />
               <input
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
-                checked={false}
+                checked={Math.floor(RATING.average) == 5}
               />
             </div>
             <div class="flex flex-col items-start justify-start mt-5 w-full">
               <div>
-                <p class="text-sm">Classificação média: 0 (0 avaliações)</p>
+                <p class="text-sm">
+                  Classificação média: {RATING.average} ({RATING.totalCount}
+                  {" "}
+                  avaliações)
+                </p>
               </div>
               <div class="mt-10 pl-2">
                 <a href="">
@@ -52,7 +133,7 @@ export default function AvaliationSection() {
                   </p>
                 </a>
               </div>
-              <div class="flex flex-col sm:flex-row items-start justify-start gap-1.5 mt-7">
+              <div class="flex flex-col sm:flex-row items-start justify-start gap-1.5 mt-7 mb-1.5">
                 <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full">
                   <option value="recentes">Mais Recentes</option>
                   <option value="antigas">Mais Antigas</option>
@@ -69,9 +150,17 @@ export default function AvaliationSection() {
                 </select>
               </div>
               <div class="flex items-start justify-start border-b-4 border-solid border-[#f2f4f5] min-w-full mb-5 py-3">
-                <h1 class="text-start text-lg">
-                  Nenhuma avaliação
-                </h1>
+                {!reviews
+                  ? (
+                    <h1 class="text-start text-lg">
+                      Nenhuma avaliação
+                    </h1>
+                  )
+                  : (
+                    <div class="flex flex-col gap-2.5">
+                      {reviews?.map((review) => <ReviewComment {...review} />)}
+                    </div>
+                  )}
               </div>
             </div>
           </div>
@@ -80,3 +169,38 @@ export default function AvaliationSection() {
     </div>
   );
 }
+
+export const loader = async (props: Props, req: Request) => {
+  const url = new URL(req.url);
+  const skuId = url.searchParams.get("skuId");
+
+  if (!skuId) return null;
+
+  async function getRatingData(): Promise<Rating | null> {
+    const data = await fetch(
+      `https://cristaistavares.myvtex.com/reviews-and-ratings/api/rating/${skuId}`,
+    ).then((response) => response.json());
+
+    return data;
+  }
+
+  async function getReviewData(): Promise<Review[] | null> {
+    const reviewData: ReviewDataResponse = await fetch(
+      `https://cristaistavares.myvtex.com/reviews-and-ratings/api/reviews`,
+    ).then((response) => response.json());
+
+    const reviews = reviewData.data.filter((item) => item.productId == skuId);
+
+    return reviews;
+  }
+
+  const data = await Promise.all([getRatingData(), getReviewData()]).then((
+    values,
+  ) => values);
+
+  return {
+    ...props,
+    rating: data[0],
+    reviews: data[1],
+  };
+};

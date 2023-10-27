@@ -333,7 +333,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] 2xl:grid-cols-[max-content_30vw_37vw] sm:grid-rows-1 sm:justify-center 2xl:justify-end lg:px-4 2xl:px-0"
+          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] 2xl:grid-cols-[max-content_30vw_37vw] sm:grid-rows-1 sm:justify-center lg:px-4 2xl:px-0"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">

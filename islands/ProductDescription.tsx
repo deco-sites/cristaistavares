@@ -38,7 +38,7 @@ export default function ProductDescription({ description }: Props) {
         <button
           title="Botão Ver mais"
           onClick={() => setIsToggle((prev) => !prev)}
-          class="underline text-black hover:text-dark-pink"
+          class="underline text-black hover:text-dark-pink pb-0.5"
         >
           {!isToggle ? "Ver mais" : "Ver menos"}
         </button>

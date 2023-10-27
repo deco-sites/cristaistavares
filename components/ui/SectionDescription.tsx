@@ -11,7 +11,7 @@ export default function SectionDescription(
   { title, description, textEndAt = 450 }: Props,
 ) {
   return (
-    <section class="h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px]">
+    <section class="h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px] px-4 lg:px-0">
       <div>
         <h2
           dangerouslySetInnerHTML={{ __html: title }}
