@@ -44,21 +44,19 @@ function ShippingContent({ simulation }: {
 
   return (
     <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px] xl:max-w-[75%]">
-      {methods.slice(0, -1).map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-          <span class="text-button text-center">
-            Entrega {method.name}
-          </span>
-          <span class="text-button">
-            até {formatShippingEstimate(method.shippingEstimate)}
-          </span>
-          <span class="text-base font-semibold text-right">
-            {method.price === 0 ? "Grátis" : (
-              formatPrice(method.price / 100, currencyCode, locale)
-            )}
-          </span>
-        </li>
-      ))}
+      <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
+        <span class="text-button text-center">
+          Entrega {methods[0].name}
+        </span>
+        <span class="text-button">
+          até {formatShippingEstimate(methods[0].shippingEstimate)}
+        </span>
+        <span class="text-base font-semibold text-right">
+          {methods[0].price === 0 ? "Grátis" : (
+            formatPrice(methods[0].price / 100, currencyCode, locale)
+          )}
+        </span>
+      </li>
     </ul>
   );
 }
@@ -105,8 +103,8 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered join-item min-w-[62%] sm:min-w-[58%]"
-          placeholder="Seu cep aqui"
+          class="input input-bordered join-item w-full sm:w-auto sm:min-w-[58%]"
+          placeholder="Digite seu cep aqui"
           value={postalCode.value}
           maxLength={8}
           size={8}

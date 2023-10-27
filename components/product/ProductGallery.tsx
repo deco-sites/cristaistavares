@@ -35,14 +35,16 @@ function ProductGallery({ products, layout }: Props) {
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
 
   return (
-    <div class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-10`}>
+    <div
+      class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-5 lg:pt-4`}
+    >
       {products?.map((product, index) => (
         <ProductCard
           product={product}
           preload={index === 0}
           layout={layout?.card}
           platform={platform}
-          isPLP
+          resizeNameHeight={true}
           resizeQuantity={layout?.columns?.desktop == 3 ? false : true}
         />
       ))}

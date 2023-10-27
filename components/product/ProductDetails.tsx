@@ -132,13 +132,6 @@ function ProductInfo(
 
   return (
     <>
-      {/* Breadcrumb */}
-      <div class="px-4">
-        <Breadcrumb
-          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-        />
-      </div>
-
       <CTA
         listPrice={listPrice}
         price={price}
@@ -150,7 +143,7 @@ function ProductInfo(
       />
 
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8 px-4">
+      <div class="px-4">
         <h1>
           <span class="font-semibold text-xl capitalize">
             {layout?.name === "concat"
@@ -170,11 +163,9 @@ function ProductInfo(
         </div>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 px-4">
-        <ProductSelector product={product} />
-      </div>
+      <ProductSelector product={product} />
       {/* Similars */}
-      {product.isSimilarTo && (
+      {product.isSimilarTo && product.isSimilarTo.length > 0 && (
         <div class="flex flex-col gap-2 mt-4 px-4 md:max-w-[85%]">
           <span class="text-sm">
             Cores
@@ -210,14 +201,14 @@ function ProductInfo(
         </span>
       </div>
       <div class="flex flex-col-reverse lg:flex-col">
-        {giftSkuIds && (
+        {giftSkuIds && giftSkuIds.length > 0 && (
           <div class="mt-4 sm:mt-6 px-4">
             <ProductGift productGift={productGift} />
           </div>
         )}
-        <>
+        <div>
           {/* Add to Cart and Favorites button */}
-          <div class="mt-4 sm:mt-6 flex flex-col gap-2 px-4">
+          <div class="mt-4 sm:mt-6 flex gap-2 px-4">
             {availability === "https://schema.org/InStock"
               ? (
                 <>
@@ -276,12 +267,12 @@ function ProductInfo(
           <div class="mt-4 sm:mt-6 flex px-4 w-full">
             <a
               href="#combinacao"
-              class="flex items-center justify-center w-full xl:w-1/2 border border-emerald-500 rounded hover:bg-emerald-500 hover:text-white font-bold h-[50px] transition-colors duration-200"
+              class="flex items-center justify-center w-full xl:w-1/2 border border-emerald-500 rounded hover:bg-emerald-500 hover:text-white h-[50px] transition-colors duration-200"
             >
               Sugestão de Composição
             </a>
           </div>
-        </>
+        </div>
       </div>
 
       {/* Shipping Simulation */}
@@ -340,14 +331,14 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             <PrincipalImages images={images} />
 
             <Slider.PrevButton
-              class="no-animation absolute left-0.5 top-[30%] btn btn-circle btn-outline z-30"
+              class="no-animation absolute left-0.5 top-[35%] btn btn-circle btn-outline z-30"
               disabled
             >
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
 
             <Slider.NextButton
-              class="no-animation absolute right-0.5 top-[30%] btn btn-circle btn-outline z-30"
+              class="no-animation absolute right-0.5 top-[35%] btn btn-circle btn-outline z-30"
               disabled={images.length < 2}
             >
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
@@ -492,15 +483,27 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout, suggestions, productGift }: Props) {
   return (
-    <div class="container pt-20 sm:pt-36 lg:pt-20">
+    <div class="container pt-20 sm:pt-36 lg:pt-12">
       {page
         ? (
-          <Details
-            suggestions={suggestions}
-            page={page}
-            layout={layout}
-            productGift={productGift}
-          />
+          <>
+            {/* Breadcrumb */}
+            <div class="px-4 2xl:px-16">
+              <Breadcrumb
+                itemListElement={page.breadcrumbList?.itemListElement.slice(
+                  0,
+                  -1,
+                )}
+              />
+            </div>
+
+            <Details
+              suggestions={suggestions}
+              page={page}
+              layout={layout}
+              productGift={productGift}
+            />
+          </>
         )
         : <NotFound />}
     </div>

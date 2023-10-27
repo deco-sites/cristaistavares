@@ -80,14 +80,12 @@ function ProductShelf({
 
         <>
           <div
-            class={`${
-              !isPDP && "hidden sm:block"
-            } relative z-10 col-start-1 row-start-3`}
+            class={`${!isPDP && "block"} relative z-10 col-start-1 row-start-3`}
           >
             <Slider.PrevButton
               class={`absolute ${
                 !isPDP &&
-                "flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[70%]"
+                "flex items-center justify-center text-neutral-800 w-8 h-8 lg:hover:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-[#EAEAEA] lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[105%]"
               }`}
             >
               <Icon
@@ -99,14 +97,12 @@ function ProductShelf({
             </Slider.PrevButton>
           </div>
           <div
-            class={`${
-              !isPDP && "hidden sm:block"
-            } relative z-10 col-start-3 row-start-3`}
+            class={`${!isPDP && "block"} relative z-10 col-start-3 row-start-3`}
           >
             <Slider.NextButton
               class={`absolute ${
                 !isPDP
-                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[70%]"
+                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 lg:hover:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-[#EAEAEA] lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[105%]"
                   : "left-[60%]"
               }`}
             >

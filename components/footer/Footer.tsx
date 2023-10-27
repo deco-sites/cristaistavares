@@ -276,7 +276,7 @@ function Footer({
         ColorClasses(layout)
       }`}
     >
-      <div class="mx-6 lg:mx-auto flex w-full max-w-[1240px]">
+      <div class="lg:mx-auto flex w-full max-w-[1240px]">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-10">
             <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">

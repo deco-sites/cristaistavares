@@ -23,26 +23,33 @@ function VariantSelector({ product, product: { url } }: Props) {
     }, {});
 
   return (
-    <ul className="flex flex-col gap-4">
-      {Object.entries(sortedPossibilities).map(([name, values]) => (
-        <li className="flex flex-col gap-2" key={name}>
-          <span className="text-sm">{name}</span>
-          <ul className="flex flex-row gap-3">
-            {Object.entries(values).map(([value, links]) => (
-              <li key={value}>
-                <a href={links[0]}>
-                  <Avatar
-                    content={value}
-                    variant={links[0] === url ? "active" : "default"}
-                    isSelected={value == product.name}
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </ul>
+    <div class="mt-4 px-4">
+      <ul className="flex flex-col gap-4">
+        {Object.entries(sortedPossibilities).map(([name, values]) => (
+          <li className="flex flex-col gap-2" key={name}>
+            <span className="text-sm">{name}</span>
+            <ul className="flex flex-row gap-3">
+              {Object.entries(values).map(([value, links]) => {
+                return (
+                  <li key={value}>
+                    <a href={links[0]}>
+                      <Avatar
+                        content={value}
+                        variant={links[0] === url ? "active" : "default"}
+                        isSelected={value.toUpperCase() ===
+                          (product && product.name
+                            ? product.name.toUpperCase()
+                            : null)}
+                      />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

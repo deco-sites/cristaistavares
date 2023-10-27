@@ -52,7 +52,7 @@ interface Props {
 
   platform: ReturnType<typeof usePlatform>;
   isSearchbar?: boolean;
-  isPLP?: boolean;
+  resizeNameHeight?: boolean;
   resizeQuantity?: boolean;
 }
 
@@ -80,7 +80,7 @@ function ProductCard(
     itemListName,
     layout,
     isSearchbar = false,
-    isPLP = false,
+    resizeNameHeight = false,
     resizeQuantity,
   }: Props,
 ) {
@@ -147,7 +147,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`bg-white card card-compact rounded-none group w-full h-full lg:min-h-[600px] lg:max-h-[600px] hover:shadow-2xl p-3 ${
+      class={`flex flex-col justify-between bg-white card card-compact rounded-md group w-full h-full hover:shadow-2xl border border-[#c9c9c9] p-1.5 lg:p-3 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -281,17 +281,21 @@ function ProductCard(
         </figcaption>
       </figure>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
+      <div class="flex flex-col md:p-2 gap-[0.4rem] lg:gap-2">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
-          <div class="flex justify-between w-full items-center">
+          <div
+            class={`${
+              align === "center"
+                ? "items-center"
+                : "items-start lg:items-center"
+            } flex flex-col lg:flex-row justify-between w-full gap-2`}
+          >
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex flex-wrap items-center gap-2 overflow-auto min-h-[56px] ${
-                  align === "center"
-                    ? "justify-center p-3"
-                    : "justify-start py-3"
+                class={`flex flex-wrap items-center gap-2 overflow-auto ${
+                  align === "center" ? "justify-center p-3" : "justify-start"
                 } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
                 {skuSelector}
@@ -352,7 +356,7 @@ function ProductCard(
           <div
             class={`${
               align === "center" && "items-center justify-center text-center"
-            } flex flex-col gap-0 w-full ${isPLP && "h-[60px]"}`}
+            } flex flex-col gap-0 w-full ${resizeNameHeight && "min-h-[60px]"}`}
           >
             {l?.hide?.productName ? "" : (
               <h3 class="text-sm w-full">

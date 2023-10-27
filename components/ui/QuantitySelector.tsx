@@ -21,7 +21,9 @@ function QuantitySelector(
   return (
     <div class="join border rounded-none max-w-min h-[50px]">
       <Button
-        class="btn-square btn-ghost join-item"
+        class={`${
+          resizeQuantity && "max-w-[35px] xl:max-w-full"
+        } btn-square btn-ghost join-item`}
         onClick={decrement}
         disabled={disabled}
         loading={loading}
@@ -45,7 +47,9 @@ function QuantitySelector(
         size={3}
       />
       <Button
-        class="btn-square btn-ghost join-item"
+        class={`${
+          resizeQuantity && "max-w-[35px] xl:max-w-full"
+        } btn-square btn-ghost join-item`}
         onClick={increment}
         disabled={disabled}
         loading={loading}
