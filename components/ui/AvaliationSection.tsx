@@ -17,8 +17,8 @@ export interface Rating {
 }
 
 export interface Props {
-  rating: Rating | null;
-  reviews: Review[] | null;
+  rating?: Rating | null;
+  reviews?: Review[] | null;
 }
 
 function ReviewComment({ rating, reviewerName, text, title }: Review) {
