@@ -42,6 +42,7 @@ function ProductGallery({ products, layout }: Props) {
           preload={index === 0}
           layout={layout?.card}
           platform={platform}
+          isPLP
         />
       ))}
     </div>

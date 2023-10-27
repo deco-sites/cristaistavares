@@ -52,6 +52,7 @@ interface Props {
 
   platform: ReturnType<typeof usePlatform>;
   isSearchbar?: boolean;
+  isPLP?: boolean;
 }
 
 const relative = (url: string) => {
@@ -78,6 +79,7 @@ function ProductCard(
     itemListName,
     layout,
     isSearchbar = false,
+    isPLP = false,
   }: Props,
 ) {
   const {
@@ -347,7 +349,7 @@ function ProductCard(
           <div
             class={`${
               align === "center" && "items-center justify-center text-center"
-            } flex flex-col gap-0 w-full`}
+            } flex flex-col gap-0 w-full ${isPLP && "h-[60px]"}`}
           >
             {l?.hide?.productName ? "" : (
               <h3 class="text-sm w-full">

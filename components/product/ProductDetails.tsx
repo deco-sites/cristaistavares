@@ -152,7 +152,7 @@ function ProductInfo(
       {/* Code and name */}
       <div class="mt-4 sm:mt-8 px-4">
         <h1>
-          <span class="font-medium text-xl capitalize">
+          <span class="font-semibold text-xl capitalize">
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
@@ -379,7 +379,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         </div>
         <SliderJS rootId={id} />
         <div class="flex w-full h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
-          <div class="flex flex-col justify-between items-start gap-2 sm:gap-20 max-w-[1240px] w-full">
+          <div class="flex flex-col justify-between items-start gap-6 sm:gap-12 max-w-[1240px] w-full">
             <div class="flex flex-col gap-6 w-full lg:flex-1 lg:max-w-[30%]">
               {
                 /* {props.page.product.isVariantOf!.additionalProperty?.filter(
@@ -436,7 +436,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             )}
           </div>
         </div>
-        <div class="w-full flex flex-col my-6 max-w-[1240px] mx-auto p-4 xl:p-0">
+        <div class="w-full flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
               <h2
@@ -492,7 +492,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout, suggestions, productGift }: Props) {
   return (
-    <div class="container pt-20 sm:pt-36 lg:pt-20 lg:pb-10">
+    <div class="container pt-20 sm:pt-36 lg:pt-20">
       {page
         ? (
           <Details

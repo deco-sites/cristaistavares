@@ -22,13 +22,13 @@ export type Props = Pick<ProductListingPage, "sortOptions">;
 
 // TODO: move this to the loader
 const portugueseMappings = {
-  "relevance:desc": "Relevância",
+  "relevance:desc": "Maior Relevância",
   "price:desc": "Maior Preço",
   "price:asc": "Menor Preço",
   "orders:desc": "Mais vendidos",
   "name:desc": "Nome - de Z a A",
   "name:asc": "Nome - de A a Z",
-  // "release:desc": "Relevância - Decrescente",
+  "release:desc": "Menor Relevância",
   "discount:desc": "Maior desconto",
 };
 
