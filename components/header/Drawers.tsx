@@ -31,8 +31,8 @@ const Aside = (
   },
 ) => (
   <div
-    class={`bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw] ${
-      isFullWidth && "w-screen sm:w-[65vw]"
+    class={`bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100%] ${
+      isFullWidth && "w-full sm:w-[65%]"
     }`}
   >
     <div class="flex justify-between items-center">

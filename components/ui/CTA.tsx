@@ -43,7 +43,7 @@ export default function CTA(
     <>
       <div
         id="cta-content"
-        class="hidden justify-between w-full h-[68px] z-40 py-2 px-3 fixed bottom-0 bg-base-100 shadow-2xl drop-shadow-md"
+        class="hidden justify-between w-full h-[68px] z-40 py-2 px-3 fixed bottom-0 bg-base-100 shadow-2xl drop-shadow-md items-center gap-8"
       >
         {/* Prices */}
         <div class="flex flex-col items-start justify-start">
@@ -63,15 +63,9 @@ export default function CTA(
           </div>
         </div>
 
-        <AddToCartButtonVTEX
-          productID={skuId}
-          seller={sellerId}
-          price={price ?? 0}
-          discount={price && listPrice ? listPrice - price : 0}
-          name={name ?? ""}
-          quantity={1}
-          productGroupID={productGroupId ?? ""}
-        />
+        <button class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white font-bold w-full py-2 duration-150 transition-colors h-[50px]">
+          Comprar
+        </button>
       </div>
 
       <script

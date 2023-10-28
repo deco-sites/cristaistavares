@@ -499,12 +499,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout, suggestions, productGift }: Props) {
   return (
-    <div class="container pt-20 sm:pt-36 lg:pt-12">
+    <div class="container pt-12">
       {page
         ? (
           <>
             {/* Breadcrumb */}
-            <div class="max-w-[1220px] mx-auto">
+            <div class="max-w-[1220px] mx-auto px-4 lg:px-0">
               <Breadcrumb
                 itemListElement={page.breadcrumbList?.itemListElement.slice(
                   0,

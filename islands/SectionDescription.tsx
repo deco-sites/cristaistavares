@@ -14,7 +14,7 @@ export default function SectionDescription(
     : description.substring(0, textEndAt).concat("...");
 
   return (
-    <div class="max-w-[1240px] flex flex-col gap-4">
+    <div class="lg:max-w-[1240px] flex flex-col gap-4">
       <p
         dangerouslySetInnerHTML={{ __html: descriptionValue ?? "" }}
         class="text-[15px] leading-5 font-normal"
