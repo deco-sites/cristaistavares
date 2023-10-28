@@ -164,13 +164,13 @@ export default function Popup({
       >
         <form
           method="dialog"
-          class="flex md:flex-row modal-box rounded-none items-center overflow-visible p-3 max-w-3xl w-full md:h-[85%]"
+          class="flex md:flex-row modal-box items-center overflow-visible max-w-4xl w-full md:h-[80%] bg-[#f5d5d5] rounded-lg p-0"
         >
-          <div class="flex justify-center items-center absolute top-0 right-2">
+          <div class="flex justify-center items-center absolute top-2 right-2">
             <button
               onClick={() =>
                 setCookieOnCloseModal("closed", modalCloseExpiredDate)}
-              class="btn btn-sm btn-circle btn-ghost focus:outline-none"
+              class="btn btn-sm btn-circle btn-ghost focus:outline-none rounded-full p-1 bg-white hover:bg-white/90"
               aria-label="Fechar"
             >
               <Icon
@@ -184,7 +184,7 @@ export default function Popup({
           <div class="hidden md:block w-full h-full relative">
             <img
               alt="Banner Image"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover rounded-l-lg"
               src="https://d335luupugsy2.cloudfront.net/cms/files/179854/1676641172/$1gdbs1un41e"
             />
             <div class="absolute w-[160px] md:w-[211px] h-[85px] top-6 left-2 md:left-[78px] flex items-center justify-center">
@@ -203,7 +203,7 @@ export default function Popup({
             : (
               <>
                 <form
-                  class="flex items-center justify-center w-full h-full form-control bg-[#f5d5d5] p-2"
+                  class="flex items-center justify-center w-full h-full form-control bg-[#f5d5d5] p-2 rounded-r-lg"
                   onSubmit={handleSubmit}
                 >
                   <div class="max-w-[280px] text-center flex flex-col">

@@ -72,7 +72,7 @@ function CartItem(
           width={96}
           height={96}
           loading="lazy"
-          class="object-cover object-center rounded-lg"
+          class="rounded-lg"
         />
       </a>
 

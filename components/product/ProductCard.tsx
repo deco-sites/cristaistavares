@@ -91,6 +91,7 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
+    additionalProperty,
   } = product;
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
@@ -143,6 +144,9 @@ function ProductCard(
     .map(([value, [link]]) => (
       <SkuSelector key={value} value={value} link={link} url={url} />
     ));
+
+  const isNew = additionalProperty?.find((item) => item.value == "LANÇAMENTO");
+  const isKit = additionalProperty?.find((item) => item.value == "KIT");
 
   return (
     <div
@@ -207,9 +211,17 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full h-full relative"
         >
-          <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
-            LANÇAMENTO
-          </span>
+          {isKit && (
+            <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
+              KIT
+            </span>
+          )}
+
+          {isNew && (
+            <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
+              LANÇAMENTO
+            </span>
+          )}
 
           <DiscountPercentage
             price={filteredProductPrice! ?? price!}

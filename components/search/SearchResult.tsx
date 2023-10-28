@@ -4,7 +4,7 @@ import Filters from "$store/components/search/Filters.tsx";
 import CustomPagination from "./CustomPagination.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import type { Product, ProductListingPage } from "apps/commerce/types.ts";
+import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 
@@ -114,7 +114,7 @@ export const loader = (props: Props, req: Request) => {
 };
 
 function SearchResult({ page, ...props }: Props) {
-  if (!page) {
+  if (!page || page.products.length === 0) {
     return <NotFound />;
   }
 

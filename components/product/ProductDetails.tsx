@@ -25,6 +25,7 @@ import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 import CTA from "$store/components/ui/CTA.tsx";
 import Matcher from "$store/components/product/Matcher.tsx";
+import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import ProductDescription from "$store/islands/ProductDescription.tsx";
 import ProductGift from "./ProductGift.tsx";
 
@@ -312,6 +313,16 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   const { page: { product: { image: images = [] } }, layout } = props;
   const variant = layout?.image ?? "slider";
 
+  const price = (props.page.product)?.offers?.offers[0]?.priceSpecification
+    ?.find((
+      item,
+    ) => item.priceType == "https://schema.org/SalePrice")?.price;
+
+  const listPrice = (props.page.product)?.offers?.offers[0]?.priceSpecification
+    ?.find((
+      item,
+    ) => item.priceType == "https://schema.org/ListPrice")?.price;
+
   /**
    * Product slider variant
    *
@@ -328,6 +339,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
+            <DiscountPercentage
+              price={price!}
+              listPrice={listPrice!}
+            />
+
             <PrincipalImages images={images} />
 
             <Slider.PrevButton
