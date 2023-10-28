@@ -19,43 +19,43 @@ export interface Props {
   }>;
 }
 
-// function Dots({ cards, interval = 0 }: Pick<Props, "interval" | "cards">) {
-//   return (
-//     <>
-//       <style
-//         dangerouslySetInnerHTML={{
-//           __html: `
-//             @property --dot-progress {
-//               syntax: '<percentage>';
-//               inherits: false;
-//               initial-value: 0%;
-//             }
-//             `,
-//         }}
-//       />
-//       <ul class="flex lg:hidden carousel justify-center col-span-full gap-4 z-10 row-start-4">
-//         {cards?.map((_, index) => (
-//           <li class="carousel-item">
-//             <Slider.Dot index={index}>
-//               <div class="py-5">
-//                 <div
-//                   class="w-3 h-3 rounded-full group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
-//                   style={{ animationDuration: `${interval}s` }}
-//                 />
-//               </div>
-//             </Slider.Dot>
-//           </li>
-//         ))}
-//       </ul>
-//     </>
-//   );
-// }
+function Dots({ cards, interval = 0 }: Pick<Props, "interval" | "cards">) {
+  return (
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @property --dot-progress {
+              syntax: '<percentage>';
+              inherits: false;
+              initial-value: 0%;
+            }
+            `,
+        }}
+      />
+      <ul class="flex lg:hidden carousel translate-y-7 justify-center col-span-full gap-4 z-10 row-start-4">
+        {cards?.map((_, index) => (
+          <li class="carousel-item">
+            <Slider.Dot index={index}>
+              <div class="py-5">
+                <div
+                  class="w-3 h-3 rounded-full group-disabled:animate-progress bg-gradient-to-r from-dark-pink from-[length:var(--dot-progress)] to-black to-[length:var(--dot-progress)]"
+                  style={{ animationDuration: `${interval}s` }}
+                />
+              </div>
+            </Slider.Dot>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
 
 export default function CategoryList({ title, cards, interval }: Props) {
   const id = useId();
 
   return (
-    <section class="w-full h-full flex items-center justify-center bg-[#f4f4f4]">
+    <section class="w-full h-[678px] lg:h-full flex items-center justify-center bg-[#f4f4f4]">
       <div>
         <div class="flex items-center justify-center h-[28px] text-center mt-2">
           <h2 class="text-lg lg:text-xl font-bold">{title}</h2>
@@ -93,7 +93,7 @@ export default function CategoryList({ title, cards, interval }: Props) {
             ))}
           </Slider>
 
-          {/* <Dots cards={cards} interval={interval} /> */}
+          <Dots cards={cards} interval={interval} />
 
           <SliderJS
             rootId={id}
