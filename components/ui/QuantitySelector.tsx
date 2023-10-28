@@ -6,13 +6,26 @@ interface Props {
   loading?: boolean;
   onChange?: (quantity: number) => void;
   resizeQuantity?: boolean;
+  isProductMatcher?: boolean;
 }
 
 const QUANTITY_MAX_VALUE = 100;
 
 function QuantitySelector(
-  { onChange, quantity, disabled, loading, resizeQuantity = false }: Props,
+  {
+    onChange,
+    quantity,
+    disabled,
+    loading,
+    resizeQuantity = false,
+    isProductMatcher = false,
+  }: Props,
 ) {
+  const inputWidth = isProductMatcher
+    ? "w-[23px]"
+    : resizeQuantity
+    ? "w-[10px]"
+    : "w-[45px]";
   const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>
@@ -31,9 +44,7 @@ function QuantitySelector(
         -
       </Button>
       <input
-        class={`text-center ${
-          resizeQuantity ? "w-[10px]" : "w-[45px]"
-        } [appearance:textfield] join-item`}
+        class={`text-center ${inputWidth} [appearance:textfield] join-item`}
         type="number"
         aria-label="current selected number"
         inputMode="numeric"

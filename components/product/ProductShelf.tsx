@@ -80,7 +80,9 @@ function ProductShelf({
 
         <>
           <div
-            class={`${!isPDP && "block"} relative z-10 col-start-1 row-start-3`}
+            class={`${
+              !isPDP && "hidden sm:block"
+            } relative z-10 col-start-1 row-start-3`}
           >
             <Slider.PrevButton
               class={`absolute ${
@@ -97,7 +99,9 @@ function ProductShelf({
             </Slider.PrevButton>
           </div>
           <div
-            class={`${!isPDP && "block"} relative z-10 col-start-3 row-start-3`}
+            class={`${
+              !isPDP && "hidden sm:block"
+            } relative z-10 col-start-3 row-start-3`}
           >
             <Slider.NextButton
               class={`absolute ${

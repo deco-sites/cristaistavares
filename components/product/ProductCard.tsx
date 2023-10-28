@@ -54,6 +54,7 @@ interface Props {
   isSearchbar?: boolean;
   resizeNameHeight?: boolean;
   resizeQuantity?: boolean;
+  isProductMatcher?: boolean;
 }
 
 const relative = (url: string) => {
@@ -82,6 +83,7 @@ function ProductCard(
     isSearchbar = false,
     resizeNameHeight = false,
     resizeQuantity,
+    isProductMatcher = false,
   }: Props,
 ) {
   const {
@@ -290,6 +292,7 @@ function ProductCard(
                 discount={price && listPrice ? listPrice - price : 0}
                 seller={filteredProductSeller ?? seller!}
                 resizeQuantity={resizeQuantity}
+                isProductMatcher={isProductMatcher}
               />
             )}
         </figcaption>
@@ -475,6 +478,7 @@ function ProductCard(
                 discount={price && listPrice ? listPrice - price : 0}
                 seller={filteredProductSeller ?? seller!}
                 resizeQuantity={resizeQuantity}
+                isProductMatcher={isProductMatcher}
               />
             </div>
           )

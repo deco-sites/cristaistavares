@@ -4,9 +4,18 @@ import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 import type { Props } from "$store/components/product/AddToCartButton/vtex.tsx";
 
 export default function ProductCta(
-  { seller, discount, name, price, productGroupID, productID, resizeQuantity }:
+  {
+    seller,
+    discount,
+    name,
+    price,
+    productGroupID,
+    productID,
+    resizeQuantity,
+    isProductMatcher,
+  }:
     & Props
-    & { resizeQuantity?: boolean },
+    & { resizeQuantity?: boolean; isProductMatcher?: boolean },
 ) {
   const [quantity, setQuantity] = useState(1);
 
@@ -29,6 +38,7 @@ export default function ProductCta(
           quantity={quantity}
           onChange={setQuantity}
           resizeQuantity={resizeQuantity}
+          isProductMatcher={isProductMatcher}
         />
       </div>
       {cta}

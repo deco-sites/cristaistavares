@@ -68,6 +68,8 @@ export default function ProductMatch(
                     itemListName={title}
                     layout={cardLayout}
                     platform={platform}
+                    resizeQuantity={false}
+                    isProductMatcher={true}
                   />
                 </Slider.Item>
               ))}
