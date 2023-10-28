@@ -29,12 +29,12 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
           <div
             class={`${
               index! < 5 ? "flex-row-reverse" : "-translate-x-[85%]"
-            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-stretch justify-between border-t border-b-2 border-base-200 lg:w-[920px] xl:w-[1260px] h-[425px]`}
+            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[920px] xl:w-[1160px] h-[425px]`}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
               <Image
-                class="p-6"
+                class="p-6 object-cover"
                 src={image.src}
                 alt={image.alt}
                 width={412}
@@ -50,7 +50,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                   </a>
 
                   <ul
-                    class="h-full gap-y-3 mt-2.5"
+                    class="h-full mt-2.5"
                     style={{ columnCount: columns }}
                   >
                     {node.children?.map((leaf) => (

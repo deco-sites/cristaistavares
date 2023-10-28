@@ -147,11 +147,19 @@ function BannerCarousel({ images, preload, interval }: Props) {
         ))}
       </Slider>
 
-      <Buttons />
+      {images && images.length > 1 && (
+        <>
+          <Buttons />
 
-      <Dots images={images} interval={interval} />
+          <Dots images={images} interval={interval} />
 
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+          <SliderJS
+            rootId={id}
+            interval={interval && interval * 1e3}
+            infinite
+          />
+        </>
+      )}
     </div>
   );
 }

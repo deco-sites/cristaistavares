@@ -1,6 +1,6 @@
 export default function Form() {
   return (
-    <div class="w-full h-full flex flex-col md:flex-row gap-3 md:gap-0">
+    <div class="w-full h-full flex flex-col md:flex-row gap-3 md:gap-10">
       <div class="w-full lg:w-2/4 h-full">
         <form class="w-full h-full flex flex-col">
           <label for="nome">Nome</label>
@@ -52,7 +52,7 @@ export default function Form() {
         </form>
       </div>
       <div>
-        <div class="min-w-[325px] max-w-[362px] h-[584px] bg-[#F4F4F4] md:ml-10 p-4 md:p-8">
+        <div class="w-full h-[584px] bg-[#F4F4F4] p-4 md:p-8">
           <div class="mb-[16px]">
             <p class="text-[14px]">Televendas</p>
           </div>

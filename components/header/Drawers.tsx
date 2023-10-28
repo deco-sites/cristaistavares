@@ -65,19 +65,16 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
       open={displayMenu.value || displaySearchDrawer.value}
       onClose={() => {
         displayMenu.value = false;
-        displaySearchDrawer.value = false;
       }}
       aside={
         <Aside
           onClose={() => {
             displayMenu.value = false;
-            displaySearchDrawer.value = false;
           }}
           title={displayMenu.value ? "Menu" : "Buscar"}
           isFullWidth={true}
         >
           {displayMenu.value && <Menu {...menu} />}
-          {displaySearchDrawer.value && <Searchbar {...searchbar} />}
         </Aside>
       }
     >

@@ -13,6 +13,7 @@ export type Props =
     displayFilter?: boolean;
     productsQuantity?: number;
     isListModeActive?: boolean;
+    title?: string;
   };
 
 function applySort() {
@@ -35,9 +36,26 @@ function SearchControls(
     sortOptions,
     productsQuantity,
     isListModeActive,
+    title,
   }: Props,
 ) {
   const open = useSignal(false);
+
+  function extractSearchTerm() {
+    const urlParams = new URLSearchParams(window?.location?.search);
+
+    if (urlParams && urlParams.has("q")) {
+      const searchTerm = urlParams.get("q");
+
+      if (searchTerm) {
+        return decodeURIComponent(searchTerm);
+      }
+    }
+
+    return "";
+  }
+
+  const searchItem = extractSearchTerm();
 
   return (
     <Drawer
@@ -67,8 +85,11 @@ function SearchControls(
           <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
         </div>
 
-        <div class="flex flex-col gap-2 items-center justify-center text-center font-bold py-2">
-          <h1 class="text-xl block lg:hidden">Muranos</h1>
+        <div class="flex flex-col lg:flex-row gap-2 lg:gap-8 items-center justify-center text-center font-bold py-2">
+          <h1>
+            Resultado para:{" "}
+            <span class="capitalize">{title ?? searchItem}</span>
+          </h1>
           <span class="text-sm">{productsQuantity} produtos</span>
         </div>
 

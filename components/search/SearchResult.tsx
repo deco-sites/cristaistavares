@@ -1,11 +1,10 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as cardLayout } from "$store/components/product/ProductCard.tsx";
 import Filters from "$store/components/search/Filters.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import CustomPagination from "./CustomPagination.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import type { ProductListingPage } from "apps/commerce/types.ts";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 
@@ -21,6 +20,7 @@ export interface Layout {
 }
 
 export interface Props {
+  title?: string;
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
@@ -29,8 +29,9 @@ export interface Props {
 
 function NotFound() {
   return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
+    <div class="w-full flex flex-col justify-center gap-1.5 items-center py-10">
+      <span>Não encontramos nenhum produto.</span>
+      <span>Tente procurar por algum outro termo.</span>
     </div>
   );
 }
@@ -39,6 +40,7 @@ function Result({
   page,
   layout,
   cardLayout,
+  title,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
@@ -54,6 +56,7 @@ function Result({
           displayFilter={layout?.variant === "drawer"}
           productsQuantity={pageInfo.records}
           isListModeActive={isListModeActive}
+          title={title}
         />
 
         <div class="flex flex-row">

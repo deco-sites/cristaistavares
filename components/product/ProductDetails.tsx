@@ -488,7 +488,7 @@ function ProductDetails({ page, layout, suggestions, productGift }: Props) {
         ? (
           <>
             {/* Breadcrumb */}
-            <div class="px-4 2xl:px-16">
+            <div class="max-w-[1220px] mx-auto">
               <Breadcrumb
                 itemListElement={page.breadcrumbList?.itemListElement.slice(
                   0,
