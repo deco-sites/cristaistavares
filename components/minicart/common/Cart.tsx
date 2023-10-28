@@ -80,7 +80,7 @@ function Cart({
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-6 px-2 pb-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              class="mt-6 px-2 pb-2 flex-grow overflow-y-scroll flex flex-col gap-6 w-full"
             >
               {items.map((item, index) => (
                 <li

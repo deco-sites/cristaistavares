@@ -1,5 +1,4 @@
 import { formatPrice } from "$store/sdk/format.ts";
-import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 
 import type { AggregateOffer } from "apps/commerce/types.ts";
 
@@ -20,8 +19,6 @@ export default function CTA(
     offers,
     skuId,
     sellerId,
-    productGroupId,
-    name,
   }: Props,
 ) {
   function handleScrollOnPDP() {
@@ -63,9 +60,13 @@ export default function CTA(
           </div>
         </div>
 
-        <button class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white font-bold w-full py-2 duration-150 transition-colors h-[50px]">
+        <a
+          data-deco="add-to-cart"
+          href={`/checkout/cart/add?sku=${skuId}&qty=${1}&seller=${sellerId}&redirect=true&sc=1`}
+          class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white font-bold w-full py-2 duration-150 transition-colors h-[50px]"
+        >
           Comprar
-        </button>
+        </a>
       </div>
 
       <script

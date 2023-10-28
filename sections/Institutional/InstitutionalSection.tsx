@@ -15,6 +15,7 @@ export interface FilterProps {
     label: string;
     href: string;
   }[];
+  isOpened?: boolean;
 }
 
 export interface QuestionProps {
@@ -46,7 +47,7 @@ function Filters({ filters }: { filters: FilterProps[] }) {
                 type="checkbox"
                 name="pdc-filters"
                 class="min-h-0"
-                checked={true}
+                checked={filter.isOpened}
               />
               <div class="collapse-title flex justify-between cursor-pointer border-b border-gray-200 p-0 min-h-0">
                 <span class="flex content-center flex-wrap h-9">
@@ -86,7 +87,7 @@ function Question({ questions }: { questions: QuestionProps[] }) {
       {questions
         .map((question) => (
           <li class="flex flex-col gap-4">
-            <div class="collapse">
+            <div class="collapse rounded-none">
               <input type="checkbox" name="pdc-filters" class="min-h-0" />
               <div class="collapse-title flex justify-between cursor-pointer border-b border-gray-100 p-0 min-h-0">
                 <span class="flex content-center flex-wrap h-9">

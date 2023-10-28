@@ -41,7 +41,7 @@ export default function ReviewCarousel(
     <section class="flex items-center justify-center bg-whitesmoke w-full h-full min-h-[204px] mb-12 py-3">
       <div
         class={`flex flex-col items-center justify-center w-full h-full ${
-          hasMarginLeft && "ml-[270px]"
+          hasMarginLeft && "lg:ml-[270px]"
         }`}
       >
         <div class="flex items-center justify-center px-3 py-2 w-full max-w-[400px] text-center mb-4 text-lg bg-dark-pink text-white -translate-y-8">
