@@ -335,7 +335,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] 2xl:grid-cols-[max-content_30vw_32vw] sm:grid-rows-1 sm:justify-center lg:px-4 2xl:px-0"
+          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] md:grid-cols-[max-content_30vw_52vw] 2xl:grid-cols-[max-content_30vw_32vw] sm:grid-rows-1 sm:justify-center lg:px-4 2xl:px-0"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
@@ -499,12 +499,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 
 function ProductDetails({ page, layout, suggestions, productGift }: Props) {
   return (
-    <div class="container pt-12">
+    <div class="xl:container pt-12">
       {page
         ? (
           <>
             {/* Breadcrumb */}
-            <div class="max-w-[1220px] mx-auto px-4 lg:px-0">
+            <div class="xl:max-w-[1220px] mx-auto px-6 xl:px-0">
               <Breadcrumb
                 itemListElement={page.breadcrumbList?.itemListElement.slice(
                   0,

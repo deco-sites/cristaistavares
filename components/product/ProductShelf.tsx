@@ -47,7 +47,7 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container py-8 flex flex-col gap-8 lg:gap-10 lg:py-10">
+    <div class="w-full xl:container py-8 flex flex-col gap-8 lg:gap-10 lg:py-10">
       <Header
         title={title || ""}
         description={description || ""}

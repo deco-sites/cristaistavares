@@ -62,7 +62,7 @@ export default function CategoryList({ title, cards, interval }: Props) {
         </div>
         <div
           id={id}
-          class="container grid grid-cols grid-cols-[48px_1fr_48px]"
+          class="xl:container grid grid-cols grid-cols-[48px_1fr_48px]"
         >
           <Slider class="carousel carousel-center gap-[14px] col-span-full row-start-2 row-end-5">
             {cards?.map((card, index) => (

@@ -36,7 +36,7 @@ export default function ProductMatch(
   }
 
   return (
-    <section class="flex items-center justify-center w-full h-full lg:px-3 container">
+    <section class="flex items-center justify-center w-full h-full lg:px-3 xl:container">
       <div class="flex flex-col lg:flex-row max-w-[1240px] w-full items-center lg:items-start justify-between gap-6 lg:gap-3">
         {banner && (
           <a href={banner.href} class="lg:w-full lg:h-full px-6 lg:px-0">
@@ -55,7 +55,7 @@ export default function ProductMatch(
 
           <div
             id={id}
-            class="container grid grid-cols-[48px_1fr_48px] px-3 sm:px-5"
+            class="xl:container grid grid-cols-[48px_1fr_48px] px-3 sm:px-5"
           >
             <Slider class="carousel sm:carousel-end gap-1 sm:gap-6 col-span-full row-start-2 row-end-5">
               {products?.map((product, index) => (
