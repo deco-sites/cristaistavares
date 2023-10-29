@@ -181,7 +181,7 @@ export default function Popup({
               />
             </button>
           </div>
-          <div class="hidden md:block w-full h-full relative">
+          <div class="hidden md:block w-full h-full max-w-[50%] relative">
             <img
               alt="Banner Image"
               class="w-full h-full object-cover rounded-l-lg"
@@ -196,7 +196,7 @@ export default function Popup({
           </div>
           {success.value
             ? (
-              <div class="lg:text-xl text-left text-[#EE3F65]">
+              <div class="flex items-center justify-center lg:text-xl text-center text-[#EE3F65]">
                 E-mail cadastrado com sucesso!
               </div>
             )
