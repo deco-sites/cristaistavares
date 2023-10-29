@@ -77,7 +77,7 @@ export default function ProductMatch(
 
             <>
               <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-                <Slider.PrevButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[70%]">
+                <Slider.PrevButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white rounded-[5px] border border-solid border-[#EAEAEA] lg:border-black/50 disabled:cursor-not-allowed disabled:opacity-40 right-[68%]">
                   <Icon
                     size={24}
                     id="ChevronRight"
@@ -87,7 +87,7 @@ export default function ProductMatch(
                 </Slider.PrevButton>
               </div>
               <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-                <Slider.NextButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[70%]">
+                <Slider.NextButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white rounded-[5px] border border-solid border-[#EAEAEA] lg:border-black/50 disabled:cursor-not-allowed disabled:opacity-40 left-[68%]">
                   <Icon size={24} id="ChevronRight" strokeWidth={3} />
                 </Slider.NextButton>
               </div>
