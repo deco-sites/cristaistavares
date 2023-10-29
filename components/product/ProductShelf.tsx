@@ -87,7 +87,7 @@ function ProductShelf({
             <Slider.PrevButton
               class={`absolute ${
                 !isPDP &&
-                "flex items-center justify-center text-neutral-800 w-8 h-8 lg:hover:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-[#EAEAEA] lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[105%]"
+                "flex items-center justify-center text-neutral-800 w-8 h-8 lg:hover:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-[#EAEAEA] lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[65%]"
               }`}
             >
               <Icon
@@ -106,7 +106,7 @@ function ProductShelf({
             <Slider.NextButton
               class={`absolute ${
                 !isPDP
-                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 lg:hover:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-[#EAEAEA] lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[105%]"
+                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 lg:hover:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-[#EAEAEA] lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[65%]"
                   : "left-[60%]"
               }`}
             >

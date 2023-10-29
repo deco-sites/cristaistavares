@@ -21,7 +21,7 @@ const LoginElement = () => {
           loading="lazy"
         />
         <div class="flex justify-center items-center">
-          <strong class="font-normal leading-5 truncate overflow-hidden text-sm text-gray-base normal-case arrow-down">
+          <strong class="font-normal leading-5 truncate overflow-hidden text-sm text-gray-base normal-case arrow-down text-start">
             Bem vindo (a), <br />{" "}
             {!user.value ? "Faça seu login" : `${user.value.email}`}
           </strong>
