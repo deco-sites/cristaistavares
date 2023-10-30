@@ -59,7 +59,7 @@ function ProductShelf({
         id={id}
         class="container max-w-[1280px] grid grid-cols-[48px_1fr_48px] px-3 sm:px-5"
       >
-        <Slider class="carousel sm:carousel-end gap-1 md:gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="flex overflow-x-scroll snap-mandatory scroll-smooth gap-1 md:gap-6 col-span-full row-start-2 row-end-5 scrollbar lg:scrollbar-none pb-4 lg:pb-0">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
@@ -87,7 +87,7 @@ function ProductShelf({
             <Slider.PrevButton
               class={`absolute ${
                 !isPDP &&
-                "flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-black/50 lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 right-[68%]"
+                "flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-black/50 lg:hover:border-black disabled:opacity-40 right-[68%]"
               }`}
             >
               <Icon
@@ -106,7 +106,7 @@ function ProductShelf({
             <Slider.NextButton
               class={`absolute ${
                 !isPDP
-                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-black/50 lg:hover:border-black disabled:cursor-not-allowed disabled:opacity-40 left-[68%]"
+                  ? "flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white lg:rounded-[5px] lg:border lg:border-solid lg:border-black/50 lg:hover:border-black disabled:opacity-40 left-[68%]"
                   : "left-[60%]"
               }`}
             >
@@ -117,7 +117,7 @@ function ProductShelf({
 
         {/* <Dots products={products} interval={(interval && interval * 1e3) ?? 0} /> */}
 
-        <SliderJS rootId={id} />
+        <SliderJS rootId={id} infinite scroll="smooth" />
         <SendEventOnLoad
           event={{
             name: "view_item_list",

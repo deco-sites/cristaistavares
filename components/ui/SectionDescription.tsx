@@ -5,13 +5,18 @@ export interface Props {
   title: HTMLWidget;
   description: HTMLWidget;
   textEndAt?: number;
+  hasMostPaddingBottom?: boolean;
 }
 
 export default function SectionDescription(
-  { title, description, textEndAt = 450 }: Props,
+  { title, description, textEndAt = 450, hasMostPaddingBottom = false }: Props,
 ) {
   return (
-    <section class="h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px] px-4 lg:px-0">
+    <section
+      class={`${
+        hasMostPaddingBottom && "pb-4"
+      } h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px] px-4 lg:px-0`}
+    >
       <div>
         <h2
           dangerouslySetInnerHTML={{ __html: title }}

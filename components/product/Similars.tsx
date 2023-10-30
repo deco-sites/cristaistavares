@@ -39,7 +39,7 @@ function SimilarsSlider(
       id={id}
       class="max-w-max grid grid-cols-[48px_1fr_48px]"
     >
-      <Slider class="carousel gap-1.5 col-span-full row-start-2 row-end-5 px-4 lg:px-0">
+      <Slider class="carousel gap-1.5 col-span-full row-start-2 row-end-5 mx-4">
         {products?.map(({ image: images, url }, index) => {
           const [front] = images ?? [];
 

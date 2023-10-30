@@ -102,8 +102,8 @@ function SearchControls(
               {Array(3).fill("").map((_) => (
                 <div
                   class={`${
-                    !isListModeActive && "bg-black"
-                  } border border-black w-4 h-4`}
+                    !isListModeActive && "bg-black opacity-90"
+                  } border border-black w-4 h-4 rounded opacity-40`}
                 />
               ))}
             </button>
@@ -115,8 +115,8 @@ function SearchControls(
               {Array(4).fill("").map((_) => (
                 <div
                   class={`${
-                    isListModeActive && "bg-black"
-                  } border border-black w-4 h-4`}
+                    isListModeActive && "bg-black opacity-90"
+                  } border border-black w-4 h-4 rounded opacity-40`}
                 />
               ))}
             </button>

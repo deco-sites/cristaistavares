@@ -29,6 +29,34 @@
   }
 }
 
+@layer utilities {
+
+  /** Remove scrollbar from overflow-auto */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #a81650;
+    border-radius: 100vh;
+  }
+}
+
 .group:disabled .group-disabled\:animate-progress {
   animation: progress-frame ease normal
 }

@@ -57,7 +57,7 @@ export default function ProductMatch(
             id={id}
             class="xl:container grid grid-cols-[48px_1fr_48px] px-3 sm:px-5"
           >
-            <Slider class="carousel sm:carousel-end gap-1 sm:gap-6 col-span-full row-start-2 row-end-5">
+            <Slider class="flex overflow-x-scroll snap-mandatory scroll-smooth gap-1 md:gap-6 col-span-full row-start-2 row-end-5 scrollbar lg:scrollbar-none pb-4 lg:pb-0">
               {products?.map((product, index) => (
                 <Slider.Item
                   index={index}
@@ -77,7 +77,7 @@ export default function ProductMatch(
 
             <>
               <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-                <Slider.PrevButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white rounded-[5px] border border-solid border-[#EAEAEA] lg:border-black/50 disabled:cursor-not-allowed disabled:opacity-40 right-[68%]">
+                <Slider.PrevButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white rounded-[5px] border border-solid border-[#EAEAEA] lg:border-black/50 disabled:opacity-40 right-[68%]">
                   <Icon
                     size={24}
                     id="ChevronRight"
@@ -87,12 +87,12 @@ export default function ProductMatch(
                 </Slider.PrevButton>
               </div>
               <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-                <Slider.NextButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white rounded-[5px] border border-solid border-[#EAEAEA] lg:border-black/50 disabled:cursor-not-allowed disabled:opacity-40 left-[68%]">
+                <Slider.NextButton class="absolute flex items-center justify-center text-neutral-800 w-8 h-8 lg:bg-white rounded-[5px] border border-solid border-[#EAEAEA] lg:border-black/50 disabled:opacity-40 left-[68%]">
                   <Icon size={24} id="ChevronRight" strokeWidth={3} />
                 </Slider.NextButton>
               </div>
             </>
-            <SliderJS rootId={id} />
+            <SliderJS rootId={id} infinite scroll="smooth" />
             <SendEventOnLoad
               event={{
                 name: "view_item_list",

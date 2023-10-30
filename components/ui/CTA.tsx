@@ -63,7 +63,7 @@ export default function CTA(
         <a
           data-deco="add-to-cart"
           href={`/checkout/cart/add?sku=${skuId}&qty=${1}&seller=${sellerId}&redirect=true&sc=1`}
-          class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white font-bold w-full py-2 duration-150 transition-colors h-[50px]"
+          class="flex items-center justify-center bg-emerald-500 hover:bg-emerald-400 text-white font-bold w-full py-2 duration-150 transition-colors h-[50px] rounded"
         >
           Comprar
         </a>
