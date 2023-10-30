@@ -23,8 +23,6 @@ export interface Props {
     headerfontSize?: "Normal" | "Large";
   };
   cardLayout?: cardLayout;
-  preload?: boolean;
-  interval?: number;
   hasPaddingOnTheRight?: boolean;
 }
 
@@ -34,8 +32,6 @@ function ProductShelf({
   description,
   layout,
   cardLayout,
-  interval,
-  preload = false,
   isPDP = false,
   hasPaddingOnTheRight = false,
 }: Props) {
