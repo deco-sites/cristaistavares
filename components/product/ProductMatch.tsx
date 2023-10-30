@@ -57,7 +57,7 @@ export default function ProductMatch(
             id={id}
             class="xl:container grid grid-cols-[48px_1fr_48px] px-3 sm:px-5"
           >
-            <Slider class="flex overflow-x-scroll snap-mandatory scroll-smooth gap-1 md:gap-6 col-span-full row-start-2 row-end-5 scrollbar lg:scrollbar-none pb-4 lg:pb-0">
+            <Slider class="md:carousel md:carousel-end inline-flex overflow-x-scroll snap-mandatory scroll-smooth gap-1 md:gap-6 col-span-full row-start-2 row-end-5 scrollbar pb-4 lg:pb-0">
               {products?.map((product, index) => (
                 <Slider.Item
                   index={index}
@@ -92,7 +92,7 @@ export default function ProductMatch(
                 </Slider.NextButton>
               </div>
             </>
-            <SliderJS rootId={id} infinite scroll="smooth" />
+            <SliderJS rootId={id} infinite />
             <SendEventOnLoad
               event={{
                 name: "view_item_list",
