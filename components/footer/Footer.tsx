@@ -37,7 +37,9 @@ export interface SocialItem {
 }
 
 export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+  image: ImageWidget;
+  href?: string;
+  description: string;
 }
 
 export interface PaymentItemBottom {
@@ -190,7 +192,7 @@ function Footer({
   },
   payments = {
     title: "Formas de pagamento",
-    items: [{ label: "Mastercard" }, { label: "Visa" }, { label: "Pix" }],
+    items: [],
   },
   mobileApps = { apple: "/", android: "/" },
   regionOptions = { currency: [], language: [] },
