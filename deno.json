@@ -2,8 +2,8 @@
   "imports": {
     "deco-sites/cristaistavares/": "./",
     "$store/": "./",
-    "apps/": "https://denopkg.com/deco-cx/apps@0.18.0/",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.44.6/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.18.3/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.44.8/",
     "deco-sites/std/": "https://denopkg.com/deco-sites/std@1.22.11/",
     "$fresh/": "https://deno.land/x/fresh@1.5.2/",
     "preact": "https://esm.sh/preact@10.18.1",
