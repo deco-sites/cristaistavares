@@ -19,6 +19,7 @@ export interface Props {
      * @title Text to show when expired
      */
     expired?: string;
+    days?: string;
     hours?: string;
     minutes?: string;
     seconds?: string;
@@ -40,6 +41,15 @@ export interface Props {
   layout?: {
     textPosition?: "Before counter" | "After counter";
   };
+
+  /**
+   * @format color
+   */
+  backgroundHex?: string;
+  /**
+   * @format color
+   */
+  textHex?: string;
 }
 
 const snippet = (expiresAt: string, rootId: string) => {
@@ -54,10 +64,10 @@ const snippet = (expiresAt: string, rootId: string) => {
     );
     const minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((delta % (1000 * 60)) / 1000);
-    const totalHours = (days * 24) + hours;
 
     return {
-      hours: Math.min(totalHours, 99),
+      days,
+      hours,
       minutes,
       seconds,
     };
@@ -73,7 +83,7 @@ const snippet = (expiresAt: string, rootId: string) => {
 
   const start = () =>
     setInterval(() => {
-      const { hours, minutes, seconds } = getDelta();
+      const { days, hours, minutes, seconds } = getDelta();
       const isExpired = hours + minutes + seconds < 0;
 
       if (isExpired) {
@@ -83,6 +93,7 @@ const snippet = (expiresAt: string, rootId: string) => {
         expired && expired.classList.remove("hidden");
         counter && counter.classList.add("hidden");
       } else {
+        setValue(`${rootId}::days`, days);
         setValue(`${rootId}::hours`, hours);
         setValue(`${rootId}::minutes`, minutes);
         setValue(`${rootId}::seconds`, seconds);
@@ -100,13 +111,18 @@ function CampaignTimer({
   text = "Time left for a campaign to end wth a link",
   link = { text: "Click me", href: "/hello" },
   layout = { textPosition: "Before counter" },
+  backgroundHex = "#000",
+  textHex = "#fff",
 }: Props) {
   const id = useId();
 
   return (
     <>
-      <div class="bg-accent text-accent-content">
-        <div class="container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16 py-4 px-6 gap-4 ">
+      <div
+        id="campaign-timer"
+        style={{ background: backgroundHex, color: textHex }}
+      >
+        <div class="container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16 py-4 px-6 gap-4">
           {layout?.textPosition !== "After counter" &&
             (
               <div
@@ -124,8 +140,17 @@ function CampaignTimer({
           <div class="flex gap-8 lg:gap-16 items-center justify-center lg:justify-normal">
             <div id={`${id}::counter`}>
               <div class="grid grid-flow-col gap-3 text-center auto-cols-max items-center">
-                <div class="flex flex-col text-xs lg:text-sm">
-                  <span class="countdown font-normal text-xl lg:text-2xl">
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
+                    <span id={`${id}::days`} />
+                  </span>
+                  {labels?.days || ""}
+                </div>
+                <div>
+                  :
+                </div>
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
                     <span id={`${id}::hours`} />
                   </span>
                   {labels?.hours || ""}
@@ -133,8 +158,8 @@ function CampaignTimer({
                 <div>
                   :
                 </div>
-                <div class="flex flex-col text-xs lg:text-sm">
-                  <span class="countdown font-normal text-xl lg:text-2xl">
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
                     <span id={`${id}::minutes`} />
                   </span>
                   {labels?.minutes || ""}
@@ -142,8 +167,8 @@ function CampaignTimer({
                 <div>
                   :
                 </div>
-                <div class="flex flex-col text-xs lg:text-sm">
-                  <span class="countdown font-normal text-xl lg:text-2xl">
+                <div class="flex flex-col text-xs items-center justify-center">
+                  <span class="countdown font-bold text-xl lg:text-2xl">
                     <span id={`${id}::seconds`} />
                   </span>
                   {labels?.seconds || ""}
@@ -160,7 +185,7 @@ function CampaignTimer({
             >
             </div>
             <a
-              class="btn"
+              class="hidden md:flex btn"
               aria-label={link.text}
               href={link.href}
             >
@@ -177,7 +202,7 @@ function CampaignTimer({
         </div>
       </div>
       <script
-        type="module"
+        defer
         dangerouslySetInnerHTML={{
           __html: `(${snippet})("${expiresAt}", "${id}");`,
         }}

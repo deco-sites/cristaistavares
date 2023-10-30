@@ -61,6 +61,26 @@ function Header({
   const platform = usePlatform();
   const searchbar = { ..._searchbar, products, suggestions };
 
+  function handleScroll() {
+    self.addEventListener("scroll", () => {
+      const scrollY = self.scrollY;
+      const navbar = document.getElementById("navbar");
+      const campaignTimer = document.getElementById("campaign-timer");
+
+      if (!navbar || !campaignTimer) return;
+
+      if (scrollY > 60) {
+        navbar.classList.remove("static");
+        navbar.classList.add("fixed");
+        campaignTimer.classList.add("hidden");
+      } else {
+        navbar.classList.remove("fixed");
+        navbar.classList.add("static");
+        campaignTimer.classList.remove("hidden");
+      }
+    });
+  }
+
   return (
     <>
       <header
@@ -83,6 +103,10 @@ function Header({
           </div>
         </Drawers>
       </header>
+
+      <script
+        dangerouslySetInnerHTML={{ __html: `(${handleScroll.toString()})()` }}
+      />
     </>
   );
 }
