@@ -1,5 +1,3 @@
-import Header from "$store/components/ui/SectionHeader.tsx";
-
 export interface Question {
   question: string;
   /** @format html */
@@ -17,7 +15,9 @@ export interface Contact {
 }
 
 export interface Props {
+  /** @format html */
   title?: string;
+  /** @format html */
   description?: string;
   questions?: Question[];
   contact?: Contact;
@@ -54,12 +54,12 @@ const DEFAULT_PROPS = {
 
 function Question({ question, answer }: Question) {
   return (
-    <details class="collapse collapse-arrow join-item border-t border-base-200">
-      <summary class="collapse-title text-lg font-medium">
+    <details class="collapse collapse-arrow join-item rounded-xl px-2.5 py-1 bg-[#292627]">
+      <summary class="collapse-title text-lg font-bold text-white">
         {question}
       </summary>
       <div
-        class="collapse-content"
+        class="collapse-content text-white"
         dangerouslySetInnerHTML={{ __html: answer }}
       />
     </details>
@@ -94,15 +94,20 @@ export default function FAQ(props: Props) {
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
-    <>
+    <section class="flex w-full h-full bg-[#0a0a0a]">
       {(!layout?.variation || layout?.variation === "Compact") && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
+        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40 bg-[#0a0a0a]">
           <div class="flex flex-col gap-8 lg:gap-10">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
-            />
+            <div
+              class={`flex flex-col gap-1.5 ${
+                layout?.headerAlignment === "center" &&
+                "items-center justify-center"
+              }`}
+            >
+              <h1 dangerouslySetInnerHTML={{ __html: title }} />
+              <h2 dangerouslySetInnerHTML={{ __html: description }} />
+            </div>
+
             <div class="join join-vertical w-full">
               {questions.map((question) => <Question {...question} />)}
             </div>
@@ -113,14 +118,19 @@ export default function FAQ(props: Props) {
       )}
 
       {layout?.variation === "Full" && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0">
+        <div class="w-full container max-w-[1240px] px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0 mx-auto">
           <div class="flex flex-col gap-8 lg:gap-10">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
-            />
-            <div class="join join-vertical w-full">
+            <div
+              class={`flex flex-col gap-1.5 ${
+                layout?.headerAlignment === "center" &&
+                "items-center justify-center"
+              }`}
+            >
+              <h1 dangerouslySetInnerHTML={{ __html: title }} />
+              <h2 dangerouslySetInnerHTML={{ __html: description }} />
+            </div>
+
+            <div class="flex flex-col w-full gap-3">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>
@@ -130,13 +140,17 @@ export default function FAQ(props: Props) {
       )}
 
       {layout?.variation === "Side to side" && (
-        <div class="w-full container px-4 py-8 grid gap-8 grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:py-10 lg:px-0">
+        <div class="w-full container px-4 py-8 grid gap-8 grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:py-10 lg:px-0 bg-[#0a0a0a]">
           <div class="order-1 lg:order-1">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
-            />
+            <div
+              class={`flex flex-col gap-1.5 ${
+                layout?.headerAlignment === "center" &&
+                "items-center justify-center"
+              }`}
+            >
+              <h1 dangerouslySetInnerHTML={{ __html: title }} />
+              <h2 dangerouslySetInnerHTML={{ __html: description }} />
+            </div>
           </div>
           <div class="order-2 lg:order-3 lg:row-span-2">
             <div class="join join-vertical">
@@ -148,6 +162,6 @@ export default function FAQ(props: Props) {
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
