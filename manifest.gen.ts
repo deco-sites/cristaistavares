@@ -2,8 +2,7 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $$$0 from "./loaders/extensions/productRating.ts";
-import * as $$$1 from "./loaders/Layouts/ProductCard.tsx";
+import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/AvaliationSection.tsx";
@@ -44,8 +43,7 @@ import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
 const manifest = {
   "loaders": {
-    "deco-sites/cristaistavares/loaders/extensions/productRating.ts": $$$0,
-    "deco-sites/cristaistavares/loaders/Layouts/ProductCard.tsx": $$$1,
+    "deco-sites/cristaistavares/loaders/Layouts/ProductCard.tsx": $$$0,
   },
   "sections": {
     "deco-sites/cristaistavares/sections/Category/CategoryBanner.tsx": $$$$$$0,

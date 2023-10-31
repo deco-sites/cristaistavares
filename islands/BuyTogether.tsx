@@ -5,7 +5,6 @@ import { formatPrice } from "$store/sdk/format.ts";
 import SuggestionCard from "$store/components/product/ProductSuggestion.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
-import AddToCartButton from "$store/components/product/AddToCartButton/vtex.tsx";
 import useAddToCart from "$store/actions/addToCart.ts";
 
 import { useState } from "preact/compat";

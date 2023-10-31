@@ -1,10 +1,10 @@
 import Image from "apps/website/components/Image.tsx";
 import Discount from "./Discount.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
-import type { Product } from "deco-sites/std/commerce/types.ts";
+import type { Product } from "apps/commerce/types.ts";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 
-import { StateUpdater } from "preact/compat";
+import { SetStateAction } from "preact/compat";
 
 interface Props {
   product: Product;
@@ -15,7 +15,7 @@ interface Props {
   itemListName?: string;
   hasCheckbox?: {
     isChecked: boolean;
-    setIsChecked: StateUpdater<boolean>;
+    setIsChecked: SetStateAction<boolean>;
   };
 }
 
