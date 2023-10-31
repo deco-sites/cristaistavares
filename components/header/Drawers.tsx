@@ -10,7 +10,6 @@ import type { ComponentChildren } from "preact";
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
-const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   menu: MenuProps;
@@ -57,7 +56,7 @@ const Aside = (
   </div>
 );
 
-function Drawers({ menu, searchbar, children, platform }: Props) {
+function Drawers({ menu, children, platform }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
 
   return (

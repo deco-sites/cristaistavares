@@ -385,9 +385,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
         <SliderJS rootId={id} />
-        <div class="flex w-full h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
-          <div class="flex flex-col justify-between items-start gap-6 sm:gap-12 max-w-[1240px] w-full">
-            <div class="flex flex-col gap-6 w-full lg:flex-1 lg:max-w-[30%]">
+        <div class="flex flex-grow h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
+          <div class="flex flex-col justify-between items-start gap-6 sm:gap-12 max-w-[1240px] flex-grow">
+            <div class="flex flex-col gap-6 flex-grow lg:flex-1 lg:max-w-[30%]">
               {
                 /* {props.page.product.isVariantOf!.additionalProperty?.filter(
                     (filteredItem) => filteredItem.name === "Cuidados",
@@ -412,16 +412,16 @@ function Details(props: { page: ProductDetailsPage } & Props) {
               )} */
               }
 
-              <div class="flex flex-col gap-3 w-full">
+              <div class="flex flex-col gap-3 flex-grow">
                 <h1 class="font-bold text-sm">Medidas</h1>
 
-                <div class="flex flex-col w-full gap-1 text-black">
+                <div class="flex flex-col flex-grow gap-1 text-black">
                   {props?.page?.product?.isVariantOf?.additionalProperty
                     ?.filter(
                       (filteredItem) => filteredItem?.value?.includes("cm"),
                     ).map((item) => {
                       return (
-                        <div class="even:bg-white odd:bg-gray-100 flex gap-2 w-full xl:w-[90%] px-6 py-1">
+                        <div class="even:bg-white odd:bg-gray-100 flex gap-2 flex-grow xl:w-[90%] px-6 py-1">
                           <span class="font-semibold text-sm min-w-[30%]">
                             {item?.name ?? ""}
                           </span>
@@ -443,7 +443,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             )}
           </div>
         </div>
-        <div class="w-full flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
+        <div class="flex-grow flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
               <h2

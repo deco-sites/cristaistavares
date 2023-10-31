@@ -22,7 +22,7 @@ function Navbar({ items, searchbar, logo }: {
   return (
     <>
       {/* Mobile Version */}
-      <div class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full pl-2 pr-4 py-2 gap-2">
+      <div class="md:hidden flex flex-col flex-grow justify-between items-center border-b border-base-200 shadow-md pl-2 pr-4 py-2 gap-2">
         <div class="grid grid-cols-3 items-center justify-center w-full h-full">
           <div class="flex justify-start">
             <MenuButton />
@@ -75,7 +75,7 @@ function Navbar({ items, searchbar, logo }: {
             )}
           </div>
 
-          <div class="flex items-center justify-center w-full">
+          <div class="flex flex-grow items-center justify-center">
             <Searchbar searchbar={searchbar} />
           </div>
           <div class="flex-none w-54 flex items-center justify-start gap-2">
@@ -87,7 +87,7 @@ function Navbar({ items, searchbar, logo }: {
           </div>
         </div>
 
-        <ul class="flex-auto flex-wrap flex items-center justify-between w-full">
+        <ul class="flex-auto flex-wrap flex-grow flex items-center justify-between">
           {items.map((item, index) => <NavItem item={item} index={index} />)}
         </ul>
       </div>
