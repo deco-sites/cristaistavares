@@ -33,11 +33,12 @@ import * as $$$$$$26 from "./sections/Newsletter/Newsletter.tsx";
 import * as $$$$$$27 from "./sections/Product/ProductDetails.tsx";
 import * as $$$$$$28 from "./sections/Product/ProductMatch.tsx";
 import * as $$$$$$29 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$30 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$31 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$32 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$33 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$34 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$30 from "./sections/Product/ProductShelfBlack.tsx";
+import * as $$$$$$31 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$32 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$33 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$34 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$35 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$$$$0 from "./actions/addToCart.ts";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
@@ -85,11 +86,13 @@ const manifest = {
     "deco-sites/cristaistavares/sections/Product/ProductDetails.tsx": $$$$$$27,
     "deco-sites/cristaistavares/sections/Product/ProductMatch.tsx": $$$$$$28,
     "deco-sites/cristaistavares/sections/Product/ProductShelf.tsx": $$$$$$29,
-    "deco-sites/cristaistavares/sections/Product/SearchResult.tsx": $$$$$$30,
-    "deco-sites/cristaistavares/sections/Product/Wishlist.tsx": $$$$$$31,
-    "deco-sites/cristaistavares/sections/Social/InstagramPosts.tsx": $$$$$$32,
-    "deco-sites/cristaistavares/sections/Social/WhatsApp.tsx": $$$$$$33,
-    "deco-sites/cristaistavares/sections/Theme/Theme.tsx": $$$$$$34,
+    "deco-sites/cristaistavares/sections/Product/ProductShelfBlack.tsx":
+      $$$$$$30,
+    "deco-sites/cristaistavares/sections/Product/SearchResult.tsx": $$$$$$31,
+    "deco-sites/cristaistavares/sections/Product/Wishlist.tsx": $$$$$$32,
+    "deco-sites/cristaistavares/sections/Social/InstagramPosts.tsx": $$$$$$33,
+    "deco-sites/cristaistavares/sections/Social/WhatsApp.tsx": $$$$$$34,
+    "deco-sites/cristaistavares/sections/Theme/Theme.tsx": $$$$$$35,
   },
   "actions": {
     "deco-sites/cristaistavares/actions/addToCart.ts": $$$$$$$$$0,
