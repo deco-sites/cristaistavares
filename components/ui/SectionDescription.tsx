@@ -3,7 +3,7 @@ import Description from "$store/islands/SectionDescription.tsx";
 
 export interface Props {
   title: HTMLWidget;
-  description: HTMLWidget;
+  description?: HTMLWidget;
   textEndAt?: number;
   hasMostPaddingBottom?: boolean;
 }
@@ -23,7 +23,9 @@ export default function SectionDescription(
           class="text-base font-medium"
         />
       </div>
-      <Description description={description} textEndAt={textEndAt} />
+      {description && (
+        <Description description={description} textEndAt={textEndAt} />
+      )}
     </section>
   );
 }

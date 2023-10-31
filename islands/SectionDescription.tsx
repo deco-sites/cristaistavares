@@ -1,12 +1,14 @@
 import { useState } from "preact/hooks";
 
 export interface Props {
-  description: string;
+  description?: string;
   textEndAt?: number;
 }
 export default function SectionDescription(
   { description, textEndAt = 450 }: Props,
 ) {
+  if (!description) return null;
+
   const [isToggle, setIsToggle] = useState(false);
 
   const descriptionValue = isToggle
