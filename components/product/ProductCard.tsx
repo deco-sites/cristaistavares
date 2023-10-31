@@ -268,7 +268,7 @@ function ProductCard(
         </a>
         <figcaption
           class={`
-          absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
+          absolute bottom-1 left-0 flex-grow flex flex-col gap-3 p-2 ${
             l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
@@ -276,7 +276,7 @@ function ProductCard(
         >
           {/* SKU Selector */}
           {l?.onMouseOver?.showSkuSelector && (
-            <ul class="flex justify-center items-center gap-2 w-full">
+            <ul class="flex justify-center items-center gap-2 flex-grow">
               {skuSelector}
             </ul>
           )}
@@ -307,7 +307,7 @@ function ProductCard(
               align === "center"
                 ? "items-center"
                 : "items-start lg:items-center"
-            } flex flex-col lg:flex-row justify-between w-full gap-2`}
+            } flex flex-col lg:flex-row justify-between flex-grow gap-2`}
           >
             {l?.hide?.skuSelector ? "" : (
               <ul
@@ -373,7 +373,9 @@ function ProductCard(
           <div
             class={`${
               align === "center" && "items-center justify-center text-center"
-            } flex flex-col gap-0 w-full ${resizeNameHeight && "min-h-[60px]"}`}
+            } flex flex-col gap-0 flex-grow ${
+              resizeNameHeight && "min-h-[60px]"
+            }`}
           >
             {l?.hide?.productName ? "" : (
               <h3 class="text-sm w-full">
@@ -451,7 +453,7 @@ function ProductCard(
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex items-center gap-2 w-full ${
+                class={`flex items-center gap-2 flex-grow ${
                   align === "center" ? "justify-center" : "justify-start"
                 } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
@@ -464,7 +466,7 @@ function ProductCard(
         {!l?.hide?.cta
           ? (
             <div
-              class={`flex-auto flex items-center justify-center w-full pr-2.5 ${
+              class={`flex-auto flex items-center justify-center flex-grow pr-2.5 ${
                 l?.onMouseOver?.showCta ? "lg:hidden" : ""
               }`}
             >
