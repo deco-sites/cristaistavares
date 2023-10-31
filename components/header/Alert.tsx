@@ -22,7 +22,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
             index={index}
             class="carousel-item max-w-[80%] lg:max-w-full"
           >
-            <span class="text-xs sm:text-sm text-secondary-content flex justify-center items-center text-center w-full h-[56px] md:h-10">
+            <span class="text-xs sm:text-sm text-secondary-content flex justify-center items-center text-center flex-grow h-[56px] md:h-10">
               {alert}
             </span>
           </Slider.Item>

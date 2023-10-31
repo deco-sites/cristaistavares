@@ -55,7 +55,7 @@ export default function CategoryList({ title, cards, interval }: Props) {
   const id = useId();
 
   return (
-    <section class="w-full h-[678px] lg:h-full flex items-center justify-center bg-[#f4f4f4]">
+    <section class="flex-grow h-[678px] lg:h-full flex items-center justify-center bg-[#f4f4f4]">
       <div>
         <div class="flex items-center justify-center h-[28px] text-center mt-2">
           <h2 class="text-lg lg:text-xl font-bold">{title}</h2>

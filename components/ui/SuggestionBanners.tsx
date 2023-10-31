@@ -17,7 +17,7 @@ export interface Props {
 
 export default function CategoryList({ title, description, cards }: Props) {
   return (
-    <section class="w-full h-full flex flex-col items-center justify-center px-5 my-2">
+    <section class="flex-grow flex flex-col items-center justify-center px-5 my-2">
       <div class="flex flex-col text-center pb-5 ">
         <div class="">
           <p class="text-xl font-medium">{title}</p>
@@ -28,7 +28,7 @@ export default function CategoryList({ title, description, cards }: Props) {
           </p>
         </a>
       </div>
-      <div class="w-full h-full grid grid-cols-2 md:flex md:flex-wrap items-center justify-center gap-5">
+      <div class="flex-grow grid grid-cols-2 md:flex md:flex-wrap items-center justify-center gap-5">
         {cards?.map((card) => (
           <div class="flex items-center justify-center md:w-[295px] md:h-[368px]">
             <a href={card.link}>

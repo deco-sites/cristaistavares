@@ -36,8 +36,8 @@ export default function ProductMatch(
   }
 
   return (
-    <section class="flex items-center justify-center w-full h-full lg:px-3 xl:container">
-      <div class="flex flex-col lg:flex-row max-w-[1240px] w-full items-center lg:items-start justify-between gap-6 lg:gap-3">
+    <section class="flex items-center justify-center flex-grow lg:px-3 xl:container">
+      <div class="flex flex-col lg:flex-row max-w-[1240px] flex-grow items-center lg:items-start justify-between gap-6 lg:gap-3">
         {banner && (
           <a href={banner.href} class="lg:w-full lg:h-full px-6 lg:px-0">
             <Image
@@ -50,7 +50,7 @@ export default function ProductMatch(
           </a>
         )}
 
-        <div class="flex flex-col items-center justify-center w-full h-full">
+        <div class="flex flex-col items-center justify-center flex-grow">
           <h2 class="text-center mb-4 text-lg lg:text-xl font-bold">{title}</h2>
 
           <div
