@@ -31,7 +31,7 @@ export default function InfoSection({ title, cards }: Props) {
           dangerouslySetInnerHTML={{ __html: title }}
           class="text-center lg:text-xl font-medium text-black"
         />
-        <ul class="flex items-center justify-center gap-6 flex-grow flex-wrap mt-8 cursor-pointer">
+        <ul class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer">
           {cards?.map((card) => (
             <>
               <li class="lg:group lg:relative flex gap-1">
