@@ -96,11 +96,11 @@ function Searchbar({
   }, [modal, searchTerm]);
 
   return (
-    <div class="flex-grow flex flex-col relative z-40">
+    <div class="flex flex-col z-40">
       <form
         id={id}
         action={action}
-        class="flex flex-grow relative h-[40px] px-0 border-b border-b-dark-pink"
+        class="flex h-[40px] px-0 border-b border-b-dark-pink"
       >
         <input
           ref={searchInputRef}
@@ -141,7 +141,7 @@ function Searchbar({
         }
         <button
           type="submit"
-          class="btn-ghost absolute right-0 bg-transparent hover:bg-transparent top-1/2 translate-y-[-50%]"
+          class="btn-ghost bg-transparent"
           aria-label="Search"
           for={id}
           tabIndex={-1}
@@ -162,7 +162,7 @@ function Searchbar({
       {showSuggestions && (
         <div
           ref={modal}
-          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute flex-grow top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[375px] lg:max-h-[525px] bg-white shadow-lg overflow-y-auto lg:overflow-y-hidden z-[9999999]"
+          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute flex-grow top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[375px] lg:max-h-[525px] bg-white lg:shadow-lg overflow-y-auto lg:overflow-y-hidden z-[9999999]"
         >
           {notFound
             ? (
