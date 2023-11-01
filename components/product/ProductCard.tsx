@@ -153,7 +153,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`flex flex-col flex-grow justify-between bg-white card-compact rounded-md group border border-[#c9c9c9] p-1.5 lg:p-3 ${
+      class={`card card-compact group w-full bg-white rounded-md group border border-[#c9c9c9] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -211,7 +211,7 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full h-full relative"
+          class="grid grid-cols-1 grid-rows-1 w-full h-full"
         >
           {isKit && (
             <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
