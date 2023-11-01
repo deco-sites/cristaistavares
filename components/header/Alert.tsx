@@ -15,12 +15,12 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   const id = useId();
 
   return (
-    <div id={id} class="w-full">
-      <Slider class="flex items-center justify-center carousel carousel-center bg-dark-pink text-white gap-6 px-3 scrollbar-none h-[35px]">
+    <div id={id} class="w-full h-full">
+      <Slider class="flex items-center justify-center carousel carousel-center bg-dark-pink text-white gap-6 px-3 scrollbar-none h-full">
         {alerts.map((alert, index) => (
           <Slider.Item
             index={index}
-            class="carousel-item max-w-[80%] lg:max-w-full"
+            class="carousel-item max-w-[80%] lg:max-w-full h-full"
           >
             <span class="text-xs sm:text-sm text-secondary-content flex justify-center items-center text-center flex-grow h-[56px] md:h-10">
               {alert}

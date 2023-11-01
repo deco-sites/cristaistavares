@@ -25,7 +25,7 @@ function MenuItem({ item }: { item: INavItem }) {
                     href={item.href}
                     class="w-full block pt-5 font-normal text-base-300 text-sm"
                   >
-                    {item.label}
+                    {item.children && item.children[0].label}
                   </a>
                 </li>
                 {children?.map((item) => (

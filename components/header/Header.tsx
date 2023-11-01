@@ -85,7 +85,7 @@ function Header({
         style={{
           height: headerHeight,
         }}
-        class="z-50 w-full h-full lg:relative"
+        class="z-50 w-full h-full relative"
       >
         <Drawers
           menu={{ items: navItems }}
