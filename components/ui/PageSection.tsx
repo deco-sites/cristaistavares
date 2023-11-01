@@ -14,9 +14,9 @@ export interface Props {
 
 export default function PagesSection({ cards }: Props) {
   return (
-    <section class="flex-grow flex flex-row flex-wrap items-center justify-center gap-4 my-[30px]">
+    <section class="flex-grow flex flex-row flex-wrap items-center justify-center lg:gap-4 my-[30px]">
       {cards?.map((card) => (
-        <div class="">
+        <div class="pb-4 lg;pb-0">
           <a href={card.link}>
             <Picture>
               <Source
