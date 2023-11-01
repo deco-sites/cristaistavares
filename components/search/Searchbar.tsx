@@ -96,11 +96,11 @@ function Searchbar({
   }, [modal, searchTerm]);
 
   return (
-    <div class="flex flex-col z-40">
+    <div class="flex-grow flex flex-col relative z-40">
       <form
         id={id}
         action={action}
-        class="flex h-[40px] px-0 border-b border-b-dark-pink"
+        class="flex flex-grow relative h-[40px] px-0 border-b border-b-dark-pink"
       >
         <input
           ref={searchInputRef}
