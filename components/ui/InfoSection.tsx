@@ -34,8 +34,8 @@ export default function InfoSection({ title, cards }: Props) {
         <ul class="flex items-center justify-center gap-6 flex-grow flex-wrap mt-8 cursor-pointer">
           {cards?.map((card) => (
             <>
-              <li class="group relative flex gap-1">
-                <div class="absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
+              <li class="lg:group lg:relative flex gap-1">
+                <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
                   {card.descHover}
                 </div>
                 <Image
@@ -45,7 +45,7 @@ export default function InfoSection({ title, cards }: Props) {
                   height={26}
                   loading="lazy"
                 />
-                <p dangerouslySetInnerHTML={{ __html: card.description }}></p>
+                <p dangerouslySetInnerHTML={{ __html: card.description || "" }} />
               </li>
             </>
           ))}
