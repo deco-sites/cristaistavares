@@ -12,7 +12,7 @@ export default function SkuSelector(
         <Avatar
           variant={link === url ? "active" : "default"}
           content={value.toLowerCase()}
-          isSelected={(selectedSku.value ?? url) === link}
+          isSelected={selectedSku.value === link}
         />
       </div>
     </li>

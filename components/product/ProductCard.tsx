@@ -11,7 +11,6 @@ import Installments from "./Installments.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
 import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
-import Avatar from "$store/components/ui/Avatar.tsx";
 
 export interface Layout {
   basics?: {
@@ -102,7 +101,7 @@ function ProductCard(
   const { listPrice, price: offerPrice, seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-  const { selectedSku, setSku } = useSkuSelector();
+  const { selectedSku } = useSkuSelector();
 
   const skuId = newSkuId(selectedSku.value);
 
@@ -110,8 +109,6 @@ function ProductCard(
     product.isVariantOf?.hasVariant.filter((item) => item.sku === skuId)[0];
 
   const {
-    listPrice: filteredProductListPrice,
-    price: filteredProductPrice,
     seller: filteredProductSeller,
   } = useOffer(filteredProduct?.offers);
 
@@ -145,13 +142,7 @@ function ProductCard(
   const skuSelector = variants
     .sort(([a], [b]) => skuOrder.indexOf(a) - skuOrder.indexOf(b))
     .map(([value, [link]]) => (
-      <div onClick={() => setSku(link)}>
-        <Avatar
-          variant={link === url ? "active" : "default"}
-          content={value.toLowerCase()}
-          isSelected={url === link}
-        />
-      </div>
+      <SkuSelector key={value} value={value} link={link} url={url} />
     ));
 
   const isNew = additionalProperty?.find((item) => item.value == "LANÇAMENTO");
@@ -179,8 +170,8 @@ function ProductCard(
             items: [
               mapProductToAnalyticsItem({
                 product: filteredProduct ?? product,
-                price: filteredProductPrice ?? price,
-                listPrice: filteredProductListPrice ?? listPrice,
+                price: price,
+                listPrice: listPrice,
               }),
             ],
           },
@@ -233,8 +224,8 @@ function ProductCard(
           )}
 
           <DiscountPercentage
-            price={filteredProductPrice! ?? price!}
-            listPrice={filteredProductListPrice! ?? listPrice!}
+            price={price!}
+            listPrice={listPrice!}
           />
 
           {
@@ -311,9 +302,7 @@ function ProductCard(
           l?.elementsPositions?.skuSelector === "Top") && (
           <div
             class={`${
-              align === "center"
-                ? "items-center"
-                : "items-start"
+              align === "center" ? "items-center" : "items-start"
             } flex flex-col justify-between flex-grow gap-2`}
           >
             {l?.hide?.skuSelector ? "" : (
@@ -385,9 +374,14 @@ function ProductCard(
             }`}
           >
             {l?.hide?.productName ? "" : (
-              <h3 class="text-sm w-full min-h-[80px] max-h-[80px]">
-                {product.isVariantOf?.name}
-              </h3>
+              <a
+                href={url && relative(url)}
+                aria-label={`view ${product.isVariantOf?.name}`}
+              >
+                <h3 class="text-sm w-full min-h-[80px] max-h-[80px]">
+                  {product.isVariantOf?.name}
+                </h3>
+              </a>
             )}
             {l?.hide?.productDescription ? "" : (
               <p
@@ -408,8 +402,8 @@ function ProductCard(
                   : "justify-start items-center"
               }`}
             >
-              {(filteredProductListPrice ?? listPrice ?? 0) >
-                  (filteredProductPrice ?? price!) && (
+              {(listPrice ?? 0) >
+                  (price!) && (
                 <div
                   class={`line-through text-black text-xs ${
                     l?.basics?.oldPriceSize === "Normal"
@@ -419,7 +413,7 @@ function ProductCard(
                 >
                   <span>
                     {formatPrice(
-                      filteredProductListPrice ?? listPrice,
+                      listPrice,
                       offers!.priceCurrency!,
                     )}
                   </span>
@@ -427,7 +421,7 @@ function ProductCard(
               )}
               <div class="text-black text-sm">
                 {formatPrice(
-                  filteredProductPrice ?? price,
+                  price,
                   offers!.priceCurrency!,
                 )}
               </div>
