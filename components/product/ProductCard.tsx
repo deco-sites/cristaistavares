@@ -11,6 +11,7 @@ import Installments from "./Installments.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
 import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
+import Avatar from "$store/components/ui/Avatar.tsx";
 
 export interface Layout {
   basics?: {
@@ -101,7 +102,7 @@ function ProductCard(
   const { listPrice, price: offerPrice, seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-  const { selectedSku } = useSkuSelector();
+  const { selectedSku, setSku } = useSkuSelector();
 
   const skuId = newSkuId(selectedSku.value);
 
@@ -144,7 +145,13 @@ function ProductCard(
   const skuSelector = variants
     .sort(([a], [b]) => skuOrder.indexOf(a) - skuOrder.indexOf(b))
     .map(([value, [link]]) => (
-      <SkuSelector key={value} value={value} link={link} url={url} />
+      <div onClick={() => setSku(link)}>
+        <Avatar
+          variant={link === url ? "active" : "default"}
+          content={value.toLowerCase()}
+          isSelected={url === link}
+        />
+      </div>
     ));
 
   const isNew = additionalProperty?.find((item) => item.value == "LANÇAMENTO");

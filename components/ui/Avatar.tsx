@@ -34,7 +34,15 @@ const variants = {
   default: "border border-base-200 hover:border-primary",
 };
 
+function transformContent(content: string): string {
+  return content === "único"
+    ? content.toLowerCase().substring(0, 1)
+    : content.substring(0, 2);
+}
+
 function Avatar({ content, variant = "default", isSelected }: Props) {
+  const transformedContent = transformContent(content);
+
   return (
     <div class="avatar placeholder text-xs cursor-pointer">
       <div
@@ -43,7 +51,7 @@ function Avatar({ content, variant = "default", isSelected }: Props) {
         }`}
       >
         <span class="uppercase">
-          {colors[content] ? "" : content.substring(0, 2)}
+          {colors[content] ? "" : transformedContent}
         </span>
       </div>
     </div>

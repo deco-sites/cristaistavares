@@ -480,11 +480,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
             <Image
               sizes="(max-width: 640px) 100vw, 24vw"
-              style={{ aspectRatio: ASPECT_RATIO }}
+              style={{ aspectRatio: 1 }}
               src={img.url!}
               alt={img.alternateName}
-              width={WIDTH}
-              height={HEIGHT}
+              width={126}
+              height={175}
               // Preload LCP image for better web vitals
               preload={index === 0}
               loading={index === 0 ? "eager" : "lazy"}

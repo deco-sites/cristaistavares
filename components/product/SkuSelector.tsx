@@ -11,8 +11,8 @@ export default function SkuSelector(
       <div onClick={() => setSku(link)}>
         <Avatar
           variant={link === url ? "active" : "default"}
-          content={value}
-          isSelected={selectedSku.value === link}
+          content={value.toLowerCase()}
+          isSelected={(selectedSku.value ?? url) === link}
         />
       </div>
     </li>
