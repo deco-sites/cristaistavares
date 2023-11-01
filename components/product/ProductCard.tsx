@@ -244,7 +244,7 @@ function ProductCard(
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full w-full h-full object-cover rounded-lg ${
+            class={`bg-base-100 col-span-full row-span-full w-full rounded-lg ${
               l?.onMouseOver?.image == "Zoom image" ? "duration-100" : ""
             }`}
             sizes="(max-width: 640px) 50vw, 20vw"
