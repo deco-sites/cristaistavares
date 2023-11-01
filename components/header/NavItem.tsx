@@ -29,7 +29,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
           <div
             class={`${
               index! < 5 ? "flex-row-reverse" : "-translate-x-[85%]"
-            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[920px] xl:w-[1160px] h-[425px]`}
+            } absolute hidden lg:group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[920px] xl:w-[1160px] h-[425px]`}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (

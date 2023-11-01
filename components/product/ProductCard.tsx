@@ -153,7 +153,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`flex flex-col justify-between card card-compact group w-full bg-white rounded-md group border border-[#c9c9c9] p-1.5 lg:p-3 ${
+      class={`flex flex-col justify-between card card-compact group w-full h-full bg-white rounded-md group border border-[#c9c9c9] p-1.5 lg:p-3 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${

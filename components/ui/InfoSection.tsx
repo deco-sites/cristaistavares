@@ -45,7 +45,9 @@ export default function InfoSection({ title, cards }: Props) {
                   height={26}
                   loading="lazy"
                 />
-                <p dangerouslySetInnerHTML={{ __html: card.description || "" }} />
+                <p
+                  dangerouslySetInnerHTML={{ __html: card.description || "" }}
+                />
               </li>
             </>
           ))}
