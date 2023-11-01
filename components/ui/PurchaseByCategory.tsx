@@ -93,8 +93,6 @@ export default function CategoryList({ title, cards, interval }: Props) {
             ))}
           </Slider>
 
-          <Dots cards={cards} interval={interval} />
-
           <SliderJS
             rootId={id}
             interval={interval && interval * 1e3}
