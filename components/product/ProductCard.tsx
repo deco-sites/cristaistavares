@@ -306,8 +306,8 @@ function ProductCard(
             class={`${
               align === "center"
                 ? "items-center"
-                : "items-start lg:items-center"
-            } flex flex-col lg:flex-row justify-between flex-grow gap-2`}
+                : "items-start"
+            } flex flex-col justify-between flex-grow gap-2`}
           >
             {l?.hide?.skuSelector ? "" : (
               <ul
@@ -378,7 +378,7 @@ function ProductCard(
             }`}
           >
             {l?.hide?.productName ? "" : (
-              <h3 class="text-sm w-full">
+              <h3 class="text-sm w-full min-h-[80px] max-h-[80px]">
                 {product.isVariantOf?.name}
               </h3>
             )}
