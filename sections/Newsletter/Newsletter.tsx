@@ -51,7 +51,7 @@ function InputNewsletter(
     <input
       name={name}
       type={type}
-      class="flex-shrink lg:h-10 h-9 join-item w-full placeholder:text-placeholder outline-none lg:text-base text-xs bg-transparent text-black border-b border-b-gray-400 lg:max-w-[250px]"
+      class="lg:h-10 h-9 w-full placeholder:text-placeholder outline-none lg:text-base text-xs bg-transparent text-black border-b border-b-gray-400 lg:max-w-[250px]"
       placeholder={placeholder}
       required={required}
     />
@@ -137,7 +137,7 @@ function Form(props: Props) {
                 </div>
                 <button
                   type="submit"
-                  class="capitalize font-medium btn disabled:loading rounded-md text-white bg-emerald-500 hover:bg-emerald-600 join-item lg:max-w-[150px] w-full duration-200 transition-opacity"
+                  class="capitalize font-medium btn disabled:loading rounded-md text-white bg-emerald-500 hover:bg-emerald-600 lg:max-w-[150px] w-full duration-200"
                   disabled={loading}
                 >
                   {form?.button?.label || "Cadastrar"}

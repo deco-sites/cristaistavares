@@ -96,7 +96,7 @@ function Searchbar({
   }, [modal, searchTerm]);
 
   return (
-    <div class="flex-grow flex flex-col relative z-40">
+    <div class="flex-grow flex flex-col relative z-[70]">
       <form
         id={id}
         action={action}
@@ -240,6 +240,7 @@ function Searchbar({
                               productDescription: true,
                               cta: true,
                               skuSelector: true,
+                              stars: true,
                             },
                             basics: {
                               contentAlignment: "Center",
