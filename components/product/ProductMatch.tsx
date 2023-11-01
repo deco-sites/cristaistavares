@@ -50,7 +50,7 @@ export default function ProductMatch(
           </a>
         )}
 
-        <div class="flex flex-col items-center justify-center flex-grow">
+        <div class="flex flex-col items-center justify-center w-full">
           <h2 class="text-center mb-4 text-lg lg:text-xl font-bold">{title}</h2>
 
           <div
