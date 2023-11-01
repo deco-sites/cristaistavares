@@ -70,12 +70,10 @@ function Header({
       if (!navbar || !campaignTimer) return;
 
       if (scrollY > 60) {
-        navbar.classList.remove("static");
         navbar.classList.add("fixed");
         campaignTimer.classList.add("hidden");
       } else {
         navbar.classList.remove("fixed");
-        navbar.classList.add("static");
         campaignTimer.classList.remove("hidden");
       }
     });
@@ -96,7 +94,7 @@ function Header({
         >
           <div
             id="navbar"
-            class="w-full bg-base-100 static z-50 drop-shadow-lg"
+            class="w-full bg-base-100 z-50 drop-shadow-lg"
           >
             <Alert alerts={alerts} />
             <Navbar items={navItems} searchbar={searchbar} logo={logo} />
