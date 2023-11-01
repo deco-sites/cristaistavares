@@ -22,8 +22,8 @@ function Navbar({ items, searchbar, logo }: {
   return (
     <>
       {/* Mobile Version */}
-      <div class="md:hidden flex flex-col flex-grow justify-between items-center border-b border-base-200 shadow-md pl-2 pr-4 py-2 gap-2">
-        <div class="grid grid-cols-3 items-center justify-center w-full h-full">
+      <div class="md:hidden flex flex-col flex-grow justify-between items-center border-b border-base-200 lg:shadow-md pl-2 pr-4 py-2 gap-2">
+        <div class="flex items-center justify-between w-full h-full">
           <div class="flex justify-start">
             <MenuButton />
           </div>
