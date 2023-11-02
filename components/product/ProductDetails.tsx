@@ -389,7 +389,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         <SliderJS rootId={id} />
         <div class="flex flex-grow h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
           <div class="flex flex-col justify-between items-start gap-6 sm:gap-12 max-w-[1240px] flex-grow">
-            <div class="flex flex-col gap-6 flex-grow lg:flex-1 lg:max-w-[30%]">
+            <div class="flex flex-col gap-6 flex-grow lg:flex-1 lg:max-w-[30%] w-full">
               {
                 /* {props.page.product.isVariantOf!.additionalProperty?.filter(
                     (filteredItem) => filteredItem.name === "Cuidados",
@@ -414,10 +414,10 @@ function Details(props: { page: ProductDetailsPage } & Props) {
               )} */
               }
 
-              <div class="flex flex-col gap-3 flex-grow">
+              <div class="flex flex-col gap-3 flex-grow w-full">
                 <h1 class="font-bold text-sm">Medidas</h1>
 
-                <div class="flex flex-col flex-grow gap-1 text-black">
+                <div class="flex flex-col flex-grow gap-1 text-black w-full">
                   {props?.page?.product?.isVariantOf?.additionalProperty
                     ?.filter(
                       (filteredItem) => filteredItem?.value?.includes("cm"),
