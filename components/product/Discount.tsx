@@ -11,11 +11,11 @@ interface Props {
 const Discount = (
   { price, listPrice, currencySimbol, type = "normal" }: Props,
 ) => {
-  const discountValue = Math.floor(listPrice - price);
+  const discountValue = Math.ceil(listPrice - price);
 
   if (discountValue === 0) return null;
 
-  const discountPercentage = Math.floor(discountValue * 100 / listPrice);
+  const discountPercentage = Math.ceil(discountValue * 100 / listPrice);
 
   if (type === "bordered") {
     return (
