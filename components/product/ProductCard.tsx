@@ -302,8 +302,10 @@ function ProductCard(
           l?.elementsPositions?.skuSelector === "Top") && (
           <div
             class={`${
-              align === "center" ? "items-center" : "items-start"
-            } flex flex-col justify-between flex-grow gap-2`}
+              align === "center"
+                ? "items-center"
+                : "items-start lg:items-center"
+            } flex flex-col lg:flex-row flex-wrap justify-between flex-grow gap-2`}
           >
             {l?.hide?.skuSelector ? "" : (
               <ul
