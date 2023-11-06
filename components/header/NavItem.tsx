@@ -28,7 +28,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
         (
           <div
             class={`${index! < 7 ? "flex-row-reverse" : "-translate-x-[85%]"} ${
-              index! >= 6 && "-translate-x-[85%]"
+              index! >= 6 && "-translate-x-[60%]"
             } absolute hidden lg:group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[900px] xl:w-[1140px] h-[425px]`}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
