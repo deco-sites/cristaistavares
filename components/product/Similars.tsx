@@ -17,21 +17,41 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
+function filterSimilarProducts(products: Product[]) {
+  const uniqueURLs = new Set();
+  const filteredProducts = [];
+
+  for (const product of products) {
+    const url = product.url && relative(product.url);
+
+    if (!uniqueURLs.has(url)) {
+      uniqueURLs.add(url);
+      filteredProducts.push(product);
+    }
+  }
+
+  return filteredProducts;
+}
+
 export default function Similars(
   { products, type = "slider", preload }: Props,
 ) {
   if (!products || products.length === 0) return null;
 
+  const filteredProducts = filterSimilarProducts(products);
+
   if (type === "slider") {
-    return <SimilarsSlider products={products} preload={preload} />;
+    return <SimilarsSlider products={filteredProducts} preload={preload} />;
   }
 
-  return <SimilarsGrid products={products} />;
+  return <SimilarsGrid products={filteredProducts} />;
 }
 
 function SimilarsSlider(
   { products, preload }: { products?: Product[]; preload?: boolean },
 ) {
+  if (!products) return null;
+
   const id = useId();
 
   return (

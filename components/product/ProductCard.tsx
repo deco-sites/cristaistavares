@@ -74,6 +74,22 @@ const newSkuId = (url: string | null) => {
 const WIDTH = 275;
 const HEIGHT = 275;
 
+function filterSimilarProductsLength(products: Product[]): number {
+  const uniqueURLs = new Set();
+  const filteredProducts = [];
+
+  for (const product of products) {
+    const url = product.url && relative(product.url);
+
+    if (!uniqueURLs.has(url)) {
+      uniqueURLs.add(url);
+      filteredProducts.push(product);
+    }
+  }
+
+  return filteredProducts.length;
+}
+
 function ProductCard(
   {
     product,
@@ -320,7 +336,7 @@ function ProductCard(
             {!isSearchbar && product.isSimilarTo &&
               product.isSimilarTo.length !== 0 && (
               <div class="flex text-xs text-black">
-                +{product.isSimilarTo.length} cores
+                +{filterSimilarProductsLength(product.isSimilarTo)} cores
               </div>
             )}
           </div>
