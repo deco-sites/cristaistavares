@@ -428,12 +428,14 @@ function ProductCard(
                 )}
               </div>
             </div>
-            <div class="text-black text-sm">
-              {formatPrice(
-                pixPrice,
-                offers!.priceCurrency!,
-              )} no <b>PIX</b>
-            </div>
+            {pixPrice !== 0 && (
+              <div class="text-black text-sm">
+                {formatPrice(
+                  pixPrice,
+                  offers!.priceCurrency!,
+                )} no <b>PIX</b>
+              </div>
+            )}
             {l?.hide?.installments ? "" : (
               <div
                 class={`flex ${

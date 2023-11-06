@@ -17,6 +17,13 @@ const translate: Record<string, string> = {
   "unico": "único",
 };
 
+const translateFilters: Record<string, string> = {
+  "Departments": "Departamentos",
+  "Categories": "Categorias",
+  "Brands": "Marcas",
+  "PriceRanges": "Faixas de Preço",
+};
+
 const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] === "FilterToggle";
 
@@ -87,7 +94,7 @@ function Filters({ filters }: Props) {
               />
               <div class="collapse-title flex justify-between cursor-pointer min-h-[0px] pl-0">
                 <span class="flex content-center flex-wrap h-9">
-                  {filter.label}
+                  {translateFilters[filter.label] || filter.label}
                 </span>
                 <div class="flex content-center flex-wrap">
                   <Icon
