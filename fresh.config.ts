@@ -10,4 +10,8 @@ export default defineConfig({
     }),
     partytownPlugin(),
   ],
+  render: (ctx, render) => {
+    ctx.lang = "pt-BR";
+    render();
+  },
 });

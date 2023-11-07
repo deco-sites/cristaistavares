@@ -162,7 +162,7 @@ function Searchbar({
       {showSuggestions && (
         <div
           ref={modal}
-          class="flex flex-col lg:flex-row gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute flex-grow top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[375px] lg:max-h-[525px] bg-white lg:shadow-lg overflow-y-auto lg:overflow-y-hidden z-[9999999]"
+          class="flex flex-col lg:flex-row w-full gap-6 lg:divide-x-2 lg:divide-y-0 divide-y-2 absolute flex-grow top-10 lg:top-[52px] px-[15px] pt-2 lg:pt-0 rounded-md max-h-[375px] lg:max-h-[525px] bg-white lg:shadow-lg overflow-y-auto lg:overflow-y-hidden z-[9999999]"
         >
           {notFound
             ? (
@@ -225,7 +225,7 @@ function Searchbar({
                   >
                     Produtos para {searchInputRef.current?.value}
                   </span>
-                  <Slider class="carousel">
+                  <Slider class="carousel overflow-x-scroll">
                     {products?.slice(0, 3)?.map((product, index) => (
                       <Slider.Item
                         index={index}
