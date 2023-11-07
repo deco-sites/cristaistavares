@@ -16,8 +16,6 @@ export interface ProductCarouselProps {
 }
 
 export default function PrincipalImages({ images }: ProductCarouselProps) {
-  const open = useSignal(false);
-
   const handleMouseMove = (
     event: h.JSX.TargetedMouseEvent<HTMLImageElement>,
   ) => {
@@ -34,7 +32,7 @@ export default function PrincipalImages({ images }: ProductCarouselProps) {
 
     image.style.transform = `scale(1.8)`;
     image.style.transformOrigin = `${percentageX}% ${percentageY}%`;
-    image.style.zIndex = "40";
+    image.style.zIndex = "20";
   };
 
   const handleMouseLeave = (
@@ -53,7 +51,6 @@ export default function PrincipalImages({ images }: ProductCarouselProps) {
         return (
           <Slider.Item
             index={index}
-            onClick={() => open.value = true}
             class="carousel-item w-full group"
           >
             <Image
