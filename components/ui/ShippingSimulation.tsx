@@ -43,15 +43,15 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px] xl:max-w-[75%]">
+    <ul class="flex flex-col gap-4 py-4 px-2 bg-base-200 rounded-[4px] sm:max-w-[92%] md:max-w-[84%] lg:max-w-[75%] xl:max-w-[73%]">
       <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-        <span class="text-button text-center">
+        <span class="text-xs sm:text-base text-button text-center">
           Entrega {methods[0].name}
         </span>
-        <span class="text-button">
+        <span class="text-xs sm:text-base text-button">
           até {formatShippingEstimate(methods[0].shippingEstimate)}
         </span>
-        <span class="text-base font-semibold text-right">
+        <span class="text-xs sm:text-base font-bold sm:font-semibold text-right">
           {methods[0].price === 0 ? "Grátis" : (
             formatPrice(methods[0].price / 100, currencyCode, locale)
           )}
