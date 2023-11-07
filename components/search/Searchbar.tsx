@@ -235,6 +235,7 @@ function Searchbar({
                           product={product}
                           platform={"vtex"}
                           isSearchbar={true}
+                          resizeNameHeight={false}
                           layout={{
                             hide: {
                               productDescription: true,

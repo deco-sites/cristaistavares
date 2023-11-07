@@ -97,7 +97,7 @@ function ProductCard(
     itemListName,
     layout,
     isSearchbar = false,
-    resizeNameHeight = false,
+    resizeNameHeight = true,
     resizeQuantity,
     isProductMatcher = false,
   }: Props,
@@ -397,16 +397,18 @@ function ProductCard(
           <div
             class={`${
               align === "center" && "items-center justify-center text-center"
-            } flex flex-col gap-0 flex-grow ${
-              resizeNameHeight && "min-h-[60px]"
-            }`}
+            } flex flex-col gap-0 flex-grow`}
           >
             {l?.hide?.productName ? "" : (
               <a
                 href={url && relative(url)}
                 aria-label={`view ${product.isVariantOf?.name}`}
               >
-                <h3 class="text-sm w-full min-h-[80px] max-h-[80px]">
+                <h3
+                  class={`text-sm w-full ${
+                    resizeNameHeight && "min-h-[80px] max-h-[80px]"
+                  }`}
+                >
                   {product.isVariantOf?.name}
                 </h3>
               </a>
