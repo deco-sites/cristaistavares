@@ -34,7 +34,7 @@ export default function PrincipalImages({ images }: ProductCarouselProps) {
 
     image.style.transform = `scale(1.8)`;
     image.style.transformOrigin = `${percentageX}% ${percentageY}%`;
-    image.style.zIndex = "20";
+    image.style.zIndex = "40";
   };
 
   const handleMouseLeave = (

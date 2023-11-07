@@ -227,22 +227,25 @@ function ProductCard(
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full h-full"
         >
-          {isKit && (
-            <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
-              KIT
-            </span>
-          )}
+          <div class="flex flex-col gap-1.5 absolute left-1 lg:top-4 w-full">
+            {isKit && (
+              <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 z-30 rounded-md text-xs lg:text-normal">
+                KIT
+              </span>
+            )}
 
-          {isNew && (
-            <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 lg:top-4 z-30 rounded-md text-xs lg:text-normal">
-              LANÇAMENTO
-            </span>
-          )}
+            {isNew && (
+              <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 z-30 rounded-md text-xs lg:text-normal">
+                LANÇAMENTO
+              </span>
+            )}
 
-          <DiscountPercentage
-            price={price!}
-            listPrice={listPrice!}
-          />
+            <DiscountPercentage
+              price={price!}
+              listPrice={listPrice!}
+              isPDP={false}
+            />
+          </div>
 
           {
             /* {!isSearchbar && product.isSimilarTo &&

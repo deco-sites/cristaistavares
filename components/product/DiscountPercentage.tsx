@@ -1,9 +1,10 @@
 interface Props {
   price: number;
   listPrice: number;
+  isPDP?: boolean;
 }
 
-const Discount = ({ price, listPrice }: Props) => {
+const Discount = ({ price, listPrice, isPDP = true }: Props) => {
   const discountValue = Math.floor(listPrice - price);
 
   if (discountValue <= 0) return null;
@@ -11,7 +12,11 @@ const Discount = ({ price, listPrice }: Props) => {
   const discountPercentage = Math.ceil(discountValue * 100 / listPrice);
 
   return (
-    <span class="indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 absolute left-1 top-6 lg:top-10 z-30 rounded-md text-xs lg:text-normal">
+    <span
+      class={`${
+        isPDP && "absolute top-1.5"
+      } indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 z-30 rounded-md text-xs lg:text-normal`}
+    >
       {discountPercentage}% OFF
     </span>
   );
