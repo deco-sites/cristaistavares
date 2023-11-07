@@ -1,14 +1,5 @@
 import { useState } from "preact/hooks";
 
-// Função para remover formatação de texto indesejada
-function sanitizeDescription(description?: string) {
-  if (description) {
-    return description.replace(/<[^>]*>/g, "");
-  }
-
-  return "";
-}
-
 export interface Props {
   description?: string;
 }
@@ -18,12 +9,11 @@ export default function ProductDescription({ description }: Props) {
     self.innerWidth >= 640 ? true : false,
   );
 
-  // Remova a formatação indesejada da descrição antes de renderizá-la
-  const sanitizedDescription = sanitizeDescription(description);
+  if (!description) return null;
 
   const descriptionValue = isToggle
-    ? sanitizedDescription
-    : sanitizedDescription.substring(0, 50).concat("...");
+    ? description
+    : description.substring(0, 150).concat("...");
 
   return (
     <div class="flex flex-col gap-2 w-full">
