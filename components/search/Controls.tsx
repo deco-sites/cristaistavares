@@ -96,6 +96,7 @@ function SearchControls(
         <div class="flex flex-row items-center justify-between border-b border-base-200 lg:gap-4 lg:border-none">
           <div class="hidden lg:flex items-center gap-4">
             <button
+              title="Switch to 3-product view"
               onClick={applySort}
               class="flex items-center gap-1.5 hover:cursor-pointer"
             >
@@ -109,6 +110,7 @@ function SearchControls(
             </button>
 
             <button
+              title="Switch to 4-product view"
               onClick={applySort}
               class="flex items-center gap-1.5 hover:cursor-pointer"
             >

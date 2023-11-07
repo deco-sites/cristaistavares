@@ -37,6 +37,7 @@ function Sort({ sortOptions }: Props) {
 
   return (
     <select
+      aria-label="change product sort"
       id="sort"
       name="sort"
       onInput={applySort}

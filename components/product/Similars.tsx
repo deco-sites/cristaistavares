@@ -74,7 +74,7 @@ function SimilarsSlider(
               >
                 <img
                   src={front.url}
-                  alt={front.description}
+                  alt={front.description || "Imagem de Cores Similares"}
                   width={60}
                   height={60}
                   loading={preload ? index < 4 ? "eager" : "lazy" : "lazy"}

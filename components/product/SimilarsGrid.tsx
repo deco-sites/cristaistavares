@@ -32,7 +32,7 @@ export default function SimilarsGrid({ products }: Props) {
             >
               <img
                 src={front.url}
-                alt={front.description}
+                alt={front.description || "Imagem de Cores Similares"}
                 width={52}
                 height={52}
               />

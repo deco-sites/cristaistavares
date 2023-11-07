@@ -45,7 +45,7 @@ function FilterValues({ key, values }: FilterToggle) {
     : "flex-col";
 
   return (
-    <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
+    <div class={`flex flex-wrap gap-2 ${flexDirection}`}>
       {values.map((item) => {
         const { url, selected, value, quantity } = item;
 
@@ -73,7 +73,7 @@ function FilterValues({ key, values }: FilterToggle) {
 
         return <ValueItem {...item} />;
       })}
-    </ul>
+    </div>
   );
 }
 
