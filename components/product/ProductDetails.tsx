@@ -371,8 +371,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                   <Image
                     style={{ aspectRatio: ASPECT_RATIO }}
                     class="group-disabled:border-base-300 border rounded bg-no-repeat bg-center"
-                    width={80}
-                    height={80}
+                    width={75}
+                    height={75}
                     src={img.url!}
                     alt={img.alternateName}
                   />

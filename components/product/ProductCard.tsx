@@ -114,7 +114,9 @@ function ProductCard(
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price: offerPrice, seller } = useOffer(offers);
+  const { listPrice: listPriceOpt, price: offerPrice, seller } = useOffer(
+    offers,
+  );
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const { selectedSku } = useSkuSelector();
@@ -143,6 +145,11 @@ function ProductCard(
     (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
       item,
     ) => item.priceType == "https://schema.org/SalePrice")?.price ?? offerPrice;
+  const listPrice =
+    (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
+      item,
+    ) => item.priceType == "https://schema.org/ListPrice")?.price ??
+      listPriceOpt;
   const pixPrice =
     (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
       item,
