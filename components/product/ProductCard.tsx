@@ -406,7 +406,8 @@ function ProductCard(
               >
                 <h3
                   class={`text-sm w-full ${
-                    resizeNameHeight && "min-h-[100px] max-h-[100px] sm:min-h-[80px] sm:max-h-[80px]"
+                    resizeNameHeight &&
+                    "min-h-[100px] max-h-[100px] sm:min-h-[80px] sm:max-h-[80px]"
                   }`}
                 >
                   {product.isVariantOf?.name}
