@@ -15,6 +15,8 @@ function generatePageLinks(pageInfo: Props["pageInfo"]) {
 
   const pageFormated = pageInfo.nextPage
     ? pageInfo.nextPage.split("page=")[0]
+    : pageInfo.previousPage
+    ? pageInfo.previousPage.split("page=")[0]
     : "?";
 
   const totalPages = Math.ceil(pageInfo.records / pageInfo.recordPerPage);
