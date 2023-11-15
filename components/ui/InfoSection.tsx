@@ -67,7 +67,7 @@ export default function InfoSection(
   const id = useId();
 
   return (
-    <section class="flex-grow flex items-center justify-center mt-14 mb-8">
+    <section class="flex-grow flex items-center justify-center mt-14">
       <div class="flex flex-col max-w-[1500px] items-center justify-center">
         <h1
           dangerouslySetInnerHTML={{ __html: title }}
