@@ -87,7 +87,7 @@ export default function Matcher({ product, suggestions }: Props) {
       <div class="flex flex-col lg:flex-row items-center justify-start border border-gray-dark lg:border-none rounded-xl px-2 lg:px-0 lg:gap-8">
         <SuggestionCard product={product} />
 
-        <div class="btn btn-circle btn-outline text-dark-gray hover:text-dark-gray hover:bg-transparent">
+        <div class="btn btn-circle btn-outline text-dark-gray hover:text-dark-gray hover:bg-none">
           <Icon id="Plus" width={12} height={12} strokeWidth={3} />
         </div>
 
@@ -99,7 +99,7 @@ export default function Matcher({ product, suggestions }: Props) {
           }}
         />
 
-        <div class="btn btn-circle btn-outline text-dark-gray hover:text-dark-gray hover:bg-transparent mb-2 lg:mb-0">
+        <div class="btn btn-circle btn-outline text-dark-gray hover:text-dark-gray hover:bg-none mb-2 lg:mb-0">
           =
         </div>
       </div>

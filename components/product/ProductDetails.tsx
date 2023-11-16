@@ -209,7 +209,7 @@ function ProductInfo(
             <ProductGift productGift={productGift} />
           </div>
         )}
-        <div>
+        <div class="lg:max-w-[510px]">
           {/* Add to Cart and Favorites button */}
           <div class="mt-4 sm:mt-6 flex gap-2 px-4">
             {availability === "https://schema.org/InStock"
@@ -271,9 +271,11 @@ function ProductInfo(
             <div class="mt-4 sm:mt-6 flex px-4 w-full">
               <a
                 href="#combinacao"
-                class="text-sm flex items-center justify-center w-full xl:w-1/2 border border-gray-500 rounded hover:bg-gray-500 hover:text-white h-[50px] transition-colors duration-200"
+                class="text-sm flex items-center justify-center w-full md:w-[80%] border border-gray-500 hover:border-emerald-500 rounded hover:bg-emerald-500 hover:text-white h-[50px] transition-colors duration-200"
               >
-                Sugestão de Composição
+                {suggestions[0]?.isVariantOf?.name?.includes("Abajur")
+                  ? "Com Cúpula"
+                  : "Sugestão de Composição"}
               </a>
             </div>
           )}
