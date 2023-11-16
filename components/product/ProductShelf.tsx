@@ -24,6 +24,7 @@ export interface Props {
   };
   cardLayout?: cardLayout;
   hasPaddingOnTheRight?: boolean;
+  removingPaddingOnTheTop?: boolean;
 }
 
 function ProductShelf({
@@ -34,6 +35,7 @@ function ProductShelf({
   cardLayout,
   isPDP = false,
   hasPaddingOnTheRight = false,
+  removingPaddingOnTheTop = false,
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -43,7 +45,11 @@ function ProductShelf({
   }
 
   return (
-    <div class="flex-grow xl:container py-[30px] flex flex-col gap-8 lg:gap-10 lg:py-10">
+    <div
+      class={`${
+        removingPaddingOnTheTop ? "py-0" : "py-[30px]"
+      } flex-grow xl:container flex flex-col gap-8 lg:gap-10 lg:py-10`}
+    >
       <Header
         title={title || ""}
         description={description || ""}
