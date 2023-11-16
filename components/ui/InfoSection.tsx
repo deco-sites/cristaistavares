@@ -62,7 +62,7 @@ function Dots({ cards, interval = 0 }: Pick<Props, "cards" | "interval">) {
 }
 
 export default function InfoSection(
-  { title, cards, isSlider, interval }: Props,
+  { title, cards, isSlider = false, interval }: Props,
 ) {
   const id = useId();
 
@@ -74,18 +74,54 @@ export default function InfoSection(
           class="text-center lg:text-xl font-medium text-black"
         />
 
-        {isSlider && (
-          <div
-            id={id}
-            class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer"
-          >
-            <Slider class="carousel carousel-center w-full">
-              {cards?.map((card, index) => (
+        {isSlider
+          ? (
+            <div
+              id={id}
+              class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer"
+            >
+              <Slider class="carousel carousel-center w-full">
+                {cards?.map((card, index) => (
+                  <>
+                    <Slider.Item
+                      index={index}
+                      class="carousel-item w-full items-center justify-center lg:group lg:relative lg:flex gap-1"
+                    >
+                      <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
+                        {card.descHover}
+                      </div>
+                      <Image
+                        src={card.image.icon}
+                        alt={card.image.alt}
+                        width={26}
+                        height={26}
+                        loading="lazy"
+                      />
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: card.description || "",
+                        }}
+                      />
+                    </Slider.Item>
+                  </>
+                ))}
+              </Slider>
+
+              <Dots cards={cards} interval={interval} />
+
+              <SliderJS
+                rootId={id}
+                infinite
+                scroll="smooth"
+                interval={interval && interval * 1e3}
+              />
+            </div>
+          )
+          : (
+            <ul class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer">
+              {cards?.map((card) => (
                 <>
-                  <Slider.Item
-                    index={index}
-                    class="carousel-item w-full items-center justify-center lg:group lg:relative lg:flex gap-1"
-                  >
+                  <li class="lg:group lg:relative flex gap-1">
                     <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
                       {card.descHover}
                     </div>
@@ -101,45 +137,11 @@ export default function InfoSection(
                         __html: card.description || "",
                       }}
                     />
-                  </Slider.Item>
+                  </li>
                 </>
               ))}
-            </Slider>
-
-            <Dots cards={cards} interval={interval} />
-
-            <SliderJS
-              rootId={id}
-              infinite
-              scroll="smooth"
-              interval={interval && interval * 1e3}
-            />
-          </div>
-        )}
-
-        {!isSlider && (
-          <ul class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer">
-            {cards?.map((card) => (
-              <>
-                <li class="lg:group lg:relative flex gap-1">
-                  <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
-                    {card.descHover}
-                  </div>
-                  <Image
-                    src={card.image.icon}
-                    alt={card.image.alt}
-                    width={26}
-                    height={26}
-                    loading="lazy"
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{ __html: card.description || "" }}
-                  />
-                </li>
-              </>
-            ))}
-          </ul>
-        )}
+            </ul>
+          )}
       </div>
     </section>
   );

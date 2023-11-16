@@ -1,3 +1,6 @@
+import listLoader from "apps/vtex/loaders/intelligentSearch/productList.ts";
+import { AppContext } from "apps/vtex/mod.ts";
+
 export interface Review {
   productId: string;
   rating: number;
@@ -170,15 +173,19 @@ export default function AvaliationSection({ rating, reviews }: Props) {
   );
 }
 
-export const loader = async (props: Props, req: Request) => {
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const url = new URL(req.url);
   const skuId = url.searchParams.get("skuId");
 
   if (!skuId) return null;
 
+  const product = await listLoader({ props: { ids: [skuId] } }, req, ctx);
+  const productId = product && product[0]?.inProductGroupWithID ||
+    product && product[0]?.isVariantOf?.productGroupID;
+
   async function getRatingData(): Promise<Rating | null> {
     const data = await fetch(
-      `https://cristaistavares.myvtex.com/reviews-and-ratings/api/rating/${skuId}`,
+      `https://cristaistavares.myvtex.com/reviews-and-ratings/api/rating/${productId}`,
     ).then((response) => response.json());
 
     return data;
@@ -189,7 +196,9 @@ export const loader = async (props: Props, req: Request) => {
       `https://cristaistavares.myvtex.com/reviews-and-ratings/api/reviews`,
     ).then((response) => response.json());
 
-    const reviews = reviewData.data.filter((item) => item.productId == skuId);
+    const reviews = reviewData.data.filter((item) =>
+      item.productId == productId
+    );
 
     return reviews;
   }
