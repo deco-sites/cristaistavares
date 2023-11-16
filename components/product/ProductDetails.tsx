@@ -32,7 +32,7 @@ import ProductGift from "./ProductGift.tsx";
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
-  // suggestions: Product[] | null;
+  suggestions: Product[] | null;
   /**
    * @ignore
    */
@@ -83,7 +83,9 @@ function NotFound() {
 }
 
 function ProductInfo(
-  { page, layout, productGift }: { page: ProductDetailsPage } & Props,
+  { page, layout, productGift, suggestions }:
+    & { page: ProductDetailsPage }
+    & Props,
 ) {
   const platform = usePlatform();
   const {
@@ -265,16 +267,16 @@ function ProductInfo(
               : <OutOfStock productID={productID} />}
           </div>
 
-          {
-            /* <div class="mt-4 sm:mt-6 flex px-4 w-full">
-            <a
-              href="#combinacao"
-              class="text-sm flex items-center justify-center w-full xl:w-1/2 border border-gray-500 rounded hover:bg-gray-500 hover:text-white h-[50px] transition-colors duration-200"
-            >
-              Sugestão de Composição
-            </a>
-          </div> */
-          }
+          {suggestions && suggestions.length > 0 && (
+            <div class="mt-4 sm:mt-6 flex px-4 w-full">
+              <a
+                href="#combinacao"
+                class="text-sm flex items-center justify-center w-full xl:w-1/2 border border-gray-500 rounded hover:bg-gray-500 hover:text-white h-[50px] transition-colors duration-200"
+              >
+                Sugestão de Composição
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
@@ -445,8 +447,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             )}
           </div>
         </div>
-        {
-          /* <div class="flex-grow flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
+
+        <div class="flex-grow flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
               <h2
@@ -460,8 +462,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
               />
             </div>
           )}
-        </div> */
-        }
+        </div>
       </>
     );
   }
@@ -501,7 +502,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   );
 }
 
-function ProductDetails({ page, layout, productGift }: Props) {
+function ProductDetails({ page, layout, productGift, suggestions }: Props) {
   return (
     <div class="xl:container pt-12">
       {page
@@ -520,6 +521,7 @@ function ProductDetails({ page, layout, productGift }: Props) {
             <Details
               page={page}
               layout={layout}
+              suggestions={suggestions}
               productGift={productGift}
             />
           </>
