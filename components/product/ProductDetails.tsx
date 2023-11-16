@@ -416,28 +416,34 @@ function Details(props: { page: ProductDetailsPage } & Props) {
               )} */
               }
 
-              <div class="flex flex-col gap-3 flex-grow w-full">
-                <h1 class="font-bold text-sm">Medidas</h1>
+              {props?.page?.product?.isVariantOf?.additionalProperty &&
+                props?.page?.product?.isVariantOf?.additionalProperty?.filter(
+                    (item) => item?.value?.includes("cm"),
+                  ).length > 0 &&
+                (
+                  <div class="flex flex-col gap-3 flex-grow w-full">
+                    <h1 class="font-bold text-sm">Medidas</h1>
 
-                <div class="flex flex-col flex-grow gap-1 text-black w-full">
-                  {props?.page?.product?.isVariantOf?.additionalProperty
-                    ?.filter(
-                      (filteredItem) => filteredItem?.value?.includes("cm"),
-                    ).map((item) => {
-                      return (
-                        <div class="even:bg-white odd:bg-gray-100 flex gap-2 flex-grow xl:w-[90%] px-6 py-1">
-                          <span class="font-semibold text-sm min-w-[30%]">
-                            {item?.name ?? ""}
-                          </span>
+                    <div class="flex flex-col flex-grow gap-1 text-black w-full">
+                      {props?.page?.product?.isVariantOf?.additionalProperty
+                        ?.filter(
+                          (filteredItem) => filteredItem?.value?.includes("cm"),
+                        ).map((item) => {
+                          return (
+                            <div class="even:bg-white odd:bg-gray-100 flex gap-2 flex-grow xl:w-[90%] px-6 py-1">
+                              <span class="font-semibold text-sm min-w-[30%]">
+                                {item?.name ?? ""}
+                              </span>
 
-                          <span class="text-sm w-full">
-                            {item?.value ?? ""}
-                          </span>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
+                              <span class="text-sm w-full">
+                                {item?.value ?? ""}
+                              </span>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                )}
             </div>
 
             {props?.page?.product?.description && (

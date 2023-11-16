@@ -47,7 +47,7 @@ function Dots({ cards, interval = 0 }: Pick<Props, "cards" | "interval">) {
         {cards?.map((_, index) => (
           <li class="carousel-item">
             <Slider.Dot index={index}>
-              <div class="py-5">
+              <div>
                 <div
                   class="w-3 h-3 rounded-full group-disabled:animate-progress bg-gradient-to-r from-dark-pink from-[length:var(--dot-progress)] to-black to-[length:var(--dot-progress)]"
                   style={{ animationDuration: `${interval}s` }}
@@ -67,7 +67,7 @@ export default function InfoSection(
   const id = useId();
 
   return (
-    <section class="flex-grow flex items-center justify-center mt-14">
+    <section class="flex-grow flex items-center justify-center mt-[30px] lg:mt-14">
       <div class="flex flex-col max-w-[1500px] items-center justify-center">
         <h1
           dangerouslySetInnerHTML={{ __html: title }}
@@ -78,7 +78,7 @@ export default function InfoSection(
           ? (
             <div
               id={id}
-              class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer"
+              class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-6 lg:mt-8 cursor-pointer"
             >
               <Slider class="carousel carousel-center w-full">
                 {cards?.map((card, index) => (
