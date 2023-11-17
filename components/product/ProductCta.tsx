@@ -14,9 +14,10 @@ export default function ProductCta(
     productID,
     resizeQuantity,
     isProductMatcher,
+    isPDP = false,
   }:
     & Props
-    & { resizeQuantity?: boolean; isProductMatcher?: boolean },
+    & { resizeQuantity?: boolean; isProductMatcher?: boolean; isPDP?: boolean },
 ) {
   const [quantity, setQuantity] = useState(1);
 
@@ -40,6 +41,7 @@ export default function ProductCta(
           onChange={setQuantity}
           resizeQuantity={resizeQuantity}
           isProductMatcher={isProductMatcher}
+          isPDP={isPDP}
         />
       </div>
       {cta}

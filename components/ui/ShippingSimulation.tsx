@@ -43,7 +43,7 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 py-4 px-2 bg-base-200 rounded-[4px] sm:max-w-[92%] md:max-w-[84%] lg:max-w-[75%] xl:max-w-[73%]">
+    <ul class="flex flex-col gap-4 py-4 px-2 bg-base-200 rounded-[4px] sm:max-w-[92%] md:max-w-[84%] lg:max-w-[81%]">
       <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
         <span class="text-xs sm:text-base text-button text-center">
           Entrega {methods[0].name}
@@ -103,7 +103,7 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered join-item w-full sm:w-auto sm:min-w-[58%]"
+          class="input input-bordered join-item w-full sm:w-auto sm:min-w-[63%]"
           placeholder="Digite seu cep aqui"
           value={postalCode.value}
           maxLength={8}

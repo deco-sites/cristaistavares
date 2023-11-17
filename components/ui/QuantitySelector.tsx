@@ -7,6 +7,7 @@ interface Props {
   onChange?: (quantity: number) => void;
   resizeQuantity?: boolean;
   isProductMatcher?: boolean;
+  isPDP?: boolean;
 }
 
 const QUANTITY_MAX_VALUE = 100;
@@ -19,13 +20,14 @@ function QuantitySelector(
     loading,
     resizeQuantity = false,
     isProductMatcher = false,
+    isPDP = false,
   }: Props,
 ) {
   const inputWidth = isProductMatcher
     ? "w-[23px]"
     : resizeQuantity
     ? "w-[10px]"
-    : "w-[45px]";
+    : `w-[45px] ${isPDP && "xl:w-[60px]"}`;
   const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>
