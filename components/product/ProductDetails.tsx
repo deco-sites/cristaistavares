@@ -169,7 +169,7 @@ function ProductInfo(
       <ProductSelector product={product} />
       {/* Similars */}
       {product.isSimilarTo && product.isSimilarTo.length > 0 && (
-        <div class="flex flex-col gap-2 mt-4 px-4 md:max-w-[85%]">
+        <div class="flex flex-col gap-2 mt-4 px-4 max-w-full">
           <span class="text-sm">
             Cores
           </span>
@@ -341,7 +341,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
       <>
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] md:grid-cols-[max-content_30vw_52vw] 2xl:grid-cols-[max-content_30vw_32vw] sm:grid-rows-1 sm:justify-center lg:px-4 2xl:px-0"
+          class="grid grid-cols-1 gap-4 xl:gap-2 sm:grid-cols-[max-content_30vw_1fr] md:grid-cols-[max-content_30vw_52vw] xl:grid-cols-[100px_570px_535px] sm:grid-rows-1 sm:justify-center lg:px-4 2xl:px-0"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
@@ -517,7 +517,7 @@ function ProductDetails({ page, layout, productGift, suggestions }: Props) {
         ? (
           <>
             {/* Breadcrumb */}
-            <div class="xl:max-w-[1220px] mx-auto px-6 xl:px-0 mb-2">
+            <div class="xl:max-w-[1220px] mx-auto px-6 lg:px-10 xl:px-0 mb-2">
               <Breadcrumb
                 itemListElement={page.breadcrumbList?.itemListElement.slice(
                   0,

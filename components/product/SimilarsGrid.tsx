@@ -17,7 +17,7 @@ export default function SimilarsGrid({ products }: Props) {
 
   const displayAllProducts = products.length > 28 && isViewMoreItemsActive
     ? products
-    : products.slice(0, 27);
+    : products.slice(0, 21);
 
   return (
     <>
