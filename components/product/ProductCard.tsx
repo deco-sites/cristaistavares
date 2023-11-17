@@ -76,18 +76,13 @@ const HEIGHT = 275;
 
 function filterSimilarProductsLength(products: Product[]): number {
   const uniqueURLs = new Set();
-  const filteredProducts = [];
 
   for (const product of products) {
     const url = product.url && relative(product.url);
-
-    if (!uniqueURLs.has(url)) {
-      uniqueURLs.add(url);
-      filteredProducts.push(product);
-    }
+    uniqueURLs.add(url);
   }
 
-  return filteredProducts.length;
+  return uniqueURLs.size;
 }
 
 function ProductCard(
