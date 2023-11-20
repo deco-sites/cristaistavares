@@ -50,7 +50,7 @@ let firstRun = true;
 export default function Site(
   { theme, ...state }: Props,
 ): App<Manifest, Props, [ReturnType<typeof commerce>]> {
-  _platform = state.commerce.platform;
+  _platform = state.commerce?.platform;
 
   const { account, platform } = getPlatformInfo(state.commerce);
 
@@ -65,11 +65,17 @@ export default function Site(
     firstRun = false;
   }
 
+  const globals = [...state.global ?? []];
+
+  if (theme) {
+    globals.splice(0, 0, theme);
+  }
+
   return {
     state,
     manifest,
     dependencies: [
-      commerce({ ...state, global: theme ? [theme] : [] }),
+      commerce({ ...state, global: globals }),
     ],
   };
 }
