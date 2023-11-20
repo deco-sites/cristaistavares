@@ -160,7 +160,13 @@ function ProductCard(
   const skuSelector = variants
     .sort(([a], [b]) => skuOrder.indexOf(a) - skuOrder.indexOf(b))
     .map(([value, [link]]) => (
-      <SkuSelector key={value} value={value} link={link} url={url} />
+      <SkuSelector
+        key={value}
+        value={value}
+        link={link}
+        productName={filteredProduct?.name || name}
+        url={url}
+      />
     ));
 
   const isNew = additionalProperty?.find((item) => item.value == "LANÇAMENTO");

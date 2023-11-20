@@ -8,7 +8,7 @@ interface Props {
 
 function VariantSelector({ product, product: { url } }: Props) {
   const possibilities = useVariantPossibilities(product);
-  const order: string[] = ["PP", "P", "M", "G", "GG"];
+  const order: string[] = ["PP", "P", "M", "G", "GG", "ÚN"];
 
   const sortedPossibilities: Record<string, Record<string, string[]>> = Object
     .keys(

@@ -2,7 +2,12 @@ import Avatar from "$store/components/ui/Avatar.tsx";
 import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
 export default function SkuSelector(
-  { link, value, url }: { link: string; value: string; url?: string },
+  { link, value, url, productName }: {
+    link: string;
+    value: string;
+    url?: string;
+    productName?: string;
+  },
 ) {
   const { selectedSku, setSku } = useSkuSelector();
 
@@ -12,7 +17,8 @@ export default function SkuSelector(
         <Avatar
           variant={link === url ? "active" : "default"}
           content={value.toLowerCase()}
-          isSelected={selectedSku.value === link}
+          isSelected={value.toLowerCase() ===
+            (productName && productName.toLowerCase())}
         />
       </div>
     </li>

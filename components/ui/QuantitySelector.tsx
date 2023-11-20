@@ -27,7 +27,7 @@ function QuantitySelector(
     ? "w-[23px]"
     : resizeQuantity
     ? "w-[10px]"
-    : `w-[45px] ${isPDP && "xl:w-[60px]"}`;
+    : `w-[20px] xl:w-[45px] ${isPDP && "xl:w-[60px]"}`;
   const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>

@@ -106,7 +106,7 @@ export const loader = (props: Props, req: Request) => {
   if (url.searchParams.has("layout")) {
     return {
       ...props,
-      layout: { variant: "aside", columns: { desktop: 3 } },
+      layout: { variant: "aside", columns: { desktop: 4 } },
     };
   }
 
