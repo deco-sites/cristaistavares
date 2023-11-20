@@ -32,7 +32,7 @@ function VariantSelector({ product, product: { url } }: Props) {
               {Object.entries(values).map(([value, links]) => {
                 return (
                   <li key={value}>
-                    <a href={links[0]}>
+                    <button f-partial={links[0]} f-client-nav>
                       <Avatar
                         content={value}
                         variant={links[0] === url ? "active" : "default"}
@@ -41,7 +41,7 @@ function VariantSelector({ product, product: { url } }: Props) {
                             ? product.name.toUpperCase()
                             : null)}
                       />
-                    </a>
+                    </button>
                   </li>
                 );
               })}
