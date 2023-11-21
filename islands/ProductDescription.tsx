@@ -18,12 +18,23 @@ export default function ProductDescription({ description }: Props) {
   return (
     <div class="flex flex-col gap-2 w-full">
       <h1 class="text-sm font-bold">Descrição</h1>
-      <div
-        class="text-justify"
-        dangerouslySetInnerHTML={{
-          __html: descriptionValue ?? "",
-        }}
-      />
+      {self.innerWidth < 640
+        ? (
+          <div
+            class="text-justify"
+            dangerouslySetInnerHTML={{
+              __html: descriptionValue ?? "",
+            }}
+          />
+        )
+        : (
+          <div
+            class="text-justify"
+            dangerouslySetInnerHTML={{
+              __html: description ?? "",
+            }}
+          />
+        )}
       {self.innerWidth < 640 && (
         <button
           title="Botão Ver mais"

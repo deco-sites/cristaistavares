@@ -26,8 +26,9 @@ export default function SimilarsGrid({ products }: Props) {
           const [front] = images ?? [];
 
           return (
-            <a
-              href={url && relative(url)}
+            <button
+              f-partial={url && relative(url)}
+              f-client-nav
               class="flex items-center justify-center border border-gray-300 rounded-xl w-14 h-14 p-1"
             >
               <img
@@ -36,7 +37,7 @@ export default function SimilarsGrid({ products }: Props) {
                 width={52}
                 height={52}
               />
-            </a>
+            </button>
           );
         })}
       </div>

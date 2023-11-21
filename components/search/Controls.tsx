@@ -66,9 +66,9 @@ function SearchControls(
         <>
           <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
             <div class="flex justify-between items-center">
-              <h1 class="px-4 py-3">
+              <p class="px-4 py-3">
                 <span class="font-medium text-2xl">Filtrar</span>
-              </h1>
+              </p>
               <Button class="btn btn-ghost" onClick={() => open.value = false}>
                 <Icon id="XMark" size={24} strokeWidth={2} />
               </Button>
@@ -86,10 +86,10 @@ function SearchControls(
         </div>
 
         <div class="flex flex-col lg:flex-row gap-2 lg:gap-8 items-center justify-center text-center font-bold py-2">
-          <h1>
+          <p>
             Resultado para:{" "}
             <span class="capitalize">{title ?? searchItem}</span>
-          </h1>
+          </p>
           <span class="text-sm">{productsQuantity} produtos</span>
         </div>
 
