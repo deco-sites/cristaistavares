@@ -18,8 +18,8 @@ export default function Matcher({ product, suggestions }: Props) {
   const [isChecked, setIsChecked] = useState(true);
   const { seller } = useOffer(product.offers);
 
-  const definitiveListPrice =
-    product.offers?.offers[0].priceSpecification[0].price;
+  const definitiveListPrice = product.offers?.offers[0].priceSpecification[0]
+    .price;
 
   const definitivePrice = product.offers?.offers[0].priceSpecification[1].price;
 
@@ -31,11 +31,11 @@ export default function Matcher({ product, suggestions }: Props) {
     offers,
   } = suggestions[0];
 
-  const secondListPrice =
-    suggestions[0].offers?.offers[0].priceSpecification[0].price;
+  const secondListPrice = suggestions[0].offers?.offers[0].priceSpecification[0]
+    .price;
 
-  const secondPrice =
-    suggestions[0].offers?.offers[0].priceSpecification[1].price;
+  const secondPrice = suggestions[0].offers?.offers[0].priceSpecification[1]
+    .price;
 
   const {
     seller: secondSeller,

@@ -320,12 +320,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   const { page: { product: { image: images = [] } }, layout } = props;
   const variant = layout?.image ?? "slider";
 
-  const price = (props.page.product)?.offers?.offers[0]?.priceSpecification
+  const price = props.page.product?.offers?.offers[0]?.priceSpecification
     ?.find((
       item,
     ) => item.priceType == "https://schema.org/SalePrice")?.price;
 
-  const listPrice = (props.page.product)?.offers?.offers[0]?.priceSpecification
+  const listPrice = props.page.product?.offers?.offers[0]?.priceSpecification
     ?.find((
       item,
     ) => item.priceType == "https://schema.org/ListPrice")?.price;

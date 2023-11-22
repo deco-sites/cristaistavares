@@ -42,8 +42,8 @@ function SuggestionCard(
 
   const id = `product-suggestion-${productID}`;
 
-  const definitiveListPrice =
-    product.offers?.offers[0].priceSpecification[0].price;
+  const definitiveListPrice = product.offers?.offers[0].priceSpecification[0]
+    .price;
 
   const definitivePrice = product.offers?.offers[0].priceSpecification[1].price;
 

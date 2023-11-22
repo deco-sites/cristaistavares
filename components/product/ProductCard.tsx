@@ -118,8 +118,9 @@ function ProductCard(
 
   const skuId = newSkuId(selectedSku.value);
 
-  const filteredProduct =
-    product.isVariantOf?.hasVariant.filter((item) => item.sku === skuId)[0];
+  const filteredProduct = product.isVariantOf?.hasVariant.filter((item) =>
+    item.sku === skuId
+  )[0];
 
   const {
     seller: filteredProductSeller,
