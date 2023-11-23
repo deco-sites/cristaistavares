@@ -1,16 +1,11 @@
-import { SendEventOnClick } from "$store/components/Analytics.tsx";
-import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossibilities.ts";
 import type { Product } from "apps/commerce/types.ts";
-import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
-import ProductCta from "$store/components/product/ProductCta.tsx";
-import Installments from "./Installments.tsx";
+import ProductInfo from "$store/islands/ProductCardInfo.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
-import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
 export interface Layout {
   basics?: {
@@ -62,15 +57,6 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const newSkuId = (url: string | null) => {
-  if (!url) return;
-
-  const link = new URL(url);
-  const skuId = link.searchParams.get("skuId");
-
-  return skuId;
-};
-
 const WIDTH = 275;
 const HEIGHT = 275;
 
@@ -103,53 +89,23 @@ function ProductCard(
     name,
     image: images,
     offers,
-    isVariantOf,
     additionalProperty,
   } = product;
   const id = `product-card-${productID}`;
-  const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice: listPriceOpt, price: offerPrice, seller } = useOffer(
+  const { listPrice: listPriceOpt, price: offerPrice } = useOffer(
     offers,
   );
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-  const { selectedSku } = useSkuSelector();
 
-  const skuId = newSkuId(selectedSku.value);
-
-  const filteredProduct = product.isVariantOf?.hasVariant.filter((item) =>
-    item.sku === skuId
-  )[0];
-
-  const {
-    seller: filteredProductSeller,
-  } = useOffer(filteredProduct?.offers);
-
-  const {
-    billingDuration: installmentsBillingDuration,
-    billingIncrement: installmentsBillingIncrement,
-  } = ((filteredProduct ?? product).offers?.offers[0].priceSpecification || [])
-    .filter((item) => item.billingDuration !== undefined)
-    .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
-    .map(({ billingDuration, billingIncrement }) => ({
-      billingDuration,
-      billingIncrement,
-    }))[0] || {};
-
-  const price =
-    (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
-      item,
-    ) => item.priceType == "https://schema.org/SalePrice")?.price ?? offerPrice;
-  const listPrice =
-    (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
-      item,
-    ) => item.priceType == "https://schema.org/ListPrice")?.price ??
-      listPriceOpt;
-  const pixPrice =
-    (filteredProduct ?? product)?.offers?.offers[0]?.priceSpecification?.find((
-      item,
-    ) => item.name === "Pix")?.price ?? 0;
+  const price = product?.offers?.offers[0]?.priceSpecification?.find((
+    item,
+  ) => item.priceType == "https://schema.org/SalePrice")?.price ?? offerPrice;
+  const listPrice = product?.offers?.offers[0]?.priceSpecification?.find((
+    item,
+  ) => item.priceType == "https://schema.org/ListPrice")?.price ??
+    listPriceOpt;
 
   const l = layout;
   const align =
@@ -165,7 +121,7 @@ function ProductCard(
         key={value}
         value={value}
         link={link}
-        productName={filteredProduct?.name || name}
+        product={product}
         url={url}
       />
     ));
@@ -186,22 +142,6 @@ function ProductCard(
       `}
       data-deco="view-product"
     >
-      <SendEventOnClick
-        id={id}
-        event={{
-          name: "select_item" as const,
-          params: {
-            item_list_name: itemListName,
-            items: [
-              mapProductToAnalyticsItem({
-                product: filteredProduct ?? product,
-                price: price,
-                listPrice: listPrice,
-              }),
-            ],
-          },
-        }}
-      />
       <figure
         class="relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
@@ -292,36 +232,6 @@ function ProductCard(
             />
           )}
         </a>
-        <figcaption
-          class={`
-          absolute bottom-1 left-0 flex-grow flex flex-col gap-3 p-2 ${
-            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
-              ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
-              : "lg:hidden"
-          }`}
-        >
-          {/* SKU Selector */}
-          {l?.onMouseOver?.showSkuSelector && (
-            <ul class="flex justify-center items-center gap-2 flex-grow">
-              {skuSelector}
-            </ul>
-          )}
-          {l?.onMouseOver?.showCta &&
-            (
-              <ProductCta
-                name={name ?? ""}
-                productID={(filteredProduct?.sku === skuId
-                  ? skuId
-                  : productID) ?? productID}
-                productGroupID={productGroupID ?? ""}
-                price={price ?? 0}
-                discount={price && listPrice ? listPrice - price : 0}
-                seller={filteredProductSeller ?? seller!}
-                resizeQuantity={resizeQuantity}
-                isProductMatcher={isProductMatcher}
-              />
-            )}
-        </figcaption>
       </figure>
       {/* Prices & Name */}
       <div class="flex flex-col md:p-2 gap-[0.4rem] lg:gap-2">
@@ -426,101 +336,14 @@ function ProductCard(
             )}
           </div>
         )}
-        {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-1">
-            <div
-              class={`flex flex-row gap-1 ${
-                align === "center"
-                  ? "justify-center items-center"
-                  : "justify-start items-center"
-              }`}
-            >
-              {(listPrice ?? 0) >
-                  (price!) && (
-                <div
-                  class={`line-through text-black text-xs ${
-                    l?.basics?.oldPriceSize === "Normal"
-                      ? "lg:text-xl"
-                      : "lg:text-sm"
-                  }`}
-                >
-                  <span>
-                    {formatPrice(
-                      listPrice,
-                      offers!.priceCurrency!,
-                    )}
-                  </span>
-                </div>
-              )}
-              <div class="text-black text-sm">
-                {formatPrice(
-                  price,
-                  offers!.priceCurrency!,
-                )}
-              </div>
-            </div>
-            {pixPrice !== 0 && (
-              <div class="text-black text-sm">
-                {formatPrice(
-                  pixPrice,
-                  offers!.priceCurrency!,
-                )} no <b>PIX</b>
-              </div>
-            )}
-            {l?.hide?.installments ? "" : (
-              <div
-                class={`flex ${
-                  align === "center" && "items-center justify-center"
-                }`}
-              >
-                <Installments
-                  installmentsBillingDuration={installmentsBillingDuration ??
-                    0}
-                  installmentsBillingIncrement={installmentsBillingIncrement ??
-                    0}
-                />
-              </div>
-            )}
-          </div>
-        )}
 
-        {/* SKU Selector */}
-        {l?.elementsPositions?.skuSelector === "Bottom" && (
-          <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 flex-grow ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
-          </>
-        )}
-
-        {!l?.hide?.cta
-          ? (
-            <div
-              class={`flex-auto flex items-center justify-center flex-grow pr-2.5 ${
-                l?.onMouseOver?.showCta ? "lg:hidden" : ""
-              }`}
-            >
-              <ProductCta
-                name={name ?? ""}
-                productID={(filteredProduct?.sku === skuId
-                  ? skuId
-                  : productID) ?? productID}
-                productGroupID={productGroupID ?? ""}
-                price={price ?? 0}
-                discount={price && listPrice ? listPrice - price : 0}
-                seller={filteredProductSeller ?? seller!}
-                resizeQuantity={resizeQuantity}
-                isProductMatcher={isProductMatcher}
-              />
-            </div>
-          )
-          : ""}
+        <ProductInfo
+          product={product}
+          layout={layout}
+          resizeQuantity={resizeQuantity}
+          isProductMatcher={isProductMatcher}
+          itemListName={itemListName}
+        />
       </div>
     </div>
   );
