@@ -50,6 +50,21 @@ export interface Props {
    * @format color
    */
   textHex?: string;
+
+  /**
+   * @format color
+   */
+  buttonBackgroundHex?: string;
+
+  /**
+   * @format color
+   */
+  buttonColorHex?: string;
+
+  /**
+   * @format color
+   */
+  buttonBorderHex?: string;
 }
 
 const snippet = (expiresAt: string, rootId: string) => {
@@ -113,6 +128,9 @@ function CampaignTimer({
   layout = { textPosition: "Before counter" },
   backgroundHex = "#000",
   textHex = "#fff",
+  buttonBackgroundHex = "#000",
+  buttonColorHex = "#fff",
+  buttonBorderHex = "#fff",
 }: Props) {
   const id = useId();
 
@@ -185,6 +203,11 @@ function CampaignTimer({
             >
             </div>
             <a
+              style={{
+                background: buttonBackgroundHex,
+                color: buttonColorHex,
+                borderColor: buttonBorderHex,
+              }}
               class="hidden md:flex btn"
               aria-label={link.text}
               href={link.href}
@@ -202,7 +225,7 @@ function CampaignTimer({
         </div>
       </div>
       <script
-        defer
+        type="module"
         dangerouslySetInnerHTML={{
           __html: `(${snippet})("${expiresAt}", "${id}");`,
         }}

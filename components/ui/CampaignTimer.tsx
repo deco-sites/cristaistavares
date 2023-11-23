@@ -192,7 +192,7 @@ function CampaignTimer({
         </div>
       </div>
       <script
-        async
+        type="module"
         dangerouslySetInnerHTML={{
           __html: `(${snippet})("${expiresAt}", "${id}");`,
         }}
