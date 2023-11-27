@@ -9,7 +9,7 @@ const Discount = ({ price, listPrice, isPDP = true }: Props) => {
 
   if (discountValue <= 0) return null;
 
-  const discountPercentage = Math.ceil(discountValue * 100 / listPrice);
+  const discountPercentage = Math.round(discountValue * 100 / listPrice);
 
   return (
     <span
