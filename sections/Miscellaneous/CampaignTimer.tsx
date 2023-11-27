@@ -96,7 +96,13 @@ const snippet = (expiresAt: string, rootId: string) => {
     elem.style.setProperty("--value", value.toString());
   };
 
-  const start = () =>
+  const start = () => {
+    setTimeout(() => {
+      document.getElementById(`${rootId}::counter`)?.classList.remove(
+        "opacity-0",
+      );
+    }, 1_000);
+
     setInterval(() => {
       const { days, hours, minutes, seconds } = getDelta();
       const isExpired = hours + minutes + seconds < 0;
@@ -114,10 +120,9 @@ const snippet = (expiresAt: string, rootId: string) => {
         setValue(`${rootId}::seconds`, seconds);
       }
     }, 1_000);
+  };
 
-  document.readyState === "complete"
-    ? start()
-    : addEventListener("load", start);
+  document.readyState === "loading" ? start() : addEventListener("load", start);
 };
 
 function CampaignTimer({
@@ -156,7 +161,7 @@ function CampaignTimer({
             {labels?.expired || "Expired!"}
           </div>
           <div class="flex gap-8 lg:gap-16 items-center justify-center lg:justify-normal">
-            <div id={`${id}::counter`}>
+            <div id={`${id}::counter`} class="opacity-0">
               <div class="grid grid-flow-col gap-3 text-center auto-cols-max items-center">
                 <div class="flex flex-col text-xs items-center justify-center">
                   <span class="countdown font-bold text-xl lg:text-2xl">
@@ -225,7 +230,6 @@ function CampaignTimer({
         </div>
       </div>
       <script
-        defer
         dangerouslySetInnerHTML={{
           __html: `(${snippet})("${expiresAt}", "${id}");`,
         }}
