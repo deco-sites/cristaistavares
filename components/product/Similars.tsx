@@ -68,9 +68,9 @@ function SimilarsSlider(
               index={index}
               class="carousel-item w-16"
             >
-              <button
-                f-partial={url && relative(url)}
-                f-client-nav
+              <a
+                href={url && relative(url)}
+                aria-label="change color"
                 class="flex items-center justify-center border border-gray-300 rounded-xl w-16 h-16 p-1"
               >
                 <img
@@ -80,7 +80,7 @@ function SimilarsSlider(
                   height={60}
                   loading={preload ? index < 4 ? "eager" : "lazy" : "lazy"}
                 />
-              </button>
+              </a>
             </Slider.Item>
           );
         })}
