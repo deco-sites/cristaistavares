@@ -2,7 +2,7 @@ import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Description from "$store/islands/SectionDescription.tsx";
 
 export interface Props {
-  title: HTMLWidget;
+  title?: HTMLWidget;
   description?: HTMLWidget;
   textEndAt?: number;
   hasMostPaddingBottom?: boolean;
@@ -18,10 +18,12 @@ export default function SectionDescription(
       } h-full flex flex-col items-center justify-center text-center gap-2 mt-[30px] md:mt-10 lg:mt-[30px] px-4 lg:px-0`}
     >
       <div>
-        <h2
-          dangerouslySetInnerHTML={{ __html: title }}
-          class="text-base font-medium"
-        />
+        {title && (
+          <div
+            dangerouslySetInnerHTML={{ __html: title }}
+            class="text-base font-medium"
+          />
+        )}
       </div>
       {description && (
         <Description description={description} textEndAt={textEndAt} />
