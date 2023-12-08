@@ -26,30 +26,40 @@ function ReviewComment({ rating, reviewerName, text, title }: Review) {
     <div class="flex flex-col gap-1">
       <div class="rating align-middle gap-1">
         <input
+          aria-label="star rating"
+          readOnly={true}
           type="radio"
           name="rating-1"
           className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
           checked={Math.floor(rating) == 1}
         />
         <input
+          aria-label="star rating"
+          readOnly={true}
           type="radio"
           name="rating-1"
           className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
           checked={Math.floor(rating) == 2}
         />
         <input
+          aria-label="star rating"
+          readOnly={true}
           type="radio"
           name="rating-1"
           className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
           checked={Math.floor(rating) == 3}
         />
         <input
+          aria-label="star rating"
+          readOnly={true}
           type="radio"
           name="rating-1"
           className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
           checked={Math.floor(rating) == 4}
         />
         <input
+          aria-label="star rating"
+          readOnly={true}
           type="radio"
           name="rating-1"
           className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
@@ -88,30 +98,40 @@ export default function AvaliationSection({ rating, reviews }: Props) {
           <div class="flex flex-col gap-1 align-middle items-start justify-start w-full">
             <div class="rating align-middle gap-1">
               <input
+                aria-label="star rating"
+                readOnly={true}
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
                 checked={Math.floor(RATING.average) == 1}
               />
               <input
+                aria-label="star rating"
+                readOnly={true}
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
                 checked={Math.floor(RATING.average) == 2}
               />
               <input
+                aria-label="star rating"
+                readOnly={true}
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
                 checked={Math.floor(RATING.average) == 3}
               />
               <input
+                aria-label="star rating"
+                readOnly={true}
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
                 checked={Math.floor(RATING.average) == 4}
               />
               <input
+                aria-label="star rating"
+                readOnly={true}
                 type="radio"
                 name="rating-1"
                 className="mask mask-star-2 bg-yellow-300 w-5 cursor-default"
@@ -127,20 +147,26 @@ export default function AvaliationSection({ rating, reviews }: Props) {
                 </p>
               </div>
               <div class="mt-10 pl-2">
-                <a href="">
+                <a href="#">
                   <p class="text-sm underline">
                     Faça login para escrever uma avaliação
                   </p>
                 </a>
               </div>
               <div class="flex flex-col sm:flex-row items-start justify-start gap-1.5 mt-7 mb-1.5">
-                <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full">
+                <select
+                  aria-labelledby="open options selector"
+                  class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full"
+                >
                   <option value="recentes">Mais Recentes</option>
                   <option value="antigas">Mais Antigas</option>
                   <option value="classAlta">Classificação Mais Alta</option>
                   <option value="classBaixa">Classificação Mais baixa</option>
                 </select>
-                <select class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full">
+                <select
+                  aria-labelledby="open options selector"
+                  class="text-sm border-2 rounded-md py-[0.25rem] px-[0.5rem] w-full"
+                >
                   <option value="todos">Todos</option>
                   <option value="1star">1 Estrela</option>
                   <option value="2star">2 Estrelas</option>
