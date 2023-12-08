@@ -1,6 +1,3 @@
-import listLoader from "apps/vtex/loaders/intelligentSearch/productList.ts";
-import { AppContext } from "apps/vtex/mod.ts";
-
 export interface Review {
   productId: string;
   rating: number;
@@ -173,15 +170,19 @@ export default function AvaliationSection({ rating, reviews }: Props) {
   );
 }
 
-export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+export const loader = async (props: Props, req: Request) => {
   const url = new URL(req.url);
   const skuId = url.searchParams.get("skuId");
 
   if (!skuId) return null;
 
-  const product = await listLoader({ props: { ids: [skuId] } }, req, ctx);
-  const productId = product && product[0]?.inProductGroupWithID ||
-    product && product[0]?.isVariantOf?.productGroupID;
+  const product = await fetch(
+    `https://cristaistavares.myvtex.com/api/catalog_system/pub/products/search/?fq=skuId:${skuId}`,
+  ).then((response) => response.json());
+
+  if (!product) return null;
+
+  const productId = product && product[0].productId;
 
   async function getRatingData(): Promise<Rating | null> {
     const data = await fetch(
