@@ -38,7 +38,7 @@ const MailbizJSON = () => {
 
   return (
     <>
-      <script async type="application/ld+json">
+      <script defer type="application/ld+json">
         {JSON.stringify(jsonLdData)}
       </script>
     </>

@@ -16,7 +16,7 @@ const Mailbiz = () => {
 
   return (
     <>
-      <script async dangerouslySetInnerHTML={{ __html: scriptCode }} />
+      <script defer dangerouslySetInnerHTML={{ __html: scriptCode }} />
     </>
   );
 };
