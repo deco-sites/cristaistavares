@@ -11,6 +11,13 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
+
+      <script
+        type="text/javascript"
+        id=""
+        async
+        src="https://cdn.widde.io/widde.1.1.0.js?v=1.0"
+      />
     </Head>
   );
 }
