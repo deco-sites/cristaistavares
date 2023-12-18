@@ -1,3 +1,4 @@
+import Image from "apps/website/components/Image.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface SocialItem {
@@ -39,7 +40,7 @@ export default function Social(
                     aria-label={`${item.label} Logo`}
                     class="flex gap-6 items-center w-[47px] h-[47px]"
                   >
-                    <img
+                    <Image
                       alt={item.label}
                       src={item.image}
                       width={47}
