@@ -46,7 +46,7 @@ function CartButton({ loading, currency, total, items }: Props) {
           alt="Cart Icon"
           width={36}
           height={36}
-          loading="lazy"
+          loading="eager"
         />
       </Button>
     </div>

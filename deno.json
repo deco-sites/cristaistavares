@@ -2,12 +2,12 @@
   "imports": {
     "deco-sites/cristaistavares/": "./",
     "$store/": "./",
-    "apps/": "https://denopkg.com/deco-cx/apps@0.23.5/",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.46.3/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.25.4/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.48.1/",
     "deco-sites/std/": "https://denopkg.com/deco-sites/std@1.22.11/",
-    "$fresh/": "https://deno.land/x/fresh@1.5.2/",
-    "preact": "https://esm.sh/preact@10.18.1",
-    "preact/": "https://esm.sh/preact@10.18.1/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.1/",
+    "preact": "https://esm.sh/preact@10.19.2",
+    "preact/": "https://esm.sh/preact@10.19.2/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
@@ -28,26 +28,9 @@
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts"
   },
-  "githooks": {
-    "pre-commit": "check"
-  },
-  "exclude": [
-    "node_modules",
-    "static/",
-    "README.md",
-    "**/_fresh/*"
-  ],
-  "lint": {
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
-    }
-  },
+  "githooks": { "pre-commit": "check" },
+  "exclude": ["node_modules", "static/", "README.md", "**/_fresh/*"],
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
   "nodeModulesDir": true,
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  }
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }

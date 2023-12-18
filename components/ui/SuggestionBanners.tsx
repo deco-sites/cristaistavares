@@ -19,7 +19,7 @@ export interface Props {
 export default function CategoryList({ title, description, cards }: Props) {
   return (
     <section class="flex-grow flex flex-col items-center justify-center px-5 my-2">
-      <div class="flex flex-col text-center pb-5 ">
+      <div class="flex flex-col text-center pb-5">
         <div class="">
           <p class="text-xl font-medium">{title}</p>
         </div>
