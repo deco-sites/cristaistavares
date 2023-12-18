@@ -18,7 +18,7 @@ const LoginElement = () => {
           width={20}
           height={23}
           alt="User Icon"
-          loading="lazy"
+          loading="eager"
         />
         <div class="flex justify-center items-center">
           <strong class="font-normal leading-5 truncate overflow-hidden text-sm text-gray-base normal-case arrow-down text-start">
