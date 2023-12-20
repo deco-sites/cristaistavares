@@ -31,7 +31,7 @@ function ValueItem(
   { url, selected, label, quantity }: FilterToggleValue,
 ) {
   return (
-    <a href={url} rel="nofollow" class="flex items-center gap-2">
+    <a href={url} rel="nofollow noindex" class="flex items-center gap-2">
       <div aria-checked={selected} class="checkbox" />
       <span class="text-sm capitalize">{label}</span>
       {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
@@ -51,7 +51,7 @@ function FilterValues({ key, values }: FilterToggle) {
 
         if (key === "cor" || key === "tamanho") {
           return (
-            <a href={url}>
+            <a href={url} rel="nofollow noindex">
               <Avatar
                 content={translate[value] || value}
                 variant={selected ? "active" : "default"}
