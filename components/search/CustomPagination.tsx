@@ -58,6 +58,7 @@ export default function PaginationCustom({ pageInfo }: Props) {
         <div class="flex items-center">
           {pageLinks.map((item) => (
             <a
+              rel="nofollow noindex"
               class={`${
                 pageInfo.currentPage === item.label
                   ? "bg-dark-pink text-white border-dark-pink"

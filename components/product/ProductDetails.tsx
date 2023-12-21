@@ -4,10 +4,6 @@ import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import Similars from "$store/components/product/Similars.tsx";
-import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
-import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
-import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
-import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import Installments from "./Installments.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
@@ -234,34 +230,6 @@ function ProductInfo(
                       /> */
                       }
                     </>
-                  )}
-                  {platform === "wake" && (
-                    <AddToCartButtonWake
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                    />
-                  )}
-                  {platform === "vnda" && (
-                    <AddToCartButtonVNDA
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                      additionalProperty={additionalProperty}
-                    />
-                  )}
-                  {platform === "shopify" && (
-                    <AddToCartButtonShopify
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                    />
                   )}
                 </>
               )
