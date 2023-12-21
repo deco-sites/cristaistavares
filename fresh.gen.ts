@@ -22,9 +22,7 @@ import * as $OutOfStock from "./islands/OutOfStock.tsx";
 import * as $Popup from "./islands/Popup.tsx";
 import * as $PrincipalImages from "./islands/PrincipalImages.tsx";
 import * as $ProductCardInfo from "./islands/ProductCardInfo.tsx";
-import * as $ProductDescription from "./islands/ProductDescription.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
-import * as $SectionDescription from "./islands/SectionDescription.tsx";
 import * as $SelectableBanners from "./islands/SelectableBanners.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
 import * as $SimilarsGrid from "./islands/SimilarsGrid.tsx";
@@ -57,9 +55,7 @@ const manifest = {
     "./islands/Popup.tsx": $Popup,
     "./islands/PrincipalImages.tsx": $PrincipalImages,
     "./islands/ProductCardInfo.tsx": $ProductCardInfo,
-    "./islands/ProductDescription.tsx": $ProductDescription,
     "./islands/SearchControls.tsx": $SearchControls,
-    "./islands/SectionDescription.tsx": $SectionDescription,
     "./islands/SelectableBanners.tsx": $SelectableBanners,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
     "./islands/SimilarsGrid.tsx": $SimilarsGrid,

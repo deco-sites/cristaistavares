@@ -8,7 +8,6 @@ import Installments from "./Installments.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
-import WishlistButton from "$store/islands/WishlistButton.tsx";
 import PrincipalImages from "$store/islands/PrincipalImages.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
@@ -22,7 +21,7 @@ import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 import CTA from "$store/components/ui/CTA.tsx";
 import Matcher from "$store/components/product/Matcher.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
-import ProductDescription from "$store/islands/ProductDescription.tsx";
+import ProductDescription from "$store/components/product/ProductDescription.tsx";
 import ProductGift from "./ProductGift.tsx";
 
 export interface Props {
