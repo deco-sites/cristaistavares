@@ -13,7 +13,9 @@ export default function SimilarsGrid({ products }: Props) {
   if (!products) return null;
 
   function handleClick() {
-    const content = document.getElementById("toggle-expand-products")!;
+    const content = document.getElementById("toggle-expand-products");
+
+    if (!content) return;
 
     content.addEventListener("click", () => {
       const productsContent = document.getElementById("view-more-products")!;
