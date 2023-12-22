@@ -1,4 +1,4 @@
-const MailbizJSON = () => {
+const JSONComponent = () => {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "Corporation",
@@ -45,4 +45,4 @@ const MailbizJSON = () => {
   );
 };
 
-export default MailbizJSON;
+export default JSONComponent;
