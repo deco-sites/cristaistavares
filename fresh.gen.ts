@@ -25,7 +25,6 @@ import * as $ProductCardInfo from "./islands/ProductCardInfo.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $SelectableBanners from "./islands/SelectableBanners.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
-import * as $SimilarsGrid from "./islands/SimilarsGrid.tsx";
 import * as $SkuSelector from "./islands/SkuSelector.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
 import * as $WishlistButton from "./islands/WishlistButton.tsx";
@@ -58,7 +57,6 @@ const manifest = {
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/SelectableBanners.tsx": $SelectableBanners,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
-    "./islands/SimilarsGrid.tsx": $SimilarsGrid,
     "./islands/SkuSelector.tsx": $SkuSelector,
     "./islands/SliderJS.tsx": $SliderJS,
     "./islands/WishlistButton.tsx": $WishlistButton,
