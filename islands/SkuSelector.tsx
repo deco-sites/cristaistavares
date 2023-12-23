@@ -1,8 +1,6 @@
 import Avatar from "$store/components/ui/Avatar.tsx";
 import { useSkuSelector } from "$store/sdk/useSkuSelector.ts";
 
-import type { Product } from "apps/commerce/types.ts";
-
 const newSkuId = (url: string | null) => {
   if (!url) return;
 
@@ -17,17 +15,23 @@ export default function SkuSelector(
     link: string;
     value: string;
     url?: string;
-    product: Product;
+    product: {
+      name?: string;
+      hasVariant?: {
+        name: string;
+        sku: string;
+      }[];
+    };
   },
 ) {
   const { selectedSku, setSku } = useSkuSelector();
   const skuId = newSkuId(selectedSku.value);
 
-  const filteredProduct = product.isVariantOf?.hasVariant.filter((item) =>
+  const filteredProduct = product?.hasVariant?.filter((item) =>
     item.sku === skuId
   )[0];
 
-  const productName = filteredProduct?.name || product.name;
+  const productName = filteredProduct?.name || product?.name;
 
   return (
     <li>
