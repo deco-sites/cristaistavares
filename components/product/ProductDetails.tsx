@@ -507,28 +507,28 @@ function ProductDetails({ page, layout, productGift, suggestions }: Props) {
   );
 }
 
-export const loader = async (props: Props) => {
-  const giftSkuIds = props.page?.product?.offers?.offers[0].giftSkuIds;
+// export const loader = async (props: Props) => {
+//   const giftSkuIds = props.page?.product?.offers?.offers[0].giftSkuIds;
 
-  if (!giftSkuIds || giftSkuIds.length === 0) return props;
+//   if (!giftSkuIds || giftSkuIds.length === 0) return props;
 
-  const data = await fetch(
-    `https://cristaistavares.myvtex.com/api/catalog_system/pub/products/search/?skuid=${
-      giftSkuIds[0]
-    }`,
-  ).then((response) => response.json());
+//   const data = await fetch(
+//     `https://cristaistavares.myvtex.com/api/catalog_system/pub/products/search/?skuid=${
+//       giftSkuIds[0]
+//     }`,
+//   ).then((response) => response.json());
 
-  if (data && data[0] && data[0].items) {
-    return {
-      ...props,
-      productGift: {
-        name: data[0].productName || "",
-        imageUrl: data[0].items[0].images[0]?.imageUrl || "",
-      },
-    };
-  }
+//   if (data && data[0] && data[0].items) {
+//     return {
+//       ...props,
+//       productGift: {
+//         name: data[0].productName || "",
+//         imageUrl: data[0].items[0].images[0]?.imageUrl || "",
+//       },
+//     };
+//   }
 
-  return props;
-};
+//   return props;
+// };
 
 export default ProductDetails;
