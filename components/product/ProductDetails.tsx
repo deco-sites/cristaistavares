@@ -321,17 +321,17 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             <PrincipalImages images={images} />
 
             <Slider.PrevButton
-              class="no-animation absolute left-[1px] top-[35%] btn btn-circle btn-outline z-30 hidden md:inline-flex"
+              class="no-animation absolute left-[1px] top-[35%] md:btn md:btn-circle md:btn-outline z-30 inline-flex"
               disabled
             >
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
 
             <Slider.NextButton
-              class="no-animation absolute right-[1px] top-[35%] btn btn-circle btn-outline z-30 hidden md:inline-flex"
+              class="no-animation absolute right-[1px] top-[35%] md:btn md:btn-circle md:btn-outline rotate-180 z-30 inline-flex"
               disabled={images.length < 2}
             >
-              <Icon size={24} id="ChevronRight" strokeWidth={3} />
+              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.NextButton>
           </div>
 
