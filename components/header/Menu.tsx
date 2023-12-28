@@ -7,8 +7,7 @@ export interface Props {
 
 function MenuItem({ item }: { item: INavItem }) {
   const url = self?.location?.href;
-  console.log(item)
-  
+
   const component = item?.children?.length
     ? (
       <div class="collapse collapse-plus relative items-start">
@@ -35,7 +34,9 @@ function MenuItem({ item }: { item: INavItem }) {
                   <li>
                     <a
                       href={item.href}
-                      class="w-full block pt-5 font-medium text-base-300"
+                      class={`${
+                        url.includes(item.href) && "underline font-bold"
+                      } hover:underline w-full block pt-5 font-medium text-base-300`}
                     >
                       {item.label}
                     </a>
@@ -51,7 +52,9 @@ function MenuItem({ item }: { item: INavItem }) {
       <a
         href={item.href}
         title={item.label}
-        class={`${url.includes(item.href) && "underline"} hover:underline w-full block py-2.5 font-medium`}
+        class={`${
+          url.includes(item.href) && "underline"
+        } hover:underline w-full block py-2.5 font-medium`}
       >
         {item.label}
       </a>
@@ -61,7 +64,7 @@ function MenuItem({ item }: { item: INavItem }) {
 }
 
 function Menu({ items }: Props) {
-  const { user } = useUser(); 
+  const { user } = useUser();
 
   return (
     <div class="flex flex-col max-h-[95%] overflow-y-scroll">
