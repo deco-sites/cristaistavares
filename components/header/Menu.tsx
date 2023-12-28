@@ -51,7 +51,7 @@ function MenuItem({ item }: { item: INavItem }) {
       <a
         href={item.href}
         title={item.label}
-        class={`${url.includes(item.href) && "underline"} w-full block py-2.5 font-medium`}
+        class={`${url.includes(item.href) && "underline"} hover:underline w-full block py-2.5 font-medium`}
       >
         {item.label}
       </a>
