@@ -67,7 +67,7 @@ export default function ProductInfo({
     item.sku === skuId
   )[0];
 
-  const price = filteredProduct?.pixPrice ?? product.price;
+  const price = filteredProduct?.price ?? product.price;
   const listPrice = filteredProduct?.listPrice ?? product.listPrice;
   const pixPrice = filteredProduct?.pixPrice ?? product.pixPrice;
 
