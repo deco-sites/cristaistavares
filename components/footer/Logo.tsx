@@ -23,7 +23,7 @@ export default function Logo({ logo }: Props) {
           <a
             href={logo.href || "https://deco.cx/"}
             target="_blank"
-            rel="nofollow noindex"
+            rel="nofollow"
             aria-label={logo.description || "Powered by deco.cx"}
             style={{ display: "flex" }}
           >

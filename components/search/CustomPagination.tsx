@@ -46,7 +46,7 @@ export default function PaginationCustom({ pageInfo }: Props) {
       <div class="flex items-center">
         <a
           aria-label="previous page link"
-          rel="prev nofollow noindex"
+          rel="prev nofollow"
           href={pageInfo.previousPage ?? "#"}
           disabled={!pageInfo.previousPage}
           class={`mr-1 ${
@@ -58,7 +58,7 @@ export default function PaginationCustom({ pageInfo }: Props) {
         <div class="flex items-center">
           {pageLinks.map((item) => (
             <a
-              rel="nofollow noindex"
+              rel="nofollow"
               class={`${
                 pageInfo.currentPage === item.label
                   ? "bg-dark-pink text-white border-dark-pink"
@@ -74,7 +74,7 @@ export default function PaginationCustom({ pageInfo }: Props) {
         </div>
         <a
           aria-label="next page link"
-          rel="next nofollow noindex"
+          rel="next nofollow"
           href={pageInfo.nextPage ?? "#"}
           disabled={!pageInfo.nextPage}
           class="ml-1 flex items-center justify-center text-neutral-800 w-8 h-8 hover:bg-white rounded-[5px] border border-solid border-[#EAEAEA] hover:border-black disabled:cursor-not-allowed disabled:opacity-70"
