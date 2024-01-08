@@ -2,7 +2,7 @@
   "imports": {
     "deco-sites/cristaistavares/": "./",
     "$store/": "./",
-    "apps/": "https://denopkg.com/deco-cx/apps@0.27.3/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.27.4/",
     "deco/": "https://denopkg.com/deco-cx/deco@1.51.1/",
     "deco-sites/std/": "https://denopkg.com/deco-sites/std@1.22.11/",
     "$fresh/": "https://deno.land/x/fresh@1.6.1/",
