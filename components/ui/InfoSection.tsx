@@ -121,7 +121,7 @@ export default function InfoSection(
             <ul class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer">
               {cards?.map((card) => (
                 <>
-                  <li class="lg:group lg:relative flex gap-1">
+                  <li class="lg:group lg:relative flex items-center gap-1">
                     <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
                       {card.descHover}
                     </div>
