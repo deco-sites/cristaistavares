@@ -131,6 +131,7 @@ export default function InfoSection(
                       width={26}
                       height={26}
                       loading="lazy"
+                      class="w-[26px] h-[26px]"
                     />
                     <p
                       dangerouslySetInnerHTML={{

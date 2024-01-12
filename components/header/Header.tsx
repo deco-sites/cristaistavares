@@ -26,7 +26,11 @@ export interface NavItem {
 }
 
 export interface Props {
-  alerts: string[];
+  flagOnTop: {
+    alerts: string[];
+    spacing?: number;
+    interval?: number;
+  };
   /** @title Search Bar */
   searchbar?: SearchbarProps;
   /**
@@ -51,7 +55,7 @@ export interface Props {
 }
 
 function Header({
-  alerts,
+  flagOnTop,
   searchbar: _searchbar,
   products,
   navItems = [],
@@ -96,7 +100,7 @@ function Header({
             id="navbar"
             class="w-full bg-base-100 z-50 drop-shadow-lg"
           >
-            <Alert alerts={alerts} />
+            {flagOnTop && <Alert {...flagOnTop} />}
             <Navbar items={navItems} searchbar={searchbar} logo={logo} />
           </div>
         </Drawers>
