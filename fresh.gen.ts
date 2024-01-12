@@ -2,71 +2,66 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_app.tsx";
-import * as $$0 from "./islands/AddToCartButton/ProductCta.tsx";
-import * as $$1 from "./islands/AddToCartButton/shopify.tsx";
-import * as $$2 from "./islands/AddToCartButton/vnda.tsx";
-import * as $$3 from "./islands/AddToCartButton/vtex.tsx";
-import * as $$4 from "./islands/AddToCartButton/wake.tsx";
-import * as $$5 from "./islands/BuyTogether.tsx";
-import * as $$6 from "./islands/Header/Buttons.tsx";
-import * as $$7 from "./islands/Header/Cart/shopify.tsx";
-import * as $$8 from "./islands/Header/Cart/vnda.tsx";
-import * as $$9 from "./islands/Header/Cart/vtex.tsx";
-import * as $$10 from "./islands/Header/Cart/wake.tsx";
-import * as $$11 from "./islands/Header/Drawers.tsx";
-import * as $$12 from "./islands/Header/Searchbar.tsx";
-import * as $$13 from "./islands/LoginHeader.tsx";
-import * as $$14 from "./islands/Newsletter.tsx";
-import * as $$15 from "./islands/OutOfStock.tsx";
-import * as $$16 from "./islands/Popup.tsx";
-import * as $$17 from "./islands/PrincipalImages.tsx";
-import * as $$18 from "./islands/ProductCardInfo.tsx";
-import * as $$19 from "./islands/ProductDescription.tsx";
-import * as $$20 from "./islands/SearchControls.tsx";
-import * as $$21 from "./islands/SectionDescription.tsx";
-import * as $$22 from "./islands/SelectableBanners.tsx";
-import * as $$23 from "./islands/ShippingSimulation.tsx";
-import * as $$24 from "./islands/SimilarsGrid.tsx";
-import * as $$25 from "./islands/SkuSelector.tsx";
-import * as $$26 from "./islands/SliderJS.tsx";
-import * as $$27 from "./islands/WishlistButton.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $AddToCartButton_ProductCta from "./islands/AddToCartButton/ProductCta.tsx";
+import * as $AddToCartButton_shopify from "./islands/AddToCartButton/shopify.tsx";
+import * as $AddToCartButton_vnda from "./islands/AddToCartButton/vnda.tsx";
+import * as $AddToCartButton_vtex from "./islands/AddToCartButton/vtex.tsx";
+import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
+import * as $BuyTogether from "./islands/BuyTogether.tsx";
+import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
+import * as $Header_Cart_shopify from "./islands/Header/Cart/shopify.tsx";
+import * as $Header_Cart_vnda from "./islands/Header/Cart/vnda.tsx";
+import * as $Header_Cart_vtex from "./islands/Header/Cart/vtex.tsx";
+import * as $Header_Cart_wake from "./islands/Header/Cart/wake.tsx";
+import * as $Header_Drawers from "./islands/Header/Drawers.tsx";
+import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
+import * as $LoginHeader from "./islands/LoginHeader.tsx";
+import * as $Newsletter from "./islands/Newsletter.tsx";
+import * as $OutOfStock from "./islands/OutOfStock.tsx";
+import * as $Popup from "./islands/Popup.tsx";
+import * as $PrincipalImages from "./islands/PrincipalImages.tsx";
+import * as $ProductCardInfo from "./islands/ProductCardInfo.tsx";
+import * as $SearchControls from "./islands/SearchControls.tsx";
+import * as $SelectableBanners from "./islands/SelectableBanners.tsx";
+import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
+import * as $SkuSelector from "./islands/SkuSelector.tsx";
+import * as $SliderJS from "./islands/SliderJS.tsx";
+import * as $WishlistButton from "./islands/WishlistButton.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/_app.tsx": $0,
+    "./routes/_app.tsx": $_app,
   },
   islands: {
-    "./islands/AddToCartButton/ProductCta.tsx": $$0,
-    "./islands/AddToCartButton/shopify.tsx": $$1,
-    "./islands/AddToCartButton/vnda.tsx": $$2,
-    "./islands/AddToCartButton/vtex.tsx": $$3,
-    "./islands/AddToCartButton/wake.tsx": $$4,
-    "./islands/BuyTogether.tsx": $$5,
-    "./islands/Header/Buttons.tsx": $$6,
-    "./islands/Header/Cart/shopify.tsx": $$7,
-    "./islands/Header/Cart/vnda.tsx": $$8,
-    "./islands/Header/Cart/vtex.tsx": $$9,
-    "./islands/Header/Cart/wake.tsx": $$10,
-    "./islands/Header/Drawers.tsx": $$11,
-    "./islands/Header/Searchbar.tsx": $$12,
-    "./islands/LoginHeader.tsx": $$13,
-    "./islands/Newsletter.tsx": $$14,
-    "./islands/OutOfStock.tsx": $$15,
-    "./islands/Popup.tsx": $$16,
-    "./islands/PrincipalImages.tsx": $$17,
-    "./islands/ProductCardInfo.tsx": $$18,
-    "./islands/ProductDescription.tsx": $$19,
-    "./islands/SearchControls.tsx": $$20,
-    "./islands/SectionDescription.tsx": $$21,
-    "./islands/SelectableBanners.tsx": $$22,
-    "./islands/ShippingSimulation.tsx": $$23,
-    "./islands/SimilarsGrid.tsx": $$24,
-    "./islands/SkuSelector.tsx": $$25,
-    "./islands/SliderJS.tsx": $$26,
-    "./islands/WishlistButton.tsx": $$27,
+    "./islands/AddToCartButton/ProductCta.tsx": $AddToCartButton_ProductCta,
+    "./islands/AddToCartButton/shopify.tsx": $AddToCartButton_shopify,
+    "./islands/AddToCartButton/vnda.tsx": $AddToCartButton_vnda,
+    "./islands/AddToCartButton/vtex.tsx": $AddToCartButton_vtex,
+    "./islands/AddToCartButton/wake.tsx": $AddToCartButton_wake,
+    "./islands/BuyTogether.tsx": $BuyTogether,
+    "./islands/Header/Buttons.tsx": $Header_Buttons,
+    "./islands/Header/Cart/shopify.tsx": $Header_Cart_shopify,
+    "./islands/Header/Cart/vnda.tsx": $Header_Cart_vnda,
+    "./islands/Header/Cart/vtex.tsx": $Header_Cart_vtex,
+    "./islands/Header/Cart/wake.tsx": $Header_Cart_wake,
+    "./islands/Header/Drawers.tsx": $Header_Drawers,
+    "./islands/Header/Searchbar.tsx": $Header_Searchbar,
+    "./islands/LoginHeader.tsx": $LoginHeader,
+    "./islands/Newsletter.tsx": $Newsletter,
+    "./islands/OutOfStock.tsx": $OutOfStock,
+    "./islands/Popup.tsx": $Popup,
+    "./islands/PrincipalImages.tsx": $PrincipalImages,
+    "./islands/ProductCardInfo.tsx": $ProductCardInfo,
+    "./islands/SearchControls.tsx": $SearchControls,
+    "./islands/SelectableBanners.tsx": $SelectableBanners,
+    "./islands/ShippingSimulation.tsx": $ShippingSimulation,
+    "./islands/SkuSelector.tsx": $SkuSelector,
+    "./islands/SliderJS.tsx": $SliderJS,
+    "./islands/WishlistButton.tsx": $WishlistButton,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;

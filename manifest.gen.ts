@@ -30,8 +30,8 @@ import * as $$$$$$23 from "./sections/Miscellaneous/CampaignHero.tsx";
 import * as $$$$$$24 from "./sections/Miscellaneous/CampaignTimer.tsx";
 import * as $$$$$$25 from "./sections/Miscellaneous/CookieConsent.tsx";
 import * as $$$$$$26 from "./sections/Miscellaneous/Mailbiz.tsx";
-import * as $$$$$$27 from "./sections/Miscellaneous/MailbizJSON.tsx";
-import * as $$$$$$28 from "./sections/Miscellaneous/Popup.tsx";
+import * as $$$$$$27 from "./sections/Miscellaneous/Popup.tsx";
+import * as $$$$$$28 from "./sections/Miscellaneous/Widde.tsx";
 import * as $$$$$$29 from "./sections/Newsletter/Newsletter.tsx";
 import * as $$$$$$30 from "./sections/Product/ProductDetails.tsx";
 import * as $$$$$$31 from "./sections/Product/ProductMatch.tsx";
@@ -86,9 +86,8 @@ const manifest = {
     "deco-sites/cristaistavares/sections/Miscellaneous/CookieConsent.tsx":
       $$$$$$25,
     "deco-sites/cristaistavares/sections/Miscellaneous/Mailbiz.tsx": $$$$$$26,
-    "deco-sites/cristaistavares/sections/Miscellaneous/MailbizJSON.tsx":
-      $$$$$$27,
-    "deco-sites/cristaistavares/sections/Miscellaneous/Popup.tsx": $$$$$$28,
+    "deco-sites/cristaistavares/sections/Miscellaneous/Popup.tsx": $$$$$$27,
+    "deco-sites/cristaistavares/sections/Miscellaneous/Widde.tsx": $$$$$$28,
     "deco-sites/cristaistavares/sections/Newsletter/Newsletter.tsx": $$$$$$29,
     "deco-sites/cristaistavares/sections/Product/ProductDetails.tsx": $$$$$$30,
     "deco-sites/cristaistavares/sections/Product/ProductMatch.tsx": $$$$$$31,

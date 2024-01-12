@@ -6,6 +6,8 @@ import Image from "apps/website/components/Image.tsx";
 import ProductInfo from "$store/islands/ProductCardInfo.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import SkuSelector from "$store/components/product/SkuSelector.tsx";
+import { SendEventOnClick } from "$store/components/Analytics.tsx";
+import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface Layout {
   basics?: {
@@ -90,10 +92,11 @@ function ProductCard(
     image: images,
     offers,
     additionalProperty,
+    isVariantOf,
   } = product;
   const id = `product-card-${productID}`;
   const [front, back] = images ?? [];
-  const { listPrice: listPriceOpt, price: offerPrice } = useOffer(
+  const { listPrice: listPriceOpt, price: offerPrice, seller } = useOffer(
     offers,
   );
   const possibilities = useVariantPossibilities(product);
@@ -106,6 +109,20 @@ function ProductCard(
     item,
   ) => item.priceType == "https://schema.org/ListPrice")?.price ??
     listPriceOpt;
+  const pixPrice = product?.offers?.offers[0]?.priceSpecification?.find((
+    item,
+  ) => item.name === "Pix")?.price ?? 0;
+
+  const {
+    billingDuration: installmentsBillingDuration,
+    billingIncrement: installmentsBillingIncrement,
+  } = (product.offers?.offers[0].priceSpecification || [])
+    .filter((item) => item.billingDuration !== undefined)
+    .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
+    .map(({ billingDuration, billingIncrement }) => ({
+      billingDuration,
+      billingIncrement,
+    }))[0] || {};
 
   const l = layout;
   const align =
@@ -121,7 +138,13 @@ function ProductCard(
         key={value}
         value={value}
         link={link}
-        product={product}
+        product={{
+          name,
+          hasVariant: product?.isVariantOf?.hasVariant?.map((variant) => ({
+            name: variant.name ?? "",
+            sku: variant.sku ?? "",
+          })),
+        }}
         url={url}
       />
     ));
@@ -225,7 +248,7 @@ function ProductCard(
               alt={back?.alternateName ?? front.alternateName}
               width={WIDTH}
               height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded-lg w-full opacity-0 lg:group-hover:opacity-100"
+              class="hidden lg:block bg-base-100 col-span-full row-span-full transition-opacity rounded-lg w-full opacity-0 lg:group-hover:opacity-100"
               sizes="(max-width: 640px) 50vw, 20vw"
               loading="lazy"
               decoding="async"
@@ -338,11 +361,92 @@ function ProductCard(
         )}
 
         <ProductInfo
-          product={product}
+          product={{
+            productID,
+            url,
+            name,
+            pixPrice,
+            price,
+            listPrice,
+            seller,
+            installmentsBillingDuration,
+            installmentsBillingIncrement,
+            isVariantOf: {
+              productGroupID: isVariantOf?.productGroupID,
+              hasVariant: (product?.isVariantOf?.hasVariant || []).map(
+                (variant) => {
+                  const {
+                    price: partialPrice,
+                    listPrice: partialListPrice,
+                    seller: filteredProductSeller,
+                  } = useOffer(variant?.offers);
+
+                  const filteredPrice =
+                    variant?.offers?.offers[0]?.priceSpecification?.find(
+                      (item) =>
+                        item.priceType == "https://schema.org/SalePrice",
+                    )?.price ?? partialPrice;
+
+                  const filteredListPrice =
+                    variant?.offers?.offers[0]?.priceSpecification?.find(
+                      (item) =>
+                        item.priceType == "https://schema.org/ListPrice",
+                    )?.price ?? partialListPrice;
+
+                  const filteredPixPrice =
+                    variant?.offers?.offers[0]?.priceSpecification?.find(
+                      (item) => item.name === "Pix",
+                    )?.price ?? 0;
+
+                  const {
+                    billingDuration: installmentsBillingDurationSecondary,
+                    billingIncrement: installmentsBillingIncrementSecondary,
+                  } = (variant.offers?.offers[0].priceSpecification || [])
+                    .filter((item) => item.billingDuration !== undefined)
+                    .sort((a, b) =>
+                      (b.billingDuration || 0) - (a.billingDuration || 0)
+                    )
+                    .map(({ billingDuration, billingIncrement }) => ({
+                      billingDuration,
+                      billingIncrement,
+                    }))[0] || {};
+
+                  return {
+                    name: variant.name ?? "",
+                    sku: variant.sku ?? "",
+                    price: filteredPrice,
+                    listPrice: filteredListPrice,
+                    pixPrice: filteredPixPrice,
+                    seller: filteredProductSeller,
+                    installmentsBillingDuration:
+                      installmentsBillingDurationSecondary,
+                    installmentsBillingIncrement:
+                      installmentsBillingIncrementSecondary,
+                  };
+                },
+              ),
+            },
+          }}
           layout={layout}
           resizeQuantity={resizeQuantity}
           isProductMatcher={isProductMatcher}
-          itemListName={itemListName}
+        />
+
+        <SendEventOnClick
+          id={id}
+          event={{
+            name: "select_item" as const,
+            params: {
+              item_list_name: itemListName,
+              items: [
+                mapProductToAnalyticsItem({
+                  product: product,
+                  price: price,
+                  listPrice: listPrice,
+                }),
+              ],
+            },
+          }}
         />
       </div>
     </div>

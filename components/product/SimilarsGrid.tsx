@@ -1,4 +1,3 @@
-import { useState } from "preact/compat";
 import type { Product } from "apps/commerce/types.ts";
 
 export interface Props {
@@ -13,16 +12,31 @@ const relative = (url: string) => {
 export default function SimilarsGrid({ products }: Props) {
   if (!products) return null;
 
-  const [isViewMoreItemsActive, setIsViewMoreItemsActive] = useState(false);
+  function handleClick() {
+    const content = document.getElementById("toggle-expand-products");
 
-  const displayAllProducts = products.length > 28 && isViewMoreItemsActive
-    ? products
-    : products.slice(0, 21);
+    if (!content) return;
+
+    content.addEventListener("click", () => {
+      const productsContent = document.getElementById("view-more-products")!;
+
+      if (content.innerText === "Ver menos") {
+        content.innerText = "Ver mais cores";
+        productsContent.classList.add("max-h-[180px]", "overflow-hidden");
+      } else {
+        content.innerText = "Ver menos";
+        productsContent.classList.remove("max-h-[180px]", "overflow-hidden");
+      }
+    });
+  }
 
   return (
     <>
-      <div class="flex flex-wrap gap-x-2 gap-y-1.5 items-center">
-        {displayAllProducts?.map(({ image: images, url }) => {
+      <div
+        id="view-more-products"
+        class="flex flex-wrap gap-x-2 gap-y-1.5 items-center max-h-[180px] overflow-hidden"
+      >
+        {products?.map(({ image: images, url }) => {
           const [front] = images ?? [];
 
           return (
@@ -43,14 +57,19 @@ export default function SimilarsGrid({ products }: Props) {
       </div>
 
       {products.length > 28 && (
-        <button
-          title="view more products"
-          onClick={() => setIsViewMoreItemsActive((prev) => !prev)}
-          class="flex items-center justify-center p-2 bg-dark-pink text-white w-[140px] rounded-[3.5px]"
+        <div
+          id="toggle-expand-products"
+          aria-label="view more products"
+          class="flex items-center justify-center p-2 bg-dark-pink text-white w-[140px] rounded-[3.5px] cursor-pointer"
         >
-          {!isViewMoreItemsActive ? "Ver mais cores" : "Ver menos"}
-        </button>
+          Ver mais cores
+        </div>
       )}
+
+      <script
+        defer
+        dangerouslySetInnerHTML={{ __html: `(${handleClick.toString()})()` }}
+      />
     </>
   );
 }

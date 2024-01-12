@@ -4,15 +4,10 @@ import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import Similars from "$store/components/product/Similars.tsx";
-import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
-import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
-import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
-import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import Installments from "./Installments.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
-import WishlistButton from "$store/islands/WishlistButton.tsx";
 import PrincipalImages from "$store/islands/PrincipalImages.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
@@ -26,7 +21,7 @@ import ProductCta from "$store/islands/AddToCartButton/ProductCta.tsx";
 import CTA from "$store/components/ui/CTA.tsx";
 import Matcher from "$store/components/product/Matcher.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
-import ProductDescription from "$store/islands/ProductDescription.tsx";
+import ProductDescription from "$store/components/product/ProductDescription.tsx";
 import ProductGift from "./ProductGift.tsx";
 
 export interface Props {
@@ -235,34 +230,6 @@ function ProductInfo(
                       }
                     </>
                   )}
-                  {platform === "wake" && (
-                    <AddToCartButtonWake
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                    />
-                  )}
-                  {platform === "vnda" && (
-                    <AddToCartButtonVNDA
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                      additionalProperty={additionalProperty}
-                    />
-                  )}
-                  {platform === "shopify" && (
-                    <AddToCartButtonShopify
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                    />
-                  )}
                 </>
               )
               : <OutOfStock productID={productID} />}
@@ -354,17 +321,17 @@ function Details(props: { page: ProductDetailsPage } & Props) {
             <PrincipalImages images={images} />
 
             <Slider.PrevButton
-              class="no-animation absolute left-[1px] top-[35%] btn btn-circle btn-outline z-30 hidden md:inline-flex"
+              class="no-animation absolute left-[1px] top-[35%] md:btn md:btn-circle md:btn-outline z-30 inline-flex"
               disabled
             >
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
 
             <Slider.NextButton
-              class="no-animation absolute right-[1px] top-[35%] btn btn-circle btn-outline z-30 hidden md:inline-flex"
+              class="no-animation absolute right-[1px] top-[35%] md:btn md:btn-circle md:btn-outline rotate-180 z-30 inline-flex"
               disabled={images.length < 2}
             >
-              <Icon size={24} id="ChevronRight" strokeWidth={3} />
+              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.NextButton>
           </div>
 
@@ -540,28 +507,28 @@ function ProductDetails({ page, layout, productGift, suggestions }: Props) {
   );
 }
 
-export const loader = async (props: Props) => {
-  const giftSkuIds = props.page?.product?.offers?.offers[0].giftSkuIds;
+// export const loader = async (props: Props) => {
+//   const giftSkuIds = props.page?.product?.offers?.offers[0].giftSkuIds;
 
-  if (!giftSkuIds || giftSkuIds.length === 0) return props;
+//   if (!giftSkuIds || giftSkuIds.length === 0) return props;
 
-  const data = await fetch(
-    `https://cristaistavares.myvtex.com/api/catalog_system/pub/products/search/?skuid=${
-      giftSkuIds[0]
-    }`,
-  ).then((response) => response.json());
+//   const data = await fetch(
+//     `https://cristaistavares.myvtex.com/api/catalog_system/pub/products/search/?skuid=${
+//       giftSkuIds[0]
+//     }`,
+//   ).then((response) => response.json());
 
-  if (data && data[0] && data[0].items) {
-    return {
-      ...props,
-      productGift: {
-        name: data[0].productName || "",
-        imageUrl: data[0].items[0].images[0]?.imageUrl || "",
-      },
-    };
-  }
+//   if (data && data[0] && data[0].items) {
+//     return {
+//       ...props,
+//       productGift: {
+//         name: data[0].productName || "",
+//         imageUrl: data[0].items[0].images[0]?.imageUrl || "",
+//       },
+//     };
+//   }
 
-  return props;
-};
+//   return props;
+// };
 
 export default ProductDetails;

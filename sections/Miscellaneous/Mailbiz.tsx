@@ -14,9 +14,15 @@ const Mailbiz = () => {
     })(window, document, 'script', 'https://d3eq1zq78ux3cv.cloudfront.net/static/scripts/integration.min.js', '65521c0c7058d778ef9480cd', 'MailbizIntegration');
   `;
 
+  const onLoadScriptCode = `
+    document.addEventListener('DOMContentLoaded', function() {
+      ${scriptCode}
+    });
+  `;
+
   return (
     <>
-      <script defer dangerouslySetInnerHTML={{ __html: scriptCode }} />
+      <script defer dangerouslySetInnerHTML={{ __html: onLoadScriptCode }} />
     </>
   );
 };

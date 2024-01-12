@@ -1,7 +1,7 @@
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import SimilarsGrid from "$store/islands/SimilarsGrid.tsx";
+import SimilarsGrid from "$store/components/product/SimilarsGrid.tsx";
 
 import { useId } from "$store/sdk/useId.ts";
 import type { Product } from "apps/commerce/types.ts";

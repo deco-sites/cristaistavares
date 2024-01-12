@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Discount = ({ price, listPrice, isPDP = true }: Props) => {
-  const discountValue = Math.floor(listPrice - price);
+  const discountValue = Math.round(listPrice - price);
 
   if (discountValue <= 0) return null;
 
