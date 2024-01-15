@@ -18,14 +18,14 @@ const relative = (url: string) => {
 };
 
 function filterSimilarProducts(products: Product[]) {
-  const uniqueURLs = new Set();
+  const uniqueNames = new Set();
   const filteredProducts = [];
 
   for (const product of products) {
-    const url = product.url && relative(product.url);
+    const name = product?.isVariantOf?.name;
 
-    if (!uniqueURLs.has(url)) {
-      uniqueURLs.add(url);
+    if (!uniqueNames.has(name)) {
+      uniqueNames.add(name);
       filteredProducts.push(product);
     }
   }
