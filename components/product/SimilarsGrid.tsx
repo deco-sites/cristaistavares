@@ -36,11 +36,12 @@ export default function SimilarsGrid({ products }: Props) {
         id="view-more-products"
         class="flex flex-wrap gap-x-2 gap-y-1.5 items-center max-h-[180px] overflow-hidden"
       >
-        {products?.map(({ image: images, url }) => {
+        {products?.map(({ image: images, url, isVariantOf, name }) => {
           const [front] = images ?? [];
 
           return (
             <a
+              title={isVariantOf?.name ?? name}
               href={url && relative(url)}
               aria-label="change color"
               class="flex items-center justify-center border border-gray-300 rounded-xl w-14 h-14 p-1"

@@ -23,6 +23,7 @@ import Matcher from "$store/components/product/Matcher.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import ProductDescription from "$store/components/product/ProductDescription.tsx";
 import ProductGift from "./ProductGift.tsx";
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
   /** @title Integration */
@@ -55,6 +56,8 @@ export interface Props {
      */
     similarsType?: "slider" | "normal";
   };
+
+  additionalText?: HTMLWidget;
 }
 
 const WIDTH = 360;
@@ -424,6 +427,20 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
 
+        {props.additionalText && (
+          <div class="flex-grow flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 max-w-[1240px] mx-auto p-4 xl:p-0 mt-4 sm:mt-6">
+            <div dangerouslySetInnerHTML={{ __html: props.additionalText }} />
+
+            <Image
+              src={images?.[0]?.url || ""}
+              width={250}
+              height={250}
+              alt={images?.[0]?.alternateName}
+              loading="lazy"
+            />
+          </div>
+        )}
+
         <div class="flex-grow flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
@@ -478,7 +495,9 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   );
 }
 
-function ProductDetails({ page, layout, productGift, suggestions }: Props) {
+function ProductDetails(
+  { page, layout, productGift, suggestions, additionalText }: Props,
+) {
   return (
     <div class="xl:container pt-12">
       {page
@@ -499,6 +518,7 @@ function ProductDetails({ page, layout, productGift, suggestions }: Props) {
               layout={layout}
               suggestions={suggestions}
               productGift={productGift}
+              additionalText={additionalText}
             />
           </>
         )
