@@ -2,6 +2,7 @@ import type { Props as SearchbarProps } from "$store/components/search/Searchbar
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import type { Product, Suggestion } from "apps/commerce/types.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import LoadingProgressBar from "./LoadingProgressBar.tsx";
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
@@ -100,6 +101,7 @@ function Header({
             id="navbar"
             class="w-full bg-base-100 z-50 drop-shadow-lg"
           >
+            <LoadingProgressBar />
             {flagOnTop && <Alert {...flagOnTop} />}
             <Navbar items={navItems} searchbar={searchbar} logo={logo} />
           </div>
