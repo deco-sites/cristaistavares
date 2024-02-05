@@ -401,7 +401,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                   ).length > 0 &&
                 (
                   <div class="flex flex-col gap-3 flex-grow w-full">
-                    <h1 class="font-bold text-sm">Medidas</h1>
+                    <h2 class="font-bold text-sm">Medidas</h2>
 
                     <div class="flex flex-col flex-grow gap-1 text-black w-full">
                       {props?.page?.product?.isVariantOf?.additionalProperty

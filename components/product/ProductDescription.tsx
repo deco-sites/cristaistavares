@@ -24,7 +24,7 @@ export default function ProductDescription({ description }: Props) {
   return (
     <>
       <div class="flex flex-col gap-2 w-full">
-        <h1 class="text-sm font-bold">Descrição</h1>
+        <h2 class="text-sm font-bold">Descrição</h2>
 
         {/* Mobile Description */}
         <div
