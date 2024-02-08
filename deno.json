@@ -2,10 +2,10 @@
   "imports": {
     "deco-sites/cristaistavares/": "./",
     "$store/": "./",
-    "apps/": "https://denopkg.com/deco-cx/apps@0.27.12/",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.51.2/",
-    "deco-sites/std/": "https://denopkg.com/deco-sites/std@1.22.11/",
-    "$fresh/": "https://deno.land/x/fresh@1.6.1/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.32.29/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.52.20/",
+    "deco-sites/std/": "https://denopkg.com/deco-sites/std@1.24.2/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.3/",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
@@ -18,6 +18,7 @@
   "tasks": {
     "start": "deno task bundle && DECO_SITE_NAME=cristaistavares deno run -A --unstable --watch=static/sw.js,tailwind.css,sections/,functions/,loaders/,actions/,workflows/,accounts/ dev.ts",
     "gen": "deno run -A dev.ts --gen-only",
+    "play": "USE_LOCAL_STORAGE_ONLY=true deno task start",
     "component": "deno eval 'import \"deco/scripts/component.ts\"'",
     "release": "deno eval 'import \"deco/scripts/release.ts\"'",
     "update": "deno eval 'import \"deco/scripts/update.ts\"'",
