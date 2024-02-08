@@ -23,7 +23,6 @@ import Matcher from "$store/components/product/Matcher.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import ProductDescription from "$store/components/product/ProductDescription.tsx";
 import ProductGift from "./ProductGift.tsx";
-import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
   /** @title Integration */
@@ -55,14 +54,6 @@ export interface Props {
      * @description the most performant way to use it is the Slider type, but we have the common variation, present on the website in production.
      */
     similarsType?: "slider" | "normal";
-  };
-
-  additionalText?: HTMLWidget;
-  additionalImage?: {
-    image: ImageWidget;
-    description: string;
-    width?: number;
-    height?: number;
   };
 }
 
@@ -196,7 +187,7 @@ function ProductInfo(
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
-        <span class="font-medium text-sm">
+        <span class="font-medium text-lg text-emerald-500">
           {formatPrice(pixPrice, offers!.priceCurrency!)} no <b>PIX</b>
         </span>
         <span class="flex">
@@ -433,22 +424,6 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           </div>
         </div>
 
-        {props.additionalText && (
-          <div class="flex-grow flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 max-w-[1240px] mx-auto p-4 xl:p-0 mt-4 sm:mt-6">
-            <div dangerouslySetInnerHTML={{ __html: props.additionalText }} />
-
-            {props.additionalImage && (
-              <Image
-                src={props.additionalImage.image || ""}
-                width={props.additionalImage.width ?? 250}
-                height={props.additionalImage.height ?? 250}
-                alt={props.additionalImage.description ?? "Imagem Ilustrativa"}
-                loading="lazy"
-              />
-            )}
-          </div>
-        )}
-
         <div class="flex-grow flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
           {props.suggestions && props?.suggestions[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
@@ -504,8 +479,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
 }
 
 function ProductDetails(
-  { page, layout, productGift, suggestions, additionalText, additionalImage }:
-    Props,
+  { page, layout, productGift, suggestions }: Props,
 ) {
   return (
     <div class="xl:container pt-12">
@@ -527,8 +501,6 @@ function ProductDetails(
               layout={layout}
               suggestions={suggestions}
               productGift={productGift}
-              additionalText={additionalText}
-              additionalImage={additionalImage}
             />
           </>
         )
