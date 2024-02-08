@@ -7,6 +7,7 @@ import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
+import { FnContext } from "deco/types.ts";
 
 export interface NavItem {
   label: string;
@@ -62,7 +63,8 @@ function Header({
   navItems = [],
   suggestions,
   logo,
-}: Props) {
+  device,
+}: ReturnType<typeof loader>) {
   const platform = usePlatform();
   const searchbar = { ..._searchbar, products, suggestions };
 
@@ -103,7 +105,12 @@ function Header({
           >
             <LoadingProgressBar />
             {flagOnTop && <Alert {...flagOnTop} />}
-            <Navbar items={navItems} searchbar={searchbar} logo={logo} />
+            <Navbar
+              items={navItems}
+              searchbar={searchbar}
+              logo={logo}
+              device={device}
+            />
           </div>
         </Drawers>
       </header>
@@ -114,5 +121,12 @@ function Header({
     </>
   );
 }
+
+export const loader = (props: Props, req: Request, ctx: FnContext) => {
+  return {
+    ...props,
+    device: ctx.device,
+  };
+};
 
 export default Header;
