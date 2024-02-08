@@ -196,7 +196,7 @@ function ProductInfo(
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
-        <span class="font-medium text-sm">
+        <span class="font-medium text-xl text-[#10B981]">
           {formatPrice(pixPrice, offers!.priceCurrency!)} no <b>PIX</b>
         </span>
         <span class="flex">
