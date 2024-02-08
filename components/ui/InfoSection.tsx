@@ -85,11 +85,13 @@ export default function InfoSection(
                   <>
                     <Slider.Item
                       index={index}
-                      class="carousel-item w-full items-center justify-center lg:group lg:relative lg:flex gap-1"
+                      class="carousel-item w-full items-center justify-center group lg:relative lg:flex gap-1"
                     >
-                      <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
-                        {card.descHover}
-                      </div>
+                      {card.descHover && (
+                        <div class="lg:absolute hidden lg:group-hover:flex p-4 bg-white items-center justify-center text-sm translate-y-16 shadow-2xl rounded-lg w-48">
+                          {card.descHover}
+                        </div>
+                      )}
                       <Image
                         src={card.image.icon}
                         alt={card.image.alt}
@@ -121,10 +123,12 @@ export default function InfoSection(
             <ul class="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-6 mt-8 cursor-pointer">
               {cards?.map((card) => (
                 <>
-                  <li class="lg:group lg:relative flex items-center gap-1">
-                    <div class="lg:absolute hidden group-hover:lg:flex p-4 bg-white items-center justify-center text-sm translate-y-10 shadow-2xl rounded-lg w-48">
-                      {card.descHover}
-                    </div>
+                  <li class="group lg:relative flex items-center gap-1">
+                    {card.descHover && (
+                      <div class="lg:absolute hidden lg:group-hover:flex p-4 bg-white items-center justify-center text-sm translate-y-16 shadow-2xl rounded-lg w-48">
+                        {card.descHover}
+                      </div>
+                    )}
                     <Image
                       src={card.image.icon}
                       alt={card.image.alt}
