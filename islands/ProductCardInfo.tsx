@@ -113,7 +113,7 @@ export default function ProductInfo({
             </div>
           </div>
           {pixPrice !== 0 && (
-            <div class="text-black text-sm">
+            <div class="font-medium text-base text-emerald-500">
               {formatPrice(
                 pixPrice,
                 "BRL",
