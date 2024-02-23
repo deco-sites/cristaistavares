@@ -16,8 +16,6 @@ export default function PaymentsDetails(
     discountValue * 100 / (productPrice ?? 0),
   );
 
-  console.log(cardsPrices);
-
   return (
     <>
       <a
