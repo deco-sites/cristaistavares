@@ -49,7 +49,7 @@ export default function PaymentsDetails(
                 <div class="flex items-center justify-between w-full rounded-md shadow-lg h-[56px] px-4">
                   <Icon
                     id="Pix"
-                    width={120}
+                    width={65}
                     height={24}
                     strokeWidth={0.75}
                     loading="lazy"
