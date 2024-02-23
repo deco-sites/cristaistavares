@@ -23,7 +23,7 @@ export default function PaymentsDetails(
         aria-label="abrir mais formas de pagamentos"
         class="flex w-full"
       >
-        <div class="flex items-center w-[200px] px-3 py-2 cursor-pointer border rounded-md text-black text-sm">
+        <div class="flex items-center w-[190px] px-3 py-2 cursor-pointer border rounded-md text-black text-sm">
           +formas de pagamento
         </div>
       </a>
@@ -57,7 +57,7 @@ export default function PaymentsDetails(
 
                   <div class="flex items-center justify-center gap-4">
                     {discountPercentage > 0 && (
-                      <span class="flex items-center w-full indicator-item indicator-start badge badge-primary border-none text-white bg-red-500 z-30 rounded-md text-xs lg:text-sm">
+                      <span class="flex items-center justify-center w-full px-2 py-0.5 text-white bg-red-500 z-30 rounded-md text-xs lg:text-sm">
                         {discountPercentage}% OFF
                       </span>
                     )}
