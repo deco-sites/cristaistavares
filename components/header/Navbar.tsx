@@ -11,7 +11,7 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { INavItem } from "./NavItem.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
-import { Device } from "deco/utils/device.ts";
+import { Device } from "apps/website/matchers/device.ts";
 
 function Navbar({ items, searchbar, logo, device }: {
   items: INavItem[];

@@ -2,6 +2,9 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $$$$$$$$$0 from "./actions/addToCart.ts";
+import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
+import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
@@ -10,8 +13,8 @@ import * as $$$$$$3 from "./sections/Content/Benefits.tsx";
 import * as $$$$$$4 from "./sections/Content/Faq.tsx";
 import * as $$$$$$5 from "./sections/Content/ImageAndText.tsx";
 import * as $$$$$$6 from "./sections/Content/InfoSection.tsx";
-import * as $$$$$$7 from "./sections/Content/Logos.tsx";
-import * as $$$$$$8 from "./sections/Content/LPCategoryCards.tsx";
+import * as $$$$$$8 from "./sections/Content/Logos.tsx";
+import * as $$$$$$7 from "./sections/Content/LPCategoryCards.tsx";
 import * as $$$$$$9 from "./sections/Content/PagesSection.tsx";
 import * as $$$$$$10 from "./sections/Content/PurchaseByCategory.tsx";
 import * as $$$$$$11 from "./sections/Content/ReviewCarousel.tsx";
@@ -44,9 +47,6 @@ import * as $$$$$$37 from "./sections/Product/Wishlist.tsx";
 import * as $$$$$$38 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$39 from "./sections/Social/WhatsApp.tsx";
 import * as $$$$$$40 from "./sections/Theme/Theme.tsx";
-import * as $$$$$$$$$0 from "./actions/addToCart.ts";
-import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
-import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
 const manifest = {
   "loaders": {
@@ -61,8 +61,8 @@ const manifest = {
     "deco-sites/cristaistavares/sections/Content/Faq.tsx": $$$$$$4,
     "deco-sites/cristaistavares/sections/Content/ImageAndText.tsx": $$$$$$5,
     "deco-sites/cristaistavares/sections/Content/InfoSection.tsx": $$$$$$6,
-    "deco-sites/cristaistavares/sections/Content/Logos.tsx": $$$$$$7,
-    "deco-sites/cristaistavares/sections/Content/LPCategoryCards.tsx": $$$$$$8,
+    "deco-sites/cristaistavares/sections/Content/Logos.tsx": $$$$$$8,
+    "deco-sites/cristaistavares/sections/Content/LPCategoryCards.tsx": $$$$$$7,
     "deco-sites/cristaistavares/sections/Content/PagesSection.tsx": $$$$$$9,
     "deco-sites/cristaistavares/sections/Content/PurchaseByCategory.tsx":
       $$$$$$10,
