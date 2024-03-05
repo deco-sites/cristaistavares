@@ -42,6 +42,10 @@ function ShippingContent({ simulation }: {
     );
   }
 
+  const totalPrice: number =
+    methods?.map((item) => item.price).reduce((acc, curr) => acc + curr, 0) ||
+    0;
+
   return (
     <ul class="flex flex-col gap-4 py-4 px-2 bg-base-200 rounded-[4px] sm:max-w-[92%] md:max-w-[84%] lg:max-w-[81%]">
       <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
@@ -53,7 +57,7 @@ function ShippingContent({ simulation }: {
         </span>
         <span class="text-xs sm:text-base font-bold sm:font-semibold text-right">
           {methods[0].price === 0 ? "Grátis" : (
-            formatPrice(methods[0].price / 100, currencyCode, locale)
+            formatPrice(totalPrice / 100, currencyCode, locale)
           )}
         </span>
       </li>
