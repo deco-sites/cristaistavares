@@ -24,7 +24,7 @@ export default function PaymentsDetails(
         class="flex w-full"
       >
         <div class="flex items-center w-[190px] px-3 py-2 cursor-pointer border rounded-md text-black text-sm">
-          +formas de pagamento
+          Opções de Pagamento
         </div>
       </a>
 
@@ -37,7 +37,7 @@ export default function PaymentsDetails(
         <div class="modal-box place-items-center lg:w-[325px] border bg-[#f2f2f2] rounded-lg">
           <div class="flex flex-col h-full w-full gap-6">
             <div class="flex justify-between items-center w-full">
-              <h2 class="font-bold">Formas de pagamento</h2>
+              <h2 class="font-bold">Opções de Pagamento</h2>
 
               <div class="modal-action">
                 <a href="#">X</a>

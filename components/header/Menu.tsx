@@ -15,7 +15,11 @@ function MenuItem({ item }: { item: INavItem }) {
           type="checkbox"
           class="absolute left-0 w-full top-0"
         />
-        <div class="collapse-title min-h-0 p-0 py-2.5 font-medium px-0 flex items-center justify-between">
+        <div
+          class={`${
+            item.label.toLowerCase() === "muranos" && "text-dark-pink"
+          } collapse-title min-h-0 p-0 py-2.5 font-medium px-0 flex items-center justify-between`}
+        >
           {item.label}
         </div>
         <div class="collapse-content px-0">
@@ -52,8 +56,8 @@ function MenuItem({ item }: { item: INavItem }) {
       <a
         href={item.href}
         title={item.label}
-        class={`${
-          url.includes(item.href) && "underline"
+        class={`${url.includes(item.href) && "underline"} ${
+          item.label.toLowerCase() === "outlet" && "text-dark-pink"
         } hover:underline w-full block py-2.5 font-medium`}
       >
         {item.label}
