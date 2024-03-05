@@ -23,7 +23,7 @@ export default function PaymentsDetails(
         aria-label="abrir mais formas de pagamentos"
         class="flex w-full"
       >
-        <div class="flex items-center w-[190px] px-3 py-2 cursor-pointer border rounded-md text-black text-sm">
+        <div class="flex items-center px-3 py-2 cursor-pointer border rounded-md text-black text-sm">
           Opções de Pagamento
         </div>
       </a>
