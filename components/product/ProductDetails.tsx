@@ -22,6 +22,7 @@ import CTA from "$store/components/ui/CTA.tsx";
 import Matcher from "$store/components/product/Matcher.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import ProductDescription from "$store/components/product/ProductDescription.tsx";
+import PaymentsDetails from "$store/components/product/PaymentsDetails.tsx";
 import ProductGift from "./ProductGift.tsx";
 
 export interface Props {
@@ -197,6 +198,20 @@ function ProductInfo(
             isPDP={true}
           />
         </span>
+
+        <PaymentsDetails
+          productPrice={price}
+          pixPrice={pixPrice}
+          priceCurrency={offers?.priceCurrency ?? "BRL"}
+          cardsPrices={offers?.offers?.[0]?.priceSpecification?.filter((item) =>
+            item.name == "PayPalPlus"
+          )?.map((filteredItem) => {
+            return {
+              billingDuration: filteredItem?.billingDuration,
+              billingIncrement: filteredItem?.billingIncrement,
+            };
+          }) ?? []}
+        />
       </div>
       <div class="flex flex-col-reverse lg:flex-col">
         {giftSkuIds && giftSkuIds.length > 0 && (
