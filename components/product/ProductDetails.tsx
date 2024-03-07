@@ -199,7 +199,8 @@ function ProductInfo(
           />
         </span>
 
-        <PaymentsDetails
+        {
+          /* <PaymentsDetails
           productPrice={price}
           pixPrice={pixPrice}
           priceCurrency={offers?.priceCurrency ?? "BRL"}
@@ -211,7 +212,8 @@ function ProductInfo(
               billingIncrement: filteredItem?.billingIncrement,
             };
           }) ?? []}
-        />
+        /> */
+        }
       </div>
       <div class="flex flex-col-reverse lg:flex-col">
         {giftSkuIds && giftSkuIds.length > 0 && (
