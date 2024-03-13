@@ -67,7 +67,7 @@ function CartItem(
     >
       <a href={detailUrl} class="contents shadow-sm rounded-lg">
         <Image
-          src={image?.src.replace("55-55", "96-96")}
+          src={image?.src.replace(/-(55)-55/g, "-96-96")}
           alt={image?.alt}
           style={{ aspectRatio: "1" }}
           width={96}
