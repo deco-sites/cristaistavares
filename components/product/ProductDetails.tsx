@@ -199,11 +199,13 @@ function ProductInfo(
           />
         </span>
 
-        {
-          /* <PaymentsDetails
+        <PaymentsDetails
           productPrice={price}
           pixPrice={pixPrice}
           priceCurrency={offers?.priceCurrency ?? "BRL"}
+          ticketPrice={offers?.offers?.[0]?.priceSpecification?.find((item) =>
+            item.name === "Boleto Bancário"
+          )?.price ?? 0}
           cardsPrices={offers?.offers?.[0]?.priceSpecification?.filter((item) =>
             item.name == "PayPalPlus"
           )?.map((filteredItem) => {
@@ -212,8 +214,7 @@ function ProductInfo(
               billingIncrement: filteredItem?.billingIncrement,
             };
           }) ?? []}
-        /> */
-        }
+        />
       </div>
       <div class="flex flex-col-reverse lg:flex-col">
         {giftSkuIds && giftSkuIds.length > 0 && (
