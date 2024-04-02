@@ -65,6 +65,8 @@ export interface Props {
    * @format color
    */
   buttonBorderHex?: string;
+
+  hiddenCampaignTimer?: boolean;
 }
 
 const snippet = (expiresAt: string, rootId: string) => {
@@ -136,8 +138,20 @@ function CampaignTimer({
   buttonBackgroundHex = "#000",
   buttonColorHex = "#fff",
   buttonBorderHex = "#fff",
+  hiddenCampaignTimer,
 }: Props) {
   const id = useId();
+
+  if (hiddenCampaignTimer) return null;
+
+  if (expiresAt) {
+    const date = new Date();
+    const expiredDate = new Date(expiresAt);
+
+    if (expiredDate < date) {
+      return null;
+    }
+  }
 
   return (
     <>

@@ -74,14 +74,12 @@ function Header({
       const navbar = document.getElementById("navbar");
       const campaignTimer = document.getElementById("campaign-timer");
 
-      if (!navbar || !campaignTimer) return;
-
       if (scrollY > 60) {
-        navbar.classList.add("fixed");
-        campaignTimer.classList.add("hidden");
+        navbar?.classList?.add("fixed");
+        campaignTimer?.classList?.add("hidden");
       } else {
-        navbar.classList.remove("fixed");
-        campaignTimer.classList.remove("hidden");
+        navbar?.classList?.remove("fixed");
+        campaignTimer?.classList?.remove("hidden");
       }
     });
   }

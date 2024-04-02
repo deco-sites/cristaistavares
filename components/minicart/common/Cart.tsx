@@ -7,6 +7,7 @@ import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import Shipping from "./Shipping.tsx";
+// import Installment from "./Installment.tsx";
 
 interface Props {
   items: Item[];
@@ -139,6 +140,8 @@ function Cart({
                     </span>
                   </div>
                 )}
+
+                {/* <Installment /> */}
 
                 <div class="flex justify-between items-center w-full">
                   <span>Total</span>

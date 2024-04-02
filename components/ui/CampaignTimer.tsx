@@ -41,6 +41,8 @@ export interface Props {
   layout?: {
     textPosition?: "Before counter" | "After counter";
   };
+
+  hiddenCampaignTimer?: boolean;
 }
 
 const snippet = (expiresAt: string, rootId: string) => {
@@ -102,8 +104,20 @@ function CampaignTimer({
   text = "Time left for a campaign to end wth a link",
   link,
   layout = { textPosition: "Before counter" },
+  hiddenCampaignTimer,
 }: Props) {
   const id = useId();
+
+  if (hiddenCampaignTimer) return null;
+
+  if (expiresAt) {
+    const date = new Date();
+    const expiredDate = new Date(expiresAt);
+
+    if (expiredDate < date) {
+      return null;
+    }
+  }
 
   return (
     <>
