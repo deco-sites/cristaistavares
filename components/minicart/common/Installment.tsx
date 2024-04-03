@@ -15,7 +15,7 @@ export default function Installment({ locale, currency }: Props) {
 
   if (!count || !total) return null;
 
-  const installmentPrice = (total / 100) / count;
+  const installmentPrice = ((total / 100) / count);
 
   return (
     <div class="flex justify-between items-center w-full">
