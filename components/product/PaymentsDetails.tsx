@@ -27,7 +27,7 @@ export default function PaymentsDetails(
 
       <input type="checkbox" id="my_modal_7" class="modal-toggle" />
       <div class="modal" role="dialog">
-        <div class="modal-box place-items-center lg:w-[325px] border bg-[#f2f2f2] rounded-lg">
+        <div class="modal-box place-items-center lg:w-[500px] border bg-[#f2f2f2] rounded-lg">
           <div class="flex flex-col h-full w-full gap-6">
             <div class="flex justify-between items-center w-full">
               <h2 class="font-bold">Opções de Pagamento</h2>
