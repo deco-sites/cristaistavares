@@ -42,7 +42,7 @@ function SearchControls(
   const open = useSignal(false);
 
   function extractSearchTerm() {
-    const urlParams = new URLSearchParams(window?.location?.search);
+    const urlParams = new URLSearchParams(globalThis?.location?.search);
 
     if (urlParams && urlParams.has("q")) {
       const searchTerm = urlParams.get("q");
