@@ -16,9 +16,9 @@ const colors: Record<string, string> = {
   "vermelha": "bg-[#FF0000] ring-[#FF0000]",
 
   // Color variants - only applied when no color as content is passed
-  "active": "bg-neutral-focus text-neutral-content ring-neutral-focus ",
+  "active": "bg-neutral-focus text-black ring-neutral-focus",
   "disabled": "bg-neutral-content text-neutral",
-  "default": "bg-base-100 text-primary",
+  "default": "bg-base-100 text-black",
 };
 
 interface Props {

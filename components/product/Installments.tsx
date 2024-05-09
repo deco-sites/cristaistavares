@@ -21,7 +21,7 @@ const Installments = (
 
   if (isPDP) {
     return (
-      <div class="text-sm tracking-tight lg:tracking-normal lg:text-base flex items-center justify-center gap-1">
+      <div class="text-sm text-black tracking-tight lg:tracking-normal lg:text-base flex items-center justify-center gap-1">
         <span class="block">
           Em até <b>{installmentsBillingDuration}x</b> de{" "}
           <b>R$ {formattedInstallmentsBillingIncrement}</b> sem juros
@@ -31,7 +31,7 @@ const Installments = (
   }
 
   return (
-    <div class="text-sm tracking-tight lg:tracking-normal flex items-center justify-center gap-1">
+    <div class="text-sm text-black tracking-tight lg:tracking-normal flex items-center justify-center gap-1">
       <span class="block">
         <b>{installmentsBillingDuration}x</b> de{" "}
         <b>R$ {formattedInstallmentsBillingIncrement}</b>

@@ -340,7 +340,7 @@ function ProductCard(
                 aria-label={`view ${product.isVariantOf?.name}`}
               >
                 <h3
-                  class={`text-sm w-full ${
+                  class={`text-sm text-black w-full ${
                     resizeNameHeight &&
                     "min-h-[100px] max-h-[100px] sm:min-h-[80px] sm:max-h-[80px]"
                   }`}
