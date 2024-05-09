@@ -15,7 +15,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
     <li class="group flex items-center relative">
       <a href={href} class="px-4 py-3">
         <span
-          class={`group-hover:border-b group-hover:border-dark-pink group-hover:text-dark-pink transition duration-300 ease-in ${
+          class={`group-hover:border-b group-hover:border-dark-pink group-hover:text-dark-pink text-black transition duration-300 ease-in ${
             ["muranos", "outlet"].includes(label.toLowerCase()) &&
             "text-dark-pink group-hover:font-bold"
           }`}
@@ -45,7 +45,10 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
             <ul class="flex items-start justify-center gap-6 h-[95%]">
               {children.map((node) => (
                 <li class="p-6">
-                  <a class="hover:underline font-bold" href={node.href}>
+                  <a
+                    class="hover:underline font-bold text-black"
+                    href={node.href}
+                  >
                     <span>{node.label}</span>
                   </a>
 
@@ -57,13 +60,13 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
                       <li class="pt-2">
                         {leaf.href === "#"
                           ? (
-                            <div class="hover:text-dark-pink duration-200 transition-colors">
+                            <div class="hover:text-dark-pink text-black duration-200 transition-colors">
                               <span class="text-sm">{leaf.label}</span>
                             </div>
                           )
                           : (
                             <a
-                              class="hover:text-dark-pink duration-200 transition-colors"
+                              class="hover:text-dark-pink text-black duration-200 transition-colors"
                               href={leaf.href}
                             >
                               <span class="text-sm">{leaf.label}</span>
