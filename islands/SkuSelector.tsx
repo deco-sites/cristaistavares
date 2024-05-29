@@ -35,9 +35,17 @@ export default function SkuSelector(
 
   return (
     <li>
-      <div role="button" onClick={() => setSku(link)} disabled={!link || link === "unavailable"}>
+      <div
+        role="button"
+        onClick={() => setSku(link)}
+        disabled={!link || link === "unavailable"}
+      >
         <Avatar
-          variant={link === url ? "active" : link !== "unavailable" ? "default" : "disabled"}
+          variant={link === url
+            ? "active"
+            : link !== "unavailable"
+            ? "default"
+            : "disabled"}
           content={value.toLowerCase()}
           isSelected={value.toLowerCase() ===
             (productName && productName.toLowerCase())}

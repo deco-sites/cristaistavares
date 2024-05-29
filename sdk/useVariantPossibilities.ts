@@ -12,7 +12,9 @@ export const useVariantPossibilities = (
 
       return additionalProperty.map((property) => ({
         property,
-        url: availability === "https://schema.org/InStock" ? url : "unavailable",
+        url: availability === "https://schema.org/InStock"
+          ? url
+          : "unavailable",
       }));
     })
     .filter((x) => x.url) // Filtra aqueles que não têm URL (os que não estão em estoque)
