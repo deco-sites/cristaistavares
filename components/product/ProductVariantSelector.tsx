@@ -32,10 +32,10 @@ function VariantSelector({ product, product: { url } }: Props) {
               {Object.entries(values).map(([value, links]) => {
                 return (
                   <li key={value}>
-                    <button f-partial={links[0]} f-client-nav>
+                    <button f-partial={links[0]} f-client-nav disabled={links[0] === "unavailable"}>
                       <Avatar
                         content={value}
-                        variant={links[0] === url ? "active" : "default"}
+                        variant={links[0] === url ? "active" : links[0] !== "unavailable" ? "default" : "disabled"}
                         isSelected={value.toUpperCase() ===
                           (product && product.name
                             ? product.name.toUpperCase()
