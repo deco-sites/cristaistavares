@@ -89,11 +89,9 @@ function ProductInfo(
     product,
   } = page;
   const {
-    description,
     productID,
     offers,
     name = "",
-    gtin,
     isVariantOf,
     additionalProperty = [],
   } = product;
@@ -121,7 +119,7 @@ function ProductInfo(
   const {
     billingDuration: installmentsBillingDuration,
     billingIncrement: installmentsBillingIncrement,
-  } = (offers?.offers[0].priceSpecification || [])
+  } = (offers?.offers?.[0]?.priceSpecification || [])
     .filter((item) => item.billingDuration !== undefined)
     .sort((a, b) => (b.billingDuration || 0) - (a.billingDuration || 0))
     .map(({ billingDuration, billingIncrement }) => ({
@@ -305,12 +303,12 @@ function Details(props: { page: ProductDetailsPage } & Props) {
   const { page: { product: { image: images = [] } }, layout } = props;
   const variant = layout?.image ?? "slider";
 
-  const price = props.page.product?.offers?.offers[0]?.priceSpecification
+  const price = props?.page?.product?.offers?.offers[0]?.priceSpecification
     ?.find((
       item,
     ) => item.priceType == "https://schema.org/SalePrice")?.price;
 
-  const listPrice = props.page.product?.offers?.offers[0]?.priceSpecification
+  const listPrice = props?.page?.product?.offers?.offers[0]?.priceSpecification
     ?.find((
       item,
     ) => item.priceType == "https://schema.org/ListPrice")?.price;
@@ -332,8 +330,8 @@ function Details(props: { page: ProductDetailsPage } & Props) {
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
             <DiscountPercentage
-              price={price!}
-              listPrice={listPrice!}
+              price={price ?? 0}
+              listPrice={listPrice ?? 0}
             />
 
             <PrincipalImages images={images} />
@@ -380,30 +378,6 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         <div class="flex flex-grow h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
           <div class="flex flex-col justify-between items-start gap-6 sm:gap-12 max-w-[1240px] flex-grow">
             <div class="flex flex-col gap-6 flex-grow lg:flex-1 lg:max-w-[30%] w-full">
-              {
-                /* {props.page.product.isVariantOf!.additionalProperty?.filter(
-                    (filteredItem) => filteredItem.name === "Cuidados",
-                  ).length > 0 && (
-                <div class="flex flex-col gap-3 w-full">
-                  <h1 class="font-bold text-sm">Especificações</h1>
-
-                  <div class="flex flex-col w-full gap-1 text-black">
-                    {props.page.product.isVariantOf?.additionalProperty.filter(
-                      (filteredItem) => filteredItem.name === "Cuidados",
-                    ).map((item) => (
-                      <div class="even:bg-white odd:bg-gray-100 grid grid-cols-2 w-full px-6 py-1">
-                        <span class="font-semibold text-sm">{item.name}</span>
-
-                        {item.value && (
-                          <span class="text-sm">{item.value}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )} */
-              }
-
               {props?.page?.product?.isVariantOf?.additionalProperty &&
                 props?.page?.product?.isVariantOf?.additionalProperty?.filter(
                     (item) => item?.value?.includes("cm"),
@@ -443,7 +417,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         </div>
 
         <div class="flex-grow flex flex-col max-w-[1240px] mx-auto p-4 xl:p-0">
-          {props.suggestions && props?.suggestions[0]?.name && (
+          {props.suggestions && props?.suggestions?.[0]?.name && (
             <div id="combinacao" class="mt-4 sm:mt-6 px-4 lg:px-0">
               <h2
                 class={"text-center md:text-start border-b border-lavender mb-8 py-3 text-2xl"}

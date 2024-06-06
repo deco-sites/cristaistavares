@@ -1,5 +1,4 @@
 import { formatPrice } from "$store/sdk/format.ts";
-
 import type { AggregateOffer } from "apps/commerce/types.ts";
 
 interface Props {
@@ -49,12 +48,12 @@ export default function CTA(
               {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
                 <div class="flex flex-col-reverse sm:flex-row gap-2 items-start sm:items-center">
                   <span class="line-through text-gray-base leading-[22px] text-sm">
-                    {formatPrice(listPrice, offers!.priceCurrency!)}
+                    {formatPrice(listPrice, offers?.priceCurrency)}
                   </span>
                 </div>
               )}
               <span class="text-black font-semibold leading-[22px] text-[21px]">
-                {formatPrice(price, offers!.priceCurrency!)}
+                {formatPrice(price, offers?.priceCurrency)}
               </span>
             </div>
           </div>
