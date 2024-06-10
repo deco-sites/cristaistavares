@@ -1,5 +1,5 @@
 # Storefront starter by deco.cx
-
+ 
 A fully featured starter to help you customize and deploy an ecommerce website
 in minutes.
 
@@ -223,3 +223,4 @@ Check performance best practices on [deco.cx's docs](https://www.deco.cx/docs)
 <a href="https://github.com/deco-sites/fashion/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=deco-sites/fashion" />
 </a>
+
