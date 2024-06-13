@@ -120,7 +120,7 @@ function Header({
   );
 }
 
-export const loader = (props: Props, req: Request, ctx: FnContext) => {
+export const loader = (props: Props, _req: Request, ctx: FnContext) => {
   return {
     ...props,
     device: ctx.device,

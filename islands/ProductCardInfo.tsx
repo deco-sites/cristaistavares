@@ -51,7 +51,6 @@ export default function ProductInfo({
   resizeQuantity,
 }: ProductInfoProps) {
   const {
-    url,
     productID,
     name,
     isVariantOf,

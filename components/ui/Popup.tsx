@@ -73,7 +73,6 @@ function InputNewsletter(
 export default function Popup({
   isOpen,
   form,
-  text,
   modalSignExpiredDate,
   modalCloseExpiredDate,
 }: Props & { isOpen: boolean }) {

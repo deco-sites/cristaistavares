@@ -99,7 +99,6 @@ function ProductInfo(
     price: offerPrice = 0,
     listPrice,
     seller = "1",
-    installments,
     availability,
     giftSkuIds,
   } = useOffer(offers);

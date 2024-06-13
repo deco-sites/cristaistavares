@@ -1,5 +1,4 @@
 import { h } from "preact";
-import { useSignal } from "@preact/signals";
 
 import Slider from "$store/components/ui/Slider.tsx";
 import Image from "apps/website/components/Image.tsx";
