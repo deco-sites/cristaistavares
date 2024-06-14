@@ -27,10 +27,14 @@ export interface Props {
   cardLayout?: cardLayout;
 }
 
-function NotFound() {
+function NotFound({ search }: { search: string }) {
   return (
     <div class="w-full flex flex-col justify-center gap-1.5 items-center py-10">
-      <span>Não encontramos nenhum produto.</span>
+      <span>
+        {search
+          ? `Não encontramos nenhum produto para ${search}.`
+          : "Não encontramos nenhum produto."}
+      </span>
       <span>Tente procurar por algum outro termo.</span>
     </div>
   );
@@ -115,7 +119,7 @@ export const loader = (props: Props, req: Request) => {
 
 function SearchResult({ page, ...props }: Props) {
   if (!page || page.products.length === 0) {
-    return <NotFound />;
+    return <NotFound search={page?.seo?.title || ""} />;
   }
 
   return <Result {...props} page={page} />;

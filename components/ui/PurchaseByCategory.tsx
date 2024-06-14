@@ -19,38 +19,6 @@ export interface Props {
   }>;
 }
 
-function Dots({ cards, interval = 0 }: Pick<Props, "interval" | "cards">) {
-  return (
-    <>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            @property --dot-progress {
-              syntax: '<percentage>';
-              inherits: false;
-              initial-value: 0%;
-            }
-            `,
-        }}
-      />
-      <ul class="flex lg:hidden carousel translate-y-7 justify-center col-span-full gap-4 z-10 row-start-4">
-        {cards?.map((_, index) => (
-          <li class="carousel-item">
-            <Slider.Dot index={index}>
-              <div class="py-5">
-                <div
-                  class="w-3 h-3 rounded-full group-disabled:animate-progress bg-gradient-to-r from-dark-pink from-[length:var(--dot-progress)] to-black to-[length:var(--dot-progress)]"
-                  style={{ animationDuration: `${interval}s` }}
-                />
-              </div>
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
-
 export default function CategoryList({ title, cards, interval }: Props) {
   const id = useId();
 

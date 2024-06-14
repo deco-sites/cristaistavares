@@ -1,4 +1,3 @@
-import Icon from "$store/components/ui/Icon.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface PaymentItemTop {

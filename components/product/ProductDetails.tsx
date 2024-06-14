@@ -99,7 +99,6 @@ function ProductInfo(
     price: offerPrice = 0,
     listPrice,
     seller = "1",
-    installments,
     availability,
     giftSkuIds,
   } = useOffer(offers);
@@ -257,7 +256,7 @@ function ProductInfo(
                 href="#combinacao"
                 class="text-sm flex items-center justify-center w-full md:w-[80%] lg:w-[83%] border border-gray-500 hover:border-emerald-500 rounded hover:bg-emerald-500 hover:text-white h-[50px] transition-colors duration-200"
               >
-                {suggestions[0]?.isVariantOf?.name?.includes("Abajur")
+                {suggestions?.[0]?.isVariantOf?.name?.includes("Abajur")
                   ? "Com Cúpula"
                   : "Sugestão de Composição"}
               </a>
