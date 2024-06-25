@@ -11,6 +11,25 @@ export interface INavItem {
 function NavItem({ item, index }: { item: INavItem; index?: number }) {
   const { href, label, children, image, columns = 3 } = item;
 
+  const classes = (index: number) => {
+    let classes =
+      "absolute hidden lg:group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[900px] xl:w-[1140px] h-[425px]";
+
+    if (index < 9) {
+      classes += " flex-row-reverse";
+    }
+
+    if (index >= 6 && index < 8) {
+      classes += " -translate-x-[60%]";
+    }
+
+    if (index >= 8) {
+      classes += " -translate-x-[85%]";
+    }
+
+    return classes;
+  };
+
   return (
     <li class="group flex items-center relative">
       <a href={href} class="px-4 py-3">
@@ -27,9 +46,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
       {children && children.length > 0 &&
         (
           <div
-            class={`${index! < 7 ? "flex-row-reverse" : "-translate-x-[85%]"} ${
-              index! >= 6 && "-translate-x-[60%]"
-            } absolute hidden lg:group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[900px] xl:w-[1140px] h-[425px]`}
+            class={classes(index!)}
             style={{ top: "0px", left: "0px", marginTop: "48px" }}
           >
             {image?.src && (
