@@ -57,7 +57,7 @@ export default function SimilarsGrid({ products }: Props) {
         })}
       </div>
 
-      {products.length > 28 && (
+      {products.length > 21 && (
         <div
           id="toggle-expand-products"
           aria-label="view more products"
