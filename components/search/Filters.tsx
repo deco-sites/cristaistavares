@@ -82,6 +82,7 @@ function Filters({ filters }: Props) {
     <div class="flex flex-col gap-2">
       {filters
         .filter(isToggle)
+        .filter((item) => item.key !== "cor")
         .map((filter) => (
           <div class="flex flex-col gap-4">
             <div class="collapse">
