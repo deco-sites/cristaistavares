@@ -396,7 +396,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                                 {item?.name ?? ""}
                               </span>
 
-                              <span class="text-sm w-full">
+                              <span class="text-sm w-full sm:text-nowrap">
                                 {item?.value ?? ""}
                               </span>
                             </div>
