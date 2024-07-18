@@ -13,7 +13,7 @@ function NavItem({ item, index }: { item: INavItem; index?: number }) {
 
   const classes = (index: number) => {
     let classes =
-      "absolute hidden lg:group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[900px] xl:w-[1140px] h-[425px]";
+      "absolute hidden lg:group-hover:flex bg-base-100 z-50 items-center justify-between border-t border-b-2 border-base-200 lg:w-[900px] xl:w-[1250px] h-[425px]";
 
     if (index < 9) {
       classes += " flex-row-reverse";

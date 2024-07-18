@@ -62,7 +62,7 @@ function Navbar({ items, searchbar, logo, device }: {
 
       {/* Desktop Version */}
       {!isMobile && (
-        <div class="hidden md:flex flex-col max-w-[1266px] mx-auto pl-1 pr-3 pt-3">
+        <div class="hidden md:flex flex-col max-w-[1280px] mx-auto pl-1 pr-3 pt-3">
           <div class="flex flex-row justify-between items-center">
             <div class="flex justify-start">
               {logo && (
