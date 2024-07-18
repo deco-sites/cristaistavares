@@ -1,6 +1,5 @@
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
-import type { Product, Suggestion } from "apps/commerce/types.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import LoadingProgressBar from "./LoadingProgressBar.tsx";
 import Alert from "./Alert.tsx";
@@ -8,6 +7,7 @@ import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { FnContext } from "deco/types.ts";
+import { useScript } from "deco/hooks/useScript.ts";
 
 export interface NavItem {
   label: string;
@@ -41,17 +41,6 @@ export interface Props {
    */
   navItems?: NavItem[];
 
-  /**
-   * @title Product suggestions
-   * @description Product suggestions displayed on search
-   */
-  products?: Product[] | null;
-
-  /**
-   * @title Enable Top Search terms
-   */
-  suggestions?: Suggestion | null;
-
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
 }
@@ -59,14 +48,12 @@ export interface Props {
 function Header({
   flagOnTop,
   searchbar: _searchbar,
-  products,
   navItems = [],
-  suggestions,
   logo,
   device,
 }: ReturnType<typeof loader>) {
   const platform = usePlatform();
-  const searchbar = { ..._searchbar, products, suggestions };
+  const searchbar = { ..._searchbar };
 
   function handleScroll() {
     self.addEventListener("scroll", () => {
@@ -114,7 +101,8 @@ function Header({
       </header>
 
       <script
-        dangerouslySetInnerHTML={{ __html: `(${handleScroll.toString()})()` }}
+        type="module"
+        dangerouslySetInnerHTML={{ __html: useScript(handleScroll) }}
       />
     </>
   );
