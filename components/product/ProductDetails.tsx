@@ -376,7 +376,7 @@ function Details(props: { page: ProductDetailsPage } & Props) {
         <SliderJS rootId={id} />
         <div class="flex flex-grow h-full items-center justify-center mt-5 lg:mt-0 mb-3 gap-3 px-4">
           <div class="flex flex-col justify-between items-start gap-6 sm:gap-12 max-w-[1240px] flex-grow">
-            <div class="flex flex-col gap-6 flex-grow lg:flex-1 lg:max-w-[30%] w-full">
+            <div class="flex flex-col gap-6 flex-grow lg:flex-1 lg:max-w-[50%] w-full">
               {props?.page?.product?.isVariantOf?.additionalProperty &&
                 props?.page?.product?.isVariantOf?.additionalProperty?.filter(
                     (item) => item?.value?.includes("cm"),
@@ -392,11 +392,11 @@ function Details(props: { page: ProductDetailsPage } & Props) {
                         ).map((item) => {
                           return (
                             <div class="even:bg-white odd:bg-gray-100 flex gap-2 flex-grow xl:w-[90%] px-6 py-1">
-                              <span class="font-semibold text-sm min-w-[30%]">
+                              <span class="font-semibold text-sm min-w-[30%] lg:min-w-[20%]">
                                 {item?.name ?? ""}
                               </span>
 
-                              <span class="text-sm w-full sm:text-nowrap">
+                              <span class="text-sm w-full">
                                 {item?.value ?? ""}
                               </span>
                             </div>
