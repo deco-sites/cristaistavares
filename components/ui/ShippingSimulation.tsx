@@ -122,10 +122,14 @@ function ShippingSimulation({ items }: Props) {
       </form>
 
       <div>
-        <div>
-          <ShippingContent simulation={simulateResult} />
-        </div>
+        <ShippingContent simulation={simulateResult} />
       </div>
+
+      <p class="text-sm">
+        Nosso produto é artesanal e cada peça é produzida especialmente para
+        você. Este prazo contempla o tempo de produção da peça mais o envio até
+        sua residência.
+      </p>
     </div>
   );
 }
