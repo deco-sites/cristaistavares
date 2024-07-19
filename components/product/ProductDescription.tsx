@@ -1,3 +1,5 @@
+import { useScript } from "deco/hooks/useScript.ts";
+
 export interface Props {
   description?: string;
 }
@@ -51,8 +53,8 @@ export default function ProductDescription({ description }: Props) {
       </div>
 
       <script
-        defer
-        dangerouslySetInnerHTML={{ __html: `(${handleClick.toString()})()` }}
+        type="module"
+        dangerouslySetInnerHTML={{ __html: useScript(handleClick) }}
       />
     </>
   );
