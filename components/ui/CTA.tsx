@@ -1,5 +1,6 @@
 import { formatPrice } from "$store/sdk/format.ts";
 import type { AggregateOffer } from "apps/commerce/types.ts";
+import { useScript } from "deco/hooks/useScript.ts";
 
 interface Props {
   listPrice?: number;
@@ -69,8 +70,9 @@ export default function CTA(
       </div>
 
       <script
+        type="module"
         dangerouslySetInnerHTML={{
-          __html: `(${handleScrollOnPDP.toString()})()`,
+          __html: useScript(handleScrollOnPDP),
         }}
       />
     </>

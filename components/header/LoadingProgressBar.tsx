@@ -1,3 +1,5 @@
+import { useScript } from "deco/hooks/useScript.ts";
+
 export default function LoadingProgressBar() {
   function handleSidebarLogic() {
     const progressBar = document.getElementById("progressbar")!;
@@ -17,9 +19,9 @@ export default function LoadingProgressBar() {
       </div>
 
       <script
-        defer
+        type="module"
         dangerouslySetInnerHTML={{
-          __html: `(${handleSidebarLogic.toString()})()`,
+          __html: useScript(handleSidebarLogic),
         }}
       />
     </>

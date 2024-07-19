@@ -1,5 +1,6 @@
 import { useId } from "$store/sdk/useId.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
+import { useScript } from "deco/hooks/useScript.ts";
 
 export interface Props {
   /**
@@ -208,7 +209,7 @@ function CampaignTimer({
       <script
         type="module"
         dangerouslySetInnerHTML={{
-          __html: `(${snippet})("${expiresAt}", "${id}");`,
+          __html: useScript(snippet, expiresAt, id),
         }}
       />
     </>

@@ -1,4 +1,5 @@
 import type { Product } from "apps/commerce/types.ts";
+import { useScript } from "deco/hooks/useScript.ts";
 
 export interface Props {
   products?: Product[];
@@ -68,8 +69,8 @@ export default function SimilarsGrid({ products }: Props) {
       )}
 
       <script
-        defer
-        dangerouslySetInnerHTML={{ __html: `(${handleClick.toString()})()` }}
+        type="module"
+        dangerouslySetInnerHTML={{ __html: useScript(handleClick) }}
       />
     </>
   );

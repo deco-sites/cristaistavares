@@ -1,4 +1,5 @@
 import { useId } from "$store/sdk/useId.ts";
+import { useScript } from "deco/hooks/useScript.ts";
 
 const script = (id: string) => {
   const callback = () => {
@@ -138,7 +139,7 @@ function CookieConsent(props: Props) {
       </div>
       <script
         type="module"
-        dangerouslySetInnerHTML={{ __html: `(${script})("${id}");` }}
+        dangerouslySetInnerHTML={{ __html: useScript(script, id) }}
       />
     </>
   );
