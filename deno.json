@@ -12,7 +12,6 @@
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
     "std/": "https://deno.land/std@0.190.0/",
-    "partytown/": "https://denopkg.com/deco-cx/partytown@0.4.8/",
     "daisyui": "npm:daisyui@3.9.2"
   },
   "tasks": {
@@ -26,6 +25,7 @@
     "install": "deno eval 'import \"deco/scripts/apps/install.ts\"'",
     "uninstall": "deno eval 'import \"deco/scripts/apps/uninstall.ts\"'",
     "bundle": "deno eval 'import \"deco/scripts/apps/bundle.ts\"' deco-sites/cristaistavares",
+    "cache_clean": "rm deno.lock; deno cache -r main.ts",
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts"
   },
