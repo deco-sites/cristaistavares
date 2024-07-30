@@ -73,7 +73,7 @@ function Menu({ items }: Props) {
   return (
     <div class="flex flex-col max-h-[95%] overflow-y-scroll">
       <a
-        href="/account"
+        href="/login"
         class="flex items-center justify-start min-h-8 px-4 text-sm bg-gray-300"
       >
         Bem vindo(a), {!user.value ? "faça seu login" : `${user.value.email}`}

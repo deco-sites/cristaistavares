@@ -9,7 +9,7 @@ const LoginElement = () => {
     <div class="group relative mr-8 group-hover:opacity-100 group-hover:visible">
       <a
         class="btn btn-square btn-ghost bg-transparent hover:bg-transparent w-full"
-        href="/account"
+        href={!user.value ? "/login" : "/account"}
         aria-label="faça seu login"
       >
         <img
@@ -34,7 +34,7 @@ const LoginElement = () => {
           <li class="block w-full py-0 px-5 transition-all duration-200 ease-linear hover:bg-gray-lighter">
             <a
               class="h-9 bg-dark-pink flex justify-center items-center text-base text-white font-bold text-center mb-2 uppercase"
-              href="/account"
+              href={!user.value ? "/login" : "/account"}
             >
               {!user.value ? "Entrar" : "Minha Conta"}
             </a>
