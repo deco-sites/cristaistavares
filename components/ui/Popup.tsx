@@ -3,6 +3,7 @@ import { useSignal } from "@preact/signals";
 import type { JSX } from "preact";
 import { Runtime } from "$store/runtime.ts";
 import { useEffect, useRef } from "preact/compat";
+import type { RichText } from "apps/admin/widgets.ts";
 
 export interface INewsletterInputProps {
   /**
@@ -34,9 +35,8 @@ export interface Props {
   form: INewsletterFormProps;
   /**
    * @title newsletter message text?
-   * @format html
    */
-  text: string;
+  text: RichText;
 
   /**
    * @title Days to reopen modal if it is registered

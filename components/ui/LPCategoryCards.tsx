@@ -1,10 +1,10 @@
 import Image from "apps/website/components/Image.tsx";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
-  title?: HTMLWidget;
-  subTitle?: HTMLWidget;
+  title?: RichText;
+  subTitle?: RichText;
   cards?: {
     link: string;
     image: {

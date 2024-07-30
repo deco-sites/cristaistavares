@@ -8,6 +8,7 @@ import type { BreadcrumbList } from "apps/commerce/types.ts";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import SelectableBanners from "$store/islands/SelectableBanners.tsx";
 import type { BannerProps } from "$store/islands/SelectableBanners.tsx";
+import type { RichText } from "apps/admin/widgets.ts";
 
 export interface FilterProps {
   label: string;
@@ -20,16 +21,14 @@ export interface FilterProps {
 
 export interface QuestionProps {
   label: string;
-  /** @format html */
-  answer: string;
+  answer: RichText;
 }
 
 export interface Props {
   filters: FilterProps[];
   title: string;
   questions?: QuestionProps[];
-  /** @format html */
-  info?: string;
+  info?: RichText;
   banners?: BannerProps[];
   cards?: CardProps[];
   gridImages?: GridProps[];

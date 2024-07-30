@@ -3,13 +3,10 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 
 export interface Props {
-  /**
-   * @format html
-   */
-  title: string;
+  title: RichText;
 
   cards?: Array<{
     image: {
@@ -17,10 +14,7 @@ export interface Props {
       alt?: string;
     };
 
-    /**
-     * @format html
-     */
-    description: HTMLWidget;
+    description: RichText;
 
     descHover?: string;
   }>;

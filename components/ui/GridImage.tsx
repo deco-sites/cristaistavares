@@ -1,14 +1,14 @@
 import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 
 export interface Props {
   image: {
     link: ImageWidget;
     description: string;
   };
-  title?: HTMLWidget;
-  subtitle?: HTMLWidget;
+  title?: RichText;
+  subtitle?: RichText;
 }
 
 export default function GridImage({ image, title, subtitle }: Props) {

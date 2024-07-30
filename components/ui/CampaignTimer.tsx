@@ -1,5 +1,5 @@
 import { useId } from "$store/sdk/useId.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 import { useScript } from "deco/hooks/useScript.ts";
 
 export interface Props {
@@ -7,7 +7,7 @@ export interface Props {
    * @title Text
    * @default Time left for a campaign to end wth a link
    */
-  text?: HTMLWidget;
+  text?: RichText;
 
   /**
    * @title Expires at date

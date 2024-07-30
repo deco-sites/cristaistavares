@@ -1,9 +1,9 @@
-import type { HTMLWidget } from "apps/admin/widgets.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 import { useScript } from "deco/hooks/useScript.ts";
 
 export interface Props {
-  title?: HTMLWidget;
-  description?: HTMLWidget;
+  title?: RichText;
+  description?: RichText;
   hasMostPaddingBottom?: boolean;
 }
 

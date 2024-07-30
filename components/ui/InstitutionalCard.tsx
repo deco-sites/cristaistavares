@@ -1,6 +1,6 @@
 import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 
 export interface Props {
   image: {
@@ -8,8 +8,8 @@ export interface Props {
     description: string;
   };
 
-  title: HTMLWidget;
-  subtitle: HTMLWidget;
+  title: RichText;
+  subtitle: RichText;
 }
 
 export default function InstitutionalCard({ image, title, subtitle }: Props) {

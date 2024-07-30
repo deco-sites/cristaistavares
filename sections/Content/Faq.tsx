@@ -1,13 +1,13 @@
+import type { RichText } from "apps/admin/widgets.ts";
+
 export interface Question {
   question: string;
-  /** @format html */
-  answer: string;
+  answer: RichText;
 }
 
 export interface Contact {
   title?: string;
-  /** @format html */
-  description?: string;
+  description?: RichText;
   link?: {
     text: string;
     href: string;
@@ -15,10 +15,8 @@ export interface Contact {
 }
 
 export interface Props {
-  /** @format html */
-  title?: string;
-  /** @format html */
-  description?: string;
+  title?: RichText;
+  description?: RichText;
   questions?: Question[];
   contact?: Contact;
   layout?: {

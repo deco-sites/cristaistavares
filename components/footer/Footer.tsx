@@ -9,7 +9,7 @@ import SecurityItems from "$store/components/footer/SecurityItems.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
+import type { ImageWidget, RichText } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
 
 export type Item = {
@@ -68,8 +68,7 @@ export interface RegionOptions {
 export interface NewsletterForm {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
-  helpText?: string;
+  helpText?: RichText;
 }
 
 export interface Layout {

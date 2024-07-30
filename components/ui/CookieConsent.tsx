@@ -1,5 +1,6 @@
 import { useId } from "$store/sdk/useId.ts";
 import { useScript } from "deco/hooks/useScript.ts";
+import type { RichText } from "apps/admin/widgets.ts";
 
 const script = (id: string) => {
   const callback = () => {
@@ -28,8 +29,7 @@ const script = (id: string) => {
 
 export interface Props {
   title?: string;
-  /** @format html */
-  text?: string;
+  text?: RichText;
   policy?: {
     text?: string;
     link?: string;

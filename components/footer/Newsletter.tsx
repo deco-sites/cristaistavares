@@ -1,12 +1,12 @@
 import { useSignal } from "@preact/signals";
 import { Runtime } from "$store/runtime.ts";
 import type { JSX } from "preact";
+import { RichText } from "apps/admin/widgets.ts";
 
 export interface Form {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
-  helpText?: string;
+  helpText?: RichText;
 }
 
 export interface Props {

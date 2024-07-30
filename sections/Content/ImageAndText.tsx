@@ -1,9 +1,9 @@
-import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
+import type { ImageWidget, RichText } from "apps/admin/widgets.ts";
 
 import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
-  additionalText?: HTMLWidget;
+  additionalText?: RichText;
   additionalImage?: {
     image: ImageWidget;
     description: string;
