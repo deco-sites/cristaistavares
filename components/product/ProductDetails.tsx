@@ -151,7 +151,7 @@ function ProductInfo(
           </span>
         </h1>
 
-        <div class="flex flex-col mt-2">
+        <div class="flex flex-col gap-2 mt-2">
           {refId && (
             <span class="text-sm">
               Cod. {refId}
