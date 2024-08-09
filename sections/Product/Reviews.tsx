@@ -10,7 +10,7 @@ export default function Reviews({ page }: Props) {
   return (
     <>
       <script
-        type="module"
+        async
         src="https://reviews.konfidency.com.br/cristaistavares/loader.js"
       />
 
