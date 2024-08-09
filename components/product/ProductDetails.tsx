@@ -90,6 +90,7 @@ function ProductInfo(
   } = page;
   const {
     productID,
+    sku,
     offers,
     name = "",
     isVariantOf,
@@ -150,12 +151,14 @@ function ProductInfo(
           </span>
         </h1>
 
-        <div class="mt-2">
+        <div class="flex flex-col mt-2">
           {refId && (
             <span class="text-sm">
               Cod. {refId}
             </span>
           )}
+
+          <div class="konfidency-reviews-summary" data-sku={sku}></div>
         </div>
       </div>
       {/* Sku Selector */}
