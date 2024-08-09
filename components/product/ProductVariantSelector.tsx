@@ -23,7 +23,7 @@ function VariantSelector({ product, product: { url } }: Props) {
     }, {});
 
   return (
-    <div class="mt-4 px-4">
+    <div class="mt-2 px-4">
       <ul className="flex flex-col gap-4">
         {Object.entries(sortedPossibilities).map(([name, values]) => (
           <li className="flex flex-col gap-2" key={name}>
