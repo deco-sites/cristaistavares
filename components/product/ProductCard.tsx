@@ -149,8 +149,12 @@ function ProductCard(
       />
     ));
 
-  const isNew = additionalProperty?.find((item) => item.value == "LANÇAMENTO");
-  const isKit = additionalProperty?.find((item) => item.value == "KIT");
+  const isNew = additionalProperty?.find((item) =>
+    item.value == "LANÇAMENTO FLAG"
+  );
+  const isKit = additionalProperty?.find((item) =>
+    item.value == "Kits" || item.value === "KIT"
+  );
 
   return (
     <div
