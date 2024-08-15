@@ -152,9 +152,12 @@ function ProductCard(
   const isNew = additionalProperty?.find((item) =>
     item.value == "LANÇAMENTO FLAG"
   );
+
   const isKit = additionalProperty?.find((item) =>
     item.value == "Kits" || item.value === "KIT"
   );
+
+  const isProgressiveDiscount = additionalProperty?.find((item) => item.value === "DESCONTO PROGRESSIVO");
 
   return (
     <div
@@ -216,11 +219,13 @@ function ProductCard(
               </span>
             )}
 
-            <DiscountPercentage
-              price={price!}
-              listPrice={listPrice!}
-              isPDP={false}
-            />
+            {!isProgressiveDiscount && (
+              <DiscountPercentage
+                price={price!}
+                listPrice={listPrice!}
+                isPDP={false}
+              />
+            )}
           </div>
 
           {
