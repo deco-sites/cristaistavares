@@ -157,7 +157,9 @@ function ProductCard(
     item.value == "Kits" || item.value === "KIT"
   );
 
-  const isProgressiveDiscount = additionalProperty?.find((item) => item.value === "DESCONTO PROGRESSIVO");
+  const isProgressiveDiscount = additionalProperty?.find((item) =>
+    item.value === "DESCONTO PROGRESSIVO"
+  );
 
   return (
     <div

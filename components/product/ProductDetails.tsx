@@ -90,7 +90,6 @@ function ProductInfo(
   } = page;
   const {
     productID,
-    sku,
     offers,
     name = "",
     isVariantOf,
@@ -158,7 +157,7 @@ function ProductInfo(
             </span>
           )}
 
-          <div class="konfidency-reviews-summary" data-sku={sku}></div>
+          <div class="konfidency-reviews-summary" data-sku={productID}></div>
         </div>
       </div>
       {/* Sku Selector */}
