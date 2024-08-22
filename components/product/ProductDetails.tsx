@@ -157,7 +157,8 @@ function ProductInfo(
             </span>
           )}
 
-          <div class="konfidency-reviews-summary" data-sku={productID}></div>
+          <div class="konfidency-reviews-summary" data-sku={productGroupID}>
+          </div>
         </div>
       </div>
       {/* Sku Selector */}
