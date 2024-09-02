@@ -29,9 +29,9 @@ export default function CategoryList({ title, description, cards }: Props) {
           </p>
         </a>
       </div>
-      <div class="flex-grow grid grid-cols-2 md:flex md:flex-wrap items-center justify-center gap-5">
+      <div class="grid grid-cols-2 lg:grid-cols-4 items-center justify-center gap-5">
         {cards?.map((card) => (
-          <div class="flex items-center justify-center md:w-[295px] md:h-[368px]">
+          <div class="flex items-center justify-center lg:h-[368px]">
             <a href={card.link}>
               <Image
                 src={card.image.icon}
