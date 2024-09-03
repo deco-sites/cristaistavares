@@ -152,7 +152,7 @@ function ProductInfo(
         </h1>
 
         <div class="flex flex-col gap-2 mt-2">
-          <div class="flex items-center justify-between w-[90%]">
+          <div class="flex items-center justify-between w-full sm:w-[90%]">
             {refId && (
               <span class="text-sm">
                 Cod. {refId}
