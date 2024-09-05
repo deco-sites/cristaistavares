@@ -32,14 +32,16 @@ export default function ProductDescription({ description }: Props) {
         <div
           id="read-more"
           class="block md:hidden text-justify max-h-[10.5em] overflow-hidden"
-          dangerouslySetInnerHTML={{ __html: description ?? "" }}
+          dangerouslySetInnerHTML={{
+            __html: description?.replaceAll("rounded-full", "") ?? "",
+          }}
         />
 
         {/* Desktop Description */}
         <div
           class="hidden md:block text-justify"
           dangerouslySetInnerHTML={{
-            __html: description ?? "",
+            __html: description?.replaceAll("rounded-full", "") ?? "",
           }}
         />
 
