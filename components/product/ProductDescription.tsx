@@ -33,7 +33,9 @@ export default function ProductDescription({ description }: Props) {
           id="read-more"
           class="block md:hidden text-justify max-h-[10.5em] overflow-hidden"
           dangerouslySetInnerHTML={{
-            __html: description?.replaceAll("rounded-full", "") ?? "",
+            __html:
+              description?.replace("rounded-full", "flex-col !items-start") ??
+                "",
           }}
         />
 
@@ -41,7 +43,9 @@ export default function ProductDescription({ description }: Props) {
         <div
           class="hidden md:block text-justify"
           dangerouslySetInnerHTML={{
-            __html: description?.replaceAll("rounded-full", "") ?? "",
+            __html:
+              description?.replace("rounded-full", "flex-col !items-start") ??
+                "",
           }}
         />
 
