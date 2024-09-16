@@ -24,6 +24,7 @@ import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx
 import ProductDescription from "$store/components/product/ProductDescription.tsx";
 import PaymentsDetails from "$store/components/product/PaymentsDetails.tsx";
 import ProductGift from "./ProductGift.tsx";
+import ShareButton from "deco-sites/cristaistavares/components/ui/ShareButton.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -151,11 +152,15 @@ function ProductInfo(
         </h1>
 
         <div class="flex flex-col gap-2 mt-2">
-          {refId && (
-            <span class="text-sm">
-              Cod. {refId}
-            </span>
-          )}
+          <div class="flex items-center justify-between w-full sm:w-[90%]">
+            {refId && (
+              <span class="text-sm">
+                Cod. {refId}
+              </span>
+            )}
+
+            <ShareButton />
+          </div>
 
           <div class="konfidency-reviews-summary" data-sku={productGroupID}>
           </div>
