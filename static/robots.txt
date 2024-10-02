@@ -2,4 +2,26 @@ User-agent: *
 Disallow: /
 
 User-agent: Googlebot
-Allow: /
+Disallow:
+
+User-agent: Bingbot
+Disallow:
+
+User-agent: Slurp
+Disallow:
+
+User-agent: DuckDuckBot
+Disallow:
+
+# Bloqueios globais para todas as páginas específicas
+User-agent: *
+Disallow: /img/*
+Disallow: /account/*
+Disallow: /login/*
+Disallow: /checkout/*
+Disallow: /busca/*
+Disallow: /quick-view/*
+Disallow: /espiar/*
+Noindex: /buscapagina/*
+
+Sitemap: https://www.cristaistavares.com.br/sitemap.xml
